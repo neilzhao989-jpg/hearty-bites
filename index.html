@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hearty & Gentle Bites - Soft, fork-tender recipes designed for elderly users with chewing or swallowing difficulties.">
+  <title>Hearty & Gentle Bites</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-cream: #FFF9F0;
+      --bg-secondary: #EDE5DB;
+      --primary: #D97B4A;
+      --primary-dark: #B86539;
+      --text: #2D1815;
+      --text-light: #5C4038;
+      --success: #4A734A;
+      --warning: #5C4000;
+      --warning-text: #2D1A00;
+      --warning-bg: #FFF8DC;
+      --white: #FFFFFF;
+      --shadow: rgba(45, 24, 21, 0.1);
+      --shadow-lg: rgba(45, 24, 21, 0.15);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--bg-cream);
+      min-height: 100vh;
+    }
+
+    /* Accessibility: Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Skip Link */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--text);
+      color: var(--white);
+      padding: 12px 24px;
+      border-radius: 0 0 8px 8px;
+      text-decoration: none;
+      font-weight: 600;
+      z-index: 1000;
+      transition: top 0.3s ease;
+    }
+
+    .skip-link:focus {
+      top: 0;
+      outline: 3px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    /* Focus Styles */
+    *:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', Georgia, serif;
+      line-height: 1.3;
+      letter-spacing: 0.02em;
+      color: var(--text);
+    }
+
+    h1 { font-size: 2.5rem; font-weight: 700; }
+    h2 { font-size: 2rem; font-weight: 600; }
+    h3 { font-size: 1.5rem; font-weight: 600; }
+    h4 { font-size: 1.25rem; font-weight: 600; }
+
+    p { margin-bottom: 1rem; }
+
+    a {
+      color: var(--primary-dark);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    a:hover {
+      color: var(--text);
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      background: var(--bg-cream);
+      border-bottom: 2px solid var(--bg-secondary);
+      z-index: 100;
+      transition: box-shadow 0.3s ease;
+    }
+
+    header.scrolled {
+      box-shadow: 0 4px 12px var(--shadow);
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .logo svg {
+      width: 40px;
+      height: 40px;
+      color: var(--primary);
+    }
+
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    nav a {
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    nav a:not(.btn) {
+      color: var(--text);
+    }
+
+    nav a:not(.btn):hover,
+    nav a:not(.btn)[aria-current="page"] {
+      background: var(--bg-secondary);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      color: var(--white);
+      text-decoration: none;
+      transform: translateY(-2px);
+    }
+
+    .btn-primary:active {
+      transform: scale(0.98);
+    }
+
+    .btn-secondary {
+      background: var(--bg-secondary);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: var(--primary);
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .btn svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Main Content */
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 32px 24px;
+      min-height: calc(100vh - 200px);
+    }
+
+    /* Page Transitions */
+    .page {
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Medical Disclaimer */
+    .disclaimer {
+      background: var(--warning-bg);
+      border: 2px solid var(--warning);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 32px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .disclaimer svg {
+      width: 32px;
+      height: 32px;
+      color: var(--warning);
+      flex-shrink: 0;
+    }
+
+    .disclaimer-content h3 {
+      color: var(--warning-text);
+      margin-bottom: 8px;
+    }
+
+    .disclaimer-content p {
+      margin-bottom: 0;
+      color: var(--text);
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 48px 0;
+      border-bottom: 2px solid var(--bg-secondary);
+      margin-bottom: 48px;
+    }
+
+    .hero h1 {
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Recipe Grid */
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .recipe-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .recipe-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 8px 24px var(--shadow-lg);
+    }
+
+    .recipe-card:focus {
+      outline: 3px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    .recipe-card-image {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .recipe-card-image svg {
+      width: 64px;
+      height: 64px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .recipe-card-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 50%, rgba(74, 44, 42, 0.3));
+    }
+
+    .recipe-card-content {
+      padding: 20px;
+    }
+
+    .recipe-card h3 {
+      margin-bottom: 8px;
+      font-size: 1.25rem;
+    }
+
+    .recipe-card p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+
+    .recipe-card .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* Recipe Detail Page */
+    .recipe-header {
+      margin-bottom: 32px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+
+    .back-link svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .recipe-title {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .recipe-title h1 {
+      margin: 0;
+    }
+
+    .recipe-title svg {
+      width: 48px;
+      height: 48px;
+      color: var(--primary);
+    }
+
+    .recipe-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      padding: 20px;
+      background: var(--bg-secondary);
+      border-radius: 12px;
+      margin-bottom: 32px;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .meta-item svg {
+      width: 24px;
+      height: 24px;
+      color: var(--primary);
+    }
+
+    .meta-item strong {
+      color: var(--text);
+    }
+
+    /* Recipe Sections */
+    .recipe-section {
+      margin-bottom: 40px;
+    }
+
+    .recipe-section h2 {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--bg-secondary);
+    }
+
+    .recipe-section h2 svg {
+      width: 28px;
+      height: 28px;
+      color: var(--primary);
+    }
+
+    /* Ingredients */
+    .ingredients-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .ingredient-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 16px;
+      background: var(--white);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .ingredient-item:hover {
+      background: var(--bg-secondary);
+    }
+
+    .ingredient-item input[type="checkbox"] {
+      width: 24px;
+      height: 24px;
+      accent-color: var(--success);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .ingredient-item label {
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .ingredient-item.checked label {
+      text-decoration: line-through;
+      color: var(--text-light);
+    }
+
+    .ingredient-amount {
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+
+    .ingredient-note {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      font-style: italic;
+    }
+
+    /* Instructions */
+    .instructions-list {
+      list-style: none;
+      display: grid;
+      gap: 20px;
+    }
+
+    .instruction-step {
+      display: flex;
+      gap: 16px;
+      padding: 20px;
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .step-content {
+      flex: 1;
+    }
+
+    .step-content p {
+      margin-bottom: 0;
+    }
+
+    .fork-tender {
+      font-weight: 600;
+      color: #0D260D;
+      background: rgba(13, 38, 13, 0.1);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    /* Caregiver Tips */
+    .tips-box {
+      background: var(--warning-bg);
+      border-left: 4px solid var(--warning);
+      border-radius: 0 12px 12px 0;
+      padding: 24px;
+    }
+
+    .tips-box h3 {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--warning-text);
+      margin-bottom: 16px;
+    }
+
+    .tips-box h3 svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .tips-box ul {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .tips-box li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .tips-box li svg {
+      width: 20px;
+      height: 20px;
+      color: var(--warning);
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    /* Print Button (fixed) */
+    .print-fab {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 16px var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 50;
+    }
+
+    .print-fab:hover {
+      background: var(--primary-dark);
+      transform: scale(1.1);
+    }
+
+    .print-fab svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-secondary);
+      border-top: 2px solid rgba(74, 44, 42, 0.1);
+      padding: 32px 24px;
+      margin-top: 64px;
+    }
+
+    .footer-content {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .footer-disclaimer {
+      background: var(--warning-bg);
+      border: 2px solid var(--warning);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .footer-disclaimer h3 {
+      color: var(--warning-text);
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-disclaimer p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+    }
+
+    .footer-info {
+      text-align: center;
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        font-size: 12pt;
+        background: white;
+        color: black;
+      }
+
+      header, footer, .print-fab, .skip-link, .disclaimer {
+        display: none !important;
+      }
+
+      main {
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+      }
+
+      .recipe-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+      }
+
+      .recipe-meta {
+        background: #f5f5f5 !important;
+      }
+
+      .ingredient-item input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        -webkit-appearance: none;
+        appearance: none;
+        border: 2px solid black;
+        display: inline-block;
+      }
+
+      .instruction-step {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+      }
+
+      .step-number {
+        background: black !important;
+        color: white !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .tips-box {
+        border: 2px solid #333;
+        background: #f9f9f9 !important;
+      }
+
+      .tips-box h3 {
+        color: black !important;
+      }
+
+      .fork-tender {
+        background: #e0e0e0 !important;
+        color: black !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      h1, h2, h3 {
+        color: black !important;
+      }
+
+      a {
+        color: black !important;
+        text-decoration: none !important;
+      }
+
+      .back-link {
+        color: black;
+      }
+
+      .back-link::before {
+        content: "← ";
+      }
+
+      @page {
+        margin: 1in;
+      }
+    }
+
+    /* High Contrast Mode */
+    body.high-contrast {
+      --bg-cream: #FFFFFF;
+      --bg-secondary: #F0F0F0;
+      --text: #000000;
+      --text-light: #333333;
+      --primary: #B35A00;
+    }
+
+    body.high-contrast .recipe-card {
+      border: 2px solid var(--text);
+    }
+
+    body.high-contrast .instruction-step {
+      border: 2px solid var(--text);
+    }
+
+    body.high-contrast .disclaimer,
+    body.high-contrast .tips-box {
+      border-width: 3px;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 640px) {
+      h1 { font-size: 1.8rem; }
+      h2 { font-size: 1.5rem; }
+
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      nav {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      nav a {
+        width: 100%;
+        text-align: center;
+      }
+
+      .recipe-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .recipe-meta {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .recipe-title {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .print-fab {
+        bottom: 20px;
+        right: 20px;
+        width: 56px;
+        height: 56px;
+      }
+
+      .disclaimer {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header id="header">
+    <div class="header-content">
+      <a href="#/" class="logo" aria-label="Hearty & Gentle Bites - Home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+          <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+          <line x1="9" y1="9" x2="9.01" y2="9"/>
+          <line x1="15" y1="9" x2="15.01" y2="9"/>
+        </svg>
+        <span class="logo-text">Hearty & Gentle Bites</span>
+      </a>
+      <nav role="navigation" aria-label="Main navigation">
+        <a href="#/" aria-current="page">Home</a>
+        <button class="btn btn-secondary" id="contrast-toggle" aria-pressed="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 2a10 10 0 0 1 0 20z"/>
+          </svg>
+          Contrast
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" role="main">
+    <!-- Content will be dynamically loaded -->
+  </main>
+
+  <footer role="contentinfo">
+    <div class="footer-content">
+      <div class="footer-disclaimer">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+            <line x1="12" y1="9" x2="12" y2="13"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          Important Medical Disclaimer
+        </h3>
+        <p>The recipes on this website are designed for informational purposes only. They are not intended to diagnose, treat, cure, or prevent any medical condition, including dysphagia (difficulty swallowing). Please consult with your physician, speech-language pathologist, or registered dietitian before preparing any meals for someone with chewing or swallowing difficulties. Individual dietary needs vary, and professional guidance is essential for safe nutrition management.</p>
+      </div>
+      <div class="footer-info">
+        <p>Hearty & Gentle Bites &copy; 2024. Designed with care for caregivers and their loved ones.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="print-fab" id="print-btn" aria-label="Print recipe" style="display: none;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="6 9 6 2 18 2 18 9"/>
+      <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+      <rect x="6" y="14" width="12" height="8"/>
+    </svg>
+  </button>
+
+  <script>
+    // Recipe Data
+    const recipes = [
+      {
+        id: 1,
+        slug: "slow-braised-short-ribs",
+        title: "Slow-Braised Short Ribs",
+        description: "Tender, fall-off-the-bone beef short ribs slowly braised in a rich red wine and vegetable broth until fork-tender.",
+        prepTime: "20 minutes",
+        cookTime: "3 hours",
+        servings: 4,
+        difficulty: "Easy",
+        icon: "beef",
+        ingredients: [
+          { amount: "3 lbs", item: "Bone-in beef short ribs", note: "Ask butcher to cut between bones" },
+          { amount: "2 cups", item: "Low-sodium beef broth" },
+          { amount: "1 cup", item: "Dry red wine", note: "Or additional broth for alcohol-free version" },
+          { amount: "1 large", item: "Onion, diced" },
+          { amount: "3 cloves", item: "Garlic, minced" },
+          { amount: "3 medium", item: "Carrots, cut into 2-inch pieces" },
+          { amount: "2 stalks", item: "Celery, cut into 2-inch pieces" },
+          { amount: "2 tbsp", item: "Tomato paste" },
+          { amount: "1 tsp", item: "Fresh thyme leaves" },
+          { amount: "1/2 tsp", item: "Black pepper" },
+          { amount: "2 tbsp", item: "Olive oil" }
+        ],
+        instructions: [
+          { step: 1, text: "Season the short ribs generously with pepper. Heat olive oil in a large Dutch oven over medium-high heat until shimmering.", forkTender: false },
+          { step: 2, text: "Sear the short ribs on all sides until deeply golden brown, about 3-4 minutes per side. Work in batches to avoid crowding. Transfer to a plate and set aside.", forkTender: false },
+          { step: 3, text: "Reduce heat to medium. Add onions and garlic to the pot and cook until softened, about 5 minutes. Stir in the tomato paste and cook for 1 minute.", forkTender: false },
+          { step: 4, text: "Pour in the red wine and scrape up any browned bits from the bottom of the pot. Let it reduce by half, about 3 minutes.", forkTender: false },
+          { step: 5, text: "Add the beef broth, carrots, celery, and thyme. Return the short ribs to the pot, ensuring they are mostly submerged in liquid.", forkTender: false },
+          { step: 6, text: "Cover and reduce heat to low. Simmer gently for 2.5 to 3 hours, until the meat is completely fork-tender and pulls away from the bone easily.", forkTender: true },
+          { step: 7, text: "Remove the short ribs and vegetables. Let the meat rest for 10 minutes. The meat should be so tender it can be easily cut with a fork alone.", forkTender: true },
+          { step: 8, text: "Skim excess fat from the cooking liquid. Serve the short ribs with the vegetables and a generous ladle of the reduced braising liquid.", forkTender: false }
+        ],
+        caregiverTips: [
+          "For pureed textures, blend the cooked vegetables with some of the braising liquid until completely smooth.",
+          "Remove the bone before serving and check carefully for any small fragments.",
+          "The meat should be so tender it can be mashed with a fork without any resistance.",
+          "Leftovers can be shredded and mixed with extra gravy for an even softer texture."
+        ],
+        dietaryNotes: "Gluten-free. For lower sodium, use reduced-sodium broth and omit added salt."
+      },
+      {
+        id: 2,
+        slug: "rustic-beef-stew",
+        title: "Rustic Beef Stew",
+        description: "A hearty, comforting classic with tender beef cubes, potatoes, and vegetables in a savory broth—cooked until everything melts in your mouth.",
+        prepTime: "25 minutes",
+        cookTime: "2 hours",
+        servings: 6,
+        difficulty: "Easy",
+        icon: "stew",
+        ingredients: [
+          { amount: "2 lbs", item: "Beef chuck, cut into 1-inch cubes", note: "Look for well-marbled meat for extra tenderness" },
+          { amount: "4 medium", item: "Potatoes, peeled and cubed" },
+          { amount: "3 medium", item: "Carrots, cut into 1/2-inch rounds" },
+          { amount: "2 stalks", item: "Celery, sliced" },
+          { amount: "1 large", item: "Onion, chopped" },
+          { amount: "4 cups", item: "Low-sodium beef broth" },
+          { amount: "1/4 cup", item: "All-purpose flour", note: "Or cornstarch for gluten-free" },
+          { amount: "2 tbsp", item: "Tomato paste" },
+          { amount: "1 tsp", item: "Dried thyme" },
+          { amount: "1/4 cup", item: "Fresh parsley, chopped" },
+          { amount: "3 tbsp", item: "Vegetable oil" }
+        ],
+        instructions: [
+          { step: 1, text: "Pat the beef cubes dry with paper towels and season with pepper. This ensures proper browning.", forkTender: false },
+          { step: 2, text: "Heat 2 tablespoons of oil in a large pot over medium-high heat. Brown the beef in batches, turning occasionally, until all sides are deeply browned, about 4-5 minutes per batch. Set aside.", forkTender: false },
+          { step: 3, text: "Add the remaining oil if needed. Sauté the onions until translucent, about 4 minutes. Add the tomato paste and cook for 1 minute.", forkTender: false },
+          { step: 4, text: "Sprinkle flour over the vegetables and stir to coat. Cook for 1 minute to remove the raw flour taste.", forkTender: false },
+          { step: 5, text: "Pour in the beef broth and stir to combine. Return the browned beef to the pot. Add thyme and bring to a gentle boil.", forkTender: false },
+          { step: 6, text: "Reduce heat to low, cover, and simmer for 1 hour. The beef should begin to feel more tender.", forkTender: false },
+          { step: 7, text: "Add the potatoes, carrots, and celery. Continue to simmer, covered, for another 45 minutes to 1 hour, until all vegetables and beef are completely fork-tender.", forkTender: true },
+          { step: 8, text: "The beef should be so tender it falls apart when gently pressed with a fork. If not, cook for another 15-20 minutes.", forkTender: true },
+          { step: 9, text: "Taste and adjust seasoning. Stir in fresh parsley just before serving. Let cool slightly before serving to those with swallowing difficulties.", forkTender: false }
+        ],
+        caregiverTips: [
+          "Cut larger pieces of potato in half for easier identification and portion control.",
+          "For an even softer texture, mash some of the potatoes directly into the stew.",
+          "Ensure all pieces are approximately the same size for even cooking and consistent texture.",
+          "Before serving, use a fork to check that beef cubes break apart easily without chewing required."
+        ],
+        dietaryNotes: "Can be made gluten-free using cornstarch instead of flour. Lower in sodium when made with reduced-sodium broth."
+      },
+      {
+        id: 3,
+        slug: "butternut-squash-bisque",
+        title: "Butternut Squash Bisque",
+        description: "Silky smooth, naturally sweet butternut squash soup enriched with cream and warming spices—a comforting bowl of pure comfort.",
+        prepTime: "20 minutes",
+        cookTime: "45 minutes",
+        servings: 6,
+        difficulty: "Easy",
+        icon: "soup",
+        ingredients: [
+          { amount: "2 lbs", item: "Butternut squash, peeled and cubed", note: "Pre-cut squash works well to save time" },
+          { amount: "1 medium", item: "Onion, diced" },
+          { amount: "2 cloves", item: "Garlic, minced" },
+          { amount: "4 cups", item: "Low-sodium chicken or vegetable broth" },
+          { amount: "1/2 cup", item: "Heavy cream", note: "Or full-fat coconut milk for dairy-free" },
+          { amount: "1/4 tsp", item: "Ground nutmeg" },
+          { amount: "1/4 tsp", item: "Ground cinnamon" },
+          { amount: "1/4 tsp", item: "White pepper" },
+          { amount: "2 tbsp", item: "Butter" },
+          { amount: "1 tbsp", item: "Maple syrup", note: "Optional, for extra sweetness" }
+        ],
+        instructions: [
+          { step: 1, text: "Melt butter in a large pot over medium heat. Add onion and garlic, cooking until softened and fragrant, about 5 minutes.", forkTender: false },
+          { step: 2, text: "Add the cubed butternut squash and stir to coat with the butter.", forkTender: false },
+          { step: 3, text: "Pour in the broth and bring to a boil. Reduce heat to low and simmer, covered, for 25-30 minutes until the squash is very tender and easily pierced with a fork.", forkTender: true },
+          { step: 4, text: "Remove from heat. Use an immersion blender to puree the soup until completely smooth and silky. Alternatively, blend in batches in a regular blender, being careful with the hot liquid.", forkTender: false },
+          { step: 5, text: "Return the pureed soup to the pot over low heat. Stir in the cream, nutmeg, cinnamon, white pepper, and maple syrup if using.", forkTender: false },
+          { step: 6, text: "Heat gently, stirring frequently, until the soup is heated through. Do not let it boil after adding cream.", forkTender: false },
+          { step: 7, text: "Taste and adjust seasoning. The soup should be perfectly smooth with no lumps. If needed, blend again to ensure absolute smoothness.", forkTender: false },
+          { step: 8, text: "Serve in warm bowls with a drizzle of cream swirled on top. The smooth texture makes this ideal for those with swallowing difficulties.", forkTender: false }
+        ],
+        caregiverTips: [
+          "This bisque is naturally smooth but can be strained through a fine-mesh sieve for extra smoothness if needed.",
+          "The soup thickens as it cools. Add more broth when reheating to reach desired consistency.",
+          "Serve at a lukewarm temperature—too hot can cause burns and swallowing difficulties.",
+          "Freeze in portion-sized containers for easy reheating later."
+        ],
+        dietaryNotes: "Gluten-free and naturally dairy-free option available. Low in sodium when using homemade broth. Perfectly smooth texture for dysphagia-friendly diets."
+      },
+      {
+        id: 4,
+        slug: "creamy-mashed-potatoes",
+        title: "Creamy Mashed Potatoes",
+        description: "Luxuriously smooth, buttery mashed potatoes made from Yukon Gold potatoes—perfectly creamy with no lumps, just pure comfort.",
+        prepTime: "15 minutes",
+        cookTime: "25 minutes",
+        servings: 6,
+        difficulty: "Easy",
+        icon: "potato",
+        ingredients: [
+          { amount: "3 lbs", item: "Yukon Gold potatoes", note: "Yukon Golds have natural buttery flavor and creamy texture" },
+          { amount: "1 cup", item: "Whole milk, warmed" },
+          { amount: "1/2 cup", item: "Salted butter, cubed and softened" },
+          { amount: "4 oz", item: "Cream cheese, softened" },
+          { amount: "1/2 tsp", item: "Garlic powder" },
+          { amount: "1/2 tsp", item: "White pepper" },
+          { amount: "1/4 cup", item: "Fresh chives, minced", note: "Optional garnish" }
+        ],
+        instructions: [
+          { step: 1, text: "Peel the potatoes and cut into uniform 1-inch cubes. Rinse in cold water to remove excess starch.", forkTender: false },
+          { step: 2, text: "Place the potatoes in a large pot and cover with cold salted water. Bring to a boil over high heat.", forkTender: false },
+          { step: 3, text: "Reduce heat to medium and cook at a gentle boil for 15-20 minutes, until the potatoes are very tender and easily mashed. A fork should slide through them with no resistance.", forkTender: true },
+          { step: 4, text: "Drain the potatoes thoroughly in a colander. Return them to the warm pot and let them steam dry for 2 minutes, shaking occasionally.", forkTender: false },
+          { step: 5, text: "Heat the milk in a small saucepan until just beginning to steam. Do not boil.", forkTender: false },
+          { step: 6, text: "Using a potato ricer or masher, process the hot potatoes back into the pot. This creates the smoothest texture.", forkTender: false },
+          { step: 7, text: "Add the softened butter cubes, cream cheese, garlic powder, and white pepper. Stir vigorously until all ingredients are incorporated and the potatoes are fluffy and smooth.", forkTender: false },
+          { step: 8, text: "Gradually add the warm milk, stirring constantly, until the potatoes reach your desired creamy consistency. They should be silky with absolutely no lumps.", forkTender: false },
+          { step: 9, text: "Taste and adjust seasoning. Serve immediately, topped with additional butter and chives if desired. These are soft enough for those with minimal chewing ability.", forkTender: false }
+        ],
+        caregiverTips: [
+          "For the smoothest possible texture, pass the mashed potatoes through a fine-mesh strainer after mixing.",
+          "Potatoes continue to thicken as they cool. If making ahead, add a splash of warm milk when reheating.",
+          "These can be pureed further in a blender for those who need completely smooth foods.",
+          " Yukon Golds hold their shape less than russets, resulting in a naturally creamier texture without overworking."
+        ],
+        dietaryNotes: "Gluten-free. Can be made lactose-free using lactose-free milk and dairy-free butter alternatives."
+      },
+      {
+        id: 5,
+        slug: "chicken-golden-soup",
+        title: "Chicken Golden Soup with Pastina",
+        description: "A soothing, golden-hued chicken soup with tiny star-shaped pastina pasta, designed to be gentle and nourishing.",
+        prepTime: "15 minutes",
+        cookTime: "40 minutes",
+        servings: 4,
+        difficulty: "Easy",
+        icon: "soup",
+        ingredients: [
+          { amount: "1 lb", item: "Boneless, skinless chicken breasts" },
+          { amount: "8 cups", item: "Low-sodium chicken broth" },
+          { amount: "1 cup", item: "Pastina pasta", note: "Tiny star-shaped or small soup pasta" },
+          { amount: "2 medium", item: "Carrots, diced very small" },
+          { amount: "2 stalks", item: "Celery, diced very small" },
+          { amount: "1 small", item: "Onion, finely diced" },
+          { amount: "3 cloves", item: "Garlic, minced" },
+          { amount: "1/4 cup", item: "Fresh parsley, chopped" },
+          { amount: "1/4 tsp", item: "Turmeric", note: "For golden color and anti-inflammatory benefits" },
+          { amount: "1 tbsp", item: "Olive oil" }
+        ],
+        instructions: [
+          { step: 1, text: "Season the chicken breasts with pepper. In a large pot, bring the chicken broth to a gentle simmer over medium heat.", forkTender: false },
+          { step: 2, text: "Add the whole chicken breasts to the simmering broth. Reduce heat to low, cover, and cook for 15-20 minutes until the chicken is cooked through and very tender.", forkTender: true },
+          { step: 3, text: "Remove the chicken and let it rest for 10 minutes. Use two forks to shred it into small, tender pieces. The chicken should shred easily without any resistance.", forkTender: true },
+          { step: 4, text: "In the same pot, heat olive oil over medium heat. Add the onion, carrots, and celery. Cook until very soft, about 8 minutes.", forkTender: false },
+          { step: 5, text: "Add the garlic and turmeric, stirring for 1 minute until fragrant.", forkTender: false },
+          { step: 6, text: "Pour in the broth and bring to a boil. Add the pastina pasta and cook according to package directions, usually 8-10 minutes, until very soft.", forkTender: true },
+          { step: 7, text: "Return the shredded chicken to the pot. The pasta should be soft enough to mash with a fork.", forkTender: true },
+          { step: 8, text: "Stir in the fresh parsley. Taste and adjust seasoning. The soup should be comforting and easy to eat.", forkTender: false },
+          { step: 9, text: "For those with swallowing difficulties, the soup can be served as-is or lightly mashed to combine the pasta and chicken further.", forkTender: true }
+        ],
+        caregiverTips: [
+          "Cook the pasta slightly longer than package directions recommend for a softer texture.",
+          "Dice the vegetables very finely so they don't need any chewing.",
+          "The chicken should be so tender it falls apart in the broth.",
+          "For pureed diets, blend the entire soup until completely smooth before serving."
+        ],
+        dietaryNotes: "Gluten-free option available using rice pasta or omit pasta entirely. Low-sodium version using homemade broth."
+      },
+      {
+        id: 6,
+        slug: "baked-cinnamon-apples",
+        title: "Baked Cinnamon Apples",
+        description: "Warm, tender baked apples with a cozy cinnamon-sugar filling—naturally soft and perfect for a comforting, easy-to-eat dessert.",
+        prepTime: "10 minutes",
+        cookTime: "45 minutes",
+        servings: 4,
+        difficulty: "Easy",
+        icon: "apple",
+        ingredients: [
+          { amount: "4 large", item: "Firm-sweet apples", note: "Honeycrisp, Fuji, or Gala work best" },
+          { amount: "4 tbsp", item: "Light brown sugar" },
+          { amount: "1 tsp", item: "Ground cinnamon" },
+          { amount: "1/4 tsp", item: "Ground nutmeg" },
+          { amount: "2 tbsp", item: "Unsalted butter, softened" },
+          { amount: "1/4 cup", item: "Apple cider or juice" },
+          { amount: "2 tbsp", item: "Chopped walnuts or pecans", note: "Omit for nut-free version" }
+        ],
+        instructions: [
+          { step: 1, text: "Preheat your oven to 375°F (190°C). Lightly grease a 9x13 inch baking dish.", forkTender: false },
+          { step: 2, text: "Core the apples, leaving about 1/2 inch of flesh at the bottom to hold the filling. Use a melon baller or spoon to carefully remove the core and create a well.", forkTender: false },
+          { step: 3, text: "Mix together the brown sugar, cinnamon, nutmeg, and softened butter in a small bowl until crumbly.", forkTender: false },
+          { step: 4, text: "Stuff each apple with the cinnamon-sugar mixture, pressing it down gently. Top with a few pieces of nuts if using.", forkTender: false },
+          { step: 5, text: "Place the apples in the prepared baking dish. Pour the apple cider around the apples in the dish.", forkTender: false },
+          { step: 6, text: "Cover tightly with aluminum foil and bake for 35 minutes.", forkTender: false },
+          { step: 7, text: "Remove the foil and continue baking for another 10-15 minutes until the apples are completely soft and tender when pierced with a fork. The flesh should be translucent and yielding.", forkTender: true },
+          { step: 8, text: "Let the apples cool for 10 minutes before serving. They should be soft enough to eat with just a spoon, requiring minimal to no chewing.", forkTender: true },
+          { step: 9, text: "Serve with the pan juices drizzled over the top and a scoop of whipped cream or vanilla ice cream if desired.", forkTender: false }
+        ],
+        caregiverTips: [
+          "The apples are done when a fork slides in without any resistance and the skin easily separates from the flesh.",
+          "For pureed diets, scoop out the cooked flesh and mash or blend until smooth.",
+          "Choose apples that hold their shape during baking—avoid soft varieties that turn to mush.",
+          "Test with a spoon before serving: the apple should scoop out in soft, manageable pieces."
+        ],
+        dietaryNotes: "Gluten-free and dairy-free option available (use dairy-free butter). Can be made without nuts for allergies."
+      },
+      {
+        id: 7,
+        slug: "vanilla-bean-custard",
+        title: "Vanilla Bean Custard",
+        description: "Silky, elegant vanilla custard with real vanilla bean—silky smooth and gently set, designed to melt on your tongue.",
+        prepTime: "15 minutes",
+        cookTime: "45 minutes",
+        servings: 6,
+        difficulty: "Intermediate",
+        icon: "custard",
+        ingredients: [
+          { amount: "4 large", item: "Eggs" },
+          { amount: "4 large", item: "Egg yolks" },
+          { amount: "2/3 cup", item: "Granulated sugar" },
+          { amount: "2 cups", item: "Heavy cream" },
+          { amount: "1 cup", item: "Whole milk" },
+          { amount: "1", item: "Vanilla bean, split and scraped", note: "Or 2 tsp vanilla extract" },
+          { amount: "1/4 tsp", item: "Fine salt" },
+          { amount: "1/4 tsp", item: "Ground nutmeg", note: "Optional" }
+        ],
+        instructions: [
+          { step: 1, text: "Preheat oven to 325°F (165°C). Place six 6-oz ramekins in a large roasting pan.", forkTender: false },
+          { step: 2, text: "In a medium bowl, whisk together the eggs, egg yolks, and sugar until smooth and slightly pale.", forkTinder: false },
+          { step: 3, text: "In a saucepan, combine the cream, milk, vanilla bean (seeds and pod), and salt. Heat over medium until it just begins to steam and small bubbles appear at the edges. Do not boil.", forkTender: false },
+          { step: 4, text: "Slowly whisk the hot cream mixture into the egg mixture, whisking constantly to temper the eggs. Add it gradually to prevent scrambling.", forkTender: false },
+          { step: 5, text: "Pour the mixture through a fine-mesh strainer into a large measuring cup. This removes any bits of cooked egg and ensures absolute smoothness.", forkTender: false },
+          { step: 6, text: "Divide the custard mixture evenly among the ramekins. Sprinkle a tiny pinch of nutmeg on each if using.", forkTender: false },
+          { step: 7, text: "Pour hot water into the roasting pan until it reaches halfway up the sides of the ramekins. This water bath ensures gentle, even cooking.", forkTender: false },
+          { step: 8, text: "Bake for 40-45 minutes until the edges are set but the centers still jiggle slightly when gently shaken. The custards should be completely cooked through but silky and tender.", forkTender: true },
+          { step: 9, text: "Remove the ramekins from the water bath and let cool to room temperature. Refrigerate for at least 2 hours until fully chilled and set.", forkTender: false },
+          { step: 10, text: "Before serving, run a finger around the edge of each custard. It should release easily. The texture should be silky, trembling, and melt in your mouth.", forkTender: true }
+        ],
+        caregiverTips: [
+          "The custard is done when it passes the wobble test: a gentle tap should cause only a small wobble in the center.",
+          "Overbaked custards become grainy and weep—remove from oven when centers still seem slightly underdone.",
+          "For those needing pureed textures, blend chilled custard until perfectly smooth before serving.",
+          "Serve slightly chilled or at room temperature—cold custard is easier to control in the mouth."
+        ],
+        dietaryNotes: "Gluten-free. Can be made lighter using 2% milk or a combination of milk and cream."
+      }
+    ];
+
+    // App State
+    let currentRoute = '/';
+    let checkedIngredients = {};
+
+    // DOM Elements
+    const mainContent = document.getElementById('main-content');
+    const header = document.getElementById('header');
+    const printBtn = document.getElementById('print-btn');
+    const contrastToggle = document.getElementById('contrast-toggle');
+
+    // Icons SVG
+    const icons = {
+      beef: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 2.5c2 1 3.5 3.5 3.5 6.5 0 4-3 7-6.5 8.5"/><path d="M8.5 2.5C6.5 3.5 5 6 5 9c0 4 3 7 6.5 8.5"/><circle cx="12" cy="9" r="3"/></svg>',
+      stew: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"/><line x1="6" y1="17" x2="18" y2="17"/></svg>',
+      soup: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M8 4h8"/><path d="M6 8h12a2 2 0 0 1 2 2v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-8a2 2 0 0 1 2-2z"/></svg>',
+      potato: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="8" ry="5" transform="rotate(45 12 12)"/></svg>',
+      apple: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c1 0 3 .5 3 2-1 0-2 .5-3 .5s-2-.5-3-.5c1-1.5 2-2 3-2z"/><path d="M12 4c-5 0-8 4-8 9a8 8 0 0 0 16 0c0-5-3-9-8-9z"/></svg>',
+      custard: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 16 0"/><path d="M4 12c0 4 3.5 8 8 8s8-4 8-8"/><path d="M8 20h8"/><path d="M12 16v4"/></svg>',
+      clock: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+      users: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+      star: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+      arrowLeft: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>',
+      list: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>',
+      lightbulb: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>',
+      check: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+    };
+
+    // Render Home Page
+    function renderHomePage() {
+      return `
+        <div class="page" id="home-page">
+          <div class="disclaimer">
+            ${icons.lightbulb.replace('width="28"', 'width="32"').replace('height="28"', 'height="32"')}
+            <div class="disclaimer-content">
+              <h3>Medical Disclaimer</h3>
+              <p>These recipes are designed to be soft and fork-tender for those with minor chewing or swallowing difficulties. Please consult your healthcare provider for personalized dietary advice.</p>
+            </div>
+          </div>
+
+          <section class="hero">
+            <h1>Welcome to Hearty & Gentle Bites</h1>
+            <p>Discover comforting, fork-tender recipes thoughtfully designed for easy eating. Every dish prioritizes both nourishment and safety.</p>
+          </section>
+
+          <h2 style="margin-bottom: 24px; text-align: center;">Our Recipes</h2>
+          <div class="recipe-grid">
+            ${recipes.map(recipe => `
+              <article class="recipe-card" tabindex="0" role="button" aria-label="View recipe for ${recipe.title}"
+                onclick="navigateTo('/recipe/${recipe.slug}')" onkeypress="if(event.key==='Enter')navigateTo('/recipe/${recipe.slug}')">
+                <div class="recipe-card-image">
+                  ${icons[recipe.icon] || icons.stew}
+                </div>
+                <div class="recipe-card-content">
+                  <h3>${recipe.title}</h3>
+                  <p>${recipe.description}</p>
+                  <span class="btn btn-primary">View Recipe</span>
+                </div>
+              </article>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    // Render Recipe Page
+    function renderRecipePage(slug) {
+      const recipe = recipes.find(r => r.slug === slug);
+      if (!recipe) {
+        return `
+          <div class="page">
+            <h1>Recipe Not Found</h1>
+            <p>The recipe you're looking for doesn't exist.</p>
+            <a href="#/" class="btn btn-primary">Return Home</a>
+          </div>
+        `;
+      }
+
+      const recipeIngredients = checkedIngredients[slug] || {};
+
+      return `
+        <div class="page" id="recipe-page">
+          <div class="recipe-header">
+            <a href="#/" class="back-link">
+              ${icons.arrowLeft}
+              Back to All Recipes
+            </a>
+
+            <div class="recipe-title">
+              ${icons[recipe.icon] || ''}
+              <h1>${recipe.title}</h1>
+            </div>
+
+            <p style="font-size: 1.1rem; color: var(--text-light);">${recipe.description}</p>
+
+            <div class="recipe-meta" role="list" aria-label="Recipe information">
+              <div class="meta-item" role="listitem">
+                ${icons.clock}
+                <span><strong>Prep:</strong> ${recipe.prepTime}</span>
+              </div>
+              <div class="meta-item" role="listitem">
+                ${icons.clock}
+                <span><strong>Cook:</strong> ${recipe.cookTime}</span>
+              </div>
+              <div class="meta-item" role="listitem">
+                ${icons.users}
+                <span><strong>Serves:</strong> ${recipe.servings}</span>
+              </div>
+              <div class="meta-item" role="listitem">
+                ${icons.star}
+                <span><strong>Difficulty:</strong> ${recipe.difficulty}</span>
+              </div>
+            </div>
+          </div>
+
+          <section class="recipe-section" aria-labelledby="ingredients-heading">
+            <h2 id="ingredients-heading">
+              ${icons.list}
+              Ingredients
+            </h2>
+            <ul class="ingredients-list" role="list">
+              ${recipe.ingredients.map((ing, index) => {
+                const isChecked = recipeIngredients[index];
+                return `
+                  <li class="ingredient-item ${isChecked ? 'checked' : ''}" role="listitem">
+                    <input type="checkbox" id="ing-${index}" ${isChecked ? 'checked' : ''} 
+                      onchange="toggleIngredient('${slug}', ${index}, this.checked)">
+                    <label for="ing-${index}">
+                      <span class="ingredient-amount">${ing.amount}</span> ${ing.item}
+                      ${ing.note ? `<span class="ingredient-note">${ing.note}</span>` : ''}
+                    </label>
+                  </li>
+                `;
+              }).join('')}
+            </ul>
+          </section>
+
+          <section class="recipe-section" aria-labelledby="instructions-heading">
+            <h2 id="instructions-heading">
+              ${icons.list}
+              Instructions
+            </h2>
+            <ol class="instructions-list" role="list">
+              ${recipe.instructions.map(inst => `
+                <li class="instruction-step" role="listitem">
+                  <span class="step-number" aria-hidden="true">${inst.step}</span>
+                  <div class="step-content">
+                    <p>${inst.forkTender 
+                      ? inst.text.replace(/fork-tender/gi, '<span class="fork-tender">fork-tender</span>') 
+                      : inst.text}</p>
+                  </div>
+                </li>
+              `).join('')}
+            </ol>
+          </section>
+
+          <section class="recipe-section" aria-labelledby="tips-heading">
+            <h2 id="tips-heading">
+              ${icons.lightbulb}
+              Caregiver Tips
+            </h2>
+            <div class="tips-box">
+              <h3>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                Important Guidance
+              </h3>
+              <ul>
+                ${recipe.caregiverTips.map(tip => `
+                  <li>
+                    ${icons.check}
+                    <span>${tip}</span>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+          </section>
+
+          ${recipe.dietaryNotes ? `
+            <section class="recipe-section">
+              <h2>Dietary Notes</h2>
+              <p>${recipe.dietaryNotes}</p>
+            </section>
+          ` : ''}
+        </div>
+      `;
+    }
+
+    // Toggle ingredient checkbox
+    function toggleIngredient(slug, index, isChecked) {
+      if (!checkedIngredients[slug]) {
+        checkedIngredients[slug] = {};
+      }
+      checkedIngredients[slug][index] = isChecked;
+      
+      const item = document.querySelector(`#ing-${index}`).closest('.ingredient-item');
+      if (isChecked) {
+        item.classList.add('checked');
+      } else {
+        item.classList.remove('checked');
+      }
+    }
+
+    // Navigate to route
+    function navigateTo(route) {
+      window.location.hash = route;
+    }
+
+    // Router
+    function router() {
+      const hash = window.location.hash || '#/';
+      const path = hash.slice(1);
+
+      currentRoute = path;
+
+      // Update nav aria-current
+      document.querySelectorAll('nav a').forEach(link => {
+        if (link.getAttribute('href') === '#/') {
+          link.setAttribute('aria-current', path === '/' ? 'page' : 'false');
+        }
+      });
+
+      // Show/hide print button
+      if (path.startsWith('/recipe/')) {
+        printBtn.style.display = 'flex';
+      } else {
+        printBtn.style.display = 'none';
+      }
+
+      // Render content
+      if (path === '/' || path === '') {
+        mainContent.innerHTML = renderHomePage();
+        document.title = 'Hearty & Gentle Bites';
+      } else if (path.startsWith('/recipe/')) {
+        const slug = path.replace('/recipe/', '');
+        mainContent.innerHTML = renderRecipePage(slug);
+        document.title = `${recipes.find(r => r.slug === slug)?.title || 'Recipe'} - Hearty & Gentle Bites`;
+      } else {
+        mainContent.innerHTML = `
+          <div class="page">
+            <h1>Page Not Found</h1>
+            <p>The page you're looking for doesn't exist.</p>
+            <a href="#/" class="btn btn-primary">Return Home</a>
+          </div>
+        `;
+        document.title = 'Page Not Found - Hearty & Gentle Bites';
+      }
+
+      // Scroll to top
+      window.scrollTo(0, 0);
+
+      // Focus management for screen readers
+      const mainHeading = mainContent.querySelector('h1');
+      if (mainHeading) {
+        mainHeading.setAttribute('tabindex', '-1');
+        mainHeading.focus();
+      }
+    }
+
+    // Event Listeners
+    window.addEventListener('hashchange', router);
+    window.addEventListener('load', router);
+
+    // Header scroll shadow
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Print button
+    printBtn.addEventListener('click', () => {
+      window.print();
+    });
+
+    // High contrast toggle
+    contrastToggle.addEventListener('click', () => {
+      document.body.classList.toggle('high-contrast');
+      const isPressed = document.body.classList.contains('high-contrast');
+      contrastToggle.setAttribute('aria-pressed', isPressed);
+    });
+  </script>
+</body>
+</html>
