@@ -101,10 +101,19 @@
       color: var(--text);
     }
 
-    h1 { font-size: 2.8rem; font-weight: 600; }
-    h2 { font-size: 2rem; font-weight: 600; }
-    h3 { font-size: 1.4rem; font-weight: 600; }
-    h4 { font-size: 1.2rem; font-weight: 600; }
+    h1 { font-size: clamp(2.4rem, 5vw, 3.4rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; }
+    h2 { font-size: clamp(1.75rem, 3vw, 2.1rem); font-weight: 600; line-height: 1.2; }
+    h3 { font-size: 1.3rem; font-weight: 600; line-height: 1.25; }
+    h4 { font-size: 1.1rem; font-weight: 600; }
+
+    .eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
 
     p { margin-bottom: 1.2rem; }
 
@@ -121,13 +130,14 @@
 
     /* Header */
     .top-bar {
-      background: var(--primary);
+      background: var(--text);
       color: var(--white);
-      padding: 8px 24px;
+      padding: 9px 24px;
       text-align: center;
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       font-weight: 500;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .top-bar span {
@@ -151,9 +161,9 @@
     }
 
     .header-content {
-      max-width: 1200px;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 16px 24px;
+      padding: 14px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -164,15 +174,15 @@
     .logo {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 11px;
       text-decoration: none;
       color: var(--text);
     }
 
     .logo-icon {
-      width: 44px;
-      height: 44px;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      width: 36px;
+      height: 36px;
+      background: var(--primary);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -181,38 +191,41 @@
     }
 
     .logo-icon svg {
-      width: 24px;
-      height: 24px;
+      width: 20px;
+      height: 20px;
     }
 
     .logo-text {
       font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: 600;
-      line-height: 1.2;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
     }
 
     .logo-text small {
       display: block;
       font-family: 'Inter', sans-serif;
-      font-size: 0.7rem;
+      font-size: 0.62rem;
       font-weight: 500;
       color: var(--text-muted);
-      letter-spacing: 0.05em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
+      margin-top: 2px;
     }
 
     nav {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 4px;
     }
 
     nav a {
-      padding: 10px 20px;
+      padding: 8px 14px;
       border-radius: var(--radius-sm);
       text-decoration: none;
       font-weight: 500;
+      font-size: 0.92rem;
       transition: background 0.2s ease, color 0.2s ease;
     }
 
@@ -256,19 +269,6 @@
       transform: scale(0.98);
     }
 
-    .btn-secondary {
-      background: var(--bg-warm);
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-
-    .btn-secondary:hover {
-      background: var(--primary);
-      color: var(--white);
-      text-decoration: none;
-      border-color: var(--primary);
-    }
-
     .btn svg {
       width: 20px;
       height: 20px;
@@ -276,9 +276,9 @@
 
     /* Main Content */
     main {
-      max-width: 1100px;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 40px 24px;
+      padding: 8px 24px 64px;
       min-height: calc(100vh - 300px);
     }
 
@@ -291,108 +291,21 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Trust Banner */
-    .trust-banner {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      flex-wrap: wrap;
-      margin-bottom: 40px;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border-light);
-    }
-
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.9rem;
-      color: var(--text-light);
-      font-weight: 500;
-    }
-
-    .trust-item svg {
-      width: 20px;
-      height: 20px;
-      color: var(--primary);
-    }
-
-    /* Medical Disclaimer */
-    .disclaimer {
-      background: var(--warning-bg);
-      border: 1px solid #E8D4A0;
-      border-radius: var(--radius);
-      padding: 20px 24px;
-      margin-bottom: 40px;
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-    }
-
-    .disclaimer svg {
-      width: 24px;
-      height: 24px;
-      color: var(--warning);
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .disclaimer-content h3 {
-      color: var(--warning-text);
-      margin-bottom: 6px;
-      font-size: 1.1rem;
-    }
-
-    .disclaimer-content p {
-      margin-bottom: 0;
-      color: var(--text);
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
     /* Hero Section */
     .hero {
-      text-align: center;
-      padding: 48px 0 56px;
+      padding: 56px 0 40px;
       margin-bottom: 48px;
-      position: relative;
+      border-bottom: 1px solid var(--border);
+      max-width: 780px;
     }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -40px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 80px;
-      background: linear-gradient(135deg, var(--bg-sage) 0%, var(--bg-sage-light) 100%);
-      border-radius: 50%;
-      z-index: -1;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--bg-sage-light);
-      color: var(--primary-dark);
-      padding: 8px 16px;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 20px;
-      letter-spacing: 0.02em;
-    }
-
-    .hero-badge svg {
-      width: 18px;
-      height: 18px;
+    .hero .eyebrow {
+      display: block;
+      margin-bottom: 18px;
     }
 
     .hero h1 {
-      margin-bottom: 16px;
-      font-weight: 600;
+      margin-bottom: 20px;
     }
 
     .hero h1 em {
@@ -401,71 +314,96 @@
     }
 
     .hero p {
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       color: var(--text-light);
-      max-width: 640px;
-      margin: 0 auto;
+      margin: 0 0 8px;
       font-family: 'Lora', Georgia, serif;
-      line-height: 1.7;
+      line-height: 1.65;
     }
 
-    .hero-divider {
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--primary-light), var(--accent));
-      border-radius: 2px;
-      margin: 24px auto 0;
+    /* Trust Banner */
+    .trust-banner {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    .trust-item svg {
+      width: 18px;
+      height: 18px;
+      color: var(--primary);
     }
 
     /* Recipe Section Header */
     .section-header {
-      text-align: center;
-      margin-bottom: 32px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--text);
     }
 
     .section-header h2 {
-      margin-bottom: 8px;
+      margin: 0;
     }
 
     .section-header p {
       color: var(--text-light);
-      font-size: 1rem;
-      max-width: 500px;
-      margin: 0 auto;
+      font-size: 0.95rem;
+      margin: 0;
+      max-width: 440px;
     }
 
     /* Recipe Grid */
     .recipe-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 28px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 36px 28px;
     }
 
     .recipe-card {
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: 0 2px 8px var(--shadow-sm);
-      border: 1px solid var(--border-light);
-      transition: all 0.3s ease;
+      background: transparent;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
     }
 
-    .recipe-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 32px var(--shadow-lg);
-      border-color: var(--border);
-    }
-
-    .recipe-card:focus {
+    .recipe-card:focus-visible {
       outline: 3px solid var(--primary);
-      outline-offset: 2px;
+      outline-offset: 4px;
     }
 
     .recipe-card-image {
-      height: 160px;
+      aspect-ratio: 4 / 3;
       position: relative;
       overflow: hidden;
+      border-radius: var(--radius);
+      margin-bottom: 14px;
+    }
+
+    .recipe-card-image .card-gradient {
+      transition: transform 0.4s ease;
+    }
+
+    .recipe-card:hover .card-gradient {
+      transform: scale(1.04);
+    }
+
+    .recipe-card:hover h3 {
+      color: var(--primary-dark);
     }
 
     .recipe-card-image .card-gradient {
@@ -490,35 +428,62 @@
       background: linear-gradient(to top, rgba(0,0,0,0.2) 0%, transparent 60%);
     }
 
-    .recipe-card-badge {
+    .recipe-card-iddsi {
       position: absolute;
-      top: 12px;
-      right: 12px;
-      background: rgba(255,255,255,0.95);
-      color: var(--primary-dark);
-      padding: 4px 12px;
-      border-radius: 50px;
-      font-size: 0.75rem;
-      font-weight: 600;
+      bottom: 10px;
+      left: 10px;
       z-index: 3;
+    }
+
+    .iddsi-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.95);
+      color: var(--text);
+      padding: 4px 12px 4px 4px;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 600;
       backdrop-filter: blur(8px);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+    }
+
+    .iddsi-dot {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .meta-card .iddsi-dot {
+      width: 24px;
+      height: 24px;
+      font-size: 0.8rem;
     }
 
     .recipe-card-content {
-      padding: 20px;
+      padding: 0;
     }
 
     .recipe-card h3 {
-      margin-bottom: 8px;
-      font-size: 1.25rem;
+      margin-bottom: 7px;
+      font-size: 1.2rem;
       font-weight: 600;
+      transition: color 0.2s ease;
     }
 
     .recipe-card p {
       color: var(--text-light);
-      font-size: 0.95rem;
-      margin-bottom: 16px;
-      line-height: 1.6;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      line-height: 1.55;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -528,21 +493,23 @@
     .recipe-card-meta {
       display: flex;
       align-items: center;
-      gap: 16px;
-      font-size: 0.85rem;
+      gap: 14px;
+      font-size: 0.78rem;
       color: var(--text-muted);
-      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+      padding-top: 11px;
+      border-top: 1px solid var(--border-light);
     }
 
     .recipe-card-meta span {
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 5px;
     }
 
     .recipe-card-meta svg {
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
     }
 
     .recipe-card .btn {
@@ -868,6 +835,195 @@
       font-size: 0.95rem;
     }
 
+    /* Nutrition */
+    .nutrition-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1px;
+      background: var(--border-light);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .nutrition-cell {
+      background: var(--bg-card);
+      padding: 16px 18px;
+    }
+
+    .nutrition-cell strong {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .nutrition-cell span {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .nutrition-cell.is-flagged span {
+      color: var(--warning-text);
+    }
+
+    .nutrition-basis {
+      margin-top: 14px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .nutrition-flag {
+      margin-top: 14px;
+      padding: 14px 18px;
+      background: var(--warning-bg);
+      border: 1px solid #E8D4A0;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Recipe photos */
+    .recipe-card-image picture {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+    }
+
+    .recipe-card-image img,
+    .recipe-hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .recipe-hero-image {
+      aspect-ratio: 3 / 2;
+      max-height: 420px;
+      overflow: hidden;
+      border-radius: var(--radius);
+      margin-bottom: 28px;
+      background: var(--bg-warm);
+    }
+
+    /* Texture Guide */
+    .guide-intro {
+      max-width: 720px;
+      margin-bottom: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .guide-intro .eyebrow {
+      display: block;
+      margin-bottom: 18px;
+    }
+
+    .guide-intro h1 {
+      margin-bottom: 20px;
+    }
+
+    .guide-intro p {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.1rem;
+      color: var(--text-light);
+      line-height: 1.65;
+      margin-bottom: 0;
+    }
+
+    .level-list {
+      display: grid;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .level-row {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 20px;
+      align-items: start;
+      padding: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+    }
+
+    .level-marker {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .level-row h3 {
+      margin-bottom: 6px;
+    }
+
+    .level-row .level-desc {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+
+    .level-recipes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .level-recipes a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      text-decoration: none;
+      background: var(--bg-warm);
+      border: 1px solid var(--border-light);
+      color: var(--text);
+      padding: 5px 12px;
+      border-radius: 50px;
+      transition: all 0.2s ease;
+    }
+
+    .level-recipes a:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--white);
+    }
+
+    .level-recipes .level-empty {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .guide-note {
+      margin-top: 40px;
+      padding: 20px 24px;
+      background: var(--bg-sage-light);
+      border: 1px solid var(--bg-sage);
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    .guide-note p {
+      margin-bottom: 0;
+    }
+
     /* Print Button */
     .print-fab {
       position: fixed;
@@ -956,35 +1112,6 @@
       color: var(--primary);
     }
 
-    .footer-disclaimer {
-      background: var(--warning-bg);
-      border: 1px solid #E8D4A0;
-      border-radius: var(--radius);
-      padding: 20px;
-      margin-bottom: 24px;
-    }
-
-    .footer-disclaimer h3 {
-      color: var(--warning-text);
-      font-size: 1rem;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .footer-disclaimer h3 svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    .footer-disclaimer p {
-      margin-bottom: 0;
-      font-size: 0.85rem;
-      color: var(--text);
-      line-height: 1.6;
-    }
-
     .footer-info {
       text-align: center;
       color: var(--text-muted);
@@ -1001,7 +1128,7 @@
         color: black;
       }
 
-      .top-bar, header, footer, .print-fab, .skip-link, .disclaimer, .trust-banner {
+      .top-bar, header, footer, .print-fab, .skip-link, .trust-banner {
         display: none !important;
       }
 
@@ -1077,33 +1204,6 @@
       }
     }
 
-    /* High Contrast Mode */
-    body.high-contrast {
-      --bg-cream: #FFFFFF;
-      --bg-warm: #F0F0F0;
-      --bg-sage: #E0E0E0;
-      --bg-sage-light: #F5F5F5;
-      --text: #000000;
-      --text-light: #333333;
-      --text-muted: #666666;
-      --primary: #3D5A26;
-      --border: #CCCCCC;
-      --border-light: #DDDDDD;
-    }
-
-    body.high-contrast .recipe-card {
-      border: 2px solid var(--text);
-    }
-
-    body.high-contrast .instruction-step {
-      border: 2px solid var(--text);
-    }
-
-    body.high-contrast .disclaimer,
-    body.high-contrast .tips-box {
-      border-width: 3px;
-    }
-
     /* Mobile Responsive */
     @media (max-width: 640px) {
       h1 { font-size: 2rem; }
@@ -1115,26 +1215,52 @@
       }
 
       .header-content {
-        flex-direction: column;
-        text-align: center;
+        padding: 12px 20px;
+        gap: 10px;
+      }
+
+      .logo-text {
+        font-size: 1.1rem;
+      }
+
+      .logo-text small {
+        display: none;
       }
 
       nav {
-        flex-direction: column;
-        width: 100%;
+        gap: 2px;
       }
 
       nav a {
-        width: 100%;
-        text-align: center;
+        padding: 7px 10px;
+        font-size: 0.85rem;
+      }
+
+      main {
+        padding: 4px 20px 48px;
+      }
+
+      .hero {
+        padding: 36px 0 32px;
+        margin-bottom: 32px;
+      }
+
+      .hero p {
+        font-size: 1.05rem;
       }
 
       .trust-banner {
-        gap: 16px;
+        gap: 10px 20px;
+        margin-bottom: 36px;
+      }
+
+      .section-header {
+        margin-bottom: 22px;
       }
 
       .recipe-grid {
         grid-template-columns: 1fr;
+        gap: 30px;
       }
 
       .recipe-meta {
@@ -1149,8 +1275,20 @@
         flex-direction: column;
       }
 
-      .recipe-title h1 {
-        font-size: 2rem;
+      .nutrition-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .level-row {
+        grid-template-columns: 44px 1fr;
+        gap: 14px;
+        padding: 20px;
+      }
+
+      .level-marker {
+        width: 44px;
+        height: 44px;
+        font-size: 1.3rem;
       }
 
       .footer-grid {
@@ -1163,10 +1301,6 @@
         right: 20px;
         width: 52px;
         height: 52px;
-      }
-
-      .disclaimer {
-        flex-direction: column;
       }
 
       .instruction-step {
@@ -1207,14 +1341,8 @@
         </div>
       </a>
       <nav role="navigation" aria-label="Main navigation">
-        <a href="#/" aria-current="page">Home</a>
-        <button class="btn btn-secondary" id="contrast-toggle" aria-pressed="false">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="10"/>
-            <path d="M12 2a10 10 0 0 1 0 20z"/>
-          </svg>
-          Contrast
-        </button>
+        <a href="#/" aria-current="page">Recipes</a>
+        <a href="#/texture-guide">Texture Guide</a>
       </nav>
     </div>
   </header>
@@ -1231,35 +1359,19 @@
           <p>Thoughtfully crafted recipes designed for those with chewing or swallowing difficulties. Every dish prioritizes soft textures, gentle flavors, and nourishing ingredients that caregivers can trust.</p>
         </div>
         <div class="footer-links">
-          <h4>Quick Links</h4>
+          <h4>Browse</h4>
           <ul>
             <li><a href="#/">All Recipes</a></li>
-            <li><a href="#/">Caregiver Resources</a></li>
-            <li><a href="#/">Texture Guide</a></li>
+            <li><a href="#/texture-guide">Texture Guide</a></li>
           </ul>
         </div>
         <div class="footer-links">
-          <h4>Support</h4>
-          <ul>
-            <li><a href="#/">Nutritional Info</a></li>
-            <li><a href="#/">Print Recipes</a></li>
-            <li><a href="#/">Contact Us</a></li>
-          </ul>
+          <h4>Texture Levels</h4>
+          <ul id="footer-levels"></ul>
         </div>
       </div>
-      <div class="footer-disclaimer">
-        <h3>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-            <line x1="12" y1="9" x2="12" y2="13"/>
-            <line x1="12" y1="17" x2="12.01" y2="17"/>
-          </svg>
-          Important Medical Disclaimer
-        </h3>
-        <p>The recipes on this website are designed for informational purposes only. They are not intended to diagnose, treat, cure, or prevent any medical condition, including dysphagia (difficulty swallowing). Please consult with your physician, speech-language pathologist, or registered dietitian before preparing any meals for someone with chewing or swallowing difficulties. Individual dietary needs vary, and professional guidance is essential for safe nutrition management.</p>
-      </div>
       <div class="footer-info">
-        <p>Hearty & Gentle Bites &copy; 2024. Designed with care for caregivers and their loved ones.</p>
+        <p>Hearty & Gentle Bites &copy; 2026. Designed with care for caregivers and their loved ones.</p>
       </div>
     </div>
   </footer>
@@ -1284,6 +1396,7 @@
         servings: 4,
         difficulty: "Easy",
         icon: "beef",
+        dysphagia: 6,
         color: "#8B4513",
         ingredients: [
           { amount: "3 lbs", item: "Bone-in beef short ribs", note: "Ask butcher to cut between bones" },
@@ -1326,6 +1439,7 @@
         servings: 6,
         difficulty: "Easy",
         icon: "stew",
+        dysphagia: 6,
         color: "#A0522D",
         ingredients: [
           { amount: "2 lbs", item: "Beef chuck, cut into 1-inch cubes", note: "Look for well-marbled meat for extra tenderness" },
@@ -1369,6 +1483,7 @@
         servings: 6,
         difficulty: "Easy",
         icon: "soup",
+        dysphagia: 3,
         color: "#D4A574",
         ingredients: [
           { amount: "2 lbs", item: "Butternut squash, peeled and cubed", note: "Pre-cut squash works well to save time" },
@@ -1410,6 +1525,7 @@
         servings: 6,
         difficulty: "Easy",
         icon: "potato",
+        dysphagia: 4,
         color: "#C4A35A",
         ingredients: [
           { amount: "3 lbs", item: "Yukon Gold potatoes", note: "Yukon Golds have natural buttery flavor and creamy texture" },
@@ -1449,6 +1565,7 @@
         servings: 4,
         difficulty: "Easy",
         icon: "soup",
+        dysphagia: 5,
         color: "#D4A574",
         ingredients: [
           { amount: "1 lb", item: "Boneless, skinless chicken breasts" },
@@ -1491,6 +1608,7 @@
         servings: 4,
         difficulty: "Easy",
         icon: "apple",
+        dysphagia: 6,
         color: "#CD5C5C",
         ingredients: [
           { amount: "4 large", item: "Firm-sweet apples", note: "Honeycrisp, Fuji, or Gala work best" },
@@ -1530,6 +1648,7 @@
         servings: 6,
         difficulty: "Intermediate",
         icon: "custard",
+        dysphagia: 4,
         color: "#F4E4C1",
         ingredients: [
           { amount: "4 large", item: "Eggs" },
@@ -1571,6 +1690,7 @@
         servings: 4,
         difficulty: "Easy",
         icon: "lamb",
+        dysphagia: 6,
         color: "#8B4513",
         ingredients: [
           { amount: "2 lbs", item: "Lamb leg roast, boneless or bone-in", note: "Cut into 5-inch cubes" },
@@ -1616,6 +1736,7 @@
         servings: 2,
         difficulty: "Easy",
         icon: "pasta",
+        dysphagia: 6,
         color: "#F5DEB3",
         ingredients: [
           { amount: "100g", item: "Pasta of any kind", note: "Cook 2 minutes past al dente for softer texture" },
@@ -1654,6 +1775,7 @@
         servings: 3,
         difficulty: "Easy",
         icon: "soup",
+        dysphagia: 3,
         color: "#8B7355",
         ingredients: [
           { amount: "10", item: "Cremini mushrooms", note: "Cleaned with a kitchen towel" },
@@ -1686,6 +1808,54 @@
           "Serve at a lukewarm temperature to avoid burns, especially for those with swallowing difficulties."
         ],
         dietaryNotes: "Gluten-free when using corn starch. For dairy-free version, substitute cream with coconut cream."
+      },
+      {
+        id: 11,
+        slug: "chinese-steamed-egg",
+        title: "Chinese Steamed Egg",
+        description: "Silky, savory steamed egg custard with a glossy soy-sesame sauce—so smooth it barely needs a spoon, let alone chewing.",
+        prepTime: "5 minutes",
+        cookTime: "15 minutes",
+        servings: 2,
+        difficulty: "Easy",
+        icon: "custard",
+        dysphagia: 4,
+        image: "assets/chinese-steamed-egg",
+        imageAlt: "A bowl of silky Chinese steamed egg custard topped with chili oil and sliced scallions, served with a bowl of rice.",
+        color: "#D9A441",
+        ingredients: [
+          { amount: "2", item: "Eggs" },
+          { amount: "3/4 cup", item: "Water" },
+          { amount: "1/2 tsp", item: "Chicken powder" },
+          { amount: "1/4 tsp", item: "Salt" },
+          { amount: "1 tbsp", item: "Soy sauce", note: "For the sauce" },
+          { amount: "1 tsp", item: "Sesame oil", note: "For the sauce" },
+          { amount: "1/2 tsp", item: "Sugar", note: "For the sauce" },
+          { amount: "1 stalk", item: "Green onion", note: "Optional garnish — omit for Level 4 and below" }
+        ],
+        instructions: [
+          { step: 1, text: "Whisk together the eggs with the water, chicken powder, and salt.", forkTender: false },
+          { step: 2, text: "Strain the mixture into a bowl. Make sure there aren't any air bubbles left — if there still are, you can pop them with a lighter or scoop them out with a spoon.", forkTender: false },
+          { step: 3, text: "Cover with plastic wrap, poke a few holes, and steam for 15 minutes. The custard should be just set and wobble gently in the center.", forkTender: true },
+          { step: 4, text: "In the meanwhile, make a simple sauce using the soy sauce, sesame oil, and sugar.", forkTender: false },
+          { step: 5, text: "Using a small knife, slice a pattern into the steamed egg, pour the sauce on top, and serve — optionally with some scallions on top.", forkTender: true }
+        ],
+        caregiverTips: [
+          "The custard itself is a true Level 4 texture, but the scallions and any crispy chili oil bits are not — leave every topping off, or strain the sauce, when serving anyone assessed at Level 4 or below.",
+          "Straining the raw egg mixture in step 2 is what makes the set custard completely smooth. Don't skip it.",
+          "Steam gently. Overcooked egg custard turns rubbery and weeps liquid, which creates a thin runny layer that is riskier to swallow than the custard itself.",
+          "Serve warm rather than hot — the custard holds heat well and can scald."
+        ],
+        nutrition: {
+          basis: "Per serving, calculated from the listed ingredients (recipe makes 2 servings). Assumes the full quantity of sauce is eaten.",
+          calories: "106 kcal",
+          protein: "7 g",
+          fat: "7 g",
+          carbs: "2 g",
+          sodium: "1,050 mg",
+          cholesterol: "186 mg"
+        },
+        dietaryNotes: "Naturally gluten-free if you use tamari in place of soy sauce. Very high in sodium — see the nutrition note below before serving to anyone on a sodium-restricted diet."
       }
     ];
 
@@ -1695,7 +1865,6 @@
     const mainContent = document.getElementById('main-content');
     const header = document.getElementById('header');
     const printBtn = document.getElementById('print-btn');
-    const contrastToggle = document.getElementById('contrast-toggle');
 
     const icons = {
       beef: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 2.5c2 1 3.5 3.5 3.5 6.5 0 4-3 7-6.5 8.5"/><path d="M8.5 2.5C6.5 3.5 5 6 5 9c0 4 3 7 6.5 8.5"/><circle cx="12" cy="9" r="3"/></svg>',
@@ -1714,49 +1883,90 @@
       lightbulb: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>',
       check: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
       shield: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
-      heart: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>',
-      alert: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>'
+      heart: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>'
     };
+
+    const IDDSI_LEVELS = {
+      3: {
+        name: 'Liquidised',
+        color: '#F2C230',
+        desc: 'Pours smoothly like a thick drinkable soup. No lumps, no bits, and no chewing at all. Can be taken from a cup or spoon, and should not hold its shape on the plate.'
+      },
+      4: {
+        name: 'Pureed',
+        color: '#5FAE55',
+        desc: 'Completely smooth and thick enough to hold its shape on a spoon, but soft enough to need no chewing. Should never be sticky, lumpy, or stringy.'
+      },
+      5: {
+        name: 'Minced & Moist',
+        color: '#F0902D',
+        desc: 'Soft, moist, and finely minced into very small pieces that mash easily with light pressure from a fork. Any sauce or gravy should cling rather than separate.'
+      },
+      6: {
+        name: 'Soft & Bite-Sized',
+        color: '#1F7FBE',
+        desc: 'Tender, moist bite-sized pieces that break apart under a fork without needing a knife. Some chewing is required, but nothing should be tough, fibrous, or dry.'
+      },
+      7: {
+        name: 'Easy to Chew',
+        color: '#1a1a1a',
+        desc: 'Everyday soft foods at normal portion size. Normal chewing ability is needed, but hard, crunchy, stringy, and dry textures are avoided.'
+      }
+    };
+
+    function iddsiDot(level) {
+      const info = IDDSI_LEVELS[level];
+      return `<span class="iddsi-dot" style="background:${info.color}">${level}</span>`;
+    }
+
+    // Renders a responsive, lazily-loaded photo when the recipe has one.
+    // If the file is missing the <img> removes itself, leaving the gradient + icon fallback.
+    function recipePhoto(recipe, sizes, eager) {
+      if (!recipe.image) return '';
+      const widths = [400, 800, 1200];
+      const srcset = w => widths.map(n => `${recipe.image}-${n}.${w} ${n}w`).join(', ');
+      return `
+        <picture>
+          <source type="image/webp" srcset="${srcset('webp')}" sizes="${sizes}">
+          <img src="${recipe.image}-800.jpg"
+               srcset="${srcset('jpg')}"
+               sizes="${sizes}"
+               alt="${recipe.imageAlt || recipe.title}"
+               width="1200" height="900"
+               loading="${eager ? 'eager' : 'lazy'}"
+               decoding="async"
+               onerror="const p=this.closest('picture'),h=p.closest('.recipe-hero-image');(h||p).remove()">
+        </picture>
+      `;
+    }
 
     function renderHomePage() {
       return `
         <div class="page" id="home-page">
+          <section class="hero">
+            <span class="eyebrow">Comforting recipes for easy eating</span>
+            <h1>Food that stays <em>gentle</em>, without giving up flavor.</h1>
+            <p>Soft, fork-tender recipes built for chewing and swallowing difficulties &mdash; every one graded to an IDDSI texture level so you know exactly what you're serving.</p>
+          </section>
+
           <div class="trust-banner">
             <div class="trust-item">
               ${icons.shield}
-              <span>Tested for Soft Texture</span>
+              <span>Tested for soft texture</span>
             </div>
             <div class="trust-item">
               ${icons.heart}
-              <span>Caregiver Approved</span>
+              <span>Caregiver approved</span>
             </div>
             <div class="trust-item">
               ${icons.star}
-              <span>Easy to Follow Steps</span>
+              <span>Easy to follow steps</span>
             </div>
           </div>
-
-          <div class="disclaimer">
-            ${icons.alert}
-            <div class="disclaimer-content">
-              <h3>Medical Disclaimer</h3>
-              <p>These recipes are designed to be soft and fork-tender for those with minor chewing or swallowing difficulties. Please consult your healthcare provider for personalized dietary advice.</p>
-            </div>
-          </div>
-
-          <section class="hero">
-            <div class="hero-badge">
-              ${icons.heart}
-              Trusted by Caregivers
-            </div>
-            <h1>Welcome to <em>Hearty & Gentle</em> Bites</h1>
-            <p>Discover comforting, fork-tender recipes thoughtfully designed for easy eating. Every dish prioritizes both nourishment and safety for your loved ones.</p>
-            <div class="hero-divider"></div>
-          </section>
 
           <div class="section-header">
-            <h2>Our Recipes</h2>
-            <p>Each recipe is crafted to be soft, flavorful, and easy to prepare with confidence.</p>
+            <h2>All Recipes</h2>
+            <p><a href="#/texture-guide">What do the texture levels mean?</a></p>
           </div>
           <div class="recipe-grid">
             ${recipes.map(recipe => `
@@ -1766,7 +1976,12 @@
                   <div class="card-gradient">
                     ${icons[recipe.icon] || icons.stew}
                   </div>
-                  <span class="recipe-card-badge">${recipe.difficulty}</span>
+                  ${recipePhoto(recipe, '(max-width: 640px) calc(100vw - 40px), (max-width: 1024px) calc(50vw - 38px), 360px')}
+                  <div class="recipe-card-iddsi">
+                    <span class="iddsi-badge" title="IDDSI Level ${recipe.dysphagia}: ${IDDSI_LEVELS[recipe.dysphagia].name}">
+                      ${iddsiDot(recipe.dysphagia)} ${IDDSI_LEVELS[recipe.dysphagia].name}
+                    </span>
+                  </div>
                 </div>
                 <div class="recipe-card-content">
                   <h3>${recipe.title}</h3>
@@ -1774,8 +1989,8 @@
                   <div class="recipe-card-meta">
                     <span>${icons.clock} ${recipe.cookTime}</span>
                     <span>${icons.users} ${recipe.servings} servings</span>
+                    <span>${recipe.difficulty}</span>
                   </div>
-                  <span class="btn btn-primary">View Full Recipe</span>
                 </div>
               </article>
             `).join('')}
@@ -1790,6 +2005,44 @@
       const g = Math.max(0, Math.min(255, parseInt(hex.substring(2, 4), 16) + amount));
       const b = Math.max(0, Math.min(255, parseInt(hex.substring(4, 6), 16) + amount));
       return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+    }
+
+    function renderTextureGuide() {
+      const levels = [7, 6, 5, 4, 3];
+      return `
+        <div class="page" id="guide-page">
+          <section class="guide-intro">
+            <span class="eyebrow">Texture Guide</span>
+            <h1>Understanding IDDSI texture levels</h1>
+            <p>Every recipe here is graded against the IDDSI framework &mdash; the shared scale that clinicians use to describe how soft a food needs to be. Use it to match a recipe to the texture someone has actually been assessed for.</p>
+          </section>
+
+          <ul class="level-list" role="list">
+            ${levels.map(level => {
+              const info = IDDSI_LEVELS[level];
+              const matches = recipes.filter(r => r.dysphagia === level);
+              return `
+                <li class="level-row" role="listitem">
+                  <span class="level-marker" style="background:${info.color}" aria-hidden="true">${level}</span>
+                  <div>
+                    <h3>Level ${level} &mdash; ${info.name}</h3>
+                    <p class="level-desc">${info.desc}</p>
+                    <div class="level-recipes">
+                      ${matches.length
+                        ? matches.map(r => `<a href="#/recipe/${r.slug}">${r.title}</a>`).join('')
+                        : '<span class="level-empty">No recipes at this level yet.</span>'}
+                    </div>
+                  </div>
+                </li>
+              `;
+            }).join('')}
+          </ul>
+
+          <div class="guide-note">
+            <p>Texture levels on this site are a starting point, not a clinical assessment. A speech-language pathologist or dietitian should confirm the right level for the person you're cooking for.</p>
+          </div>
+        </div>
+      `;
     }
 
     function renderRecipePage(slug) {
@@ -1823,6 +2076,8 @@
 
             <p class="recipe-description">${recipe.description}</p>
 
+            ${recipe.image ? `<div class="recipe-hero-image">${recipePhoto(recipe, '(max-width: 1180px) 100vw, 1132px', true)}</div>` : ''}
+
             <div class="recipe-meta" role="list" aria-label="Recipe information">
               <div class="meta-card" role="listitem">
                 ${icons.clock}
@@ -1850,6 +2105,13 @@
                 <div>
                   <strong>Difficulty</strong>
                   <span>${recipe.difficulty}</span>
+                </div>
+              </div>
+              <div class="meta-card" role="listitem">
+                ${iddsiDot(recipe.dysphagia)}
+                <div>
+                  <strong>IDDSI Texture Level</strong>
+                  <span>Level ${recipe.dysphagia} &ndash; ${IDDSI_LEVELS[recipe.dysphagia].name}</span>
                 </div>
               </div>
             </div>
@@ -1917,6 +2179,27 @@
             </div>
           </section>
 
+          ${recipe.nutrition ? `
+            <section class="recipe-section" aria-labelledby="nutrition-heading">
+              <h2 id="nutrition-heading">
+                <span class="section-icon">${icons.list}</span>
+                Nutrition Facts
+              </h2>
+              <div class="nutrition-grid">
+                <div class="nutrition-cell"><strong>Calories</strong><span>${recipe.nutrition.calories}</span></div>
+                <div class="nutrition-cell"><strong>Protein</strong><span>${recipe.nutrition.protein}</span></div>
+                <div class="nutrition-cell"><strong>Fat</strong><span>${recipe.nutrition.fat}</span></div>
+                <div class="nutrition-cell"><strong>Carbs</strong><span>${recipe.nutrition.carbs}</span></div>
+                <div class="nutrition-cell is-flagged"><strong>Sodium</strong><span>${recipe.nutrition.sodium}</span></div>
+                <div class="nutrition-cell"><strong>Cholesterol</strong><span>${recipe.nutrition.cholesterol}</span></div>
+              </div>
+              <p class="nutrition-basis">${recipe.nutrition.basis}</p>
+              <div class="nutrition-flag">
+                <strong>On the sodium:</strong> at roughly 1,050&nbsp;mg per serving this is about 45% of an adult's daily limit, driven almost entirely by the chicken powder, salt, and soy sauce. Cut the added salt, use a low-sodium soy sauce, and spoon over only part of the sauce to bring it down substantially.
+              </div>
+            </section>
+          ` : ''}
+
           ${recipe.dietaryNotes ? `
             <section class="recipe-section">
               <div class="dietary-notes">
@@ -1953,10 +2236,10 @@
 
       currentRoute = path;
 
+      const normalizedPath = path === '' ? '/' : path;
       document.querySelectorAll('nav a').forEach(link => {
-        if (link.getAttribute('href') === '#/') {
-          link.setAttribute('aria-current', path === '/' ? 'page' : 'false');
-        }
+        const target = link.getAttribute('href').slice(1);
+        link.setAttribute('aria-current', target === normalizedPath ? 'page' : 'false');
       });
 
       if (path.startsWith('/recipe/')) {
@@ -1968,6 +2251,9 @@
       if (path === '/' || path === '') {
         mainContent.innerHTML = renderHomePage();
         document.title = 'Hearty & Gentle Bites';
+      } else if (path === '/texture-guide') {
+        mainContent.innerHTML = renderTextureGuide();
+        document.title = 'Texture Guide - Hearty & Gentle Bites';
       } else if (path.startsWith('/recipe/')) {
         const slug = path.replace('/recipe/', '');
         mainContent.innerHTML = renderRecipePage(slug);
@@ -1992,6 +2278,10 @@
       }
     }
 
+    document.getElementById('footer-levels').innerHTML = [7, 6, 5, 4, 3]
+      .map(level => `<li><a href="#/texture-guide">Level ${level} &mdash; ${IDDSI_LEVELS[level].name}</a></li>`)
+      .join('');
+
     window.addEventListener('hashchange', router);
     window.addEventListener('load', router);
 
@@ -2005,12 +2295,6 @@
 
     printBtn.addEventListener('click', () => {
       window.print();
-    });
-
-    contrastToggle.addEventListener('click', () => {
-      document.body.classList.toggle('high-contrast');
-      const isPressed = document.body.classList.contains('high-contrast');
-      contrastToggle.setAttribute('aria-pressed', isPressed);
     });
   </script>
 </body>
