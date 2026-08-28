@@ -762,20 +762,6 @@
       outline-offset: 2px;
     }
 
-    .batch-notice {
-      margin-bottom: 18px;
-      padding: 12px 16px;
-      font-size: 0.88rem;
-      line-height: 1.6;
-      color: var(--text);
-      background: var(--warning-bg);
-      border: 1px solid #E8D4A0;
-      border-radius: var(--radius-sm);
-    }
-
-    .batch-notice[hidden] {
-      display: none;
-    }
 
     .ingredient-note {
       display: block;
@@ -2341,7 +2327,9 @@
           { step: 1, text: "Combine the flour, sugar (or sweetener), baking powder, baking soda, and salt in a large bowl. Make a well in the center and add the milk, melted butter, vanilla, and egg.", forkTender: false },
           { step: 2, text: "Use a wire whisk to whisk the wet ingredients together first, then slowly fold them into the dry ingredients. Mix until smooth (a couple of lumps are okay). The batter will be thick and creamy — if it's too thick to pour smoothly, fold in a little extra milk at a time.", forkTender: false },
           { step: 3, text: "Set the batter aside and let it rest while you heat your pan or griddle.", forkTender: false },
-          { step: 4, text: "Heat a nonstick pan or griddle over low-medium heat and wipe it with a little butter to lightly grease. Pour 1/4 cup of batter onto the pan and spread gently into a round shape.", forkTender: false },
+          // noScale: the 1/4 cup is the portion for a single pancake, not a
+          // batch quantity — scaling it would make each pancake bigger.
+          { step: 4, text: "Heat a nonstick pan or griddle over low-medium heat and wipe it with a little butter to lightly grease. Pour 1/4 cup of batter onto the pan and spread gently into a round shape.", forkTender: false, noScale: true },
           { step: 5, text: "When the underside is golden and bubbles begin to appear on the surface, flip with a spatula and cook until golden on the other side. Repeat with the remaining batter.", forkTender: false },
           { step: 6, text: "Serve with honey, maple syrup, fruit, ice cream, or frozen yogurt — or enjoy plain.", forkTender: false }
         ],
@@ -3002,11 +2990,6 @@
               </div>
             </div>
 
-            <p class="batch-notice" id="batch-notice" role="status" ${batchMultiplier === 1 ? 'hidden' : ''}>
-              Amounts below are scaled. The instructions further down still quote
-              the original single-batch amounts &mdash; follow this list instead.
-            </p>
-
             <ul class="ingredients-list" role="list">
               ${recipe.ingredients.map((ing, index) => {
                 const isChecked = recipeIngredients[index];
@@ -3034,9 +3017,7 @@
                 <li class="instruction-step" role="listitem">
                   <span class="step-number" aria-hidden="true">${inst.step}</span>
                   <div class="step-content">
-                    <p>${inst.forkTender 
-                      ? inst.text.replace(/fork-tender/gi, '<span class="fork-tender">fork-tender</span>') 
-                      : inst.text}</p>
+                    <p>${instructionHtml(inst, batchMultiplier)}</p>
                   </div>
                 </li>
               `).join('')}
@@ -3115,6 +3096,8 @@
     // deliberately absent.
     const UNIT_PLURALS = {
       cup: 'cups', lb: 'lbs', pound: 'pounds', quart: 'quarts', pint: 'pints',
+      teaspoon: 'teaspoons', tablespoon: 'tablespoons', ounce: 'ounces',
+      gram: 'grams', liter: 'liters', milliliter: 'milliliters',
       clove: 'cloves', stalk: 'stalks', sprig: 'sprigs', bunch: 'bunches',
       rib: 'ribs', slice: 'slices', piece: 'pieces', stick: 'sticks',
       can: 'cans', packet: 'packets', pack: 'packs', package: 'packages',
@@ -3181,6 +3164,54 @@
       return amount;
     }
 
+    /* Instruction text is prose, so scaling there is opt-in by unit rather
+       than opt-out: a number is only touched when a measurement unit follows
+       it directly. That leaves times ("20 minutes"), temperatures ("350°F"),
+       dimensions ("1/2 inch", "9x13 inch") and percentages alone, since none
+       of those units are on the list. Hyphenated compounds ("1-quart
+       saucepan", "6-oz ramekins") never match, because the pattern requires
+       whitespace between the number and its unit. */
+    const SCALABLE_UNITS = new Set([
+      'cup', 'cups', 'tablespoon', 'tablespoons', 'tbsp', 'teaspoon', 'teaspoons', 'tsp',
+      'quart', 'quarts', 'pint', 'pints', 'pound', 'pounds', 'lb', 'lbs',
+      'ounce', 'ounces', 'oz', 'gram', 'grams', 'kg', 'ml', 'liter', 'liters',
+      'clove', 'cloves', 'stalk', 'stalks', 'sprig', 'sprigs',
+      'can', 'cans', 'packet', 'packets'
+    ]);
+
+    const INSTRUCTION_QTY_RE = new RegExp(
+      QTY_PATTERN + '(?:\\s*[-–]\\s*' + QTY_PATTERN + ')?(\\s+)([A-Za-z]+)',
+      'g'
+    );
+
+    function scaleInstruction(text, multiplier) {
+      if (multiplier === 1) return text;
+
+      return text.replace(INSTRUCTION_QTY_RE, (match, low, high, space, unit) => {
+        if (!SCALABLE_UNITS.has(unit.toLowerCase())) return match;
+
+        const scaledLow = parseQty(low) * multiplier;
+        if (high === undefined) {
+          return formatQty(scaledLow) + pluraliseUnit(space + unit, scaledLow);
+        }
+
+        const scaledHigh = parseQty(high) * multiplier;
+        return formatQty(scaledLow) + '-' + formatQty(scaledHigh) +
+          pluraliseUnit(space + unit, scaledHigh);
+      });
+    }
+
+    // Instruction markup is rebuilt on every batch change, so the fork-tender
+    // highlight has to be reapplied here rather than only at first render.
+    function instructionHtml(instruction, multiplier) {
+      const text = instruction.noScale
+        ? instruction.text
+        : scaleInstruction(instruction.text, multiplier);
+      return instruction.forkTender
+        ? text.replace(/fork-tender/gi, '<span class="fork-tender">fork-tender</span>')
+        : text;
+    }
+
     function setBatch(slug, multiplier) {
       const recipe = recipes.find(r => r.slug === slug);
       if (!recipe) return;
@@ -3198,11 +3229,13 @@
         if (ingredient) el.textContent = scaleAmount(ingredient.amount, multiplier);
       });
 
+      document.querySelectorAll('.step-content p').forEach((el, index) => {
+        const instruction = recipe.instructions[index];
+        if (instruction) el.innerHTML = instructionHtml(instruction, multiplier);
+      });
+
       const servings = document.getElementById('servings-value');
       if (servings) servings.textContent = recipe.servings * multiplier;
-
-      const notice = document.getElementById('batch-notice');
-      if (notice) notice.hidden = multiplier === 1;
     }
 
     function toggleIngredient(slug, index, isChecked) {
