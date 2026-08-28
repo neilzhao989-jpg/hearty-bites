@@ -1387,111 +1387,6 @@
   <script>
     const recipes = [
       {
-        id: 1,
-        slug: "slow-braised-short-ribs",
-        title: "Slow-Braised Short Ribs",
-        description: "Tender, fall-off-the-bone beef short ribs slowly braised in a rich red wine and vegetable broth until fork-tender.",
-        prepTime: "20 minutes",
-        cookTime: "3 hours",
-        servings: 4,
-        difficulty: "Easy",
-        icon: "beef",
-        dysphagia: 6,
-        color: "#8B4513",
-        ingredients: [
-          { amount: "3 lbs", item: "Bone-in beef short ribs", note: "Ask butcher to cut between bones" },
-          { amount: "2 cups", item: "Low-sodium beef broth" },
-          { amount: "1 cup", item: "Dry red wine", note: "Or additional broth for alcohol-free version" },
-          { amount: "1 large", item: "Onion, diced" },
-          { amount: "3 cloves", item: "Garlic, minced" },
-          { amount: "3 medium", item: "Carrots, cut into 2-inch pieces" },
-          { amount: "2 stalks", item: "Celery, cut into 2-inch pieces" },
-          { amount: "2 tbsp", item: "Tomato paste" },
-          { amount: "1 tsp", item: "Fresh thyme leaves" },
-          { amount: "1/2 tsp", item: "Black pepper" },
-          { amount: "2 tbsp", item: "Olive oil" }
-        ],
-        instructions: [
-          { step: 1, text: "Season the short ribs generously with pepper. Heat olive oil in a large Dutch oven over medium-high heat until shimmering.", forkTender: false },
-          { step: 2, text: "Sear the short ribs on all sides until deeply golden brown, about 3-4 minutes per side. Work in batches to avoid crowding. Transfer to a plate and set aside.", forkTender: false },
-          { step: 3, text: "Reduce heat to medium. Add onions and garlic to the pot and cook until softened, about 5 minutes. Stir in the tomato paste and cook for 1 minute.", forkTender: false },
-          { step: 4, text: "Pour in the red wine and scrape up any browned bits from the bottom of the pot. Let it reduce by half, about 3 minutes.", forkTender: false },
-          { step: 5, text: "Add the beef broth, carrots, celery, and thyme. Return the short ribs to the pot, ensuring they are mostly submerged in liquid.", forkTender: false },
-          { step: 6, text: "Cover and reduce heat to low. Simmer gently for 2.5 to 3 hours, until the meat is completely fork-tender and pulls away from the bone easily.", forkTender: true },
-          { step: 7, text: "Remove the short ribs and vegetables. Let the meat rest for 10 minutes. The meat should be so tender it can be easily cut with a fork alone.", forkTender: true },
-          { step: 8, text: "Skim excess fat from the cooking liquid. Serve the short ribs with the vegetables and a generous ladle of the reduced braising liquid.", forkTender: false }
-        ],
-        caregiverTips: [
-          "For pureed textures, blend the cooked vegetables with some of the braising liquid until completely smooth.",
-          "Remove the bone before serving and check carefully for any small fragments.",
-          "The meat should be so tender it can be mashed with a fork without any resistance.",
-          "Leftovers can be shredded and mixed with extra gravy for an even softer texture."
-        ],
-        nutrition: {
-          basis: "Estimated from the listed ingredients across 4 servings. Assumes about half the braising liquid is consumed and excess fat is skimmed as directed. This is an estimate, not a lab-tested nutrition label.",
-          calories: "~640 kcal",
-          protein: "~46 g",
-          fat: "~40 g",
-          carbs: "~13 g",
-          sodium: "~380 mg",
-          cholesterol: "~140 mg"
-        },
-        dietaryNotes: "Gluten-free. For lower sodium, use reduced-sodium broth and omit added salt."
-      },
-      {
-        id: 2,
-        slug: "rustic-beef-stew",
-        title: "Rustic Beef Stew",
-        description: "A hearty, comforting classic with tender beef cubes, potatoes, and vegetables in a savory broth—cooked until everything melts in your mouth.",
-        prepTime: "25 minutes",
-        cookTime: "2 hours",
-        servings: 6,
-        difficulty: "Easy",
-        icon: "stew",
-        dysphagia: 6,
-        color: "#A0522D",
-        ingredients: [
-          { amount: "2 lbs", item: "Beef chuck, cut into 1-inch cubes", note: "Look for well-marbled meat for extra tenderness" },
-          { amount: "4 medium", item: "Potatoes, peeled and cubed" },
-          { amount: "3 medium", item: "Carrots, cut into 1/2-inch rounds" },
-          { amount: "2 stalks", item: "Celery, sliced" },
-          { amount: "1 large", item: "Onion, chopped" },
-          { amount: "4 cups", item: "Low-sodium beef broth" },
-          { amount: "1/4 cup", item: "All-purpose flour", note: "Or cornstarch for gluten-free" },
-          { amount: "2 tbsp", item: "Tomato paste" },
-          { amount: "1 tsp", item: "Dried thyme" },
-          { amount: "1/4 cup", item: "Fresh parsley, chopped" },
-          { amount: "3 tbsp", item: "Vegetable oil" }
-        ],
-        instructions: [
-          { step: 1, text: "Pat the beef cubes dry with paper towels and season with pepper. This ensures proper browning.", forkTender: false },
-          { step: 2, text: "Heat 2 tablespoons of oil in a large pot over medium-high heat. Brown the beef in batches, turning occasionally, until all sides are deeply browned, about 4-5 minutes per batch. Set aside.", forkTender: false },
-          { step: 3, text: "Add the remaining oil if needed. Sauté the onions until translucent, about 4 minutes. Add the tomato paste and cook for 1 minute.", forkTender: false },
-          { step: 4, text: "Sprinkle flour over the vegetables and stir to coat. Cook for 1 minute to remove the raw flour taste.", forkTender: false },
-          { step: 5, text: "Pour in the beef broth and stir to combine. Return the browned beef to the pot. Add thyme and bring to a gentle boil.", forkTender: false },
-          { step: 6, text: "Reduce heat to low, cover, and simmer for 1 hour. The beef should begin to feel more tender.", forkTender: false },
-          { step: 7, text: "Add the potatoes, carrots, and celery. Continue to simmer, covered, for another 45 minutes to 1 hour, until all vegetables and beef are completely fork-tender.", forkTender: true },
-          { step: 8, text: "The beef should be so tender it falls apart when gently pressed with a fork. If not, cook for another 15-20 minutes.", forkTender: true },
-          { step: 9, text: "Taste and adjust seasoning. Stir in fresh parsley just before serving. Let cool slightly before serving to those with swallowing difficulties.", forkTender: false }
-        ],
-        caregiverTips: [
-          "Cut larger pieces of potato in half for easier identification and portion control.",
-          "For an even softer texture, mash some of the potatoes directly into the stew.",
-          "Ensure all pieces are approximately the same size for even cooking and consistent texture.",
-          "Before serving, use a fork to check that beef cubes break apart easily without chewing required."
-        ],
-        nutrition: {
-          basis: "Estimated from the listed ingredients across 6 servings, including the broth. This is an estimate, not a lab-tested nutrition label.",
-          calories: "~470 kcal",
-          protein: "~34 g",
-          fat: "~21 g",
-          carbs: "~34 g",
-          sodium: "~350 mg",
-          cholesterol: "~100 mg"
-        },
-        dietaryNotes: "Can be made gluten-free using cornstarch instead of flour. Lower in sodium when made with reduced-sodium broth."
-      },
-      {
         id: 3,
         slug: "butternut-squash-bisque",
         title: "Butternut Squash Bisque",
@@ -1541,55 +1436,6 @@
           cholesterol: "~35 mg"
         },
         dietaryNotes: "Gluten-free and naturally dairy-free option available. Low in sodium when using homemade broth. Perfectly smooth texture for dysphagia-friendly diets."
-      },
-      {
-        id: 4,
-        slug: "creamy-mashed-potatoes",
-        title: "Creamy Mashed Potatoes",
-        description: "Luxuriously smooth, buttery mashed potatoes made from Yukon Gold potatoes—perfectly creamy with no lumps, just pure comfort.",
-        prepTime: "15 minutes",
-        cookTime: "25 minutes",
-        servings: 6,
-        difficulty: "Easy",
-        icon: "potato",
-        dysphagia: 4,
-        color: "#C4A35A",
-        ingredients: [
-          { amount: "3 lbs", item: "Yukon Gold potatoes", note: "Yukon Golds have natural buttery flavor and creamy texture" },
-          { amount: "1 cup", item: "Whole milk, warmed" },
-          { amount: "1/2 cup", item: "Salted butter, cubed and softened" },
-          { amount: "4 oz", item: "Cream cheese, softened" },
-          { amount: "1/2 tsp", item: "Garlic powder" },
-          { amount: "1/2 tsp", item: "White pepper" },
-          { amount: "1/4 cup", item: "Fresh chives, minced", note: "Optional garnish" }
-        ],
-        instructions: [
-          { step: 1, text: "Peel the potatoes and cut into uniform 1-inch cubes. Rinse in cold water to remove excess starch.", forkTender: false },
-          { step: 2, text: "Place the potatoes in a large pot and cover with cold salted water. Bring to a boil over high heat.", forkTender: false },
-          { step: 3, text: "Reduce heat to medium and cook at a gentle boil for 15-20 minutes, until the potatoes are very tender and easily mashed. A fork should slide through them with no resistance.", forkTender: true },
-          { step: 4, text: "Drain the potatoes thoroughly in a colander. Return them to the warm pot and let them steam dry for 2 minutes, shaking occasionally.", forkTender: false },
-          { step: 5, text: "Heat the milk in a small saucepan until just beginning to steam. Do not boil.", forkTender: false },
-          { step: 6, text: "Using a potato ricer or masher, process the hot potatoes back into the pot. This creates the smoothest texture.", forkTender: false },
-          { step: 7, text: "Add the softened butter cubes, cream cheese, garlic powder, and white pepper. Stir vigorously until all ingredients are incorporated and the potatoes are fluffy and smooth.", forkTender: false },
-          { step: 8, text: "Gradually add the warm milk, stirring constantly, until the potatoes reach your desired creamy consistency. They should be silky with absolutely no lumps.", forkTender: false },
-          { step: 9, text: "Taste and adjust seasoning. Serve immediately, topped with additional butter and chives if desired. These are soft enough for those with minimal chewing ability.", forkTender: false }
-        ],
-        caregiverTips: [
-          "For the smoothest possible texture, pass the mashed potatoes through a fine-mesh strainer after mixing.",
-          "Potatoes continue to thicken as they cool. If making ahead, add a splash of warm milk when reheating.",
-          "These can be pureed further in a blender for those who need completely smooth foods.",
-          "Yukon Golds hold their shape less than russets, resulting in a naturally creamier texture without overworking."
-        ],
-        nutrition: {
-          basis: "Estimated from the listed ingredients across 6 servings, including the salted butter and cream cheese. This is an estimate, not a lab-tested nutrition label.",
-          calories: "~400 kcal",
-          protein: "~8 g",
-          fat: "~24 g",
-          carbs: "~40 g",
-          sodium: "~250 mg",
-          cholesterol: "~65 mg"
-        },
-        dietaryNotes: "Gluten-free. Can be made lactose-free using lactose-free milk and dairy-free butter alternatives."
       },
       {
         id: 5,
@@ -1800,54 +1646,6 @@
         dietaryNotes: "Gluten-free. Adjust cayenne pepper to reduce heat level. Serve with rice or noodles for added carbohydrates. Extremely high in sodium as written — see the nutrition note above."
       },
       {
-        id: 9,
-        slug: "chicken-pasta-alfredo",
-        title: "Chicken Pasta Alfredo",
-        description: "Rich and creamy pasta with tender seasoned chicken in a velvety Parmesan cream sauce—comforting and easy to enjoy.",
-        prepTime: "10 minutes",
-        cookTime: "20 minutes",
-        servings: 2,
-        difficulty: "Easy",
-        icon: "pasta",
-        dysphagia: 6,
-        color: "#F5DEB3",
-        ingredients: [
-          { amount: "100g", item: "Pasta of any kind", note: "Cook 2 minutes past al dente for softer texture" },
-          { amount: "25g", item: "Parmesan cheese, grated" },
-          { amount: "2 tbsp", item: "Butter" },
-          { amount: "1 tsp", item: "Paprika" },
-          { amount: "1 tsp", item: "Cayenne pepper", note: "Optional, adjust to taste" },
-          { amount: "1 tsp", item: "Garlic powder" },
-          { amount: "1 clove", item: "Garlic, minced" },
-          { amount: "200ml", item: "Heavy cream" },
-          { amount: "1", item: "Chicken breast or thigh piece" }
-        ],
-        instructions: [
-          { step: 1, text: "Bring a pot of water to a boil. Add your preferred pasta and cook for 2 minutes past al dente texture for extra softness.", forkTender: true },
-          { step: 2, text: "While pasta is boiling, in a separate pan add butter, paprika, cayenne pepper, garlic powder, and minced garlic. Whisk until fragrant over low to medium heat.", forkTender: false },
-          { step: 3, text: "Add the chicken to the pan and cook completely on low to medium heat, turning occasionally until cooked through. Remove the chicken from the pan and set aside, reserving the seasonings left on the bottom of the pan.", forkTender: false },
-          { step: 4, text: "Pour the heavy cream into the pan and stir to incorporate the seasoning residues from the bottom. Add the Parmesan cheese and cook over medium heat for around 2 minutes, stirring constantly.", forkTender: false },
-          { step: 5, text: "Once the pasta is done, transfer it directly into the pan with the sauce. Ladle in half a scoop of pasta water and toss to combine until the sauce is fully emulsified.", forkTender: false },
-          { step: 6, text: "Cut the cooked chicken into small, tender pieces. Plate the pasta and serve with the chicken cut up on top or on the side.", forkTender: true }
-        ],
-        caregiverTips: [
-          "Cook the pasta slightly longer than usual to ensure it is soft and easy to chew.",
-          "Cut the chicken into very small, bite-sized pieces to make eating easier.",
-          "For a smoother sauce, blend the cream and cheese mixture briefly before adding the pasta.",
-          "Adjust the cayenne pepper or omit entirely for those sensitive to spice."
-        ],
-        nutrition: {
-          basis: "Estimated from the listed ingredients across 2 servings. This is an estimate, not a lab-tested nutrition label.",
-          calories: "~750 kcal",
-          protein: "~33 g",
-          fat: "~55 g",
-          carbs: "~39 g",
-          sodium: "~400 mg",
-          cholesterol: "~215 mg"
-        },
-        dietaryNotes: "Can be made with gluten-free pasta. For lower fat, substitute heavy cream with half-and-half."
-      },
-      {
         id: 10,
         slug: "cream-of-mushroom-soup",
         title: "Cream of Mushroom Soup",
@@ -1959,8 +1757,6 @@
         difficulty: "Intermediate",
         icon: "potato",
         dysphagia: 4,
-        image: "assets/robuchon-mashed-potatoes",
-        imageAlt: "A wide bowl of ultra-smooth pale yellow mashed potatoes with a fork-swirled surface, ready to serve.",
         color: "#D6B85A",
         ingredients: [
           { amount: "1 kg", item: "Potatoes" },
