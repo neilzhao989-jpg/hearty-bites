@@ -1,0 +1,2932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hearty & Gentle Bites - Soft, fork-tender recipes designed for elderly users with chewing or swallowing difficulties.">
+  <title>Hearty & Gentle Bites</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lora:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-cream: #FAFAF7;
+      --bg-warm: #F5F0E8;
+      --bg-card: #FFFFFF;
+      --bg-sage: #E8EDE5;
+      --bg-sage-light: #F0F4EE;
+      --primary: #6B7F5E;
+      --primary-dark: #4A5A3F;
+      --primary-light: #8A9E7C;
+      --accent: #C4956A;
+      --accent-dark: #A67B52;
+      --text: #2C3329;
+      --text-light: #5C6654;
+      --text-muted: #8B9584;
+      --success: #4A734A;
+      --warning: #8B6914;
+      --warning-text: #5C4000;
+      --warning-bg: #FFF8E6;
+      --white: #FFFFFF;
+      --border: #E5E0D8;
+      --border-light: #F0EBE3;
+      --shadow-sm: rgba(44, 51, 41, 0.06);
+      --shadow: rgba(44, 51, 41, 0.1);
+      --shadow-lg: rgba(44, 51, 41, 0.14);
+      --shadow-xl: rgba(44, 51, 41, 0.18);
+      --radius-sm: 8px;
+      --radius: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--text);
+      background-color: var(--bg-cream);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--text);
+      color: var(--white);
+      padding: 12px 24px;
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+      text-decoration: none;
+      font-weight: 600;
+      z-index: 1000;
+      transition: top 0.3s ease;
+    }
+    .skip-link:focus {
+      top: 0;
+      outline: 3px solid var(--primary);
+      outline-offset: 2px;
+    }
+    *:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 2px;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', Georgia, serif;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    h1 { font-size: clamp(2.4rem, 5vw, 3.4rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; }
+    h2 { font-size: clamp(1.75rem, 3vw, 2.1rem); font-weight: 600; line-height: 1.2; }
+    h3 { font-size: 1.3rem; font-weight: 600; line-height: 1.25; }
+    h4 { font-size: 1.1rem; font-weight: 600; }
+    .eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+    p { margin-bottom: 1.2rem; }
+    a {
+      color: var(--primary-dark);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+    }
+    a:hover {
+      color: var(--accent-dark);
+    }
+    /* Header */
+    .top-bar {
+      background: var(--text);
+      color: var(--white);
+      padding: 9px 24px;
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .top-bar span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(250, 250, 247, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      transition: box-shadow 0.3s ease;
+    }
+    header.scrolled {
+      box-shadow: 0 4px 20px var(--shadow);
+    }
+    .header-content {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+    }
+    .logo-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+    .logo-text small {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    nav a {
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.92rem;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    nav a:not(.btn) {
+      color: var(--text);
+    }
+    nav a:not(.btn):hover,
+    nav a:not(.btn)[aria-current="page"] {
+      background: var(--bg-warm);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--white);
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      color: var(--white);
+      text-decoration: none;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--shadow);
+    }
+    .btn-primary:active {
+      transform: scale(0.98);
+    }
+    .btn svg {
+      width: 20px;
+      height: 20px;
+    }
+    /* Main Content */
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 8px 24px 64px;
+      min-height: calc(100vh - 300px);
+    }
+    .page {
+      animation: fadeIn 0.4s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Hero Section */
+    .hero {
+      padding: 56px 0 40px;
+      margin-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+      max-width: 780px;
+    }
+    .hero .eyebrow {
+      display: block;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      color: var(--primary);
+      font-style: italic;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      margin: 0 0 8px;
+      font-family: 'Lora', Georgia, serif;
+      line-height: 1.65;
+    }
+    /* Trust Banner */
+    .trust-banner {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+    .trust-item svg {
+      width: 18px;
+      height: 18px;
+      color: var(--primary);
+    }
+    /* Recipe Section Header */
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--text);
+    }
+    .section-header h2 {
+      margin: 0;
+    }
+    .section-header p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      margin: 0;
+      max-width: 440px;
+    }
+    /* Recipe Grid */
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 36px 28px;
+    }
+    .recipe-card {
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+    .recipe-card:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 4px;
+    }
+    .recipe-card-image {
+      aspect-ratio: 4 / 3;
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      margin-bottom: 14px;
+    }
+    .recipe-card-image .card-gradient {
+      transition: transform 0.4s ease;
+    }
+    .recipe-card:hover .card-gradient {
+      transform: scale(1.04);
+    }
+    .recipe-card:hover h3 {
+      color: var(--primary-dark);
+    }
+    .recipe-card-image .card-gradient {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .recipe-card-image svg {
+      width: 56px;
+      height: 56px;
+      color: rgba(255, 255, 255, 0.9);
+      z-index: 2;
+    }
+    .recipe-card-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.2) 0%, transparent 60%);
+    }
+    .recipe-card-iddsi {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      z-index: 3;
+    }
+    .iddsi-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.95);
+      color: var(--text);
+      padding: 4px 12px 4px 4px;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+    }
+    .iddsi-dot {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .meta-card .iddsi-dot {
+      width: 24px;
+      height: 24px;
+      font-size: 0.8rem;
+    }
+    .recipe-card-content {
+      padding: 0;
+    }
+    .recipe-card h3 {
+      margin-bottom: 7px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+    .recipe-card p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      line-height: 1.55;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .recipe-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+      padding-top: 11px;
+      border-top: 1px solid var(--border-light);
+    }
+    .recipe-card-meta span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .recipe-card-meta svg {
+      width: 14px;
+      height: 14px;
+    }
+    .recipe-card .btn {
+      width: 100%;
+      justify-content: center;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+    }
+    /* Recipe Detail Page */
+    .recipe-header {
+      margin-bottom: 40px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      font-weight: 500;
+      color: var(--text-light);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .back-link:hover {
+      color: var(--primary);
+    }
+    .back-link svg {
+      width: 20px;
+      height: 20px;
+    }
+    .recipe-title {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 16px;
+    }
+    .recipe-title-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--bg-sage) 0%, var(--bg-sage-light) 100%);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .recipe-title-icon svg {
+      width: 32px;
+      height: 32px;
+      color: var(--primary);
+    }
+    .recipe-title h1 {
+      margin: 0;
+      font-size: 2.4rem;
+    }
+    .recipe-description {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.1rem;
+      color: var(--text-light);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .recipe-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .meta-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      background: var(--bg-warm);
+      border-radius: var(--radius);
+      border: 1px solid var(--border-light);
+      min-width: 160px;
+      flex: 1;
+    }
+    .meta-card svg {
+      width: 24px;
+      height: 24px;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+    .meta-card strong {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 2px;
+    }
+    .meta-card span {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    /* Recipe Sections */
+    .recipe-section {
+      margin-bottom: 48px;
+    }
+    .recipe-section h2 {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--bg-sage);
+    }
+    .recipe-section h2 .section-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--bg-sage-light);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .recipe-section h2 svg {
+      width: 20px;
+      height: 20px;
+      color: var(--primary);
+    }
+    /* Ingredients */
+    .ingredients-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+    .ingredient-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 18px;
+      background: var(--bg-card);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-light);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .ingredient-item:hover {
+      background: var(--bg-warm);
+      border-color: var(--border);
+    }
+    .ingredient-item input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      accent-color: var(--success);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .ingredient-item label {
+      cursor: pointer;
+      flex: 1;
+    }
+    .ingredient-item.checked {
+      background: var(--bg-sage-light);
+      border-color: var(--bg-sage);
+    }
+    .ingredient-item.checked label {
+      text-decoration: line-through;
+      color: var(--text-muted);
+    }
+    .ingredient-amount {
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+    .ingredient-note {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 4px;
+    }
+    /* Instructions */
+    .instructions-list {
+      list-style: none;
+      display: grid;
+      gap: 16px;
+    }
+    .instruction-step {
+      display: flex;
+      gap: 18px;
+      padding: 24px;
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border-light);
+      box-shadow: 0 1px 3px var(--shadow-sm);
+      transition: all 0.2s ease;
+    }
+    .instruction-step:hover {
+      border-color: var(--border);
+      box-shadow: 0 4px 12px var(--shadow);
+    }
+    .step-number {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .step-content {
+      flex: 1;
+      padding-top: 10px;
+    }
+    .step-content p {
+      margin-bottom: 0;
+      line-height: 1.7;
+    }
+    .fork-tender {
+      font-weight: 600;
+      color: var(--success);
+      background: var(--bg-sage-light);
+      padding: 3px 10px;
+      border-radius: 4px;
+      border: 1px solid var(--bg-sage);
+    }
+    /* Caregiver Tips */
+    .tips-box {
+      background: var(--warning-bg);
+      border: 1px solid #E8D4A0;
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+    .tips-box h3 {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--warning-text);
+      margin-bottom: 16px;
+      font-size: 1.15rem;
+    }
+    .tips-box h3 svg {
+      width: 24px;
+      height: 24px;
+    }
+    .tips-box ul {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+    .tips-box li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .tips-box li svg {
+      width: 20px;
+      height: 20px;
+      color: var(--warning);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    /* Dietary Notes */
+    .dietary-notes {
+      background: var(--bg-sage-light);
+      border: 1px solid var(--bg-sage);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+    }
+    .dietary-notes h2 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      border: none;
+      padding: 0;
+    }
+    .dietary-notes p {
+      margin-bottom: 0;
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+    /* Nutrition */
+    .nutrition-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1px;
+      background: var(--border-light);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .nutrition-cell {
+      background: var(--bg-card);
+      padding: 16px 18px;
+    }
+    .nutrition-cell strong {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .nutrition-cell span {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .nutrition-cell.is-flagged span {
+      color: var(--warning-text);
+    }
+    .nutrition-basis {
+      margin-top: 14px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .nutrition-flag {
+      margin-top: 14px;
+      padding: 14px 18px;
+      background: var(--warning-bg);
+      border: 1px solid #E8D4A0;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    /* Recipe photos */
+    .recipe-card-image picture {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+    }
+    .recipe-card-image img,
+    .recipe-hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .recipe-hero-image {
+      aspect-ratio: 3 / 2;
+      max-height: 420px;
+      overflow: hidden;
+      border-radius: var(--radius);
+      margin-bottom: 28px;
+      background: var(--bg-warm);
+    }
+    /* Texture Guide */
+    .guide-intro {
+      max-width: 720px;
+      margin-bottom: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .guide-intro .eyebrow {
+      display: block;
+      margin-bottom: 18px;
+    }
+    .guide-intro h1 {
+      margin-bottom: 20px;
+    }
+    .guide-intro p {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.1rem;
+      color: var(--text-light);
+      line-height: 1.65;
+      margin-bottom: 0;
+    }
+    .level-list {
+      display: grid;
+      gap: 20px;
+      list-style: none;
+    }
+    .level-row {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 20px;
+      align-items: start;
+      padding: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+    }
+    .level-marker {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+    .level-row h3 {
+      margin-bottom: 6px;
+    }
+    .level-row .level-desc {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+    .level-recipes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .level-recipes a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      text-decoration: none;
+      background: var(--bg-warm);
+      border: 1px solid var(--border-light);
+      color: var(--text);
+      padding: 5px 12px;
+      border-radius: 50px;
+      transition: all 0.2s ease;
+    }
+    .level-recipes a:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--white);
+    }
+    .level-recipes .level-empty {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    .guide-note {
+      margin-top: 40px;
+      padding: 20px 24px;
+      background: var(--bg-sage-light);
+      border: 1px solid var(--bg-sage);
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    .guide-note p {
+      margin-bottom: 0;
+    }
+    /* Print Button */
+    .print-fab {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 16px var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 50;
+    }
+    .print-fab:hover {
+      background: var(--primary-dark);
+      transform: scale(1.08);
+    }
+    .print-fab svg {
+      width: 26px;
+      height: 26px;
+    }
+    /* Footer */
+    footer {
+      background: var(--bg-warm);
+      border-top: 1px solid var(--border);
+      padding: 48px 24px 32px;
+      margin-top: 80px;
+    }
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-brand h3 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+    }
+    .footer-brand p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    .footer-links h4 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      font-family: 'Inter', sans-serif;
+    }
+    .footer-links ul {
+      list-style: none;
+    }
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    .footer-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+    .footer-info {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    /* Print Styles */
+    @media print {
+      body {
+        font-size: 12pt;
+        background: white;
+        color: black;
+      }
+      .top-bar, header, footer, .print-fab, .skip-link, .trust-banner {
+        display: none !important;
+      }
+      main {
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+      }
+      .recipe-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+      }
+      .meta-card {
+        background: #f5f5f5 !important;
+      }
+      .ingredient-item input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        -webkit-appearance: none;
+        appearance: none;
+        border: 2px solid black;
+        display: inline-block;
+      }
+      .instruction-step {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+      }
+      .step-number {
+        background: black !important;
+        color: white !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .tips-box {
+        border: 2px solid #333;
+        background: #f9f9f9 !important;
+      }
+      .fork-tender {
+        background: #e0e0e0 !important;
+        color: black !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      h1, h2, h3 {
+        color: black !important;
+      }
+      a {
+        color: black !important;
+        text-decoration: none !important;
+      }
+      .back-link {
+        color: black;
+      }
+      .back-link::before {
+        content: "← ";
+      }
+      @page {
+        margin: 1in;
+      }
+    }
+    /* Mobile Responsive */
+    @media (max-width: 640px) {
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.6rem; }
+      .top-bar {
+        font-size: 0.75rem;
+        padding: 6px 16px;
+      }
+      .header-content {
+        padding: 12px 20px;
+        gap: 10px;
+      }
+      .logo-text {
+        font-size: 1.1rem;
+      }
+      .logo-text small {
+        display: none;
+      }
+      nav {
+        gap: 2px;
+      }
+      nav a {
+        padding: 7px 10px;
+        font-size: 0.85rem;
+      }
+      main {
+        padding: 4px 20px 48px;
+      }
+      .hero {
+        padding: 36px 0 32px;
+        margin-bottom: 32px;
+      }
+      .hero p {
+        font-size: 1.05rem;
+      }
+      .trust-banner {
+        gap: 10px 20px;
+        margin-bottom: 36px;
+      }
+      .section-header {
+        margin-bottom: 22px;
+      }
+      .recipe-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .recipe-meta {
+        flex-direction: column;
+      }
+      .meta-card {
+        min-width: 100%;
+      }
+      .recipe-title {
+        flex-direction: column;
+      }
+      .nutrition-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .level-row {
+        grid-template-columns: 44px 1fr;
+        gap: 14px;
+        padding: 20px;
+      }
+      .level-marker {
+        width: 44px;
+        height: 44px;
+        font-size: 1.3rem;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .print-fab {
+        bottom: 20px;
+        right: 20px;
+        width: 52px;
+        height: 52px;
+      }
+      .instruction-step {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .step-number {
+        align-self: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="top-bar">
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      Designed with care for caregivers and their loved ones
+    </span>
+  </div>
+  <header id="header">
+    <div class="header-content">
+      <a href="#/" class="logo" aria-label="Hearty & Gentle Bites - Home">
+        <div class="logo-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+            <line x1="9" y1="9" x2="9.01" y2="9"/>
+            <line x1="15" y1="9" x2="15.01" y2="9"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          Hearty & Gentle Bites
+          <small>Comforting Recipes for Easy Eating</small>
+        </div>
+      </a>
+      <nav role="navigation" aria-label="Main navigation">
+        <a href="#/" aria-current="page">Recipes</a>
+        <a href="#/texture-guide">Texture Guide</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main-content" role="main">
+    <!-- Content will be dynamically loaded -->
+  </main>
+  <footer role="contentinfo">
+    <div class="footer-content">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Hearty & Gentle Bites</h3>
+          <p>Thoughtfully crafted recipes designed for those with chewing or swallowing difficulties. Every dish prioritizes soft textures, gentle flavors, and nourishing ingredients that caregivers can trust.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Browse</h4>
+          <ul>
+            <li><a href="#/">All Recipes</a></li>
+            <li><a href="#/texture-guide">Texture Guide</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Texture Levels</h4>
+          <ul id="footer-levels"></ul>
+        </div>
+      </div>
+      <div class="footer-info">
+        <p>Hearty & Gentle Bites &copy; 2026. Designed with care for caregivers and their loved ones.</p>
+      </div>
+    </div>
+  </footer>
+  <button class="print-fab" id="print-btn" aria-label="Print recipe" style="display: none;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="6 9 6 2 18 2 18 9"/>
+      <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+      <rect x="6" y="14" width="12" height="8"/>
+    </svg>
+  </button>
+  <script>
+    const recipes = [
+      {
+        id: 1,
+        slug: "slow-braised-short-ribs",
+        title: "Slow-Braised Short Ribs",
+        description: "Tender, fall-off-the-bone beef short ribs slowly braised in a rich red wine and vegetable broth until fork-tender.",
+        prepTime: "20 minutes",
+        cookTime: "3 hours",
+        servings: 4,
+        difficulty: "Easy",
+        icon: "beef",
+        dysphagia: 6,
+        color: "#8B4513",
+        ingredients: [
+          { amount: "3 lbs", item: "Bone-in beef short ribs", note: "Ask butcher to cut between bones" },
+          { amount: "2 cups", item: "Low-sodium beef broth" },
+          { amount: "1 cup", item: "Dry red wine", note: "Or additional broth for alcohol-free version" },
+          { amount: "1 large", item: "Onion, diced" },
+          { amount: "3 cloves", item: "Garlic, minced" },
+          { amount: "3 medium", item: "Carrots, cut into 2-inch pieces" },
+          { amount: "2 stalks", item: "Celery, cut into 2-inch pieces" },
+          { amount: "2 tbsp", item: "Tomato paste" },
+          { amount: "1 tsp", item: "Fresh thyme leaves" },
+          { amount: "1/2 tsp", item: "Black pepper" },
+          { amount: "2 tbsp", item: "Olive oil" }
+        ],
+        instructions: [
+          { step: 1, text: "Season the short ribs generously with pepper. Heat olive oil in a large Dutch oven over medium-high heat until shimmering.", forkTender: false },
+          { step: 2, text: "Sear the short ribs on all sides until deeply golden brown, about 3-4 minutes per side. Work in batches to avoid crowding. Transfer to a plate and set aside.", forkTender: false },
+          { step: 3, text: "Reduce heat to medium. Add onions and garlic to the pot and cook until softened, about 5 minutes. Stir in the tomato paste and cook for 1 minute.", forkTender: false },
+          { step: 4, text: "Pour in the red wine and scrape up any browned bits from the bottom of the pot. Let it reduce by half, about 3 minutes.", forkTender: false },
+          { step: 5, text: "Add the beef broth, carrots, celery, and thyme. Return the short ribs to the pot, ensuring they are mostly submerged in liquid.", forkTender: false },
+          { step: 6, text: "Cover and reduce heat to low. Simmer gently for 2.5 to 3 hours, until the meat is completely fork-tender and pulls away from the bone easily.", forkTender: true },
+          { step: 7, text: "Remove the short ribs and vegetables. Let the meat rest for 10 minutes. The meat should be so tender it can be easily cut with a fork alone.", forkTender: true },
+          { step: 8, text: "Skim excess fat from the cooking liquid. Serve the short ribs with the vegetables and a generous ladle of the reduced braising liquid.", forkTender: false }
+        ],
+        caregiverTips: [
+          "For pureed textures, blend the cooked vegetables with some of the braising liquid until completely smooth.",
+          "Remove the bone before serving and check carefully for any small fragments.",
+          "The meat should be so tender it can be mashed with a fork without any resistance.",
+          "Leftovers can be shredded and mixed with extra gravy for an even softer texture."
+        ],
+        dietaryNotes: "Gluten-free. For lower sodium, use reduced-sodium broth and omit added salt."
+      },
+      {
+        id: 2,
+        slug: "rustic-beef-stew",
+        title: "Rustic Beef Stew",
+        description: "A hearty, comforting classic with tender beef cubes, potatoes, and vegetables in a savory broth—cooked until everything melts in your mouth.",
+        prepTime: "25 minutes",
+        cookTime: "2 hours",
+        servings: 6,
+        difficulty: "Easy",
+        icon: "stew",
+        dysphagia: 6,
+        color: "#A0522D",
+        ingredients: [
+          { amount: "2 lbs", item: "Beef chuck, cut into 1-inch cubes", note: "Look for well-marbled meat for extra tenderness" },
+          { amount: "4 medium", item: "Potatoes, peeled and cubed" },
+          { amount: "3 medium", item: "Carrots, cut into 1/2-inch rounds" },
+          { amount: "2 stalks", item: "Celery, sliced" },
+          { amount: "1 large", item: "Onion, chopped" },
+          { amount: "4 cups", item: "Low-sodium beef broth" },
+          { amount: "1/4 cup", item: "All-purpose flour", note: "Or cornstarch for gluten-free" },
+          { amount: "2 tbsp", item: "Tomato paste" },
+          { amount: "1 tsp", item: "Dried thyme" },
+          { amount: "1/4 cup", item: "Fresh parsley, chopped" },
+          { amount: "3 tbsp", item: "Vegetable oil" }
+        ],
+        instructions: [
+          { step: 1, text: "Pat the beef cubes dry with paper towels and season with pepper. This ensures proper browning.", forkTender: false },
+          { step: 2, text: "Heat 2 tablespoons of oil in a large pot over medium-high heat. Brown the beef in batches, turning occasionally, until all sides are deeply browned, about 4-5 minutes per batch. Set aside.", forkTender: false },
+          { step: 3, text: "Add the remaining oil if needed. Sauté the onions until translucent, about 4 minutes. Add the tomato paste and cook for 1 minute.", forkTender: false },
+          { step: 4, text: "Sprinkle flour over the vegetables and stir to coat. Cook for 1 minute to remove the raw flour taste.", forkTender: false },
+          { step: 5, text: "Pour in the beef broth and stir to combine. Return the browned beef to the pot. Add thyme and bring to a gentle boil.", forkTender: false },
+          { step: 6, text: "Reduce heat to low, cover, and simmer for 1 hour. The beef should begin to feel more tender.", forkTender: false },
+          { step: 7, text: "Add the potatoes, carrots, and celery. Continue to simmer, covered, for another 45 minutes to 1 hour, until all vegetables and beef are completely fork-tender.", forkTender: true },
+          { step: 8, text: "The beef should be so tender it falls apart when gently pressed with a fork. If not, cook for another 15-20 minutes.", forkTender: true },
+          { step: 9, text: "Taste and adjust seasoning. Stir in fresh parsley just before serving. Let cool slightly before serving to those with swallowing difficulties.", forkTender: false }
+        ],
+        caregiverTips: [
+          "Cut larger pieces of potato in half for easier identification and portion control.",
+          "For an even softer texture, mash some of the potatoes directly into the stew.",
+          "Ensure all pieces are approximately the same size for even cooking and consistent texture.",
+          "Before serving, use a fork to check that beef cubes break apart easily without chewing required."
+        ],
+        dietaryNotes: "Can be made gluten-free using cornstarch instead of flour. Lower in sodium when made with reduced-sodium broth."
+      },
+      {
+        id: 3,
+        slug: "butternut-squash-bisque",
+        title: "Butternut Squash Bisque",
+        description: "Silky smooth, naturally sweet butternut squash soup enriched with cream and warming spices—a comforting bowl of pure comfort.",
+        prepTime: "20 minutes",
+        cookTime: "45 minutes",
+        servings: 6,
+        difficulty: "Easy",
+        icon: "soup",
+        dysphagia: 3,
+        color: "#D4A574",
+        ingredients: [
+          { amount: "2 lbs", item: "Butternut squash, peeled and cubed", note: "Pre-cut squash works well to save time" },
+          { amount: "1 medium", item: "Onion, diced" },
+          { amount: "2 cloves", item: "Garlic, minced" },
+          { amount: "4 cups", item: "Low-sodium chicken or vegetable broth" },
+          { amount: "1/2 cup", item: "Heavy cream", note: "Or full-fat coconut milk for dairy-free" },
+          { amount: "1/4 tsp", item: "Ground nutmeg" },
+          { amount: "1/4 tsp", item: "Ground cinnamon" },
+          { amount: "1/4 tsp", item: "White pepper" },
+          { amount: "2 tbsp", item: "Butter" },
+          { amount: "1 tbsp", item: "Maple syrup", note: "Optional, for extra sweetness" }
+        ],
+        instructions: [
+          { step: 1, text: "Melt butter in a large pot over medium heat. Add onion and garlic, cooking until softened and fragrant, about 5 minutes.", forkTender: false },
+          { step: 2, text: "Add the cubed butternut squash and stir to coat with the butter.", forkTender: false },
+          { step: 3, text: "Pour in the broth and bring to a boil. Reduce heat to low and simmer, covered, for 25-30 minutes until the squash is very tender and easily pierced with a fork.", forkTender: true },
+          { step: 4, text: "Remove from heat. Use an immersion blender to puree the soup until completely smooth and silky. Alternatively, blend in batches in a regular blender, being careful with the hot liquid.", forkTender: false },
+          { step: 5, text: "Return the pureed soup to the pot over low heat. Stir in the cream, nutmeg, cinnamon, white pepper, and maple syrup if using.", forkTender: false },
+          { step: 6, text: "Heat gently, stirring frequently, until the soup is heated through. Do not let it boil after adding cream.", forkTender: false },
+          { step: 7, text: "Taste and adjust seasoning. The soup should be perfectly smooth with no lumps. If needed, blend again to ensure absolute smoothness.", forkTender: false },
+          { step: 8, text: "Serve in warm bowls with a drizzle of cream swirled on top. The smooth texture makes this ideal for those with swallowing difficulties.", forkTender: false }
+        ],
+        caregiverTips: [
+          "This bisque is naturally smooth but can be strained through a fine-mesh sieve for extra smoothness if needed.",
+          "The soup thickens as it cools. Add more broth when reheating to reach desired consistency.",
+          "Serve at a lukewarm temperature—too hot can cause burns and swallowing difficulties.",
+          "Freeze in portion-sized containers for easy reheating later."
+        ],
+        dietaryNotes: "Gluten-free and naturally dairy-free option available. Low in sodium when using homemade broth. Perfectly smooth texture for dysphagia-friendly diets."
+      },
+      {
+        id: 4,
+        slug: "creamy-mashed-potatoes",
+        title: "Creamy Mashed Potatoes",
+        description: "Luxuriously smooth, buttery mashed potatoes made from Yukon Gold potatoes—perfectly creamy with no lumps, just pure comfort.",
+        prepTime: "15 minutes",
+        cookTime: "25 minutes",
+        servings: 6,
+        difficulty: "Easy",
+        icon: "potato",
+        dysphagia: 4,
+        color: "#C4A35A",
+        ingredients: [
+          { amount: "3 lbs", item: "Yukon Gold potatoes", note: "Yukon Golds have natural buttery flavor and creamy texture" },
+          { amount: "1 cup", item: "Whole milk, warmed" },
+          { amount: "1/2 cup", item: "Salted butter, cubed and softened" },
+          { amount: "4 oz", item: "Cream cheese, softened" },
+          { amount: "1/2 tsp", item: "Garlic powder" },
+          { amount: "1/2 tsp", item: "White pepper" },
+          { amount: "1/4 cup", item: "Fresh chives, minced", note: "Optional garnish" }
+        ],
+        instructions: [
+          { step: 1, text: "Peel the potatoes and cut into uniform 1-inch cubes. Rinse in cold water to remove excess starch.", forkTender: false },
+          { step: 2, text: "Place the potatoes in a large pot and cover with cold salted water. Bring to a boil over high heat.", forkTender: false },
+          { step: 3, text: "Reduce heat to medium and cook at a gentle boil for 15-20 minutes, until the potatoes are very tender and easily mashed. A fork should slide through them with no resistance.", forkTender: true },
+          { step: 4, text: "Drain the potatoes thoroughly in a colander. Return them to the warm pot and let them steam dry for 2 minutes, shaking occasionally.", forkTender: false },
+          { step: 5, text: "Heat the milk in a small saucepan until just beginning to steam. Do not boil.", forkTender: false },
+          { step: 6, text: "Using a potato ricer or masher, process the hot potatoes back into the pot. This creates the smoothest texture.", forkTender: false },
+          { step: 7, text: "Add the softened butter cubes, cream cheese, garlic powder, and white pepper. Stir vigorously until all ingredients are incorporated and the potatoes are fluffy and smooth.", forkTender: false },
+          { step: 8, text: "Gradually add the warm milk, stirring constantly, until the potatoes reach your desired creamy consistency. They should be silky with absolutely no lumps.", forkTender: false },
+          { step: 9, text: "Taste and adjust seasoning. Serve immediately, topped with additional butter and chives if desired. These are soft enough for those with minimal chewing ability.", forkTender: false }
+        ],
+        caregiverTips: [
+          "For the smoothest possible texture, pass the mashed potatoes through a fine-mesh strainer after mixing.",
+          "Potatoes continue to thicken as they cool. If making ahead, add a splash of warm milk when reheating.",
+          "These can be pureed further in a blender for those who need completely smooth foods.",
+          "Yukon Golds hold their shape less than russets, resulting in a naturally creamier texture without overworking."
+        ],
+        dietaryNotes: "Gluten-free. Can be made lactose-free using lactose-free milk and dairy-free butter alternatives."
+      },
+      {
+        id: 5,
+        slug: "chicken-golden-soup",
+        title: "Chicken Golden Soup with Pastina",
+        description: "A soothing, golden-hued chicken soup with tiny star-shaped pastina pasta, designed to be gentle and nourishing.",
+        prepTime: "15 minutes",
+        cookTime: "40 minutes",
+        servings: 4,
+        difficulty: "Easy",
+        icon: "soup",
+        dysphagia: 5,
+        color: "#D4A574",
+        ingredients: [
+          { amount: "1 lb", item: "Boneless, skinless chicken breasts" },
+          { amount: "8 cups", item: "Low-sodium chicken broth" },
+          { amount: "1 cup", item: "Pastina pasta", note: "Tiny star-shaped or small soup pasta" },
+          { amount: "2 medium", item: "Carrots, diced very small" },
+          { amount: "2 stalks", item: "Celery, diced very small" },
+          { amount: "1 small", item: "Onion, finely diced" },
+          { amount: "3 cloves", item: "Garlic, minced" },
+          { amount: "1/4 cup", item: "Fresh parsley, chopped" },
+          { amount: "1/4 tsp", item: "Turmeric", note: "For golden color and anti-inflammatory benefits" },
+          { amount: "1 tbsp", item: "Olive oil" }
+        ],
+        instructions: [
+          { step: 1, text: "Season the chicken breasts with pepper. In a large pot, bring the chicken broth to a gentle simmer over medium heat.", forkTender: false },
+          { step: 2, text: "Add the whole chicken breasts to the simmering broth. Reduce heat to low, cover, and cook for 15-20 minutes until the chicken is cooked through and very tender.", forkTender: true },
+          { step: 3, text: "Remove the chicken and let it rest for 10 minutes. Use two forks to shred it into small, tender pieces. The chicken should shred easily without any resistance.", forkTender: true },
+          { step: 4, text: "In the same pot, heat olive oil over medium heat. Add the onion, carrots, and celery. Cook until very soft, about 8 minutes.", forkTender: false },
+          { step: 5, text: "Add the garlic and turmeric, stirring for 1 minute until fragrant.", forkTender: false },
+          { step: 6, text: "Pour in the broth and bring to a boil. Add the pastina pasta and cook according to package directions, usually 8-10 minutes, until very soft.", forkTender: true },
+          { step: 7, text: "Return the shredded chicken to the pot. The pasta should be soft enough to mash with a fork.", forkTender: true },
+          { step: 8, text: "Stir in the fresh parsley. Taste and adjust seasoning. The soup should be comforting and easy to eat.", forkTender: false },
+          { step: 9, text: "For those with swallowing difficulties, the soup can be served as-is or lightly mashed to combine the pasta and chicken further.", forkTender: true }
+        ],
+        caregiverTips: [
+          "Cook the pasta slightly longer than package directions recommend for a softer texture.",
+          "Dice the vegetables very finely so they don't need any chewing.",
+          "The chicken should be so tender it falls apart in the broth.",
+          "For pureed diets, blend the entire soup until completely smooth before serving."
+        ],
+        dietaryNotes: "Gluten-free option available using rice pasta or omit pasta entirely. Low-sodium version using homemade broth."
+      },
+      {
+        id: 6,
+        slug: "baked-cinnamon-apples",
+        title: "Baked Cinnamon Apples",
+        description: "Warm, tender baked apples with a cozy cinnamon-sugar filling—naturally soft and perfect for a comforting, easy-to-eat dessert.",
+        prepTime: "10 minutes",
+        cookTime: "45 minutes",
+        servings: 4,
+        difficulty: "Easy",
+        icon: "apple",
+        dysphagia: 6,
+        color: "#CD5C5C",
+        ingredients: [
+          { amount: "4 large", item: "Firm-sweet apples", note: "Honeycrisp, Fuji, or Gala work best" },
+          { amount: "4 tbsp", item: "Light brown sugar" },
+          { amount: "1 tsp", item: "Ground cinnamon" },
+          { amount: "1/4 tsp", item: "Ground nutmeg" },
+          { amount: "2 tbsp", item: "Unsalted butter, softened" },
+          { amount: "1/4 cup", item: "Apple cider or juice" },
+          { amount: "2 tbsp", item: "Chopped walnuts or pecans", note: "Omit for nut-free version" }
+        ],
+        instructions: [
+          { step: 1, text: "Preheat your oven to 375°F (190°C). Lightly grease a 9x13 inch baking dish.", forkTender: false },
+          { step: 2, text: "Core the apples, leaving about 1/2 inch of flesh at the bottom to hold the filling. Use a melon baller or spoon to carefully remove the core and create a well.", forkTender: false },
+          { step: 3, text: "Mix together the brown sugar, cinnamon, nutmeg, and softened butter in a small bowl until crumbly.", forkTender: false },
+          { step: 4, text: "Stuff each apple with the cinnamon-sugar mixture, pressing it down gently. Top with a few pieces of nuts if using.", forkTender: false },
+          { step: 5, text: "Place the apples in the prepared baking dish. Pour the apple cider around the apples in the dish.", forkTender: false },
+          { step: 6, text: "Cover tightly with aluminum foil and bake for 35 minutes.", forkTender: false },
+          { step: 7, text: "Remove the foil and continue baking for another 10-15 minutes until the apples are completely soft and tender when pierced with a fork. The flesh should be translucent and yielding.", forkTender: true },
+          { step: 8, text: "Let the apples cool for 10 minutes before serving. They should be soft enough to eat with just a spoon, requiring minimal to no chewing.", forkTender: true },
+          { step: 9, text: "Serve with the pan juices drizzled over the top and a scoop of whipped cream or vanilla ice cream if desired.", forkTender: false }
+        ],
+        caregiverTips: [
+          "The apples are done when a fork slides in without any resistance and the skin easily separates from the flesh.",
+          "For pureed diets, scoop out the cooked flesh and mash or blend until smooth.",
+          "Choose apples that hold their shape during baking—avoid soft varieties that turn to mush.",
+          "Test with a spoon before serving: the apple should scoop out in soft, manageable pieces."
+        ],
+        dietaryNotes: "Gluten-free and dairy-free option available (use dairy-free butter). Can be made without nuts for allergies."
+      },
+      {
+        id: 7,
+        slug: "vanilla-bean-custard",
+        title: "Vanilla Bean Custard",
+        description: "Silky, elegant vanilla custard with real vanilla bean—silky smooth and gently set, designed to melt on your tongue.",
+        prepTime: "15 minutes",
+        cookTime: "45 minutes",
+        servings: 6,
+        difficulty: "Intermediate",
+        icon: "custard",
+        dysphagia: 4,
+        color: "#F4E4C1",
+        ingredients: [
+          { amount: "4 large", item: "Eggs" },
+          { amount: "4 large", item: "Egg yolks" },
+          { amount: "2/3 cup", item: "Granulated sugar" },
+          { amount: "2 cups", item: "Heavy cream" },
+          { amount: "1 cup", item: "Whole milk" },
+          { amount: "1", item: "Vanilla bean, split and scraped", note: "Or 2 tsp vanilla extract" },
+          { amount: "1/4 tsp", item: "Fine salt" },
+          { amount: "1/4 tsp", item: "Ground nutmeg", note: "Optional" }
+        ],
+        instructions: [
+          { step: 1, text: "Preheat oven to 325°F (165°C). Place six 6-oz ramekins in a large roasting pan.", forkTender: false },
+          { step: 2, text: "In a medium bowl, whisk together the eggs, egg yolks, and sugar until smooth and slightly pale.", forkTender: false },
+          { step: 3, text: "In a saucepan, combine the cream, milk, vanilla bean (seeds and pod), and salt. Heat over medium until it just begins to steam and small bubbles appear at the edges. Do not boil.", forkTender: false },
+          { step: 4, text: "Slowly whisk the hot cream mixture into the egg mixture, whisking constantly to temper the eggs. Add it gradually to prevent scrambling.", forkTender: false },
+          { step: 5, text: "Pour the mixture through a fine-mesh strainer into a large measuring cup. This removes any bits of cooked egg and ensures absolute smoothness.", forkTender: false },
+          { step: 6, text: "Divide the custard mixture evenly among the ramekins. Sprinkle a tiny pinch of nutmeg on each if using.", forkTender: false },
+          { step: 7, text: "Pour hot water into the roasting pan until it reaches halfway up the sides of the ramekins. This water bath ensures gentle, even cooking.", forkTender: false },
+          { step: 8, text: "Bake for 40-45 minutes until the edges are set but the centers still jiggle slightly when gently shaken. The custards should be completely cooked through but silky and tender.", forkTender: true },
+          { step: 9, text: "Remove the ramekins from the water bath and let cool to room temperature. Refrigerate for at least 2 hours until fully chilled and set.", forkTender: false },
+          { step: 10, text: "Before serving, run a finger around the edge of each custard. It should release easily. The texture should be silky, trembling, and melt in your mouth.", forkTender: true }
+        ],
+        caregiverTips: [
+          "The custard is done when it passes the wobble test: a gentle tap should cause only a small wobble in the center.",
+          "Overbaked custards become grainy and weep—remove from oven when centers still seem slightly underdone.",
+          "For those needing pureed textures, blend chilled custard until perfectly smooth before serving.",
+          "Serve slightly chilled or at room temperature—cold custard is easier to control in the mouth."
+        ],
+        dietaryNotes: "Gluten-free. Can be made lighter using 2% milk or a combination of milk and cream."
+      },
+      {
+        id: 8,
+        slug: "lamb-stew-tomatoes",
+        title: "Lamb Stew with Tomatoes",
+        description: "Hearty, spiced lamb stew with tender lamb pieces in a rich tomato broth—perfectly slow-cooked until fall-apart tender.",
+        prepTime: "25 minutes",
+        cookTime: "4 hours",
+        servings: 4,
+        difficulty: "Easy",
+        icon: "lamb",
+        dysphagia: 6,
+        color: "#8B4513",
+        ingredients: [
+          { amount: "2 lbs", item: "Lamb leg roast, boneless or bone-in", note: "Cut into 5-inch cubes" },
+          { amount: "1 can (28 oz)", item: "Crushed or whole tomatoes" },
+          { amount: "1 large", item: "Onion, sliced into julienne" },
+          { amount: "3 cloves", item: "Fresh garlic, crushed" },
+          { amount: "3 tbsp", item: "Garlic powder" },
+          { amount: "4 tbsp", item: "Cayenne pepper", note: "Adjust to taste preference" },
+          { amount: "3 tbsp", item: "Salt" },
+          { amount: "2 tbsp", item: "Black pepper" },
+          { amount: "10 ml", item: "Olive oil" },
+          { amount: "200 ml", item: "Broth (any type)", note: "Water works fine too" }
+        ],
+        instructions: [
+          { step: 1, text: "If the lamb roast has a bone, remove it first. Cut the lamb meat into approximately 5-inch cubes, trimming excess fat as needed.", forkTender: false },
+          { step: 2, text: "In a bowl, mix together the garlic powder, black pepper, salt, and cayenne pepper. Add the olive oil and stir until you have a smooth paste.", forkTender: false },
+          { step: 3, text: "Rub the spice paste generously onto all pieces of lamb until every piece is evenly coated. Set aside some paste for later if needed.", forkTender: false },
+          { step: 4, text: "Crush the three garlic cloves. Rub half of the crushed garlic onto the lamb pieces and save the other half for cooking.", forkTender: false },
+          { step: 5, text: "Slice the onion into julienne strips. Combine with the remaining crushed garlic and set aside.", forkTender: false },
+          { step: 6, text: "Heat a large pot or Dutch oven over high heat. Sear all lamb pieces on all sides until golden brown on each side. Work in batches to avoid overcrowding. Set aside.", forkTender: false },
+          { step: 7, text: "In the same pot, add the onions and garlic. Sauté until softened and slightly caramelized, about 5 minutes.", forkTender: false },
+          { step: 8, text: "Return the lamb to the pot. Open the can of tomatoes and add them along with the broth. Cover with a lid and cook on low heat for 3-4 hours, or transfer to a 375°F oven for 2-4 hours.", forkTender: false },
+          { step: 9, text: "The lamb is ready when it is completely fork-tender and pulls apart easily. Test by pressing with a fork—the meat should require no effort to break.", forkTender: true },
+          { step: 10, text: "Once fork-tender, you can cut the lamb into smaller pieces and return to the pot for easier eating.", forkTender: false },
+          { step: 11, text: "Increase heat to high and let the broth reduce until it becomes thicker and coats a spoon nicely.", forkTender: false },
+          { step: 12, text: "Serve warm over noodles or with rice. The tender lamb should be soft enough to eat with minimal chewing.", forkTender: false }
+        ],
+        caregiverTips: [
+          "The lamb is done when a fork easily pulls the meat apart with no resistance—check multiple pieces to ensure even tenderness.",
+          "For those with swallowing difficulties, cut the fully cooked lamb into very small pieces or mash slightly with gravy.",
+          "The sauce should be thick enough to coat a spoon—adjust by reducing longer or adding more liquid as needed.",
+          "This stew keeps well in the refrigerator for up to 3 days and flavors continue to develop."
+        ],
+        dietaryNotes: "Gluten-free. Adjust cayenne pepper to reduce heat level. Serve with rice or noodles for added carbohydrates."
+      },
+      {
+        id: 9,
+        slug: "chicken-pasta-alfredo",
+        title: "Chicken Pasta Alfredo",
+        description: "Rich and creamy pasta with tender seasoned chicken in a velvety Parmesan cream sauce—comforting and easy to enjoy.",
+        prepTime: "10 minutes",
+        cookTime: "20 minutes",
+        servings: 2,
+        difficulty: "Easy",
+        icon: "pasta",
+        dysphagia: 6,
+        color: "#F5DEB3",
+        ingredients: [
+          { amount: "100g", item: "Pasta of any kind", note: "Cook 2 minutes past al dente for softer texture" },
+          { amount: "25g", item: "Parmesan cheese, grated" },
+          { amount: "2 tbsp", item: "Butter" },
+          { amount: "1 tsp", item: "Paprika" },
+          { amount: "1 tsp", item: "Cayenne pepper", note: "Optional, adjust to taste" },
+          { amount: "1 tsp", item: "Garlic powder" },
+          { amount: "1 clove", item: "Garlic, minced" },
+          { amount: "200ml", item: "Heavy cream" },
+          { amount: "1", item: "Chicken breast or thigh piece" }
+        ],
+        instructions: [
+          { step: 1, text: "Bring a pot of water to a boil. Add your preferred pasta and cook for 2 minutes past al dente texture for extra softness.", forkTender: true },
+          { step: 2, text: "While pasta is boiling, in a separate pan add butter, paprika, cayenne pepper, garlic powder, and minced garlic. Whisk until fragrant over low to medium heat.", forkTender: false },
+          { step: 3, text: "Add the chicken to the pan and cook completely on low to medium heat, turning occasionally until cooked through. Remove the chicken from the pan and set aside, reserving the seasonings left on the bottom of the pan.", forkTender: false },
+          { step: 4, text: "Pour the heavy cream into the pan and stir to incorporate the seasoning residues from the bottom. Add the Parmesan cheese and cook over medium heat for around 2 minutes, stirring constantly.", forkTender: false },
+          { step: 5, text: "Once the pasta is done, transfer it directly into the pan with the sauce. Ladle in half a scoop of pasta water and toss to combine until the sauce is fully emulsified.", forkTender: false },
+          { step: 6, text: "Cut the cooked chicken into small, tender pieces. Plate the pasta and serve with the chicken cut up on top or on the side.", forkTender: true }
+        ],
+        caregiverTips: [
+          "Cook the pasta slightly longer than usual to ensure it is soft and easy to chew.",
+          "Cut the chicken into very small, bite-sized pieces to make eating easier.",
+          "For a smoother sauce, blend the cream and cheese mixture briefly before adding the pasta.",
+          "Adjust the cayenne pepper or omit entirely for those sensitive to spice."
+        ],
+        dietaryNotes: "Can be made with gluten-free pasta. For lower fat, substitute heavy cream with half-and-half."
+      },
+      {
+        id: 10,
+        slug: "cream-of-mushroom-soup",
+        title: "Cream of Mushroom Soup",
+        description: "Velvety smooth mushroom soup with rich cream and savory broth—warm, comforting, and naturally soft for easy eating.",
+        prepTime: "15 minutes",
+        cookTime: "30 minutes",
+        servings: 3,
+        difficulty: "Easy",
+        icon: "soup",
+        dysphagia: 3,
+        color: "#8B7355",
+        ingredients: [
+          { amount: "10", item: "Cremini mushrooms", note: "Cleaned with a kitchen towel" },
+          { amount: "100ml", item: "Heavy cream" },
+          { amount: "150ml", item: "Stock or broth", note: "Any type works" },
+          { amount: "1/2", item: "Onion, diced" },
+          { amount: "2 cloves", item: "Garlic" },
+          { amount: "1 tsp", item: "Paprika" },
+          { amount: "1 tsp", item: "Garlic powder" },
+          { amount: "1 sprig", item: "Fresh thyme" },
+          { amount: "30ml", item: "White wine", note: "Optional" },
+          { amount: "2 tbsp", item: "Corn starch" },
+          { amount: "2 tbsp", item: "Butter" }
+        ],
+        instructions: [
+          { step: 1, text: "Clean the dirt off the mushrooms with a kitchen towel. Slice the mushrooms and set aside.", forkTender: false },
+          { step: 2, text: "Dice the onion and garlic cloves finely.", forkTender: false },
+          { step: 3, text: "In a pan, add butter and the thyme sprig. Cook until the butter is infused with thyme flavor, then remove the thyme sprig.", forkTender: false },
+          { step: 4, text: "Add the mushrooms, diced onion, and garlic to the pan. Cook until all the moisture from the mushrooms has evaporated and they are dry, stirring occasionally.", forkTender: false },
+          { step: 5, text: "Deglaze the pan with white wine. Cook until all the wine moisture has evaporated.", forkTender: false },
+          { step: 6, text: "Add the stock or broth to the pan and bring to a boil. Stir in the paprika and garlic powder.", forkTender: false },
+          { step: 7, text: "Mix equal parts corn starch with water to create a slurry. Stir until completely combined with no lumps.", forkTender: false },
+          { step: 8, text: "Add the slurry into the pot once boiling. Reduce heat to low and let the soup simmer until it has thickened.", forkTender: false },
+          { step: 9, text: "Once the soup has thickened, stir in the heavy cream. Serve warm when ready.", forkTender: true }
+        ],
+        caregiverTips: [
+          "Slice the mushrooms thinly for a softer final texture that requires minimal chewing.",
+          "For an even smoother consistency, blend half of the soup before adding the cream.",
+          "The soup thickens as it cools. Add more broth when reheating if needed.",
+          "Serve at a lukewarm temperature to avoid burns, especially for those with swallowing difficulties."
+        ],
+        dietaryNotes: "Gluten-free when using corn starch. For dairy-free version, substitute cream with coconut cream."
+      },
+      {
+        id: 11,
+        slug: "chinese-steamed-egg",
+        title: "Chinese Steamed Egg",
+        description: "Silky, savory steamed egg custard with a glossy soy-sesame sauce—so smooth it barely needs a spoon, let alone chewing.",
+        prepTime: "5 minutes",
+        cookTime: "15 minutes",
+        servings: 2,
+        difficulty: "Easy",
+        icon: "custard",
+        dysphagia: 4,
+        image: "assets/chinese-steamed-egg",
+        imageAlt: "A bowl of silky Chinese steamed egg custard topped with chili oil and sliced scallions, served with a bowl of rice.",
+        color: "#D9A441",
+        ingredients: [
+          { amount: "2", item: "Eggs" },
+          { amount: "3/4 cup", item: "Water" },
+          { amount: "1/2 tsp", item: "Chicken powder" },
+          { amount: "1/4 tsp", item: "Salt" },
+          { amount: "1 tbsp", item: "Soy sauce", note: "For the sauce" },
+          { amount: "1 tsp", item: "Sesame oil", note: "For the sauce" },
+          { amount: "1/2 tsp", item: "Sugar", note: "For the sauce" },
+          { amount: "1 stalk", item: "Green onion", note: "Optional garnish — omit for Level 4 and below" }
+        ],
+        instructions: [
+          { step: 1, text: "Whisk together the eggs with the water, chicken powder, and salt.", forkTender: false },
+          { step: 2, text: "Strain the mixture into a bowl. Make sure there aren't any air bubbles left — if there still are, you can pop them with a lighter or scoop them out with a spoon.", forkTender: false },
+          { step: 3, text: "Cover with plastic wrap, poke a few holes, and steam for 15 minutes. The custard should be just set and wobble gently in the center.", forkTender: true },
+          { step: 4, text: "In the meanwhile, make a simple sauce using the soy sauce, sesame oil, and sugar.", forkTender: false },
+          { step: 5, text: "Using a small knife, slice a pattern into the steamed egg, pour the sauce on top, and serve — optionally with some scallions on top.", forkTender: true }
+        ],
+        caregiverTips: [
+          "The custard itself is a true Level 4 texture, but the scallions and any crispy chili oil bits are not — leave every topping off, or strain the sauce, when serving anyone assessed at Level 4 or below.",
+          "Straining the raw egg mixture in step 2 is what makes the set custard completely smooth. Don't skip it.",
+          "Steam gently. Overcooked egg custard turns rubbery and weeps liquid, which creates a thin runny layer that is riskier to swallow than the custard itself.",
+          "Serve warm rather than hot — the custard holds heat well and can scald."
+        ],
+        nutrition: {
+          basis: "Per serving, calculated from the listed ingredients (recipe makes 2 servings). Assumes the full quantity of sauce is eaten.",
+          calories: "106 kcal",
+          protein: "7 g",
+          fat: "7 g",
+          carbs: "2 g",
+          sodium: "1,050 mg",
+          cholesterol: "186 mg",
+          flag: "at roughly 1,050 mg per serving this is about 45% of an adult's daily limit, driven almost entirely by the chicken powder, salt, and soy sauce. Cut the added salt, use a low-sodium soy sauce, and spoon over only part of the sauce to bring it down substantially."
+        },
+        dietaryNotes: "Naturally gluten-free if you use tamari in place of soy sauce. Very high in sodium — see the nutrition note below before serving to anyone on a sodium-restricted diet."
+      },
+      {
+        id: 12,
+        slug: "joel-robuchon-mashed-potatoes",
+        title: "Joël Robuchon Mashed Potatoes",
+        description: "The legendary ultra-silky mashed potatoes, passed through a fine sieve until they are pure velvet — richer and smoother than a standard mash.",
+        prepTime: "20 minutes",
+        cookTime: "30 minutes",
+        servings: 6,
+        difficulty: "Intermediate",
+        icon: "potato",
+        dysphagia: 4,
+        image: "assets/robuchon-mashed-potatoes",
+        imageAlt: "A wide bowl of ultra-smooth pale yellow mashed potatoes with a fork-swirled surface, ready to serve.",
+        color: "#D6B85A",
+        ingredients: [
+          { amount: "1 kg", item: "Potatoes" },
+          { amount: "250 g", item: "Unsalted butter, cold, diced" },
+          { amount: "250 ml", item: "Whole milk, warmed" },
+          { amount: "To taste", item: "Salt" },
+          { amount: "Optional", item: "Ground white pepper", note: "For seasoning" }
+        ],
+        instructions: [
+          { step: 1, text: "Wash the potatoes.", forkTender: false },
+          { step: 2, text: "Start boiling them in a pot of cold salted water.", forkTender: false },
+          { step: 3, text: "Once they reach a boil, turn the temperature down to a simmer and continue cooking until completely fork-tender, about 20-30 minutes.", forkTender: true },
+          { step: 4, text: "Drain them and place in a container with a towel on top to keep them warm.", forkTender: false },
+          { step: 5, text: "Peel them while they're hot and place in a second container lined with plastic wrap, with a slit in the center, to drop your peeled potatoes in and keep them warm.", forkTender: false },
+          { step: 6, text: "Pass the potatoes through a potato ricer into a pot.", forkTender: false },
+          { step: 7, text: "Warm over medium heat and stir for 3-5 minutes to evaporate any excess moisture.", forkTender: false },
+          { step: 8, text: "Pass through a fine-mesh sieve using a bench scraper — this step is what makes the puree completely smooth.", forkTender: false },
+          { step: 9, text: "Place back onto medium heat and gradually incorporate the cold, cubed butter, using a whisk to emulsify the puree.", forkTender: false },
+          { step: 10, text: "Whisk constantly to keep the emulsion from breaking.", forkTender: false },
+          { step: 11, text: "Add in the warm milk a bit at a time to reach your desired creamy, fluffy consistency.", forkTender: false },
+          { step: 12, text: "Season with salt to taste. Optionally, add a pinch of white pepper.", forkTender: false }
+        ],
+        caregiverTips: [
+          "Choose a waxy potato like a Ratte or Yukon Gold — they hold their structure and absorb much more butter without turning gummy.",
+          "Passing the potatoes through a ricer and then a fine-mesh sieve is what removes every last lump — don't skip the sieve step for anyone on a pureed diet.",
+          "This puree is rich in butter; thin it with a little extra warm milk if it needs to pour more easily off a spoon for a Level 3 texture.",
+          "Serve warm rather than hot, and use the classic fork-swirl finish only for presentation — it doesn't affect how smooth each bite is."
+        ],
+        nutrition: {
+          basis: "As given in the source recipe, per serving. A sodium and cholesterol breakdown wasn't provided.",
+          calories: "430 kcal",
+          protein: "4 g",
+          fat: "34 g",
+          carbs: "27 g",
+          sodium: "Not specified",
+          cholesterol: "Not specified"
+        },
+        dietaryNotes: "Gluten-free. This is a very rich, high-fat preparation — for a lighter version, reduce the butter and rely more on warm milk for creaminess."
+      },
+      {
+        id: 13,
+        slug: "korean-soft-tofu-soup",
+        title: "Korean Soft Tofu Soup (Sundubu-jjigae)",
+        description: "A warming, spicy Korean stew built around silky soft tofu, simmered with vegetables and a soft-poached egg — customizable and endlessly comforting.",
+        prepTime: "5 minutes",
+        cookTime: "20 minutes",
+        servings: 4,
+        difficulty: "Easy",
+        icon: "soup",
+        dysphagia: 6,
+        image: "assets/korean-soft-tofu-soup",
+        imageAlt: "A bubbling stone pot of spicy red Korean soft tofu soup with a poached egg, eggplant, and scallions.",
+        color: "#B5482F",
+        ingredients: [
+          { amount: "About 3 stalks", item: "Scallions", note: "Chopped, whites and greens separated" },
+          { amount: "2 cloves", item: "Garlic, minced" },
+          { amount: "2 tsp", item: "Gochugaru (Korean chili powder)", note: "Finely ground" },
+          { amount: "1 tsp", item: "Sesame oil" },
+          { amount: "1 cup", item: "Water" },
+          { amount: "1 tsp", item: "Fish sauce" },
+          { amount: "1/2 tsp", item: "Sugar" },
+          { amount: "1 cup", item: "Eggplant, chopped" },
+          { amount: "2 bunches", item: "Baby bok choy" },
+          { amount: "1 inch thick bunch", item: "Enoki mushrooms" },
+          { amount: "1 package", item: "Soft or silken tofu", note: "Mashed to your desired chunk size" },
+          { amount: "1", item: "Egg", note: "Optional" }
+        ],
+        instructions: [
+          { step: 1, text: "Heat sesame oil in a Korean stone pot (or a sauce pan) over medium heat.", forkTender: false },
+          { step: 2, text: "Once the oil is hot, add the garlic, scallion whites, and gochugaru. Sauté until fragrant and the gochugaru is toasted.", forkTender: false },
+          { step: 3, text: "Add the water and bring to a boil. Then bring back to a simmer (low to medium heat) and stir in the sugar and fish sauce to combine.", forkTender: false },
+          { step: 4, text: "Add the baby bok choy, enoki mushrooms, and eggplant. Let cook for about 2 minutes, until the vegetables are slightly tender.", forkTender: false },
+          { step: 5, text: "Add the soft tofu to the soup. This is the fun part — mash it with your spoon to your desired, soft chunk size.", forkTender: true },
+          { step: 6, text: "If using an egg, crack it into the center of the pot and cover. Steam for 2-3 minutes, until the egg white is cooked through but the yolk is still soft.", forkTender: false },
+          { step: 7, text: "Top with the remaining scallion greens and enjoy.", forkTender: false }
+        ],
+        caregiverTips: [
+          "As written, this stew has real texture risks — stringy enoki mushrooms, eggplant skins, and a runny yolk are not appropriate below Level 6.",
+          "For a lower texture level, leave out the enoki mushrooms and egg entirely, dice the eggplant and bok choy very small, and mash the tofu smooth into the broth.",
+          "For a pureed version, blend the finished soup (minus any mushrooms) until completely smooth, and cook the egg hard rather than soft before stirring it in.",
+          "Go lighter on the gochugaru for anyone sensitive to spice — the heat builds quickly in this broth."
+        ],
+        nutrition: {
+          basis: "Per the recipe's nutrition calculator (2 servings, 1.5 cups each). The recipe itself yields about 4 servings.",
+          calories: "320 kcal",
+          protein: "26 g",
+          fat: "13 g",
+          carbs: "31 g",
+          sodium: "599 mg",
+          cholesterol: "Not specified",
+          flag: "at 599 mg sodium, and with fish sauce plus gochugaru both salty by nature, use a low-sodium fish sauce and taste before adding extra salt."
+        },
+        dietaryNotes: "Contains fish sauce and egg. Naturally gluten-free; check your gochugaru brand if strict gluten-free is required."
+      },
+      {
+        id: 14,
+        slug: "chinese-egg-drop-soup",
+        title: "Chinese Egg Drop Soup",
+        description: "A gentle, golden broth threaded with soft ribbons of egg — built from a slow-simmered homemade chicken and mushroom stock.",
+        prepTime: "20 minutes",
+        cookTime: "2 hours",
+        servings: 6,
+        difficulty: "Intermediate",
+        icon: "soup",
+        dysphagia: 5,
+        image: "assets/chinese-egg-drop-soup",
+        imageAlt: "A rustic bowl of golden Chinese egg drop soup with silky egg ribbons and a small pile of chopped scallions in the center.",
+        color: "#C98F3A",
+        ingredients: [
+          { amount: "1", item: "Whole chicken or chicken pieces", note: "For the stock; a weight wasn't specified in the source" },
+          { amount: "As needed", item: "Water, for blanching", note: "Exact blanching aromatics weren't specified in the source — plain water is enough" },
+          { amount: "A handful", item: "Dried shiitake mushrooms", note: "For the mushroom stock; soak in water 15–30 minutes. Exact quantity wasn't specified in the source" },
+          { amount: "A few slices", item: "Fresh ginger" },
+          { amount: "2-3", item: "Green onions", note: "Whole, plus extra sliced for garnish" },
+          { amount: "A few slices", item: "Daikon radish" },
+          { amount: "A splash", item: "Shaoxing wine" },
+          { amount: "To taste", item: "Salt and white pepper", note: "For the finished egg drop soup" },
+          { amount: "1/2 cup", item: "Potato starch", note: "Dissolved in just enough water to make a slurry; add more if needed" },
+          { amount: "3-4", item: "Eggs, beaten", note: "Exact quantity wasn't specified in the source — adjust to how many ribbons you'd like" }
+        ],
+        instructions: [
+          { step: 1, text: "Add the chicken and all of the blanching-liquid ingredients to a pot. Simmer for 5-10 minutes, then discard the liquid and rinse any scum off the chicken.", forkTender: false },
+          { step: 2, text: "For the mushroom stock, combine the dried mushrooms with water and let them soak for 15-30 minutes.", forkTender: false },
+          { step: 3, text: "Return the chicken to a clean pot with the ginger, green onions, and radish. Pour in the reserved mushroom stock, Shaoxing wine, and enough water to cover everything. Bring to a boil, lower to a gentle simmer, and cook for 1-2 hours until the chicken is completely fork-tender. Strain the stock once done.", forkTender: true },
+          { step: 4, text: "To make the egg drop soup, transfer the strained chicken stock to a clean pot and season with salt and white pepper to taste.", forkTender: false },
+          { step: 5, text: "Thicken the broth with the potato starch slurry, starting with about half a cup dissolved in water and adding more if you'd like it thicker.", forkTender: false },
+          { step: 6, text: "Slowly pour in the beaten eggs, flicking them forward into the soup in a thin stream so they set into soft, thin ribbons.", forkTender: false },
+          { step: 7, text: "Serve hot, topped with sliced green onions.", forkTender: false }
+        ],
+        caregiverTips: [
+          "This is a genuinely gentle recipe for most texture levels once it's strained — the broth is smooth and the egg ribbons are naturally soft.",
+          "The source recipe didn't specify exact quantities for the aromatics or the number of eggs — start light, taste, and adjust rather than guessing at large amounts.",
+          "For Level 4 or below, blend the finished soup briefly so the egg ribbons and any small mushroom bits are fully smooth, and skip the scallion garnish.",
+          "Make sure the stock is well strained — small bone fragments or ginger fibers are a real hazard if they slip through."
+        ],
+        dietaryNotes: "Naturally dairy-free. Contains egg; use tamari instead of any soy-based seasoning for a gluten-free version. Nutrition information wasn't provided in the source recipe."
+      },
+      {
+        id: 15,
+        slug: "kimchi-ramen",
+        title: "Kimchi Ramen",
+        description: "A quick, fiery bowl of ramen noodles in a kimchi-spiked broth, finished with a soft-boiled egg and scallions.",
+        prepTime: "5 minutes",
+        cookTime: "10 minutes",
+        servings: 2,
+        difficulty: "Easy",
+        icon: "pasta",
+        dysphagia: 7,
+        image: "assets/kimchi-ramen",
+        imageAlt: "A red bowl of kimchi ramen with sliced pork belly, noodles, halved soft-boiled eggs, and scallions, held in two hands.",
+        color: "#B23A2E",
+        ingredients: [
+          { amount: "100 ml", item: "Canola oil" },
+          { amount: "A small handful", item: "Garlic chives, chopped" },
+          { amount: "150 g", item: "Kimchi, chopped" },
+          { amount: "200 ml", item: "Kimchi stock (brine)" },
+          { amount: "200 ml", item: "Water" },
+          { amount: "20 g", item: "Korean chili powder (gochugaru)" },
+          { amount: "1 pack", item: "Ramen noodles" },
+          { amount: "To taste", item: "Green onions, thinly sliced" },
+          { amount: "1", item: "Soft-boiled egg, halved" }
+        ],
+        instructions: [
+          { step: 1, text: "Heat the canola oil in a pot over medium heat. Add the garlic chives and chopped kimchi. Stir-fry for 2 minutes.", forkTender: false },
+          { step: 2, text: "Pour in the kimchi stock and water. Stir in the chili powder. Bring to a boil, then lower the heat and simmer for 5 minutes.", forkTender: false },
+          { step: 3, text: "Add the ramen noodles to the broth and cook for 58 seconds.", forkTender: false },
+          { step: 4, text: "Pour into a bowl and top with green onions and the soft-boiled egg.", forkTender: false }
+        ],
+        caregiverTips: [
+          "Long noodles and whole kimchi leaves are a genuine choking hazard — this recipe as written is best kept to Level 7 (Easy to Chew) or an unmodified diet.",
+          "If you're adapting it down, cut the cooked noodles into short 1-2 inch lengths with kitchen scissors right in the bowl, and chop the kimchi finely before it goes in.",
+          "Cook the egg fully rather than soft-boiled, and dice it small, for anyone who needs a firmer, less runny texture.",
+          "Gochugaru brings real heat — start with less than called for and build up to taste."
+        ],
+        nutrition: {
+          basis: "Per the source recipe's nutrient table (it doesn't specify how many servings this covers).",
+          calories: "800 kcal",
+          protein: "25 g",
+          fat: "45 g",
+          carbs: "65 g",
+          sodium: "Not specified",
+          cholesterol: "Not specified",
+          flag: "kimchi, kimchi brine, and gochugaru are all salty — if sodium is a concern, rinse the kimchi lightly and use a lower-sodium ramen seasoning base."
+        },
+        dietaryNotes: "Contains gluten (ramen noodles) and egg. A gluten-free ramen noodle can be substituted."
+      },
+      {
+        id: 16,
+        slug: "congee",
+        title: "Congee (Rice Porridge)",
+        description: "A blank-canvas rice porridge, simmered low and slow until thick, creamy, and silky — one of the gentlest textures in this whole collection.",
+        prepTime: "10 minutes",
+        cookTime: "1 hour 30 minutes",
+        servings: 6,
+        difficulty: "Easy",
+        icon: "soup",
+        dysphagia: 4,
+        image: "assets/congee",
+        imageAlt: "A bowl of creamy white congee topped with chopped mushroom, scallions, and a drizzle of soy and chili oil.",
+        color: "#CBB994",
+        ingredients: [
+          { amount: "1 cup", item: "White rice", note: "Any medium or long-grain rice works — jasmine, sushi, or standard" },
+          { amount: "8-10 cups", item: "Water or stock", note: "More water gives a thinner congee; stock adds flavor and nutrition" },
+          { amount: "To taste", item: "Salt" },
+          { amount: "Optional", item: "Leftover cooked rice", note: "For a quicker congee — see the quick method below" },
+          { amount: "Optional", item: "Aromatics", note: "Ginger, garlic, scallion ends" },
+          { amount: "Optional", item: "Root vegetables", note: "Carrot, celery, onion — if making a stock" },
+          { amount: "Optional", item: "Herbs", note: "Cilantro stems, parsley, bay leaf" }
+        ],
+        instructions: [
+          { step: 1, text: "Combine 1 cup raw white rice with 8-10 cups of water or homemade stock in a large pot.", forkTender: false },
+          { step: 2, text: "Bring to a boil, then reduce the heat to maintain a steady simmer. Stir occasionally to prevent sticking.", forkTender: false },
+          { step: 3, text: "Let it cook uncovered for 1-2 hours until the rice grains break down and release their starch and the congee is completely fork-tender and creamy. Add more water if the mixture gets too thick.", forkTender: true },
+          { step: 4, text: "Add salt, slices of ginger, and any desired flavorings during the last 20-30 minutes of cooking.", forkTender: false },
+          { step: 5, text: "The congee is ready when it's thick, creamy, and silky. Serve plain or with toppings.", forkTender: true },
+          { step: 6, text: "For a quicker version, combine 4 cups of leftover cooked rice with 3 cups of chicken stock in a medium pot. Bring to a boil, then simmer for 15-20 minutes, stirring until the rice mostly breaks down into a porridge. Add more stock for your desired consistency.", forkTender: false }
+        ],
+        caregiverTips: [
+          "The classic ratio is 1 part rice to 8-10 parts water or stock — lean toward the higher end of liquid, and cook low and slow, for the silkiest, most Level-4-friendly result.",
+          "Stir occasionally throughout cooking; it prevents the rice from catching on the bottom of the pot and also breaks the grains down faster.",
+          "For a fully pureed Level 4 texture, blend the finished congee smooth. As simmered, plain congee naturally sits closer to Level 5 with soft, broken-down grains.",
+          "Keep toppings simple and soft for texture-modified diets — crispy shallots, fried garlic, and roasted peanuts are popular congee additions but are not appropriate below Level 6. A light drizzle of soy sauce or sesame oil is fine."
+        ],
+        nutrition: {
+          basis: "Estimated for the base recipe (1 cup rice cooked in 9 cups water with a pinch of salt, no optional add-ins), across 6 servings. This is an estimate, not a lab-tested or photographed nutrition label.",
+          calories: "~120 kcal",
+          protein: "~2 g",
+          fat: "~0 g",
+          carbs: "~27 g",
+          sodium: "~150 mg",
+          cholesterol: "0 mg"
+        },
+        dietaryNotes: "Naturally gluten-free and dairy-free as written. Using stock instead of water, or adding shredded protein, will change the nutrition estimate above."
+      },
+      {
+        id: 17,
+        slug: "classic-meatloaf",
+        title: "Classic Meatloaf",
+        description: "A moist, tender meatloaf glazed with a tangy ketchup topping — comforting, familiar, and easy to soften further for gentler diets.",
+        prepTime: "20 minutes",
+        cookTime: "1 hour 45 minutes",
+        servings: 5,
+        difficulty: "Easy",
+        icon: "beef",
+        dysphagia: 6,
+        color: "#7A4632",
+        ingredients: [
+          { amount: "2 large", item: "Eggs" },
+          { amount: "1 medium", item: "Yellow onion, cut into quarters" },
+          { amount: "1 medium", item: "Carrot, peeled and cut into large chunks" },
+          { amount: "1", item: "Celery stalk, cut into large chunks" },
+          { amount: "1 clove", item: "Garlic, peeled" },
+          { amount: "1 1/2 lbs", item: "Ground meat", note: "Preferably a combination of beef, pork, and veal, or turkey 93/7" },
+          { amount: "3/4 cup", item: "Dried bread crumbs" },
+          { amount: "1/4 cup", item: "Fresh parsley, chopped", note: "Extra for garnish if desired" },
+          { amount: "1/4 cup", item: "Milk" },
+          { amount: "1/4 cup", item: "Ketchup" },
+          { amount: "1 tbsp", item: "Worcestershire sauce" },
+          { amount: "1 tsp", item: "Kosher salt" },
+          { amount: "1/2 tsp", item: "Black pepper, coarsely ground" },
+          { amount: "1/4 cup", item: "Ketchup", note: "For the glaze" },
+          { amount: "2 tbsp", item: "Brown sugar, packed", note: "For the glaze" },
+          { amount: "1 tbsp", item: "Red wine vinegar", note: "For the glaze" }
+        ],
+        instructions: [
+          { step: 1, text: "Preheat the oven to 350°F. Spray a 9-by-5-inch loaf pan with nonstick cooking spray.", forkTender: false },
+          { step: 2, text: "In a large bowl, lightly beat the two eggs.", forkTender: false },
+          { step: 3, text: "Place the onion, celery, carrot, and garlic in a food processor and pulse until finely chopped — about 1 cup of mixture. Add it to the bowl with the eggs.", forkTender: false },
+          { step: 4, text: "Add the ground meat, bread crumbs, parsley, milk, ketchup, Worcestershire sauce, salt, and pepper. Mix to combine using your hands; don't over-mix. Press lightly into the prepared pan.", forkTender: false },
+          { step: 5, text: "In a small bowl, combine the ketchup, brown sugar, and red wine vinegar for the glaze. Brush the meatloaf with half of the glaze and bake for 35 minutes.", forkTender: false },
+          { step: 6, text: "Brush with the remaining glaze and return to the oven for another 55 minutes, or until the middle of the loaf reaches at least 165°F on an instant-read thermometer and the loaf is completely fork-tender all the way through. Internal temperature will keep rising slightly as it rests.", forkTender: true },
+          { step: 7, text: "Let the meatloaf rest for 15 minutes before removing from the pan or slicing.", forkTender: false }
+        ],
+        caregiverTips: [
+          "One serving is 2 slices. Because it's ground meat, this loaf is naturally soft with no whole muscle fibers to chew through — mash a slice with a fork and a spoonful of extra glaze for an easy Level 5.",
+          "For a faster alternative, shape the mixture into 6 mini loaves on a rimmed baking sheet and bake at 400°F for about 25 minutes, checking for a 165°F internal temperature.",
+          "Don't over-mix the meat mixture — over-working it makes the finished loaf denser and tougher to break apart, which works against soft-texture goals.",
+          "Serve with extra glaze or a light gravy spooned over each slice to keep it moist for easier swallowing."
+        ],
+        nutrition: {
+          basis: "Per serving (2 slices), calculated with ground beef. This is one of 5 servings.",
+          calories: "423 kcal",
+          protein: "24 g",
+          fat: "25 g",
+          carbs: "23 g",
+          sodium: "813 mg",
+          cholesterol: "136 mg"
+        },
+        dietaryNotes: "Can be made with any single ground meat or a combination — the nutrition above is calculated using ground beef. Not gluten-free as written; use gluten-free bread crumbs to adapt."
+      },
+      {
+        id: 18,
+        slug: "stovetop-mac-and-cheese",
+        title: "Stovetop Mac and Cheese",
+        description: "A rich, creamy stovetop mac and cheese made with an egg-and-cheddar sauce — no baking required.",
+        prepTime: "10 minutes",
+        cookTime: "20 minutes",
+        servings: 5,
+        difficulty: "Easy",
+        icon: "pasta",
+        dysphagia: 6,
+        color: "#E3A857",
+        ingredients: [
+          { amount: "3 cups", item: "Macaroni or medium shell noodles" },
+          { amount: "2", item: "Eggs" },
+          { amount: "1 can (12 oz)", item: "Evaporated milk" },
+          { amount: "1/4 tsp", item: "Dry mustard" },
+          { amount: "To taste", item: "Salt and pepper" },
+          { amount: "4 tbsp", item: "Butter" },
+          { amount: "3 cups", item: "Cheddar cheese, shredded", note: "The sharper the better" }
+        ],
+        instructions: [
+          { step: 1, text: "Bring 2 quarts of water to a boil in a large pot, stir in the noodles, and cook until almost tender — a couple of minutes past the package's al dente time for a softer bite.", forkTender: false },
+          { step: 2, text: "Meanwhile, mix together the eggs, half of the evaporated milk, dry mustard, 1/2 teaspoon salt, and 1/4 teaspoon pepper.", forkTender: false },
+          { step: 3, text: "Drain the pasta and return it to the pot. Set the pot over low heat and stir in the butter until melted.", forkTender: false },
+          { step: 4, text: "Stir in the egg mixture and half of the cheddar. Continue cooking over low heat, gradually stirring in the remaining milk and cheddar, until the mixture is hot and creamy, about 5 minutes.", forkTender: false },
+          { step: 5, text: "Season with salt and pepper to taste.", forkTender: false }
+        ],
+        caregiverTips: [
+          "The sauce is a bit soupy right after making — either let it stand 10 minutes before serving, or serve it straight away in bowls with spoons; it thickens as it cools and the macaroni absorbs it.",
+          "Cook the pasta a couple of minutes longer than the package suggests, and cut or mash the shells once plated, so they're easier to manage.",
+          "For a lower texture level, blend a portion of the finished mac and cheese until smooth — the creamy egg-cheddar sauce blends easily.",
+          "Skip serving it very hot — the cheese sauce holds heat and can scald."
+        ],
+        nutrition: {
+          basis: "Per serving; this is 1 of 5 servings.",
+          calories: "790 kcal",
+          protein: "34 g",
+          fat: "40 g",
+          carbs: "72 g",
+          sodium: "737 mg",
+          cholesterol: "178 mg"
+        },
+        dietaryNotes: "Not gluten-free as written; a gluten-free pasta can be substituted. Vegetarian."
+      },
+      {
+        id: 19,
+        slug: "mapo-tofu",
+        title: "Mapo Tofu",
+        description: "Silky cubes of soft tofu simmered in a savory, saucy mixture with finely minced pork — a quick weeknight classic that's naturally gentle on the mouth.",
+        prepTime: "10 minutes",
+        cookTime: "15 minutes",
+        servings: 4,
+        difficulty: "Easy",
+        icon: "tofu",
+        dysphagia: 5,
+        color: "#A63A2E",
+        ingredients: [
+          { amount: "90 g", item: "Ground pork, minced" },
+          { amount: "2 tsp", item: "Garlic, minced" },
+          { amount: "1 packet", item: "Soft tofu", note: "Cut into large square chunks" },
+          { amount: "1 packet", item: "Pre-made mapo tofu sauce" },
+          { amount: "To taste", item: "Spring onions, thinly sliced" }
+        ],
+        instructions: [
+          { step: 1, text: "Heat up some oil in a wok and stir-fry the garlic until aromatic.", forkTender: false },
+          { step: 2, text: "Stir in the minced pork until almost cooked.", forkTender: false },
+          { step: 3, text: "Open up the mapo tofu sauce and stir it together with the minced pork until cooked through.", forkTender: false },
+          { step: 4, text: "Add the soft tofu and gently cook over low heat until the sauce thickens and the tofu is warmed through and fork-tender.", forkTender: true },
+          { step: 5, text: "Garnish with spring onions on top and serve with hot rice.", forkTender: false }
+        ],
+        caregiverTips: [
+          "The minced pork and soft tofu are already naturally soft here — this is one of the gentler savory mains in this collection as written.",
+          "Cut the tofu into smaller cubes, or gently mash it into the sauce, to bring the texture down closer to Level 4.",
+          "Check the label on the pre-made sauce packet — these are often high in sodium, and some contain fermented broad bean paste that can be quite spicy.",
+          "Serve over plain, well-cooked rice, or over mashed potato instead of rice for anyone who needs an even softer base."
+        ],
+        dietaryNotes: "Contains soy and pork. Nutrition information wasn't provided in the source recipe, and will vary significantly by the pre-made sauce used."
+      },
+      {
+        id: 20,
+        slug: "chinese-silken-tofu",
+        title: "Chinese Silken Tofu with Warm Soy Sauce",
+        description: "Chilled silken tofu topped with a fragrant warm soy, garlic, and scallion sauce — barely needs a spoon, let alone any chewing.",
+        prepTime: "10 minutes",
+        cookTime: "10 minutes",
+        servings: 2,
+        difficulty: "Easy",
+        icon: "tofu",
+        dysphagia: 4,
+        color: "#D8C9A3",
+        ingredients: [
+          { amount: "10.5 oz", item: "Silken tofu", note: "Soft tofu also works" },
+          { amount: "1.5 tbsp", item: "Vegetable oil", note: "Or any neutral oil" },
+          { amount: "2/3 cup", item: "Yellow or white onion, finely diced" },
+          { amount: "1/2 cup", item: "Green onion, finely chopped" },
+          { amount: "3 cloves", item: "Garlic, minced" },
+          { amount: "3 tbsp", item: "Regular or light soy sauce" },
+          { amount: "1 tsp", item: "White granulated sugar" },
+          { amount: "1 tsp", item: "Sesame oil, toasted" },
+          { amount: "1/4 tsp", item: "Sesame seeds, toasted", note: "For garnish" },
+          { amount: "1 tbsp", item: "Green onion, finely chopped", note: "For garnish" }
+        ],
+        instructions: [
+          { step: 1, text: "Peel back the plastic film from the corner of the tofu container. Keep the film in place, turn the container upside down over the sink, and drain off the loose liquid. Place a clean paper towel over the opening, flip it onto a flat surface, and let the towel absorb the surface moisture.", forkTender: false },
+          { step: 2, text: "Cut a small snip into each corner of the tofu container to let air in. Place a serving plate upside down over the tofu, then carefully flip the plate and container together so the tofu releases naturally onto the plate. Refrigerate until well chilled.", forkTender: false },
+          { step: 3, text: "Heat the vegetable oil in a small pot over medium heat. Add the onion, green onion, and garlic. Sauté for 2-3 minutes until the onions turn soft and translucent.", forkTender: false },
+          { step: 4, text: "Reduce the heat to low. Pour the soy sauce, sugar, and sesame oil directly into the pot with the cooked onions and garlic. Stir thoroughly and cook for about 1 minute until heated through. Let the sauce cool for 1 minute.", forkTender: false },
+          { step: 5, text: "Remove the chilled silken tofu from the refrigerator. Pour the warm sauce evenly over the top of the cold block — the tofu itself needs no cooking at all, it's already fork-tender straight from the package. Garnish with sesame seeds and extra green onions.", forkTender: true }
+        ],
+        caregiverTips: [
+          "Silken tofu is one of the softest proteins you can serve — it mashes flat with almost no pressure from a spoon, making it an easy Level 4 base.",
+          "Leave off the sesame seeds and chopped green onion garnish for anyone at Level 4 or below; both are small, hard, or fibrous pieces that don't belong in a smooth diet.",
+          "If a fully Level 3 texture is needed, mash the tofu with the sauce stirred through until it pours smoothly, rather than serving it as an intact block.",
+          "Serve the sauce warm, not hot, straight over the chilled tofu — the contrast is part of the dish, but scalding sauce is a real risk."
+        ],
+        nutrition: {
+          basis: "Per serving; this recipe makes 2 servings.",
+          calories: "258 kcal",
+          protein: "12 g",
+          fat: "17 g",
+          carbs: "17 g",
+          sodium: "1,523 mg",
+          cholesterol: "Not specified",
+          flag: "at 1,523 mg sodium per serving, this is more than half an adult's daily limit, almost entirely from the soy sauce — use a low-sodium soy sauce and start with less than called for."
+        },
+        dietaryNotes: "Vegetarian and can be made vegan (check the sugar). Use tamari for a gluten-free version. Very high in sodium — see the note above before serving to anyone on a sodium-restricted diet."
+      },
+      {
+        id: 21,
+        slug: "mango-jam-with-yogurt",
+        title: "Mango Jam with Yogurt",
+        description: "A smooth, naturally sweet mango jam stirred into creamy yogurt — a bright, easy spoonful of a dessert or snack.",
+        prepTime: "10 minutes",
+        cookTime: "25 minutes",
+        servings: 6,
+        difficulty: "Easy",
+        icon: "jar",
+        dysphagia: 4,
+        color: "#F0A93C",
+        ingredients: [
+          { amount: "2 cups", item: "Fresh mango, chopped" },
+          { amount: "1/2 cup", item: "Sugar" },
+          { amount: "1 tbsp", item: "Lemon juice" },
+          { amount: "Optional", item: "Pinch of salt or 1/4 tsp vanilla extract", note: "For extra flavor depth" },
+          { amount: "To serve", item: "Plain yogurt" }
+        ],
+        instructions: [
+          { step: 1, text: "Add the chopped mango to a saucepan over medium heat. Cook for 5-7 minutes until soft, stirring occasionally. Mash the mango with a spoon or potato masher until fork-tender and pulpy.", forkTender: true },
+          { step: 2, text: "Add the sugar and lemon juice (and salt or vanilla, if using). Stir well.", forkTender: false },
+          { step: 3, text: "Simmer the mixture over low heat for 15-20 minutes, stirring often, until thickened and jam-like. The jam is done when it holds its shape on a cold spoon or plate.", forkTender: false },
+          { step: 4, text: "Let the jam cool completely. Transfer to a clean jar and store in the fridge.", forkTender: false },
+          { step: 5, text: "Stir a spoonful into a cup of yogurt and enjoy.", forkTender: false }
+        ],
+        caregiverTips: [
+          "Mash the mango thoroughly in step 1 — any stringy fibers near the pit are the main texture risk in this recipe, so check for them before serving.",
+          "For a fully smooth, pourable Level 3 texture, blend the finished jam before mixing it into yogurt.",
+          "Choose a smooth, unsweetened yogurt without fruit chunks or granola mixed in for texture-modified diets.",
+          "The jam keeps well refrigerated for about 2 weeks — make a batch ahead and portion it out."
+        ],
+        nutrition: {
+          basis: "Per serving of the mango jam alone (does not include the yogurt it's served with).",
+          calories: "147 kcal",
+          protein: "1 g",
+          fat: "0.4 g",
+          carbs: "38 g",
+          sodium: "1 mg",
+          cholesterol: "0 mg"
+        },
+        dietaryNotes: "Naturally gluten-free and vegetarian. Choose a dairy-free yogurt to make the full dish dairy-free."
+      },
+      {
+        id: 22,
+        slug: "fluffy-pancakes",
+        title: "Fluffy Pancakes",
+        description: "Classic soft, fluffy pancakes made from a simple from-scratch batter — a gentle breakfast that's easy to soak in extra syrup for moisture.",
+        prepTime: "10 minutes",
+        cookTime: "20 minutes",
+        servings: 6,
+        difficulty: "Easy",
+        icon: "pancake",
+        dysphagia: 6,
+        color: "#CB9754",
+        ingredients: [
+          { amount: "2 cups", item: "All-purpose flour" },
+          { amount: "1/4 cup", item: "Granulated sugar or sweetener" },
+          { amount: "4 tsp", item: "Baking powder" },
+          { amount: "1/4 tsp", item: "Baking soda" },
+          { amount: "1/2 tsp", item: "Salt" },
+          { amount: "1 3/4 cups", item: "Milk" },
+          { amount: "1/4 cup", item: "Butter, melted and slightly cooled" },
+          { amount: "2 tsp", item: "Pure vanilla extract" },
+          { amount: "1 large", item: "Egg" }
+        ],
+        instructions: [
+          { step: 1, text: "Combine the flour, sugar (or sweetener), baking powder, baking soda, and salt in a large bowl. Make a well in the center and add the milk, melted butter, vanilla, and egg.", forkTender: false },
+          { step: 2, text: "Use a wire whisk to whisk the wet ingredients together first, then slowly fold them into the dry ingredients. Mix until smooth (a couple of lumps are okay). The batter will be thick and creamy — if it's too thick to pour smoothly, fold in a little extra milk at a time.", forkTender: false },
+          { step: 3, text: "Set the batter aside and let it rest while you heat your pan or griddle.", forkTender: false },
+          { step: 4, text: "Heat a nonstick pan or griddle over low-medium heat and wipe it with a little butter to lightly grease. Pour 1/4 cup of batter onto the pan and spread gently into a round shape.", forkTender: false },
+          { step: 5, text: "When the underside is golden and bubbles begin to appear on the surface, flip with a spatula and cook until golden on the other side. Repeat with the remaining batter.", forkTender: false },
+          { step: 6, text: "Serve with honey, maple syrup, fruit, ice cream, or frozen yogurt — or enjoy plain.", forkTender: false }
+        ],
+        caregiverTips: [
+          "Fluffy, spongy textures like pancakes can actually be trickier than they look for some swallowing difficulties — the sponge can soak up saliva and expand. Serve thoroughly soaked in syrup or a thin sauce rather than dry.",
+          "Cook a little longer at a lower heat for a denser, less airy pancake, which some people find easier and safer to manage.",
+          "For a softer texture, tear the pancake into small pieces and let it sit in warm syrup for a minute before serving, rather than serving it whole.",
+          "Skip pancakes entirely for anyone assessed below Level 6 — the spongy crumb isn't appropriate for minced, pureed, or liquidised diets."
+        ],
+        nutrition: {
+          basis: "Per pancake (recipe makes about 12 pancakes; 2 pancakes is a typical serving).",
+          calories: "156 kcal",
+          protein: "4 g",
+          fat: "6 g",
+          carbs: "22 g",
+          sodium: "311 mg",
+          cholesterol: "30 mg"
+        },
+        dietaryNotes: "Vegetarian. Not gluten-free as written; a 1:1 gluten-free flour blend can usually be substituted."
+      },
+      {
+        id: 23,
+        slug: "creamy-scrambled-eggs",
+        title: "Creamy Scrambled Eggs",
+        description: "Slow, gently-stirred scrambled eggs with small, soft curds — one of the easiest and gentlest proteins to serve.",
+        prepTime: "10 minutes",
+        cookTime: "5 minutes",
+        servings: 2,
+        difficulty: "Easy",
+        icon: "egg",
+        dysphagia: 5,
+        color: "#F0C25E",
+        ingredients: [
+          { amount: "4 large", item: "Eggs" },
+          { amount: "1/8 tsp", item: "Kosher salt", note: "Or more to taste" },
+          { amount: "1/2 tbsp", item: "Butter or olive oil" },
+          { amount: "Optional", item: "Freshly ground black pepper and chopped chives", note: "For serving" }
+        ],
+        instructions: [
+          { step: 1, text: "Crack the eggs into a medium bowl, add the salt, and whisk until smooth and frothy. Let them sit for 5 to 10 minutes.", forkTender: false },
+          { step: 2, text: "Melt the butter in a medium nonstick pan over medium-low heat. When the butter begins to sizzle, whisk the eggs once more, then pour them into the skillet. Immediately use a flexible spatula to swirl in small circles around the pan, without stopping, until the eggs look slightly thickened and very small curds begin to form, about 30 seconds.", forkTender: false },
+          { step: 3, text: "Change from making circles to making long sweeps across the pan until you see larger, creamy, fork-tender curds, about 20 seconds.", forkTender: true },
+          { step: 4, text: "When the eggs are softly set and slightly runny in places, remove the pan from the heat and leave for a few seconds to finish cooking. Give a final stir and serve immediately, with an extra sprinkle of salt, a grind of black pepper, and a few fresh chopped herbs if desired.", forkTender: true }
+        ],
+        caregiverTips: [
+          "Cooking low and slow with constant stirring is what keeps the curds small, soft, and moist — this is naturally one of the gentlest proteins on this whole site.",
+          "Mash the finished eggs lightly with a fork right on the plate for an easy Level 4.",
+          "Leave off the chopped chives and cracked pepper for anyone at Level 4 or below — stir a little extra butter or cream through instead for moisture.",
+          "Don't let the eggs firm up fully or brown — overcooked scrambled eggs turn dry and crumbly, which is harder to manage, not easier."
+        ],
+        nutrition: {
+          basis: "Per serving (recipe makes 2 servings).",
+          calories: "168 kcal",
+          protein: "13 g",
+          fat: "12 g",
+          carbs: "1 g",
+          sodium: "Not specified",
+          cholesterol: "380 mg"
+        },
+        dietaryNotes: "Gluten-free. Naturally low-carb. Use olive oil in place of butter for a dairy-free version."
+      },
+      {
+        id: 24,
+        slug: "ground-beef-curry",
+        title: "Ground Beef Curry",
+        description: "A rich, quick Japanese-style curry made with ground beef, potato, and carrot — thickened with curry blocks and a spoonful of dark chocolate for depth.",
+        prepTime: "15 minutes",
+        cookTime: "25 minutes",
+        servings: 4,
+        difficulty: "Easy",
+        icon: "stew",
+        dysphagia: 6,
+        color: "#B5762A",
+        ingredients: [
+          { amount: "16 oz", item: "Ground beef", note: "90/10" },
+          { amount: "5 cloves", item: "Garlic, finely minced" },
+          { amount: "1 tbsp", item: "Ginger, finely minced" },
+          { amount: "1/2 large", item: "Onion, finely diced" },
+          { amount: "1 medium", item: "Potato, peeled and cubed" },
+          { amount: "1/2 cup", item: "Carrots, diced" },
+          { amount: "2", item: "Japanese curry blocks", note: "The source recipe used S&B brand" },
+          { amount: "1 1/2 cups", item: "Water" },
+          { amount: "1 tbsp", item: "Dark chocolate" }
+        ],
+        instructions: [
+          { step: 1, text: "Finely mince the garlic and ginger. Dice the onion and cube the potato. Set everything aside.", forkTender: false },
+          { step: 2, text: "Add oil to a pan over medium heat and add the garlic, ginger, and onion. Cook for a couple of minutes until fragrant and slightly softened.", forkTender: false },
+          { step: 3, text: "Add the ground beef and cook, breaking it apart, until about 80% cooked through.", forkTender: false },
+          { step: 4, text: "Stir in the potatoes and carrots and cook for about a minute to coat everything in the aromatics.", forkTender: false },
+          { step: 5, text: "Add the curry blocks and water, stirring briefly to help the blocks dissolve. Cover and simmer on low heat for 10 minutes.", forkTender: false },
+          { step: 6, text: "Remove the lid, stir well, and finish by adding the dark chocolate. Mix until fully melted and incorporated. The potato and carrot should be completely fork-tender by now.", forkTender: true },
+          { step: 7, text: "Serve the curry next to or over fresh rice, and optionally garnish with scallions and furikake.", forkTender: false }
+        ],
+        caregiverTips: [
+          "Cut the potato and carrot into small dice from the start — the smaller the pieces, the more evenly they'll cook to a fully fork-tender texture in the 10-minute simmer.",
+          "Ground beef has no muscle fibers to chew through, so once the vegetables are soft this whole dish mashes down easily with a fork for a Level 5 texture.",
+          "For Level 4, mash or blend the finished curry — the sauce is already thick and smooth, which helps it blend well.",
+          "Skip the furikake and scallion garnish for texture-modified diets; both add small, dry, or fibrous pieces."
+        ],
+        nutrition: {
+          basis: "Per serving.",
+          calories: "390 kcal",
+          protein: "27 g",
+          fat: "23 g",
+          carbs: "19 g",
+          sodium: "Not specified",
+          cholesterol: "Not specified"
+        },
+        dietaryNotes: "Contains gluten (most Japanese curry blocks are roux-based) and dairy. Check your curry block brand for allergens; gluten-free curry blocks exist."
+      },
+      {
+        id: 25,
+        slug: "egg-salad",
+        title: "Egg Salad",
+        description: "Classic creamy egg salad with celery, chives, and a touch of whole-grain mustard — soft, moist, and easy to spoon.",
+        prepTime: "15 minutes",
+        cookTime: "10 minutes",
+        servings: 4,
+        difficulty: "Easy",
+        icon: "egg",
+        dysphagia: 5,
+        color: "#E8D48A",
+        ingredients: [
+          { amount: "8", item: "Hard-boiled eggs, peeled" },
+          { amount: "1/2", item: "Celery rib, finely chopped", note: "About 1/3 cup" },
+          { amount: "1/4 cup", item: "Mayonnaise" },
+          { amount: "2 tbsp", item: "Chives, finely sliced" },
+          { amount: "2 tsp", item: "Fresh lemon juice" },
+          { amount: "2 tsp", item: "Whole-grain mustard" },
+          { amount: "To taste", item: "Kosher salt and freshly ground black pepper" },
+          { amount: "Optional", item: "Paprika and crackers", note: "For serving — see the caregiver tip on crackers below" }
+        ],
+        instructions: [
+          { step: 1, text: "Coarsely chop the eggs and transfer to a medium bowl. Slightly mash with a fork to break up the yolks into a fork-tender, chunky mixture. Add the celery, mayonnaise, chives, lemon juice, and mustard, and mix until combined. Season with salt and pepper.", forkTender: true },
+          { step: 2, text: "Transfer the egg salad to a serving bowl. Top with paprika.", forkTender: false }
+        ],
+        caregiverTips: [
+          "Skip the crackers entirely for anyone on a soft or texture-modified diet — they're hard and crunchy and don't belong alongside this dish for that purpose. Serve the egg salad with a spoon instead.",
+          "Mash the eggs more thoroughly than a normal egg salad, with a fork or the flat of a knife, until there are no distinct chunks left, for an easy Level 5.",
+          "For Level 4, pulse the finished salad briefly in a food processor with an extra spoonful of mayonnaise until smooth.",
+          "Dice the celery very fine, or leave it out altogether, since its fibrous strings are one of the few genuinely risky textures in this dish."
+        ],
+        nutrition: {
+          basis: "Per serving; recipe makes 4 servings.",
+          calories: "232 kcal",
+          protein: "10 g",
+          fat: "20 g",
+          carbs: "2 g",
+          sodium: "258 mg",
+          cholesterol: "304 mg"
+        },
+        dietaryNotes: "Gluten-free (without the crackers). High in cholesterol from the eggs — worth noting for anyone tracking dietary cholesterol."
+      },
+      {
+        id: 26,
+        slug: "watermelon-sorbet",
+        title: "Watermelon Sorbet",
+        description: "A refreshing 4-ingredient watermelon sorbet, blended smooth and frozen — bright, simple, and naturally sweet.",
+        prepTime: "10 minutes",
+        cookTime: "4 hours (freezing)",
+        servings: 6,
+        difficulty: "Easy",
+        icon: "sorbet",
+        dysphagia: 5,
+        color: "#E4587A",
+        ingredients: [
+          { amount: "6 cups", item: "Frozen watermelon chunks" },
+          { amount: "1 cup", item: "Watermelon syrup", note: "Or simple syrup, agave, or honey" },
+          { amount: "1/2 cup", item: "Water" },
+          { amount: "2 tbsp", item: "Fresh lime juice" }
+        ],
+        instructions: [
+          { step: 1, text: "Add 3 cups of watermelon, 1/2 cup of syrup, 1/4 cup of water, and 1 tablespoon of lime juice to a high-speed blender. Blend until smooth, pausing to push the mixture down if the blades get stuck.", forkTender: false },
+          { step: 2, text: "Transfer the sorbet to a metal loaf tin or other freezer-safe container and place in the freezer.", forkTender: false },
+          { step: 3, text: "Repeat with the remaining ingredients, then serve immediately or store covered in the freezer for up to 1 week.", forkTender: false }
+        ],
+        caregiverTips: [
+          "Frozen desserts carry a texture risk that's easy to miss: as sorbet melts in the mouth it can quickly turn into a thin, fast-moving liquid, which can be harder to control than the frozen scoop looks. Talk to an SLP or dietitian before serving frozen desserts to anyone at Level 4 or below.",
+          "Let the sorbet sit at room temperature for a few minutes before serving so it's soft and slushy rather than rock-hard — easier to scoop and safer to swallow.",
+          "Serve in small spoonfuls and let each one soften slightly in the mouth rather than serving a large frozen scoop all at once.",
+          "This recipe has no dairy and very little fiber, so it's a good option for a cold treat once texture has been confirmed as appropriate."
+        ],
+        nutrition: {
+          basis: "Per serving; recipe makes about 6 servings.",
+          calories: "121 kcal",
+          protein: "Not specified",
+          fat: "Not specified",
+          carbs: "31 g",
+          sodium: "3 mg",
+          cholesterol: "0 mg"
+        },
+        dietaryNotes: "Naturally vegan, gluten-free, and dairy-free. See the caregiver note above about frozen textures and swallowing safety before serving."
+      },
+      {
+        id: 27,
+        slug: "banana-smoothie",
+        title: "Banana Orange Smoothie",
+        description: "A simple, creamy banana and orange smoothie with Greek yogurt — smooth, pourable, and naturally sweet.",
+        prepTime: "5 minutes",
+        cookTime: "0 minutes",
+        servings: 2,
+        difficulty: "Easy",
+        icon: "smoothie",
+        dysphagia: 3,
+        color: "#E8C468",
+        ingredients: [
+          { amount: "1", item: "Banana" },
+          { amount: "1/2", item: "Orange, peeled and quartered" },
+          { amount: "1/3 cup", item: "Greek yogurt" },
+          { amount: "1/4 cup", item: "Water or milk", note: "Dairy or non-dairy" },
+          { amount: "1-2 tsp", item: "Honey or maple syrup", note: "Optional" }
+        ],
+        instructions: [
+          { step: 1, text: "Roughly chop the banana and orange quarters, then add them to a blender along with the yogurt and water (or milk).", forkTender: false },
+          { step: 2, text: "Turn the blender on and blend until creamy and smooth. Taste, then adjust with honey if needed.", forkTender: true }
+        ],
+        caregiverTips: [
+          "Blend a little longer than feels necessary — orange segments can leave behind fine, stringy fibers if under-blended, which is the main risk in an otherwise very smooth drink.",
+          "This smoothie pours smoothly and holds no shape, which makes it a natural fit for a Level 3 liquidised texture as blended.",
+          "For anyone who needs a thicker, spoon-held texture instead of a drink, add more yogurt or a thickener until it reaches a Level 4 consistency.",
+          "Serve immediately after blending — smoothies can separate or thin out further as they sit."
+        ],
+        nutrition: {
+          basis: "Per serving; recipe makes 2 servings.",
+          calories: "122 kcal",
+          protein: "5 g",
+          fat: "2 g",
+          carbs: "23 g",
+          sodium: "Not specified",
+          cholesterol: "5 mg"
+        },
+        dietaryNotes: "Vegetarian. Use a non-dairy yogurt and milk for a dairy-free version."
+      },
+      {
+        id: 28,
+        slug: "apple-sauce",
+        title: "Homemade Apple Sauce",
+        description: "A simple, warmly spiced apple sauce cooked down from fresh apples — can be made silky smooth or kept slightly chunky.",
+        prepTime: "10 minutes",
+        cookTime: "25 minutes",
+        servings: 2,
+        difficulty: "Easy",
+        icon: "apple",
+        dysphagia: 4,
+        color: "#C97A4A",
+        ingredients: [
+          { amount: "1 medium", item: "Apple", note: "5 1/2 to 6 ounces" },
+          { amount: "3 tbsp", item: "Water" },
+          { amount: "1/2 tsp", item: "Sugar" },
+          { amount: "1/8 tsp", item: "Ground cinnamon" }
+        ],
+        instructions: [
+          { step: 1, text: "Peel, core, and chop the apple into chunks.", forkTender: false },
+          { step: 2, text: "In a 1-quart saucepan, combine the chopped apple, water, sugar, and ground cinnamon.", forkTender: false },
+          { step: 3, text: "Bring to a simmer over medium heat. Reduce to medium-low, cover, and cook for 20-25 minutes, stirring once or twice to prevent sticking. The apples are ready when they're soft and completely fork-tender.", forkTender: true },
+          { step: 4, text: "Remove from the heat. For a chunky apple sauce, mash with a fork or potato masher. For a smooth apple sauce, use an immersion blender or transfer to a regular blender.", forkTender: false },
+          { step: 5, text: "If the sauce is too watery, cook uncovered over low heat until it thickens.", forkTender: false }
+        ],
+        caregiverTips: [
+          "Always make the smooth version — blended with an immersion blender until no pieces remain — for anyone on a pureed or texture-modified diet. The chunky version is not appropriate below Level 6.",
+          "Peel the apple thoroughly; any bits of skin left behind are tough and won't break down during the short cooking time.",
+          "This sauce is naturally soft once cooked and blends easily, making it one of the simplest Level 4 desserts or sides on this site.",
+          "Apple sauce is often used to help other foods and medications go down more easily — check with a pharmacist or care team before mixing it with any medication."
+        ],
+        dietaryNotes: "Naturally gluten-free, dairy-free, and vegan. Nutrition information wasn't provided in the source recipe."
+      },
+      {
+        id: 29,
+        slug: "rice-pudding",
+        title: "Classic Rice Pudding",
+        description: "A creamy, milk-simmered rice pudding with a hint of vanilla and cinnamon — a gentle, spoonable dessert.",
+        prepTime: "10 minutes",
+        cookTime: "35 minutes",
+        servings: 6,
+        difficulty: "Easy",
+        icon: "custard",
+        dysphagia: 5,
+        color: "#D9C9A3",
+        ingredients: [
+          { amount: "4 1/2 cups", item: "Whole milk", note: "1,080 mL" },
+          { amount: "1/4 cup", item: "Granulated sugar", note: "50 g" },
+          { amount: "Pinch", item: "Salt" },
+          { amount: "3/4 cup", item: "White rice, uncooked", note: "Short grain, 135 g" },
+          { amount: "1/3 cup", item: "Raisins", note: "Optional, 55 g — see caregiver tip" },
+          { amount: "1 tsp", item: "Vanilla extract" },
+          { amount: "To taste", item: "Ground cinnamon" }
+        ],
+        instructions: [
+          { step: 1, text: "In a large saucepan, stir together the milk, sugar, and salt. Bring to a boil over medium-high heat. Stir in the rice.", forkTender: false },
+          { step: 2, text: "Reduce the heat to low and partially cover. Simmer, stirring frequently, until the rice is fork-tender and the mixture has thickened, about 25 to 30 minutes.", forkTender: true },
+          { step: 3, text: "Stir in the raisins (if using), vanilla, and cinnamon to taste. Continue cooking until the desired thickness is reached — the pudding will thicken further as it cools; thin with a bit more milk if it gets too thick.", forkTender: false },
+          { step: 4, text: "Serve warm, or let cool to room temperature, then refrigerate in an airtight container and serve cold. Top with extra cinnamon if desired.", forkTender: false }
+        ],
+        caregiverTips: [
+          "Leave the raisins out entirely for texture-modified diets — they're chewy and sticky, which is one of the riskier textures for swallowing difficulties.",
+          "Simmer a little longer than 30 minutes if you'd like the rice grains to break down further and disappear more into the pudding, closer to a Level 4 texture.",
+          "For a fully smooth Level 4, blend the finished pudding (without raisins) until creamy.",
+          "The pudding thickens noticeably as it cools — thin it with a splash of warm milk right before serving if it's gotten too thick to manage easily."
+        ],
+        dietaryNotes: "Vegetarian. Not dairy-free as written; a lactose-free or plant-based milk can be substituted. Nutrition information wasn't provided in the source recipe."
+      },
+      {
+        id: 30,
+        slug: "chicken-noodle-soup",
+        title: "Classic Chicken Noodle Soup",
+        description: "A from-scratch chicken noodle soup, built on a slow-simmered homemade stock with shredded chicken and tender egg noodles.",
+        prepTime: "15 minutes",
+        cookTime: "1 hour 20 minutes",
+        servings: 8,
+        difficulty: "Intermediate",
+        icon: "soup",
+        dysphagia: 6,
+        color: "#C99A5B",
+        ingredients: [
+          { amount: "2 tbsp", item: "Vegetable oil" },
+          { amount: "4 tsp", item: "Kosher salt, divided" },
+          { amount: "2 lb", item: "Bone-in, skin-on chicken pieces", note: "Preferably a mix of thighs and breasts" },
+          { amount: "8 cups", item: "Low-sodium chicken stock" },
+          { amount: "4 cups", item: "Cold water" },
+          { amount: "2", item: "Thyme sprigs" },
+          { amount: "1", item: "Bay leaf" },
+          { amount: "1 small", item: "Yellow onion, coarsely chopped", note: "About 1 1/4 cups" },
+          { amount: "2", item: "Celery ribs, sliced 1/8 inch thick", note: "About 1 1/4 cups" },
+          { amount: "1 large", item: "Carrot, peeled and sliced 1/8 inch thick", note: "About 1 cup" },
+          { amount: "6 oz", item: "Wide egg noodles" },
+          { amount: "1 tsp", item: "Freshly ground black pepper" },
+          { amount: "1/4 cup", item: "Fresh parsley, finely chopped" }
+        ],
+        instructions: [
+          { step: 1, text: "In a large, deep pot over medium-high heat, heat the oil. Season the chicken on all sides with 2 teaspoons of salt, then add it to the pot skin-side down. Cook, undisturbed, until golden brown on one side, about 5 minutes. Turn and cook until golden brown on the other side, about 5 minutes more.", forkTender: false },
+          { step: 2, text: "Add the stock, water, thyme, and bay leaf. Bring to a bare simmer over medium-high heat, then reduce the heat to medium-low and simmer until an instant-read thermometer inserted into the thickest part of a breast registers 165°F, 20 to 30 minutes.", forkTender: false },
+          { step: 3, text: "Transfer the chicken breasts to a cutting board. Continue cooking the dark meat about 40 minutes more, then transfer it to the cutting board and let everything cool at least 10 minutes. Remove the skin and bones and discard. Shred the chicken into bite-sized, fork-tender pieces.", forkTender: true },
+          { step: 4, text: "Meanwhile, discard the thyme and bay leaf. Add the onion, celery, and carrot, and cook over medium-low heat, adjusting as needed to maintain a bare simmer, stirring occasionally, until just barely tender, about 5 minutes. Add the egg noodles and cook, stirring occasionally, until just al dente, about 5 minutes more.", forkTender: false },
+          { step: 5, text: "Stir in the chicken and pepper, and season with the remaining 2 teaspoons of salt as needed.", forkTender: false },
+          { step: 6, text: "Divide the soup among bowls. Top with parsley and more pepper.", forkTender: false },
+          { step: 7, text: "Make ahead: the soup (without noodles) can be made up to 5 days ahead. Store in an airtight container and refrigerate. To serve, bring the soup to a simmer in a large pot, add noodles, and simmer until al dente, about 5 minutes.", forkTender: false }
+        ],
+        caregiverTips: [
+          "Egg noodles are a real choking risk in their normal long form — cut them short with kitchen scissors right in the bowl, or swap in a small pasta shape like pastina, for anyone below Level 6.",
+          "Shred the chicken very fine and mince the vegetables small for Level 5. The chicken breast especially should shred apart with almost no resistance once it's fully cooked.",
+          "For Level 3-4, strain the broth off, blend the vegetables and chicken smooth with a little extra broth, and skip the noodles altogether.",
+          "Making the broth (without noodles) up to 5 days ahead is a great way to prep in bulk, then finish individual, texture-appropriate bowls as needed."
+        ],
+        nutrition: {
+          basis: "Per serving; recipe makes 8 servings.",
+          calories: "420 kcal",
+          protein: "27 g",
+          fat: "25 g",
+          carbs: "21 g",
+          sodium: "1,140 mg",
+          cholesterol: "129 mg",
+          flag: "at 1,140 mg per serving this is nearly half an adult's daily sodium limit. Use a truly low-sodium or homemade stock and taste before adding the full 4 teaspoons of salt."
+        },
+        dietaryNotes: "Contains gluten (egg noodles); substitute a gluten-free noodle or omit for a gluten-free version."
+      }
+    ];
+    let currentRoute = '/';
+    let checkedIngredients = {};
+    const mainContent = document.getElementById('main-content');
+    const header = document.getElementById('header');
+    const printBtn = document.getElementById('print-btn');
+    const icons = {
+      beef: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 2.5c2 1 3.5 3.5 3.5 6.5 0 4-3 7-6.5 8.5"/><path d="M8.5 2.5C6.5 3.5 5 6 5 9c0 4 3 7 6.5 8.5"/><circle cx="12" cy="9" r="3"/></svg>',
+      stew: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"/><line x1="6" y1="17" x2="18" y2="17"/></svg>',
+      soup: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M8 4h8"/><path d="M6 8h12a2 2 0 0 1 2 2v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-8a2 2 0 0 1 2-2z"/></svg>',
+      potato: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="8" ry="5" transform="rotate(45 12 12)"/></svg>',
+      apple: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c1 0 3 .5 3 2-1 0-2 .5-3 .5s-2-.5-3-.5c1-1.5 2-2 3-2z"/><path d="M12 4c-5 0-8 4-8 9a8 8 0 0 0 16 0c0-5-3-9-8-9z"/></svg>',
+      custard: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 16 0"/><path d="M4 12c0 4 3.5 8 8 8s8-4 8-8"/><path d="M8 20h8"/><path d="M12 16v4"/></svg>',
+      lamb: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-3 0-5 2-5 5 0 3 2 5 5 5 2 0 3-1 3-3 0-1-1-2-2-2s-3 1-3 3c0 2 2 4 4 4"/><path d="M14 7c2 0 4 2 4 5"/><path d="M8 12c-2 1-3 3-3 5"/><path d="M18 14c2-1 3-2 3-4 0-2-2-3-2-3-1 0-2 1-2 3 0 2 1 3 2 3"/><path d="M12 22v-3"/></svg>',
+      pasta: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16c0-2 2-4 4-4s4 2 4 4"/><path d="M12 12c0-2 2-4 4-4s4 2 4 4"/><path d="M4 20h16"/><path d="M8 12V8"/><path d="M16 12V8"/><path d="M6 8c0-2 2-4 6-4s6 2 6 4"/></svg>',
+      clock: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+      users: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+      star: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+      arrowLeft: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>',
+      list: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>',
+      lightbulb: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>',
+      check: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+      shield: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+      heart: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>',
+      egg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3C8 3 5 9.5 5 14a7 7 0 0 0 14 0c0-4.5-3-11-7-11z"/></svg>',
+      jar: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8"/><path d="M9 2v3.3L7.3 8.1A3 3 0 0 0 7 9.5V20a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9.5a3 3 0 0 0-.3-1.4L15 5.3V2"/><line x1="7.3" y1="12" x2="16.7" y2="12"/></svg>',
+      smoothie: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4h9l-1.2 15.3a2 2 0 0 1-2 1.7h-2.6a2 2 0 0 1-2-1.7L7.5 4z"/><line x1="6.5" y1="8" x2="17.5" y2="8"/><line x1="15" y1="2" x2="13" y2="8"/></svg>',
+      tofu: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8.5 7 5h10l2 3.5"/><rect x="5" y="8.5" width="14" height="10" rx="1"/><line x1="9.5" y1="8.5" x2="9.5" y2="18.5"/><line x1="14.5" y1="8.5" x2="14.5" y2="18.5"/></svg>',
+      pancake: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="17.5" rx="8" ry="2"/><ellipse cx="12" cy="13.5" rx="7.3" ry="2"/><ellipse cx="12" cy="9.5" rx="6.6" ry="2"/><path d="M16.5 8c1.2-.2 2 .4 2 1.5S17.7 11.3 16.5 11"/></svg>',
+      sorbet: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 1 5 5c0 2.2-1.6 3.8-2.7 4.8H9.7C8.6 10.8 7 9.2 7 7a5 5 0 0 1 5-5z"/><path d="M9 11.8 10.4 21a1.6 1.6 0 0 0 3.2 0l1.4-9.2"/></svg>'
+    };
+    const IDDSI_LEVELS = {
+      3: {
+        name: 'Liquidised',
+        color: '#F2C230',
+        desc: 'Pours smoothly like a thick drinkable soup. No lumps, no bits, and no chewing at all. Can be taken from a cup or spoon, and should not hold its shape on the plate.'
+      },
+      4: {
+        name: 'Pureed',
+        color: '#5FAE55',
+        desc: 'Completely smooth and thick enough to hold its shape on a spoon, but soft enough to need no chewing. Should never be sticky, lumpy, or stringy.'
+      },
+      5: {
+        name: 'Minced & Moist',
+        color: '#F0902D',
+        desc: 'Soft, moist, and finely minced into very small pieces that mash easily with light pressure from a fork. Any sauce or gravy should cling rather than separate.'
+      },
+      6: {
+        name: 'Soft & Bite-Sized',
+        color: '#1F7FBE',
+        desc: 'Tender, moist bite-sized pieces that break apart under a fork without needing a knife. Some chewing is required, but nothing should be tough, fibrous, or dry.'
+      },
+      7: {
+        name: 'Easy to Chew',
+        color: '#1a1a1a',
+        desc: 'Everyday soft foods at normal portion size. Normal chewing ability is needed, but hard, crunchy, stringy, and dry textures are avoided.'
+      }
+    };
+    function iddsiDot(level) {
+      const info = IDDSI_LEVELS[level];
+      return `<span class="iddsi-dot" style="background:${info.color}">${level}</span>`;
+    }
+    // Renders a responsive, lazily-loaded photo when the recipe has one.
+    // If the file is missing the <img> removes itself, leaving the gradient + icon fallback.
+    function recipePhoto(recipe, sizes, eager) {
+      if (!recipe.image) return '';
+      const widths = [400, 800, 1200];
+      const srcset = w => widths.map(n => `${recipe.image}-${n}.${w} ${n}w`).join(', ');
+      return `
+        <picture>
+          <source type="image/webp" srcset="${srcset('webp')}" sizes="${sizes}">
+          <img src="${recipe.image}-800.jpg"
+               srcset="${srcset('jpg')}"
+               sizes="${sizes}"
+               alt="${recipe.imageAlt || recipe.title}"
+               width="1200" height="900"
+               loading="${eager ? 'eager' : 'lazy'}"
+               decoding="async"
+               onerror="const p=this.closest('picture'),h=p.closest('.recipe-hero-image');(h||p).remove()">
+        </picture>
+      `;
+    }
+    function renderHomePage() {
+      return `
+        <div class="page" id="home-page">
+          <section class="hero">
+            <span class="eyebrow">Comforting recipes for easy eating</span>
+            <h1>Food that stays <em>gentle</em>, without giving up flavor.</h1>
+            <p>Soft, fork-tender recipes built for chewing and swallowing difficulties &mdash; every one graded to an IDDSI texture level so you know exactly what you're serving.</p>
+          </section>
+          <div class="trust-banner">
+            <div class="trust-item">
+              ${icons.shield}
+              <span>Tested for soft texture</span>
+            </div>
+            <div class="trust-item">
+              ${icons.heart}
+              <span>Caregiver approved</span>
+            </div>
+            <div class="trust-item">
+              ${icons.star}
+              <span>Easy to follow steps</span>
+            </div>
+          </div>
+          <div class="section-header">
+            <h2>All Recipes</h2>
+            <p><a href="#/texture-guide">What do the texture levels mean?</a></p>
+          </div>
+          <div class="recipe-grid">
+            ${recipes.map(recipe => `
+              <article class="recipe-card" tabindex="0" role="button" aria-label="View recipe for ${recipe.title}"
+                onclick="navigateTo('/recipe/${recipe.slug}')" onkeypress="if(event.key==='Enter')navigateTo('/recipe/${recipe.slug}')">
+                <div class="recipe-card-image" style="background: linear-gradient(135deg, ${recipe.color} 0%, ${adjustColor(recipe.color, -20)} 100%);">
+                  <div class="card-gradient">
+                    ${icons[recipe.icon] || icons.stew}
+                  </div>
+                  ${recipePhoto(recipe, '(max-width: 640px) calc(100vw - 40px), (max-width: 1024px) calc(50vw - 38px), 360px')}
+                  <div class="recipe-card-iddsi">
+                    <span class="iddsi-badge" title="IDDSI Level ${recipe.dysphagia}: ${IDDSI_LEVELS[recipe.dysphagia].name}">
+                      ${iddsiDot(recipe.dysphagia)} ${IDDSI_LEVELS[recipe.dysphagia].name}
+                    </span>
+                  </div>
+                </div>
+                <div class="recipe-card-content">
+                  <h3>${recipe.title}</h3>
+                  <p>${recipe.description}</p>
+                  <div class="recipe-card-meta">
+                    <span>${icons.clock} ${recipe.cookTime}</span>
+                    <span>${icons.users} ${recipe.servings} servings</span>
+                    <span>${recipe.difficulty}</span>
+                  </div>
+                </div>
+              </article>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+    function adjustColor(hex, amount) {
+      hex = hex.replace('#', '');
+      const r = Math.max(0, Math.min(255, parseInt(hex.substring(0, 2), 16) + amount));
+      const g = Math.max(0, Math.min(255, parseInt(hex.substring(2, 4), 16) + amount));
+      const b = Math.max(0, Math.min(255, parseInt(hex.substring(4, 6), 16) + amount));
+      return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+    }
+    function renderTextureGuide() {
+      const levels = [7, 6, 5, 4, 3];
+      return `
+        <div class="page" id="guide-page">
+          <section class="guide-intro">
+            <span class="eyebrow">Texture Guide</span>
+            <h1>Understanding IDDSI texture levels</h1>
+            <p>Every recipe here is graded against the IDDSI framework &mdash; the shared scale that clinicians use to describe how soft a food needs to be. Use it to match a recipe to the texture someone has actually been assessed for.</p>
+          </section>
+          <ul class="level-list" role="list">
+            ${levels.map(level => {
+              const info = IDDSI_LEVELS[level];
+              const matches = recipes.filter(r => r.dysphagia === level);
+              return `
+                <li class="level-row" role="listitem">
+                  <span class="level-marker" style="background:${info.color}" aria-hidden="true">${level}</span>
+                  <div>
+                    <h3>Level ${level} &mdash; ${info.name}</h3>
+                    <p class="level-desc">${info.desc}</p>
+                    <div class="level-recipes">
+                      ${matches.length
+                        ? matches.map(r => `<a href="#/recipe/${r.slug}">${r.title}</a>`).join('')
+                        : '<span class="level-empty">No recipes at this level yet.</span>'}
+                    </div>
+                  </div>
+                </li>
+              `;
+            }).join('')}
+          </ul>
+          <div class="guide-note">
+            <p>Texture levels on this site are a starting point, not a clinical assessment. A speech-language pathologist or dietitian should confirm the right level for the person you're cooking for.</p>
+          </div>
+        </div>
+      `;
+    }
+    function renderRecipePage(slug) {
+      const recipe = recipes.find(r => r.slug === slug);
+      if (!recipe) {
+        return `
+          <div class="page">
+            <h1>Recipe Not Found</h1>
+            <p>The recipe you're looking for doesn't exist.</p>
+            <a href="#/" class="btn btn-primary">Return Home</a>
+          </div>
+        `;
+      }
+      const recipeIngredients = checkedIngredients[slug] || {};
+      return `
+        <div class="page" id="recipe-page">
+          <div class="recipe-header">
+            <a href="#/" class="back-link">
+              ${icons.arrowLeft}
+              Back to All Recipes
+            </a>
+            <div class="recipe-title">
+              <div class="recipe-title-icon">
+                ${icons[recipe.icon] || ''}
+              </div>
+              <h1>${recipe.title}</h1>
+            </div>
+            <p class="recipe-description">${recipe.description}</p>
+            ${recipe.image ? `<div class="recipe-hero-image">${recipePhoto(recipe, '(max-width: 1180px) 100vw, 1132px', true)}</div>` : ''}
+            <div class="recipe-meta" role="list" aria-label="Recipe information">
+              <div class="meta-card" role="listitem">
+                ${icons.clock}
+                <div>
+                  <strong>Prep Time</strong>
+                  <span>${recipe.prepTime}</span>
+                </div>
+              </div>
+              <div class="meta-card" role="listitem">
+                ${icons.clock}
+                <div>
+                  <strong>Cook Time</strong>
+                  <span>${recipe.cookTime}</span>
+                </div>
+              </div>
+              <div class="meta-card" role="listitem">
+                ${icons.users}
+                <div>
+                  <strong>Servings</strong>
+                  <span>${recipe.servings}</span>
+                </div>
+              </div>
+              <div class="meta-card" role="listitem">
+                ${icons.star}
+                <div>
+                  <strong>Difficulty</strong>
+                  <span>${recipe.difficulty}</span>
+                </div>
+              </div>
+              <div class="meta-card" role="listitem">
+                ${iddsiDot(recipe.dysphagia)}
+                <div>
+                  <strong>IDDSI Texture Level</strong>
+                  <span>Level ${recipe.dysphagia} &ndash; ${IDDSI_LEVELS[recipe.dysphagia].name}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <section class="recipe-section" aria-labelledby="ingredients-heading">
+            <h2 id="ingredients-heading">
+              <span class="section-icon">${icons.list}</span>
+              Ingredients
+            </h2>
+            <ul class="ingredients-list" role="list">
+              ${recipe.ingredients.map((ing, index) => {
+                const isChecked = recipeIngredients[index];
+                return `
+                  <li class="ingredient-item ${isChecked ? 'checked' : ''}" role="listitem">
+                    <input type="checkbox" id="ing-${index}" ${isChecked ? 'checked' : ''}
+                      onchange="toggleIngredient('${slug}', ${index}, this.checked)">
+                    <label for="ing-${index}">
+                      <span class="ingredient-amount">${ing.amount}</span> ${ing.item}
+                      ${ing.note ? `<span class="ingredient-note">${ing.note}</span>` : ''}
+                    </label>
+                  </li>
+                `;
+              }).join('')}
+            </ul>
+          </section>
+          <section class="recipe-section" aria-labelledby="instructions-heading">
+            <h2 id="instructions-heading">
+              <span class="section-icon">${icons.list}</span>
+              Instructions
+            </h2>
+            <ol class="instructions-list" role="list">
+              ${recipe.instructions.map(inst => `
+                <li class="instruction-step" role="listitem">
+                  <span class="step-number" aria-hidden="true">${inst.step}</span>
+                  <div class="step-content">
+                    <p>${inst.forkTender
+                      ? inst.text.replace(/fork-tender/gi, '<span class="fork-tender">fork-tender</span>')
+                      : inst.text}</p>
+                  </div>
+                </li>
+              `).join('')}
+            </ol>
+          </section>
+          <section class="recipe-section" aria-labelledby="tips-heading">
+            <h2 id="tips-heading">
+              <span class="section-icon">${icons.lightbulb}</span>
+              Caregiver Tips
+            </h2>
+            <div class="tips-box">
+              <h3>
+                ${icons.heart}
+                Important Guidance
+              </h3>
+              <ul>
+                ${recipe.caregiverTips.map(tip => `
+                  <li>
+                    ${icons.check}
+                    <span>${tip}</span>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+          </section>
+          ${recipe.nutrition ? `
+            <section class="recipe-section" aria-labelledby="nutrition-heading">
+              <h2 id="nutrition-heading">
+                <span class="section-icon">${icons.list}</span>
+                Nutrition Facts
+              </h2>
+              <div class="nutrition-grid">
+                <div class="nutrition-cell"><strong>Calories</strong><span>${recipe.nutrition.calories}</span></div>
+                <div class="nutrition-cell"><strong>Protein</strong><span>${recipe.nutrition.protein}</span></div>
+                <div class="nutrition-cell"><strong>Fat</strong><span>${recipe.nutrition.fat}</span></div>
+                <div class="nutrition-cell"><strong>Carbs</strong><span>${recipe.nutrition.carbs}</span></div>
+                <div class="nutrition-cell is-flagged"><strong>Sodium</strong><span>${recipe.nutrition.sodium}</span></div>
+                <div class="nutrition-cell"><strong>Cholesterol</strong><span>${recipe.nutrition.cholesterol}</span></div>
+              </div>
+              <p class="nutrition-basis">${recipe.nutrition.basis}</p>
+              ${recipe.nutrition.flag ? `<div class="nutrition-flag"><strong>Note:</strong> ${recipe.nutrition.flag}</div>` : ''}
+            </section>
+          ` : ''}
+          ${recipe.dietaryNotes ? `
+            <section class="recipe-section">
+              <div class="dietary-notes">
+                <h2>Dietary Notes</h2>
+                <p>${recipe.dietaryNotes}</p>
+              </div>
+            </section>
+          ` : ''}
+        </div>
+      `;
+    }
+    function toggleIngredient(slug, index, isChecked) {
+      if (!checkedIngredients[slug]) {
+        checkedIngredients[slug] = {};
+      }
+      checkedIngredients[slug][index] = isChecked;
+
+      const item = document.querySelector(`#ing-${index}`).closest('.ingredient-item');
+      if (isChecked) {
+        item.classList.add('checked');
+      } else {
+        item.classList.remove('checked');
+      }
+    }
+    function navigateTo(route) {
+      window.location.hash = route;
+    }
+    function router() {
+      const hash = window.location.hash || '#/';
+      const path = hash.slice(1);
+      currentRoute = path;
+      const normalizedPath = path === '' ? '/' : path;
+      document.querySelectorAll('nav a').forEach(link => {
+        const target = link.getAttribute('href').slice(1);
+        link.setAttribute('aria-current', target === normalizedPath ? 'page' : 'false');
+      });
+      if (path.startsWith('/recipe/')) {
+        printBtn.style.display = 'flex';
+      } else {
+        printBtn.style.display = 'none';
+      }
+      if (path === '/' || path === '') {
+        mainContent.innerHTML = renderHomePage();
+        document.title = 'Hearty & Gentle Bites';
+      } else if (path === '/texture-guide') {
+        mainContent.innerHTML = renderTextureGuide();
+        document.title = 'Texture Guide - Hearty & Gentle Bites';
+      } else if (path.startsWith('/recipe/')) {
+        const slug = path.replace('/recipe/', '');
+        mainContent.innerHTML = renderRecipePage(slug);
+        document.title = `${recipes.find(r => r.slug === slug)?.title || 'Recipe'} - Hearty & Gentle Bites`;
+      } else {
+        mainContent.innerHTML = `
+          <div class="page">
+            <h1>Page Not Found</h1>
+            <p>The page you're looking for doesn't exist.</p>
+            <a href="#/" class="btn btn-primary">Return Home</a>
+          </div>
+        `;
+        document.title = 'Page Not Found - Hearty & Gentle Bites';
+      }
+      window.scrollTo(0, 0);
+      const mainHeading = mainContent.querySelector('h1');
+      if (mainHeading) {
+        mainHeading.setAttribute('tabindex', '-1');
+        mainHeading.focus();
+      }
+    }
+    document.getElementById('footer-levels').innerHTML = [7, 6, 5, 4, 3]
+      .map(level => `<li><a href="#/texture-guide">Level ${level} &mdash; ${IDDSI_LEVELS[level].name}</a></li>`)
+      .join('');
+    window.addEventListener('hashchange', router);
+    window.addEventListener('load', router);
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    printBtn.addEventListener('click', () => {
+      window.print();
+    });
+  </script>
+</body>
+</html>
