@@ -962,6 +962,14 @@
       display: block;
     }
 
+    /* Recipe photos are circular cut-outs sitting on the site's cream, so they
+       have to fit whole inside the frame rather than be cropped to fill it.
+       The baked-in background matches --bg-warm, so image and frame blend. */
+    .recipe-card-image.has-photo img,
+    .recipe-hero-image img {
+      object-fit: contain;
+    }
+
     .recipe-hero-image {
       aspect-ratio: 3 / 2;
       max-height: 420px;
@@ -2788,6 +2796,12 @@
       `;
     }
 
+    // Photo cards sit on flat cream; icon-only cards keep their colour wash.
+    function cardBackground(recipe) {
+      if (recipe.image) return 'var(--bg-warm)';
+      return `linear-gradient(135deg, ${recipe.color} 0%, ${adjustColor(recipe.color, -20)} 100%)`;
+    }
+
     function renderHomePage() {
       return `
         <div class="page" id="home-page">
@@ -2820,10 +2834,8 @@
             ${recipes.map(recipe => `
               <article class="recipe-card" tabindex="0" role="button" aria-label="View recipe for ${recipe.title}"
                 onclick="navigateTo('/recipe/${recipe.slug}')" onkeypress="if(event.key==='Enter')navigateTo('/recipe/${recipe.slug}')">
-                <div class="recipe-card-image" style="background: linear-gradient(135deg, ${recipe.color} 0%, ${adjustColor(recipe.color, -20)} 100%);">
-                  <div class="card-gradient">
-                    ${icons[recipe.icon] || icons.stew}
-                  </div>
+                <div class="recipe-card-image${recipe.image ? ' has-photo' : ''}" style="background: ${cardBackground(recipe)};">
+                  ${recipe.image ? '' : '<div class="card-gradient">' + (icons[recipe.icon] || icons.stew) + '</div>'}
                   ${recipePhoto(recipe, '(max-width: 640px) calc(100vw - 40px), (max-width: 1024px) calc(50vw - 38px), 360px')}
                   <div class="recipe-card-iddsi">
                     <span class="iddsi-badge" title="IDDSI Level ${recipe.dysphagia}: ${IDDSI_LEVELS[recipe.dysphagia].name}">
