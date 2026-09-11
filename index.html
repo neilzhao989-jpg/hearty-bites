@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Hearty & Gentle Bites - Soft, fork-tender recipes designed for elderly users with chewing or swallowing difficulties.">
-  <title>Hearty & Gentle Bites</title>
+  <meta name="description" content="Amazing Recipes - Soft, fork-tender recipes designed for elderly users with chewing or swallowing difficulties.">
+  <title>Amazing Recipes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lora:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -1409,12 +1409,12 @@
 
   <header id="header">
     <div class="header-content">
-      <a href="#/" class="logo" aria-label="Hearty & Gentle Bites - Home">
+      <a href="#/" class="logo" aria-label="Amazing Recipes - Home">
         <div class="logo-icon">
           <img src="assets/logo-spoon.png" alt="" width="44" height="44" aria-hidden="true">
         </div>
         <div class="logo-text">
-          Hearty & Gentle Bites
+          Amazing Recipes
           <small>Comforting Recipes for Easy Eating</small>
         </div>
       </a>
@@ -1433,7 +1433,7 @@
     <div class="footer-content">
       <div class="footer-grid">
         <div class="footer-brand">
-          <h3>Hearty & Gentle Bites</h3>
+          <h3>Amazing Recipes</h3>
           <p>Thoughtfully crafted recipes designed for those with chewing or swallowing difficulties. Every dish prioritizes soft textures, gentle flavors, and nourishing ingredients that caregivers can trust.</p>
         </div>
         <div class="footer-links">
@@ -1449,7 +1449,7 @@
         </div>
       </div>
       <div class="footer-info">
-        <p>Hearty & Gentle Bites &copy; 2026. Designed with care for caregivers and their loved ones.</p>
+        <p>Amazing Recipes &copy; 2026. Designed with care for caregivers and their loved ones.</p>
       </div>
     </div>
   </footer>
@@ -3328,15 +3328,15 @@
 
       if (path === '/' || path === '') {
         mainContent.innerHTML = renderHomePage();
-        document.title = 'Hearty & Gentle Bites';
+        document.title = 'Amazing Recipes';
       } else if (path === '/texture-guide') {
         mainContent.innerHTML = renderTextureGuide();
-        document.title = 'Texture Guide - Hearty & Gentle Bites';
+        document.title = 'Texture Guide - Amazing Recipes';
       } else if (path.startsWith('/recipe/')) {
         const slug = path.replace('/recipe/', '');
         batchMultiplier = 1;
         mainContent.innerHTML = renderRecipePage(slug);
-        document.title = `${recipes.find(r => r.slug === slug)?.title || 'Recipe'} - Hearty & Gentle Bites`;
+        document.title = `${recipes.find(r => r.slug === slug)?.title || 'Recipe'} - Amazing Recipes`;
       } else {
         mainContent.innerHTML = `
           <div class="page">
@@ -3345,7 +3345,7 @@
             <a href="#/" class="btn btn-primary">Return Home</a>
           </div>
         `;
-        document.title = 'Page Not Found - Hearty & Gentle Bites';
+        document.title = 'Page Not Found - Amazing Recipes';
       }
 
       window.scrollTo(0, 0);
