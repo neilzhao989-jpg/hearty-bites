@@ -3333,7 +3333,7 @@
           ` : ''}
 
           <section class="recipe-section" id="reviews-section" aria-labelledby="reviews-heading">
-            ${renderReviewsSection(slug)}
+            <p class="review-empty">Loading reviews&hellip;</p>
           </section>
         </div>
       `;
@@ -3503,8 +3503,6 @@
        visitors. Swapping loadReviews/addReview for API calls is all that
        would be needed if a backend is ever added.                          */
 
-    const REVIEWS_KEY = 'amazing-recipes.reviews.v1';
-
     // Review text is author-supplied and goes through innerHTML, so it must
     // be escaped on the way out.
     function escapeHtml(value) {
@@ -3513,30 +3511,41 @@
       })[c]);
     }
 
-    function loadReviews() {
-      try {
-        const raw = JSON.parse(localStorage.getItem(REVIEWS_KEY));
-        return raw && typeof raw === 'object' ? raw : {};
-      } catch (err) {
-        return {};   // private mode, cleared storage, or corrupt JSON
-      }
-    }
+    const REVIEWS_KEY = 'amazing-recipes.reviews.v1';
 
-    function addReview(slug, review) {
-      const all = loadReviews();
-      all[slug] = [review].concat(all[slug] || []);
-      try {
-        localStorage.setItem(REVIEWS_KEY, JSON.stringify(all));
-        return true;
-      } catch (err) {
-        return false;   // quota exceeded, or storage blocked
-      }
-    }
+    /* Storage adapter. Every method is async so a network-backed store can
+       replace this one without touching any calling code: swap the three
+       method bodies for fetch() calls and the rest of the app is unchanged.  */
+    const ReviewStore = {
+      async listAll() {
+        try {
+          const raw = JSON.parse(localStorage.getItem(REVIEWS_KEY));
+          return raw && typeof raw === 'object' ? raw : {};
+        } catch (err) {
+          return {};   // private mode, cleared storage, or corrupt JSON
+        }
+      },
 
-    function reviewsFor(slug) {
-      const list = loadReviews()[slug];
-      return Array.isArray(list) ? list : [];
-    }
+      async list(slug) {
+        const all = await this.listAll();
+        return Array.isArray(all[slug]) ? all[slug] : [];
+      },
+
+      async add(slug, review) {
+        const all = await this.listAll();
+        all[slug] = [review].concat(all[slug] || []);
+        try {
+          localStorage.setItem(REVIEWS_KEY, JSON.stringify(all));
+          return { ok: true };
+        } catch (err) {
+          return { ok: false, message: 'This browser is blocking local storage, so the review could not be saved.' };
+        }
+      },
+
+      // Shown under each form. A shared backend would change this wording.
+      scopeNote: 'Reviews are saved in this browser only, so they stay on this device and are not visible to other visitors.'
+    };
+
 
     function averageRating(list) {
       if (!list.length) return 0;
@@ -3601,8 +3610,7 @@
       `;
     }
 
-    function renderReviewsSection(slug) {
-      const list = reviewsFor(slug);
+    function renderReviewsSection(slug, list) {
       const avg = averageRating(list);
       return `
         <h2 id="reviews-heading">
@@ -3620,14 +3628,23 @@
           <p class="review-empty">No reviews for this recipe yet. If you have cooked it, your notes would help the next caregiver.</p>
         `}
         ${reviewForm(slug)}
-        <p class="review-note">Reviews are saved in this browser only, so they stay on this device and are not visible to other visitors.</p>
+        <p class="review-note">${escapeHtml(ReviewStore.scopeNote)}</p>
       `;
     }
 
-    function submitReview(event, slug) {
+    // Reviews arrive after the page is painted, so the section fills in.
+    async function hydrateRecipeReviews(slug) {
+      const section = document.getElementById('reviews-section');
+      if (!section) return;
+      const list = await ReviewStore.list(slug);
+      section.innerHTML = renderReviewsSection(slug, list);
+    }
+
+    async function submitReview(event, slug) {
       event.preventDefault();
       const form = event.target;
       const error = form.querySelector('.form-error');
+      const button = form.querySelector('button[type="submit"]');
       const name = form.name.value.trim();
       const text = form.text.value.trim();
       const rating = Number(form.rating.value);
@@ -3638,33 +3655,25 @@
         return;
       }
 
-      const ok = addReview(slug, { name, text, rating, date: new Date().toISOString() });
-      if (!ok) {
-        error.textContent = 'This browser is blocking local storage, so the review could not be saved.';
+      button.disabled = true;
+      const result = await ReviewStore.add(slug, { name, text, rating, date: new Date().toISOString() });
+      button.disabled = false;
+
+      if (!result.ok) {
+        error.textContent = result.message || 'The review could not be saved.';
         error.hidden = false;
         return;
       }
 
-      const section = document.getElementById('reviews-section');
-      if (section) {
-        section.innerHTML = renderReviewsSection(slug);
-        const heading = section.querySelector('#reviews-heading');
-        if (heading) {
-          heading.setAttribute('tabindex', '-1');
-          heading.focus();   // send the screen reader to the updated list
-        }
+      await hydrateRecipeReviews(slug);
+      const heading = document.querySelector('#reviews-section #reviews-heading');
+      if (heading) {
+        heading.setAttribute('tabindex', '-1');
+        heading.focus();   // send the screen reader to the updated list
       }
     }
 
     function renderReviewsPage() {
-      const all = loadReviews();
-      const flat = [];
-      Object.keys(all).forEach(slug => {
-        (all[slug] || []).forEach(r => flat.push({ review: r, slug }));
-      });
-      flat.sort((a, b) => new Date(b.review.date) - new Date(a.review.date));
-      const avg = averageRating(flat.map(f => f.review));
-
       return `
         <div class="page" id="reviews-page">
           <section class="hero">
@@ -3672,20 +3681,36 @@
             <h1>Reviews</h1>
             <p>Notes left by anyone who has cooked from this collection &mdash; how a dish turned out, and how it behaved for the texture level it is graded at.</p>
           </section>
-
-          ${flat.length ? `
-            <div class="review-summary">
-              <span class="score">${avg.toFixed(1)}</span>
-              ${stars(avg)}
-              <span>${flat.length} review${flat.length === 1 ? '' : 's'} across ${new Set(flat.map(f => f.slug)).size} recipe${new Set(flat.map(f => f.slug)).size === 1 ? '' : 's'}</span>
-            </div>
-            <ul class="review-list">${flat.map(f => reviewCard(f.review, f.slug)).join('')}</ul>
-          ` : `
-            <p class="review-empty">No reviews yet. Open any recipe and scroll to the bottom to leave the first one.</p>
-          `}
-
-          <p class="review-note">Reviews are saved in this browser only, so they stay on this device and are not visible to other visitors.</p>
+          <div id="reviews-all"><p class="review-empty">Loading reviews&hellip;</p></div>
+          <p class="review-note">${escapeHtml(ReviewStore.scopeNote)}</p>
         </div>
+      `;
+    }
+
+    async function hydrateReviewsPage() {
+      const host = document.getElementById('reviews-all');
+      if (!host) return;
+      const all = await ReviewStore.listAll();
+      const flat = [];
+      Object.keys(all).forEach(slug => {
+        (all[slug] || []).forEach(r => flat.push({ review: r, slug }));
+      });
+      flat.sort((a, b) => new Date(b.review.date) - new Date(a.review.date));
+
+      if (!flat.length) {
+        host.innerHTML = '<p class="review-empty">No reviews yet. Open any recipe and scroll to the bottom to leave the first one.</p>';
+        return;
+      }
+
+      const avg = averageRating(flat.map(f => f.review));
+      const recipeCount = new Set(flat.map(f => f.slug)).size;
+      host.innerHTML = `
+        <div class="review-summary">
+          <span class="score">${avg.toFixed(1)}</span>
+          ${stars(avg)}
+          <span>${flat.length} review${flat.length === 1 ? '' : 's'} across ${recipeCount} recipe${recipeCount === 1 ? '' : 's'}</span>
+        </div>
+        <ul class="review-list">${flat.map(f => reviewCard(f.review, f.slug)).join('')}</ul>
       `;
     }
 
@@ -3732,6 +3757,7 @@
       } else if (path === '/reviews') {
         mainContent.innerHTML = renderReviewsPage();
         document.title = 'Reviews - Amazing Recipes';
+        hydrateReviewsPage();
       } else if (path === '/texture-guide') {
         mainContent.innerHTML = renderTextureGuide();
         document.title = 'Texture Guide - Amazing Recipes';
@@ -3740,6 +3766,7 @@
         batchMultiplier = 1;
         mainContent.innerHTML = renderRecipePage(slug);
         document.title = `${recipes.find(r => r.slug === slug)?.title || 'Recipe'} - Amazing Recipes`;
+        hydrateRecipeReviews(slug);
       } else {
         mainContent.innerHTML = `
           <div class="page">
