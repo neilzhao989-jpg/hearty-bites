@@ -3516,13 +3516,33 @@
     /* Storage adapter. Every method is async so a network-backed store can
        replace this one without touching any calling code: swap the three
        method bodies for fetch() calls and the rest of the app is unchanged.  */
+    /* Storage adapter. Reviews live in Vercel KV behind /api/reviews and are
+       shared by everyone. When that endpoint is unreachable — the local
+       preview server, or before the KV store is provisioned — it falls back
+       to this browser's localStorage so the feature still works, and says so
+       under the form rather than implying the review went public.          */
     const ReviewStore = {
-      async listAll() {
+      shared: null,          // null until the first call settles
+
+      async _local() {
         try {
           const raw = JSON.parse(localStorage.getItem(REVIEWS_KEY));
           return raw && typeof raw === 'object' ? raw : {};
         } catch (err) {
-          return {};   // private mode, cleared storage, or corrupt JSON
+          return {};
+        }
+      },
+
+      async listAll() {
+        try {
+          const res = await fetch('/api/reviews', { headers: { Accept: 'application/json' } });
+          if (!res.ok) throw new Error('unavailable');
+          const data = await res.json();
+          this.shared = true;
+          return data.reviews || {};
+        } catch (err) {
+          this.shared = false;
+          return this._local();
         }
       },
 
@@ -3532,20 +3552,39 @@
       },
 
       async add(slug, review) {
-        const all = await this.listAll();
-        all[slug] = [review].concat(all[slug] || []);
         try {
-          localStorage.setItem(REVIEWS_KEY, JSON.stringify(all));
-          return { ok: true };
+          const res = await fetch('/api/reviews', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ slug, name: review.name, rating: review.rating, text: review.text })
+          });
+          if (res.ok) { this.shared = true; return { ok: true }; }
+
+          // The server rejected it on purpose: show its reason, do not fall back.
+          if (res.status >= 400 && res.status < 500) {
+            const data = await res.json().catch(() => ({}));
+            return { ok: false, message: data.error || 'That review was not accepted.' };
+          }
+          throw new Error('server error');
         } catch (err) {
-          return { ok: false, message: 'This browser is blocking local storage, so the review could not be saved.' };
+          this.shared = false;
+          const all = await this._local();
+          all[slug] = [review].concat(all[slug] || []);
+          try {
+            localStorage.setItem(REVIEWS_KEY, JSON.stringify(all));
+            return { ok: true };
+          } catch (e) {
+            return { ok: false, message: 'This browser is blocking local storage, so the review could not be saved.' };
+          }
         }
       },
 
-      // Shown under each form. A shared backend would change this wording.
-      scopeNote: 'Reviews are saved in this browser only, so they stay on this device and are not visible to other visitors.'
+      get scopeNote() {
+        if (this.shared === true) return 'Reviews are public: everyone visiting this site sees them.';
+        if (this.shared === false) return 'Shared reviews are unavailable right now, so this one was saved in this browser only.';
+        return 'Loading…';
+      }
     };
-
 
     function averageRating(list) {
       if (!list.length) return 0;
