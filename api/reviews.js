@@ -11,8 +11,10 @@
  * have reviews, so the index page does not need to know the recipe list.
  */
 
-const KV_URL = process.env.KV_REST_API_URL;
-const KV_TOKEN = process.env.KV_REST_API_TOKEN;
+// Vercel KV supplies KV_REST_API_*; the Marketplace Upstash Redis integration
+// supplies UPSTASH_REDIS_REST_*. Accept either so it works whichever you attach.
+const KV_URL = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+const KV_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
 
 const SLUG_RE = /^[a-z0-9-]{1,64}$/;
 const MAX_NAME = 60;
@@ -52,7 +54,10 @@ async function readAll() {
 
 export default async function handler(req, res) {
   if (!KV_URL || !KV_TOKEN) {
-    return res.status(503).json({ error: 'Review storage is not configured.' });
+    return res.status(503).json({
+      error: 'Review storage is not configured.',
+      hint: 'Attach a KV / Upstash Redis store in Vercel, then redeploy. Expected KV_REST_API_URL + KV_REST_API_TOKEN, or UPSTASH_REDIS_REST_URL + UPSTASH_REDIS_REST_TOKEN.'
+    });
   }
 
   try {
