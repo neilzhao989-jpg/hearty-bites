@@ -1162,20 +1162,29 @@
 
     .mixed-warning {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       align-items: flex-start;
-      margin: 0 0 22px;
-      padding: 14px 18px;
+      margin: 0 0 20px;
+      padding: 11px 14px;
       background: var(--warning-bg);
       border: 1px solid var(--warning);
-      border-left-width: 4px;
+      border-left-width: 3px;
       border-radius: var(--radius-sm);
       color: var(--warning-text);
-      font-size: 0.95rem;
-      line-height: 1.55;
+      font-size: 0.88rem;
+      line-height: 1.5;
     }
 
-    .mixed-warning strong { display: block; margin-bottom: 2px; }
+    /* The icon set ships without width and height attributes, so in a flex row
+       it stretches to whatever space is going. Pin it. */
+    .mixed-warning svg {
+      flex: 0 0 auto;
+      width: 17px;
+      height: 17px;
+      margin-top: 2px;
+    }
+
+    .mixed-warning strong { font-weight: 600; }
 
     .mixed-flag {
       display: inline-flex;
@@ -3279,10 +3288,7 @@
             ${MIXED_CONSISTENCY[recipe.slug] ? `
               <div class="mixed-warning" role="note">
                 ${icons.shield}
-                <div>
-                  <strong>Solids and liquid separate in this dish</strong>
-                  ${MIXED_CONSISTENCY[recipe.slug]} Mixed textures like this are not considered safe at Levels 4 to 6 as written.
-                </div>
+                <div><strong>Solids and liquid separate in this dish.</strong> Not considered safe at Levels 4 to 6 as written. ${MIXED_CONSISTENCY[recipe.slug]}</div>
               </div>
             ` : ''}
 
