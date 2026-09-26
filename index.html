@@ -11,37 +11,42 @@
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lora:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-cream: #FAFAF7;
-      --bg-warm: #F5F0E8;
+      /* Bento Kitchen — cream ground, one loud coral, tints for tiles */
+      --bg-cream: #FFF8F0;
+      --bg-warm: #FBEFE1;
       --bg-card: #FFFFFF;
-      --bg-sage: #E8EDE5;
-      --bg-sage-light: #F0F4EE;
-      --primary: #6B7F5E;
-      --primary-dark: #4A5A3F;
-      --primary-light: #8A9E7C;
+      --bg-sage: #D8E8DC;
+      --bg-sage-light: #E9F1EB;
+      --coral: #E24E33;
+      --coral-dark: #C23F27;
+      --butter: #FCE3BE;
+      --mint: #D8E8DC;
+      --primary: #E24E33;
+      --primary-dark: #C23F27;
+      --primary-light: #F08268;
       --accent: #C4956A;
       --accent-dark: #A67B52;
-      --text: #2C3329;
-      --text-light: #5C6654;
-      --text-muted: #8B9584;
-      --success: #4A734A;
-      --warning: #8B6914;
-      --warning-text: #5C4000;
-      --warning-bg: #FFF8E6;
+      --text: #1B1B1F;
+      --text-light: #4A4A52;
+      --text-muted: #77737A;
+      --success: #2E6B34;
+      --warning: #8B4E13;
+      --warning-text: #6B3B0E;
+      --warning-bg: #FDF1DE;
       --white: #FFFFFF;
-      --border: #E5E0D8;
-      --border-light: #F0EBE3;
-      --shadow-sm: rgba(44, 51, 41, 0.06);
-      --shadow: rgba(44, 51, 41, 0.1);
-      --shadow-lg: rgba(44, 51, 41, 0.14);
-      --shadow-xl: rgba(44, 51, 41, 0.18);
-      --radius-sm: 8px;
-      --radius: 12px;
-      --radius-lg: 16px;
-      --radius-xl: 24px;
+      --border: #EFE2D2;
+      --border-light: #F6EDE1;
+      --shadow-sm: rgba(27, 27, 31, 0.05);
+      --shadow: rgba(27, 27, 31, 0.09);
+      --shadow-lg: rgba(27, 27, 31, 0.13);
+      --shadow-xl: rgba(27, 27, 31, 0.17);
+      --radius-sm: 9px;
+      --radius: 13px;
+      --radius-lg: 15px;
+      --radius-xl: 22px;
     }
 
     *, *::before, *::after {
@@ -55,7 +60,7 @@
     }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
       font-size: 18px;
       line-height: 1.7;
       color: var(--text);
@@ -111,7 +116,7 @@
     h4 { font-size: 1.1rem; font-weight: 600; }
 
     .eyebrow {
-      font-family: 'Inter', sans-serif;
+      font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
       font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.12em;
@@ -281,7 +286,7 @@
     }
 
     .review-summary .score {
-      font-family: 'Playfair Display', serif;
+      font-family: "Anton", Impact, sans-serif;
       font-size: 1.6rem;
       font-weight: 600;
       line-height: 1;
@@ -367,7 +372,7 @@
     .form-error { color: #8B2E2E; font-size: 0.88rem; }
 
     .logo-text {
-      font-family: 'Playfair Display', serif;
+      font-family: "Anton", Impact, sans-serif;
       font-size: 1.3rem;
       font-weight: 600;
       line-height: 1.15;
@@ -376,7 +381,7 @@
 
     .logo-text small {
       display: block;
-      font-family: 'Inter', sans-serif;
+      font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
       font-size: 0.62rem;
       font-weight: 500;
       color: var(--text-muted);
@@ -488,7 +493,7 @@
       font-size: 1.2rem;
       color: var(--text-light);
       margin: 0 0 8px;
-      font-family: 'Lora', Georgia, serif;
+      font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
       line-height: 1.65;
     }
 
@@ -558,7 +563,7 @@
     }
 
     .recipe-card-image {
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 4 / 3;
       position: relative;
       overflow: hidden;
       border-radius: var(--radius);
@@ -747,7 +752,7 @@
     }
 
     .recipe-description {
-      font-family: 'Lora', Georgia, serif;
+      font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
       font-size: 1.1rem;
       color: var(--text-light);
       line-height: 1.7;
@@ -904,8 +909,9 @@
     }
 
     .batch-btn {
-      min-width: 52px;
-      padding: 8px 14px;
+      min-width: 56px;
+      min-height: 44px;
+      padding: 10px 16px;
       font-family: inherit;
       font-size: 0.95rem;
       font-weight: 600;
@@ -998,12 +1004,181 @@
       border: 1px solid var(--bg-sage);
     }
 
+    /* ---- Bento masthead ---- */
+    .bento {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: 1fr;
+      margin-bottom: 26px;
+    }
+    @media (min-width: 720px){ .bento { grid-template-columns: 1.5fr 1fr 1fr; } }
+
+    .bento-hero {
+      background: var(--coral);
+      color: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 26px 26px 24px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    @media (min-width: 720px){ .bento-hero { grid-column: span 2; } }
+
+    .bento-hero .kick {
+      display: inline-block;
+      align-self: flex-start;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,.6);
+      border-radius: 999px;
+      padding: 4px 11px;
+    }
+    .bento-hero h1 {
+      font-family: "Anton", Impact, sans-serif;
+      font-weight: 400;
+      font-size: clamp(2rem, 5.4vw, 3.1rem);
+      line-height: .97;
+      letter-spacing: .01em;
+      text-transform: uppercase;
+      margin: 14px 0 10px;
+    }
+    .bento-hero p { margin: 0; font-size: 0.96rem; line-height: 1.55; max-width: 42ch; }
+
+    .level-key { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+    .level-key span {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,.18);
+      border-radius: 999px; padding: 4px 11px;
+      font-size: 0.74rem; font-weight: 700;
+    }
+    .level-key i { width: 11px; height: 11px; border-radius: 50%; display: block; }
+
+    .bento-photo { border-radius: var(--radius-xl); overflow: hidden; min-height: 160px; background: var(--bg-warm); }
+    /* span 2 unconditionally would force an implicit second column on phones */
+    .bento-photo--wide { grid-column: span 1; }
+    @media (min-width: 720px){ .bento-photo--wide { grid-column: span 2; } }
+    .bento-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .bento-stat {
+      background: var(--butter);
+      border-radius: var(--radius-xl);
+      padding: 22px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .bento-stat b { font-family: "Anton", Impact, sans-serif; font-size: 2.6rem; line-height: 1; font-weight: 400; }
+    .bento-stat span { font-size: 0.86rem; line-height: 1.45; margin-top: 6px; }
+
+    /* ---- Level ladder: the primary filter ---- */
+    .ladder { margin-bottom: 24px; }
+    .ladder h2 {
+      font-family: "Atkinson Hyperlegible", sans-serif;
+      font-size: 1.02rem; font-weight: 700; margin: 0 0 11px;
+    }
+    .ladder-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .lvl-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font: inherit; font-size: 0.86rem; font-weight: 700;
+      color: var(--text); background: var(--white);
+      border: 2px solid var(--text); border-radius: var(--radius);
+      padding: 8px 13px; cursor: pointer;
+      transition: background .15s ease, color .15s ease;
+    }
+    .lvl-btn:hover { background: var(--bg-warm); }
+    .lvl-btn:focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; }
+    .lvl-btn[aria-pressed="true"] { background: var(--text); color: var(--white); }
+    .lvl-btn .dot {
+      width: 22px; height: 22px; border-radius: 50%; flex: 0 0 auto;
+      display: grid; place-items: center;
+      font-size: 0.74rem; font-weight: 700; color: var(--white);
+    }
+    .lvl-btn .count { font-size: 0.76rem; opacity: .68; font-variant-numeric: tabular-nums; }
+
+    /* ---- Recipe cards ---- */
+    .recipe-card-band {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      padding: 8px 13px;
+      font-size: 0.78rem; font-weight: 700;
+      color: var(--white);
+    }
+    .recipe-card-band .arrow { font-size: 0.9rem; }
+
+    .grid-empty {
+      grid-column: 1 / -1;
+      padding: 34px 26px;
+      text-align: center;
+      background: var(--bg-warm);
+      border-radius: var(--radius-lg);
+      color: var(--text-light);
+    }
+    .grid-empty strong { display: block; font-size: 1.05rem; color: var(--text); margin-bottom: 6px; }
+
+    /* ---- Recipe page tiles ---- */
+    .recipe-top { display: grid; gap: 12px; grid-template-columns: 1fr; margin-bottom: 14px; }
+    @media (min-width: 860px){ .recipe-top { grid-template-columns: 1.1fr 1fr; align-items: stretch; } }
+
+    .recipe-title-tile {
+      background: var(--butter);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+    }
+    .recipe-title-tile h1 {
+      font-family: "Anton", Impact, sans-serif; font-weight: 400;
+      font-size: clamp(1.7rem, 4.4vw, 2.5rem); line-height: 1;
+      text-transform: uppercase; margin: 0 0 10px;
+    }
+    .recipe-title-tile p { margin: 0; font-size: 0.94rem; line-height: 1.55; }
+
+    .fact-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; }
+    .fact {
+      background: var(--white); border-radius: var(--radius-sm); padding: 9px 11px;
+    }
+    .fact b {
+      display: block; font-size: 0.66rem; letter-spacing: .09em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 2px;
+    }
+    .fact span { font-size: 0.95rem; font-weight: 700; }
+
+    /* Texture is safety information, so it gets a tile rather than a tag. */
+    .texture-tile {
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      color: var(--white);
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .texture-tile b {
+      font-size: 0.7rem; letter-spacing: .1em; text-transform: uppercase; opacity: .9;
+    }
+    .texture-tile h2 {
+      font-family: "Anton", Impact, sans-serif; font-weight: 400;
+      font-size: clamp(1.5rem, 3.6vw, 2.1rem); line-height: 1;
+      text-transform: uppercase; margin: 8px 0 9px;
+    }
+    .texture-tile p { margin: 0; font-size: 0.9rem; line-height: 1.55; }
+    .texture-tile a { color: var(--white); text-decoration: underline; font-size: 0.84rem; margin-top: 11px; display: inline-block; }
+
+    .tip-tile {
+      background: var(--mint);
+      border-radius: var(--radius-lg);
+      padding: 18px 20px;
+      margin-top: 18px;
+    }
+    .tip-tile h3 {
+      font-size: 0.72rem; letter-spacing: .09em; text-transform: uppercase;
+      color: var(--success); margin: 0 0 9px; font-weight: 700;
+    }
+    .tip-tile ul { margin: 0; padding-left: 19px; }
+    .tip-tile li { margin-bottom: 7px; font-size: 0.92rem; line-height: 1.55; }
+    .tip-tile li:last-child { margin-bottom: 0; }
+
     /* Serving Tips */
     .tips-box {
-      background: var(--warning-bg);
-      border: 1px solid #E8D4A0;
-      border-radius: var(--radius);
-      padding: 24px;
+      background: var(--mint);
+      border: 0;
+      border-radius: var(--radius-lg);
+      padding: 20px 22px;
     }
 
     .tips-box h3 {
@@ -1090,7 +1265,7 @@
     }
 
     .nutrition-cell span {
-      font-family: 'Playfair Display', serif;
+      font-family: "Anton", Impact, sans-serif;
       font-size: 1.25rem;
       font-weight: 600;
       color: var(--text);
@@ -1140,24 +1315,23 @@
        If the file 404s the <img> removes its picture, revealing that fallback. */
     .recipe-card-image picture,
     .recipe-hero-image picture {
-      background: var(--bg-warm);
       display: block;
       width: 100%;
       height: 100%;
     }
 
+    /* Photos are 4:3 and fill their frame; the tile's own tone shows while loading. */
     .recipe-card-image img,
     .recipe-hero-image img {
-      object-fit: contain;
+      object-fit: cover;
     }
 
     .recipe-hero-image {
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 4 / 3;
       width: 100%;
-      max-width: 420px;
-      margin: 0 auto 28px;
       overflow: hidden;
-      border-radius: var(--radius);
+      border-radius: var(--radius-lg);
+      margin: 0;
     }
 
     /* Texture Guide */
@@ -1178,7 +1352,7 @@
     }
 
     .guide-intro p {
-      font-family: 'Lora', Georgia, serif;
+      font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
       font-size: 1.1rem;
       color: var(--text-light);
       line-height: 1.65;
@@ -1210,7 +1384,7 @@
       align-items: center;
       justify-content: center;
       color: var(--white);
-      font-family: 'Playfair Display', serif;
+      font-family: "Anton", Impact, sans-serif;
       font-size: 1.6rem;
       font-weight: 700;
     }
@@ -1337,7 +1511,7 @@
       letter-spacing: 0.08em;
       color: var(--text-muted);
       margin-bottom: 16px;
-      font-family: 'Inter', sans-serif;
+      font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
     }
 
     .footer-links ul {
@@ -1653,7 +1827,7 @@
         dysphagia: 3,
         image: "assets/butternut-squash-bisque",
         imageAlt: "A bowl of smooth orange butternut squash bisque, swirled with cream and scattered with herbs.",
-        imageBg: "#D6CABC",
+        imageBg: "#CCB288",
         color: "#D4A574",
         ingredients: [
           { amount: "2 lbs", item: "Butternut squash, peeled and cubed", note: "Pre-cut squash works well to save time" },
@@ -1707,7 +1881,7 @@
         dysphagia: 5,
         image: "assets/chicken-golden-soup",
         imageAlt: "A golden bowl of chicken soup with tiny pastina pasta, shredded chicken and fresh herbs.",
-        imageBg: "#BEB194",
+        imageBg: "#C0AA65",
         color: "#D4A574",
         ingredients: [
           { amount: "1 lb", item: "Boneless, skinless chicken breasts" },
@@ -1762,7 +1936,7 @@
         dysphagia: 6,
         image: "assets/baked-cinnamon-apples",
         imageAlt: "Soft baked cinnamon apple slices in a bowl, topped with a scoop of melting ice cream.",
-        imageBg: "#BE9B98",
+        imageBg: "#B99982",
         color: "#CD5C5C",
         ingredients: [
           { amount: "4 large", item: "Firm-sweet apples", note: "Honeycrisp, Fuji, or Gala work best" },
@@ -1814,7 +1988,7 @@
         dysphagia: 4,
         image: "assets/vanilla-bean-custard",
         imageAlt: "A glass of pale vanilla custard topped with fresh strawberries, raspberries and a blueberry.",
-        imageBg: "#E3D5C5",
+        imageBg: "#EDDCCB",
         color: "#F4E4C1",
         ingredients: [
           { amount: "4 large", item: "Eggs" },
@@ -1868,7 +2042,7 @@
         dysphagia: 6,
         image: "assets/lamb-stew-tomatoes",
         imageAlt: "A dark, rich lamb stew in tomato sauce with tender chunks of meat.",
-        imageBg: "#D2B49F",
+        imageBg: "#B5865F",
         color: "#8B4513",
         ingredients: [
           { amount: "2 lbs", item: "Lamb leg roast, boneless", note: "Cut into 1-inch cubes. Boneless is worth insisting on here — loose bone fragments are hard to spot in a dark tomato sauce" },
@@ -1927,7 +2101,7 @@
         dysphagia: 3,
         image: "assets/cream-of-mushroom-soup",
         imageAlt: "A bowl of creamy mushroom soup topped with sauteed mushroom slices and chopped parsley.",
-        imageBg: "#75715A",
+        imageBg: "#716B56",
         color: "#8B7355",
         ingredients: [
           { amount: "10", item: "Cremini mushrooms", note: "Cleaned with a kitchen towel" },
@@ -1983,7 +2157,7 @@
         dysphagia: 4,
         image: "assets/chinese-steamed-egg",
         imageAlt: "A bowl of silky Chinese steamed egg custard topped with chili oil and sliced scallions, served with a bowl of rice.",
-        imageBg: "#A6A088",
+        imageBg: "#AC9E7C",
         color: "#D9A441",
         ingredients: [
           { amount: "2", item: "Eggs" },
@@ -2031,7 +2205,7 @@
         dysphagia: 4,
         image: "assets/joel-robuchon-mashed-potatoes",
         imageAlt: "A bowl of ultra-smooth pale mashed potatoes finished with a swirled surface.",
-        imageBg: "#6B6864",
+        imageBg: "#5E5E5A",
         color: "#D6B85A",
         ingredients: [
           { amount: "1 kg", item: "Potatoes" },
@@ -2084,7 +2258,7 @@
         dysphagia: 6,
         image: "assets/korean-soft-tofu-soup",
         imageAlt: "A bubbling stone pot of spicy red Korean soft tofu soup with a poached egg, eggplant, and scallions.",
-        imageBg: "#B19F92",
+        imageBg: "#7C6154",
         color: "#B5482F",
         ingredients: [
           { amount: "About 3 stalks", item: "Scallions", note: "Chopped, whites and greens separated" },
@@ -2139,7 +2313,7 @@
         dysphagia: 5,
         image: "assets/chinese-egg-drop-soup",
         imageAlt: "A pale bowl of golden egg drop soup with silky egg ribbons and sliced scallions, a spoon resting in it.",
-        imageBg: "#8E8F8E",
+        imageBg: "#A79371",
         color: "#C98F3A",
         ingredients: [
           { amount: "1", item: "Whole chicken or chicken pieces", note: "For the stock; a weight wasn't specified in the source" },
@@ -2192,7 +2366,7 @@
         dysphagia: 7,
         image: "assets/kimchi-ramen",
         imageAlt: "A bowl of kimchi ramen in red broth with noodles, a soft egg yolk and sliced scallions.",
-        imageBg: "#B49277",
+        imageBg: "#BE9261",
         color: "#B23A2E",
         ingredients: [
           { amount: "100 ml", item: "Canola oil" },
@@ -2242,7 +2416,7 @@
         dysphagia: 4,
         image: "assets/congee",
         imageAlt: "A bowl of creamy white congee topped with chopped mushroom, scallions, and a drizzle of soy and chili oil.",
-        imageBg: "#A39988",
+        imageBg: "#AFA189",
         color: "#CBB994",
         ingredients: [
           { amount: "1 cup", item: "White rice", note: "Any medium or long-grain rice works — jasmine, sushi, or standard" },
@@ -2291,7 +2465,7 @@
         dysphagia: 6,
         image: "assets/classic-meatloaf",
         imageAlt: "A ketchup-glazed meatloaf, sliced to show its tender interior, garnished with parsley.",
-        imageBg: "#CCB19E",
+        imageBg: "#CBB5A2",
         color: "#7A4632",
         ingredients: [
           { amount: "2 large", item: "Eggs" },
@@ -2350,7 +2524,7 @@
         dysphagia: 6,
         image: "assets/stovetop-mac-and-cheese",
         imageAlt: "A bowl of creamy stovetop macaroni cheese, glossy with sauce.",
-        imageBg: "#C7B89A",
+        imageBg: "#D4B574",
         color: "#E3A857",
         ingredients: [
           { amount: "3 cups", item: "Macaroni or medium shell noodles" },
@@ -2398,7 +2572,7 @@
         dysphagia: 5,
         image: "assets/mapo-tofu",
         imageAlt: "Cubes of soft tofu in a glossy red mapo sauce, scattered with chopped spring onion.",
-        imageBg: "#E3E0DC",
+        imageBg: "#A58373",
         color: "#A63A2E",
         ingredients: [
           { amount: "90 g", item: "Ground pork, minced" },
@@ -2445,7 +2619,7 @@
         dysphagia: 4,
         image: "assets/chinese-silken-tofu",
         imageAlt: "A block of silken tofu sliced into fans, topped with dark soy dressing, scallions and sesame seeds.",
-        imageBg: "#B7B7AD",
+        imageBg: "#A9A796",
         color: "#D8C9A3",
         ingredients: [
           { amount: "10.5 oz", item: "Silken tofu", note: "Soft tofu also works" },
@@ -2495,7 +2669,7 @@
         dysphagia: 4,
         image: "assets/mango-jam-with-yogurt",
         imageAlt: "A white bowl of creamy yogurt topped with bright orange mango jam, a spoon resting in it.",
-        imageBg: "#CCBAA8",
+        imageBg: "#DABA98",
         color: "#F0A93C",
         ingredients: [
           { amount: "2 cups", item: "Fresh mango, chopped" },
@@ -2541,7 +2715,7 @@
         dysphagia: 6,
         image: "assets/fluffy-pancakes",
         imageAlt: "A tall stack of golden fluffy pancakes topped with a pat of butter and drizzled with syrup.",
-        imageBg: "#E8DFD6",
+        imageBg: "#E2C8A2",
         color: "#CB9754",
         ingredients: [
           { amount: "2 cups", item: "All-purpose flour" },
@@ -2594,7 +2768,7 @@
         dysphagia: 5,
         image: "assets/creamy-scrambled-eggs",
         imageAlt: "A plate of soft, creamy scrambled eggs in large gentle curds, scattered with chopped chives and herbs.",
-        imageBg: "#BFB5A8",
+        imageBg: "#CBBDA6",
         color: "#F0C25E",
         ingredients: [
           { amount: "4 large", item: "Eggs" },
@@ -2638,7 +2812,7 @@
         dysphagia: 6,
         image: "assets/ground-beef-curry",
         imageAlt: "A spoonful lifted from a rich brown ground beef curry with soft potato and carrot.",
-        imageBg: "#C4AB93",
+        imageBg: "#A46E38",
         color: "#B5762A",
         ingredients: [
           { amount: "16 oz", item: "Ground beef", note: "90/10" },
@@ -2690,7 +2864,7 @@
         dysphagia: 5,
         image: "assets/egg-salad",
         imageAlt: "A bowl of soft, creamy egg salad flecked with chopped chives, with a spoon in it.",
-        imageBg: "#C3B19F",
+        imageBg: "#D1BB82",
         color: "#E8D48A",
         ingredients: [
           { amount: "8", item: "Hard-boiled eggs, peeled" },
@@ -2736,7 +2910,7 @@
         dysphagia: 5,
         image: "assets/watermelon-sorbet",
         imageAlt: "A bowl of vivid pink watermelon sorbet scooped into soft ripples, with a spoon resting in it.",
-        imageBg: "#ECEBE3",
+        imageBg: "#DAAEA0",
         color: "#E4587A",
         ingredients: [
           { amount: "6 cups", item: "Frozen watermelon chunks" },
@@ -2779,7 +2953,7 @@
         dysphagia: 3,
         image: "assets/banana-smoothie",
         imageAlt: "A tall glass of pale, creamy banana smoothie with a striped straw.",
-        imageBg: "#DFCCBB",
+        imageBg: "#D8BE9C",
         color: "#E8C468",
         ingredients: [
           { amount: "1", item: "Banana" },
@@ -2822,7 +2996,7 @@
         dysphagia: 4,
         image: "assets/apple-sauce",
         imageAlt: "A spoonful of smooth golden apple sauce lifted from a bowl of it.",
-        imageBg: "#C7C1B8",
+        imageBg: "#CBBDA7",
         color: "#C97A4A",
         ingredients: [
           { amount: "1 medium", item: "Apple", note: "5 1/2 to 6 ounces" },
@@ -2867,7 +3041,7 @@
         dysphagia: 5,
         image: "assets/rice-pudding",
         imageAlt: "A bowl of creamy rice pudding dusted with cinnamon and scattered with chopped pistachio.",
-        imageBg: "#A89F99",
+        imageBg: "#BCB0A3",
         color: "#D9C9A3",
         ingredients: [
           { amount: "4 1/2 cups", item: "Whole milk", note: "1,080 mL" },
@@ -2913,7 +3087,7 @@
         dysphagia: 6,
         image: "assets/chicken-noodle-soup",
         imageAlt: "A bowl of chicken noodle soup with shredded chicken, wide egg noodles, carrot and celery.",
-        imageBg: "#9C8F73",
+        imageBg: "#CAA873",
         color: "#C99A5B",
         ingredients: [
           { amount: "2 tbsp", item: "Vegetable oil" },
@@ -2997,26 +3171,31 @@
       3: {
         name: 'Liquidised',
         color: '#F2C230',
+        deep: '#8A6A12',
         desc: 'Pours smoothly like a thick drinkable soup. No lumps, no bits, and no chewing at all. Can be taken from a cup or spoon, and should not hold its shape on the plate.'
       },
       4: {
         name: 'Pureed',
         color: '#5FAE55',
+        deep: '#2E6B34',
         desc: 'Completely smooth and thick enough to hold its shape on a spoon, but soft enough to need no chewing. Should never be sticky, lumpy, or stringy.'
       },
       5: {
         name: 'Minced & Moist',
         color: '#F0902D',
+        deep: '#8B4E13',
         desc: 'Soft, moist, and finely minced into very small pieces that mash easily with light pressure from a fork. Any sauce or gravy should cling rather than separate.'
       },
       6: {
         name: 'Soft & Bite-Sized',
         color: '#1F7FBE',
+        deep: '#155A88',
         desc: 'Tender, moist bite-sized pieces that break apart under a fork without needing a knife. Some chewing is required, but nothing should be tough, fibrous, or dry.'
       },
       7: {
         name: 'Easy to Chew',
         color: '#1a1a1a',
+        deep: '#1a1a1a',
         desc: 'Everyday soft foods at normal portion size. Normal chewing ability is needed, but hard, crunchy, stringy, and dry textures are avoided.'
       }
     };
@@ -3048,61 +3227,122 @@
       `;
     }
 
+    // Level filter state. null = show everything.
+    let activeLevel = null;
+
+    function levelCounts() {
+      const counts = {};
+      recipes.forEach(r => { counts[r.dysphagia] = (counts[r.dysphagia] || 0) + 1; });
+      return counts;
+    }
+
+    function recipeCard(recipe) {
+      const info = IDDSI_LEVELS[recipe.dysphagia];
+      return `
+        <article class="recipe-card" tabindex="0" role="button" aria-label="View recipe for ${recipe.title}"
+          onclick="navigateTo('/recipe/${recipe.slug}')" onkeypress="if(event.key==='Enter')navigateTo('/recipe/${recipe.slug}')">
+          <div class="recipe-card-image" style="background:${recipe.imageBg || 'var(--bg-warm)'}">
+            <div class="card-gradient">${icons[recipe.icon] || icons.stew}</div>
+            ${recipePhoto(recipe, '(max-width: 640px) calc(100vw - 40px), (max-width: 1024px) calc(50vw - 38px), 360px')}
+          </div>
+          <div class="recipe-card-band" style="background:${info.deep}">
+            <span>Level ${recipe.dysphagia} &middot; ${info.name}</span>
+            <span class="arrow" aria-hidden="true">&#8599;</span>
+          </div>
+          <div class="recipe-card-content">
+            <h3>${recipe.title}</h3>
+            <p>${recipe.description}</p>
+            <div class="recipe-card-meta">
+              <span>${icons.clock} ${recipe.cookTime}</span>
+              <span>${icons.users} ${recipe.servings} servings</span>
+              <span>${recipe.difficulty}</span>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderRecipeGrid() {
+      const shown = activeLevel ? recipes.filter(r => r.dysphagia === activeLevel) : recipes;
+      if (!shown.length) {
+        return `
+          <div class="grid-empty">
+            <strong>No recipes at Level ${activeLevel} yet.</strong>
+            <p>Try another level, or <button type="button" class="link-btn" onclick="setLevel(null)">show all ${recipes.length} recipes</button>.</p>
+          </div>
+        `;
+      }
+      return shown.map(recipeCard).join('');
+    }
+
+    function setLevel(level) {
+      activeLevel = level;
+      document.querySelectorAll('.lvl-btn').forEach(btn => {
+        const v = btn.dataset.level === 'all' ? null : Number(btn.dataset.level);
+        btn.setAttribute('aria-pressed', v === activeLevel ? 'true' : 'false');
+      });
+      const grid = document.getElementById('recipe-grid');
+      if (grid) grid.innerHTML = renderRecipeGrid();
+      const status = document.getElementById('filter-status');
+      if (status) {
+        const n = activeLevel ? recipes.filter(r => r.dysphagia === activeLevel).length : recipes.length;
+        status.textContent = activeLevel
+          ? `${n} recipe${n === 1 ? '' : 's'} at Level ${activeLevel}, ${IDDSI_LEVELS[activeLevel].name}`
+          : `Showing all ${n} recipes`;
+      }
+    }
+
     function renderHomePage() {
+      const counts = levelCounts();
+      const levels = [3, 4, 5, 6, 7];
+      const feature = recipes.find(r => r.slug === 'butternut-squash-bisque') || recipes[0];
+      const feature2 = recipes.find(r => r.slug === 'chicken-noodle-soup') || recipes[1];
+
       return `
         <div class="page" id="home-page">
-          <section class="hero">
-            <span class="eyebrow">Comforting recipes for easy eating</span>
-            <h1>Food that stays <em>gentle</em>, without giving up flavor.</h1>
-            <p>Soft, fork-tender cooking for anyone who wants food that is easy to eat &mdash; every recipe graded to an IDDSI texture level, so you always know what you are getting.</p>
-          </section>
+          <div class="bento">
+            <section class="bento-hero">
+              <span class="kick">IDDSI levels 3 to 7</span>
+              <h1>Every recipe graded for texture</h1>
+              <p>From liquidised to easy to chew &mdash; so you always know how soft a dish actually is before you cook it.</p>
+              <div class="level-key" aria-hidden="true">
+                ${levels.map(l => `<span><i style="background:${IDDSI_LEVELS[l].color}"></i>${l} ${IDDSI_LEVELS[l].name}</span>`).join('')}
+              </div>
+            </section>
+            <div class="bento-photo" style="background:${feature.imageBg || ''}">
+              ${recipePhoto(feature, '(max-width: 720px) calc(100vw - 40px), 340px', true)}
+            </div>
+            <div class="bento-stat">
+              <b>${recipes.length}</b>
+              <span>recipes across five texture levels. Pick a level to narrow them.</span>
+            </div>
+            <div class="bento-photo bento-photo--wide" style="background:${feature2.imageBg || ''}">
+              ${recipePhoto(feature2, '(max-width: 720px) calc(100vw - 40px), 700px')}
+            </div>
+          </div>
 
-          <div class="trust-banner">
-            <div class="trust-item">
-              ${icons.shield}
-              <span>Tested for soft texture</span>
+          <div class="ladder">
+            <h2 id="ladder-heading">Which texture level do you need?</h2>
+            <div class="ladder-row" role="group" aria-labelledby="ladder-heading">
+              <button type="button" class="lvl-btn" data-level="all" aria-pressed="${activeLevel === null}"
+                onclick="setLevel(null)">All levels <span class="count">${recipes.length}</span></button>
+              ${levels.map(l => `
+                <button type="button" class="lvl-btn" data-level="${l}" aria-pressed="${activeLevel === l}"
+                  onclick="setLevel(${l})">
+                  <span class="dot" style="background:${IDDSI_LEVELS[l].deep}" aria-hidden="true">${l}</span>
+                  ${IDDSI_LEVELS[l].name}
+                  <span class="count">${counts[l] || 0}</span>
+                </button>
+              `).join('')}
             </div>
-            <div class="trust-item">
-              ${icons.heart}
-              <span>Comforting by design</span>
-            </div>
-            <div class="trust-item">
-              ${icons.star}
-              <span>Easy to follow steps</span>
-            </div>
+            <p id="filter-status" class="sr-only" role="status">Showing all ${recipes.length} recipes</p>
           </div>
 
           <div class="section-header">
             <h2>All Recipes</h2>
             <p><a href="#/texture-guide">What do the texture levels mean?</a></p>
           </div>
-          <div class="recipe-grid">
-            ${recipes.map(recipe => `
-              <article class="recipe-card" tabindex="0" role="button" aria-label="View recipe for ${recipe.title}"
-                onclick="navigateTo('/recipe/${recipe.slug}')" onkeypress="if(event.key==='Enter')navigateTo('/recipe/${recipe.slug}')">
-                <div class="recipe-card-image" style="background: linear-gradient(135deg, ${recipe.color} 0%, ${adjustColor(recipe.color, -20)} 100%);">
-                  <div class="card-gradient">
-                    ${icons[recipe.icon] || icons.stew}
-                  </div>
-                  ${recipePhoto(recipe, '(max-width: 640px) calc(100vw - 40px), (max-width: 1024px) calc(50vw - 38px), 360px')}
-                  <div class="recipe-card-iddsi">
-                    <span class="iddsi-badge" title="IDDSI Level ${recipe.dysphagia}: ${IDDSI_LEVELS[recipe.dysphagia].name}">
-                      ${iddsiDot(recipe.dysphagia)} ${IDDSI_LEVELS[recipe.dysphagia].name}
-                    </span>
-                  </div>
-                </div>
-                <div class="recipe-card-content">
-                  <h3>${recipe.title}</h3>
-                  <p>${recipe.description}</p>
-                  <div class="recipe-card-meta">
-                    <span>${icons.clock} ${recipe.cookTime}</span>
-                    <span>${icons.users} ${recipe.servings} servings</span>
-                    <span>${recipe.difficulty}</span>
-                  </div>
-                </div>
-              </article>
-            `).join('')}
-          </div>
+          <div class="recipe-grid" id="recipe-grid">${renderRecipeGrid()}</div>
         </div>
       `;
     }
@@ -3175,53 +3415,27 @@
               Back to All Recipes
             </a>
 
-            <div class="recipe-title">
-              <div class="recipe-title-icon">
-                ${icons[recipe.icon] || ''}
+            <div class="recipe-top">
+              <div class="recipe-title-tile">
+                <h1>${recipe.title}</h1>
+                <p>${recipe.description}</p>
+                <div class="fact-row">
+                  <div class="fact"><b>Time</b><span>${recipe.cookTime}</span></div>
+                  <div class="fact"><b>Serves</b><span id="servings-value">${recipe.servings * batchMultiplier}</span></div>
+                  <div class="fact"><b>Effort</b><span>${recipe.difficulty}</span></div>
+                </div>
               </div>
-              <h1>${recipe.title}</h1>
+
+              ${recipe.image
+                ? `<div class="recipe-hero-image" style="background:${recipe.imageBg || 'var(--bg-warm)'}">${recipePhoto(recipe, '(max-width: 860px) calc(100vw - 40px), 520px', true)}</div>`
+                : ''}
             </div>
 
-            <p class="recipe-description">${recipe.description}</p>
-
-            ${recipe.image ? `<div class="recipe-hero-image" style="background:${recipe.imageBg || 'var(--bg-warm)'}">${recipePhoto(recipe, '(max-width: 640px) calc(100vw - 40px), 420px', true)}</div>` : ''}
-
-            <div class="recipe-meta" role="list" aria-label="Recipe information">
-              <div class="meta-card" role="listitem">
-                ${icons.clock}
-                <div>
-                  <strong>Prep Time</strong>
-                  <span>${recipe.prepTime}</span>
-                </div>
-              </div>
-              <div class="meta-card" role="listitem">
-                ${icons.clock}
-                <div>
-                  <strong>Cook Time</strong>
-                  <span>${recipe.cookTime}</span>
-                </div>
-              </div>
-              <div class="meta-card" role="listitem">
-                ${icons.users}
-                <div>
-                  <strong>Servings</strong>
-                  <span id="servings-value">${recipe.servings * batchMultiplier}</span>
-                </div>
-              </div>
-              <div class="meta-card" role="listitem">
-                ${icons.star}
-                <div>
-                  <strong>Difficulty</strong>
-                  <span>${recipe.difficulty}</span>
-                </div>
-              </div>
-              <div class="meta-card" role="listitem">
-                ${iddsiDot(recipe.dysphagia)}
-                <div>
-                  <strong>IDDSI Texture Level</strong>
-                  <span>Level ${recipe.dysphagia} &ndash; ${IDDSI_LEVELS[recipe.dysphagia].name}</span>
-                </div>
-              </div>
+            <div class="texture-tile" style="background:${IDDSI_LEVELS[recipe.dysphagia].deep}">
+              <b>Texture level</b>
+              <h2>${recipe.dysphagia} &middot; ${IDDSI_LEVELS[recipe.dysphagia].name}</h2>
+              <p>${IDDSI_LEVELS[recipe.dysphagia].desc}</p>
+              <a href="#/texture-guide">See all texture levels</a>
             </div>
           </div>
 
