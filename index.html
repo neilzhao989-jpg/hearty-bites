@@ -4,6 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Amazing Recipes - Soft, fork-tender food that is easy to eat, with every recipe graded to an IDDSI texture level.">
+
+  <!-- Without these, the link posted into a Facebook caregiver group renders as a
+       bare grey rectangle with no picture and no words. og:image needs a file at
+       assets/social-card.jpg, 1200x630; until one exists the card still shows the
+       title and the description, which is already far better than nothing. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Amazing Recipes">
+  <meta property="og:url" content="https://amazingrecipes.org/">
+  <meta property="og:title" content="Recipes graded to an IDDSI texture level">
+  <meta property="og:description" content="Soft, fork-tender cooking for people with swallowing difficulty. Every recipe carries the texture level it is safe at, and says when a dish needs blending or thickening first.">
+  <meta property="og:image" content="https://amazingrecipes.org/assets/social-card.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Recipes graded to an IDDSI texture level">
+  <meta name="twitter:description" content="Soft, fork-tender cooking for people with swallowing difficulty. Every recipe carries the texture level it is safe at.">
+  <meta name="twitter:image" content="https://amazingrecipes.org/assets/social-card.jpg">
   <title>Amazing Recipes</title>
   <link rel="icon" href="assets/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
@@ -97,6 +112,14 @@
       outline: 3px solid var(--primary);
       outline-offset: 2px;
     }
+
+    /* The router moves focus to the new page's heading so a screen reader
+       announces the view change. That focus is not user-initiated, so it must
+       not paint a ring: a box drawn round the H1 on every page load reads as a
+       rendering fault. Real keyboard focus on links, buttons and cards is
+       untouched, because those carry tabindex 0 or none at all. */
+    [tabindex="-1"]:focus,
+    [tabindex="-1"]:focus-visible { outline: none; }
 
     *:focus-visible {
       outline: 3px solid var(--primary);
@@ -270,6 +293,25 @@
     .nav-menu[hidden] { display: none; }
     .nav-menu li { margin: 0; }
     .nav-menu a { display: block; }
+
+    /* On anything wider than a phone the three destinations fit on one line, so
+       show them. A hamburger on a 1440px screen hides the whole site behind a
+       guess. Below 760px the dropdown above takes over again. */
+    @media (min-width: 760px) {
+      .nav-toggle { display: none; }
+      .nav-menu,
+      .nav-menu[hidden] {
+        display: flex;
+        position: static;
+        gap: 4px;
+        min-width: 0;
+        padding: 0;
+        background: none;
+        border: 0;
+        box-shadow: none;
+      }
+      .nav-menu a { white-space: nowrap; }
+    }
 
     /* Reviews */
     .stars { color: var(--accent-dark); letter-spacing: 2px; white-space: nowrap; }
@@ -1293,6 +1335,47 @@
       line-height: 1.6;
     }
 
+    .mixed-warning {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin: 0 0 20px;
+      padding: 11px 14px;
+      background: var(--warning-bg);
+      border: 1px solid var(--warning);
+      border-left-width: 3px;
+      border-radius: var(--radius-sm);
+      color: var(--warning-text);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    /* The icon set ships without width and height attributes, so in a flex row
+       it stretches to whatever space is going. Pin it. */
+    .mixed-warning svg {
+      flex: 0 0 auto;
+      width: 17px;
+      height: 17px;
+      margin-top: 2px;
+    }
+
+    .mixed-warning strong { font-weight: 600; }
+
+    .mixed-flag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 8px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: var(--warning-bg);
+      border: 1px solid var(--warning);
+      color: var(--warning-text);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
     /* Recipe photos */
     .recipe-card-image picture {
       position: absolute;
@@ -1308,11 +1391,9 @@
       display: block;
     }
 
-    /* Recipe photos are circular cut-outs on the site's cream, so they must fit
-       whole inside the frame rather than be cropped to fill it. The picture
-       element carries the same cream, so it hides the colour-wash-and-icon
-       fallback beneath it while the circle sits centred on a seamless field.
-       If the file 404s the <img> removes its picture, revealing that fallback. */
+    /* The picture carries a tint so it covers the colour-wash-and-icon fallback
+       underneath while the file is still downloading. If the file 404s the <img>
+       removes its picture and that fallback shows through again. */
     .recipe-card-image picture,
     .recipe-hero-image picture {
       display: block;
@@ -1320,7 +1401,10 @@
       height: 100%;
     }
 
-    /* Photos are 4:3 and fill their frame; the tile's own tone shows while loading. */
+    /* cover, not contain. Sources are not all the same shape, and contain
+       letterboxed every card with coloured bars in a different colour per
+       recipe. All 26 are now cropped to 4:3, so cover fills the frame exactly;
+       the tile's own tone shows while the file downloads. */
     .recipe-card-image img,
     .recipe-hero-image img {
       object-fit: cover;
@@ -3200,6 +3284,22 @@
       }
     };
 
+    /* Dishes where solid pieces sit in thin liquid. IDDSI treats these as unsafe
+       at Levels 4 to 6, because the liquid runs ahead in the mouth while the
+       solid is still being chewed, which is the exact event a texture diet
+       exists to prevent. Chicken noodle soup and watermelon are the two examples
+       used to teach this, and both are on this site. The value is what the cook
+       should do about it. NEEDS A CLINICIAN TO CHECK before this goes anywhere. */
+    const MIXED_CONSISTENCY = {
+      'chicken-noodle-soup': 'Blend the whole soup smooth, or thicken the broth until it no longer runs away from the noodles and chicken.',
+      'chinese-egg-drop-soup': 'The egg ribbons sit in thin broth. Blend smooth, or thicken the broth so the two move together.',
+      'korean-soft-tofu-soup': 'The tofu and vegetables sit in thin broth. Blend smooth, or thicken the broth before serving.',
+      'lamb-stew-tomatoes': 'Reduce or thicken the sauce until it clings to the meat and vegetables rather than pooling around them.',
+      'ground-beef-curry': 'Thicken the sauce until it coats the mince and potato instead of separating out.',
+      'kimchi-ramen': 'Noodles in thin broth. At anything below Level 7, blend the soup smooth or leave this one out.',
+      'watermelon-sorbet': 'Sorbet melts to a thin liquid in the mouth. Anyone on thickened drinks should not have this, whatever level the frozen solid is graded at.'
+    };
+
     function iddsiDot(level) {
       const info = IDDSI_LEVELS[level];
       return `<span class="iddsi-dot" style="background:${info.color}">${level}</span>`;
@@ -3252,6 +3352,7 @@
           <div class="recipe-card-content">
             <h3>${recipe.title}</h3>
             <p>${recipe.description}</p>
+            ${MIXED_CONSISTENCY[recipe.slug] ? '<span class="mixed-flag">Needs blending or thickening</span>' : ''}
             <div class="recipe-card-meta">
               <span>${icons.clock} ${recipe.cookTime}</span>
               <span>${icons.users} ${recipe.servings} servings</span>
@@ -3436,6 +3537,14 @@
               <h2>${recipe.dysphagia} &middot; ${IDDSI_LEVELS[recipe.dysphagia].name}</h2>
               <p>${IDDSI_LEVELS[recipe.dysphagia].desc}</p>
               <a href="#/texture-guide">See all texture levels</a>
+            </div>
+
+            ${MIXED_CONSISTENCY[recipe.slug] ? `
+              <div class="mixed-warning" role="note">
+                ${icons.shield}
+                <div><strong>Solids and liquid separate in this dish.</strong> Not considered safe at Levels 4 to 6 as written. ${MIXED_CONSISTENCY[recipe.slug]}</div>
+              </div>
+            ` : ''}
             </div>
           </div>
 
@@ -3935,7 +4044,7 @@
             <p>Notes left by anyone who has cooked from this collection &mdash; how a dish turned out, and how it behaved for the texture level it is graded at.</p>
           </section>
           <div id="reviews-all"><p class="review-empty">Loading reviews&hellip;</p></div>
-          <p class="review-note">${escapeHtml(ReviewStore.scopeNote)}</p>
+          <p class="review-note" id="reviews-scope-note">${escapeHtml(ReviewStore.scopeNote)}</p>
         </div>
       `;
     }
@@ -3944,6 +4053,11 @@
       const host = document.getElementById('reviews-all');
       if (!host) return;
       const all = await ReviewStore.listAll();
+      /* scopeNote reads "Loading..." until the first fetch settles, and this page
+         painted it before that happened. Without this line it says Loading for
+         ever, even once the reviews are on screen. */
+      const note = document.getElementById('reviews-scope-note');
+      if (note) note.textContent = ReviewStore.scopeNote;
       const flat = [];
       Object.keys(all).forEach(slug => {
         (all[slug] || []).forEach(r => flat.push({ review: r, slug }));
@@ -4063,7 +4177,14 @@
     });
 
     window.addEventListener('hashchange', router);
-    window.addEventListener('load', router);
+    /* load waits for every image on the page. Nothing is rendered until the
+       router runs, so booting on load meant a blank page until the slowest
+       request finished, and a blank page for ever if one never did. */
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', router);
+    } else {
+      router();
+    }
 
     window.addEventListener('scroll', () => {
       if (window.scrollY > 10) {
