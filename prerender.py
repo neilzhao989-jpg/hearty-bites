@@ -171,15 +171,24 @@ def read_literal(source, declaration):
 
 # --- the same SEO strings the runtime produces ----------------------------
 
-def iso_duration(text):
-    """"1 hour 30 minutes" -> "PT1H30M", the format schema.org wants."""
+def duration_minutes(text):
     if not text:
-        return None
+        return 0
     hours = re.search(r'(\d+)\s*hour', text, re.I)
     mins = re.search(r'(\d+)\s*min', text, re.I)
-    if not hours and not mins:
+    return (int(hours.group(1)) * 60 if hours else 0) + (int(mins.group(1)) if mins else 0)
+
+
+def minutes_to_iso(total):
+    """90 -> "PT1H30M", the format schema.org wants."""
+    if not total:
         return None
-    return 'PT' + (hours.group(1) + 'H' if hours else '') + (mins.group(1) + 'M' if mins else '')
+    hours, mins = divmod(total, 60)
+    return 'PT' + ('%dH' % hours if hours else '') + ('%dM' % mins if mins else '')
+
+
+def iso_duration(text):
+    return minutes_to_iso(duration_minutes(text))
 
 
 def recipe_jsonld(recipe, levels):
@@ -202,8 +211,11 @@ def recipe_jsonld(recipe, levels):
     }
     if recipe.get('image'):
         data['image'] = ['%s%s-1200.jpg' % (SITE, recipe['image'])]
+    total = duration_minutes(recipe.get('prepTime')) + duration_minutes(recipe.get('cookTime'))
     for key, value in (('prepTime', iso_duration(recipe.get('prepTime'))),
-                       ('cookTime', iso_duration(recipe.get('cookTime')))):
+                       ('cookTime', iso_duration(recipe.get('cookTime'))),
+                       ('totalTime', minutes_to_iso(total)),
+                       ('datePublished', recipe.get('datePublished'))):
         if value:
             data[key] = value
     nutrition = recipe.get('nutrition')
