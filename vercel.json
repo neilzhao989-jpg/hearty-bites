@@ -1,9 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
-    { "source": "/recipe/:slug", "destination": "/index.html" },
-    { "source": "/texture-guide", "destination": "/index.html" },
-    { "source": "/reviews", "destination": "/index.html" }
+    { "source": "/recipe/:slug", "destination": "/recipe/:slug.html" },
+    { "source": "/texture-guide", "destination": "/texture-guide.html" },
+    { "source": "/reviews", "destination": "/reviews.html" }
   ],
   "headers": [
     {
