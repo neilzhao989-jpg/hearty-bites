@@ -1836,7 +1836,7 @@
 
   <header id="header">
     <div class="header-content">
-      <a href="#/" class="logo" aria-label="Amazing Recipes - Home">
+      <a href="/" class="logo" aria-label="Amazing Recipes - Home">
         <div class="logo-icon">
           <img src="assets/logo-spoon.png" alt="" width="44" height="44" aria-hidden="true">
         </div>
@@ -1851,9 +1851,9 @@
           <span></span><span></span><span></span>
         </button>
         <ul class="nav-menu" id="nav-menu" hidden>
-          <li><a href="#/" aria-current="page">Recipes</a></li>
-          <li><a href="#/texture-guide">Texture Guide</a></li>
-          <li><a href="#/reviews">Reviews</a></li>
+          <li><a href="/" aria-current="page">Recipes</a></li>
+          <li><a href="/texture-guide">Texture Guide</a></li>
+          <li><a href="/reviews">Reviews</a></li>
         </ul>
       </nav>
     </div>
@@ -1873,8 +1873,8 @@
         <div class="footer-links">
           <h4>Browse</h4>
           <ul>
-            <li><a href="#/">All Recipes</a></li>
-            <li><a href="#/texture-guide">Texture Guide</a></li>
+            <li><a href="/">All Recipes</a></li>
+            <li><a href="/texture-guide">Texture Guide</a></li>
           </ul>
         </div>
         <div class="footer-links">
@@ -3798,7 +3798,7 @@
 
           <div class="section-header">
             <h2>All Recipes</h2>
-            <p><a href="#/texture-guide">What do the texture levels mean?</a></p>
+            <p><a href="/texture-guide">What do the texture levels mean?</a></p>
           </div>
           <div class="recipe-grid" id="recipe-grid">${renderRecipeGrid()}</div>
         </div>
@@ -3835,7 +3835,7 @@
                     <p class="level-desc">${info.desc}</p>
                     <div class="level-recipes">
                       ${matches.length
-                        ? matches.map(r => `<a href="#/recipe/${r.slug}">${r.title}</a>`).join('')
+                        ? matches.map(r => `<a href="/recipe/${r.slug}">${r.title}</a>`).join('')
                         : '<span class="level-empty">No recipes at this level yet.</span>'}
                     </div>
                   </div>
@@ -3858,7 +3858,7 @@
           <div class="page">
             <h1>Recipe Not Found</h1>
             <p>The recipe you're looking for doesn't exist.</p>
-            <a href="#/" class="btn btn-primary">Return Home</a>
+            <a href="/" class="btn btn-primary">Return Home</a>
           </div>
         `;
       }
@@ -3868,7 +3868,7 @@
       return `
         <div class="page" id="recipe-page">
           <div class="recipe-header">
-            <a href="#/" class="back-link">
+            <a href="/" class="back-link">
               ${icons.arrowLeft}
               Back to All Recipes
             </a>
@@ -3893,7 +3893,7 @@
               <b>Texture level</b>
               <h2>${recipe.dysphagia} &middot; ${IDDSI_LEVELS[recipe.dysphagia].name}</h2>
               <p>${IDDSI_LEVELS[recipe.dysphagia].desc}</p>
-              <a href="#/texture-guide">See all texture levels</a>
+              <a href="/texture-guide">See all texture levels</a>
             </div>
 
             ${MIXED_CONSISTENCY[recipe.slug] ? `
@@ -4292,7 +4292,7 @@
             <span class="who">${escapeHtml(review.name)}</span>
             <time datetime="${escapeHtml(review.date)}">${formatReviewDate(review.date)}</time>
           </header>
-          ${recipe ? `<p class="on-recipe"><a href="#/recipe/${recipe.slug}">${escapeHtml(recipe.title)}</a></p>` : ''}
+          ${recipe ? `<p class="on-recipe"><a href="/recipe/${recipe.slug}">${escapeHtml(recipe.title)}</a></p>` : ''}
           <p>${escapeHtml(review.text)}</p>
         </li>
       `;
@@ -4453,13 +4453,141 @@
     }
 
     function navigateTo(route) {
-      window.location.hash = route;
+      if (window.location.pathname === route) return;
+      history.pushState({}, '', route);
+      router();
+    }
+
+    /* ---- Per-page SEO -----------------------------------------------------
+       A single-page app serves one HTML document, so title, description,
+       canonical and social tags have to be rewritten per route or every page
+       looks identical to a crawler. Recipe pages also emit Recipe JSON-LD,
+       which is what Google needs for recipe rich results.                    */
+
+    const SITE = 'https://amazingrecipes.org';
+
+    function setMeta(sel, attr, value) {
+      let el = document.head.querySelector(sel);
+      if (!el) {
+        el = document.createElement('meta');
+        const [k, v] = sel.replace(/[\[\]"']/g, '').split('=');
+        el.setAttribute(k.replace('meta', '').trim() || 'name', v);
+        document.head.appendChild(el);
+      }
+      el.setAttribute(attr, value);
+    }
+
+    function setCanonical(url) {
+      let el = document.head.querySelector('link[rel="canonical"]');
+      if (!el) { el = document.createElement('link'); el.rel = 'canonical'; document.head.appendChild(el); }
+      el.href = url;
+    }
+
+    function setJsonLd(obj) {
+      let el = document.getElementById('recipe-jsonld');
+      if (!obj) { if (el) el.remove(); return; }
+      if (!el) {
+        el = document.createElement('script');
+        el.type = 'application/ld+json';
+        el.id = 'recipe-jsonld';
+        document.head.appendChild(el);
+      }
+      el.textContent = JSON.stringify(obj);
+    }
+
+    // Turns "1 hour 30 minutes" into the ISO 8601 duration schema.org expects.
+    function isoDuration(text) {
+      if (!text) return undefined;
+      const h = (text.match(/(\d+)\s*hour/i) || [])[1];
+      const m = (text.match(/(\d+)\s*min/i) || [])[1];
+      if (!h && !m) return undefined;
+      return 'PT' + (h ? h + 'H' : '') + (m ? m + 'M' : '');
+    }
+
+    function recipeJsonLd(recipe) {
+      const level = IDDSI_LEVELS[recipe.dysphagia];
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Recipe',
+        name: recipe.title,
+        description: recipe.description,
+        image: recipe.image ? [`${SITE}/${recipe.image}-1200.jpg`] : undefined,
+        recipeYield: `${recipe.servings} servings`,
+        prepTime: isoDuration(recipe.prepTime),
+        cookTime: isoDuration(recipe.cookTime),
+        recipeCategory: 'Texture-modified',
+        keywords: [recipe.title, 'dysphagia', 'IDDSI Level ' + recipe.dysphagia, level.name,
+                   'texture modified diet', 'soft food'].join(', '),
+        recipeIngredient: recipe.ingredients.map(i => `${i.amount} ${i.item}`.trim()),
+        recipeInstructions: recipe.instructions.map(step => ({
+          '@type': 'HowToStep', position: step.step, text: step.text
+        })),
+        nutrition: recipe.nutrition ? {
+          '@type': 'NutritionInformation',
+          calories: recipe.nutrition.calories,
+          proteinContent: recipe.nutrition.protein,
+          fatContent: recipe.nutrition.fat,
+          carbohydrateContent: recipe.nutrition.carbs,
+          sodiumContent: recipe.nutrition.sodium
+        } : undefined,
+        author: { '@type': 'Organization', name: 'Amazing Recipes', url: SITE }
+      };
+    }
+
+    function applySeo(path) {
+      const url = SITE + (path === '/' ? '/' : path);
+      let title, desc, image = `${SITE}/assets/social-card.jpg`, jsonld = null;
+
+      if (path.startsWith('/recipe/')) {
+        const recipe = recipes.find(r => r.slug === path.replace('/recipe/', ''));
+        if (recipe) {
+          const level = IDDSI_LEVELS[recipe.dysphagia];
+          title = `${recipe.title} — IDDSI Level ${recipe.dysphagia}, ${level.name}`;
+          desc = `${recipe.description} Graded IDDSI Level ${recipe.dysphagia} (${level.name}). Serves ${recipe.servings}.`;
+          if (recipe.image) image = `${SITE}/${recipe.image}-1200.jpg`;
+          jsonld = recipeJsonLd(recipe);
+        }
+      } else if (path === '/texture-guide') {
+        title = 'IDDSI Texture Guide — what each level means';
+        desc = 'Plain-language explanation of IDDSI Levels 2 to 7, and which recipes match each one.';
+      } else if (path === '/reviews') {
+        title = 'Reviews — Amazing Recipes';
+        desc = 'Notes from people who have cooked these texture-graded recipes.';
+      }
+
+      if (!title) {
+        title = 'Amazing Recipes — every recipe graded to an IDDSI texture level';
+        desc = 'Soft, fork-tender cooking for anyone who needs food that is easy to chew and swallow. Every recipe carries the IDDSI texture level it is safe at.';
+      }
+
+      document.title = title;
+      setMeta('meta[name="description"]', 'content', desc);
+      setMeta('meta[property="og:title"]', 'content', title);
+      setMeta('meta[property="og:description"]', 'content', desc);
+      setMeta('meta[property="og:url"]', 'content', url);
+      setMeta('meta[property="og:image"]', 'content', image);
+      setMeta('meta[name="twitter:title"]', 'content', title);
+      setMeta('meta[name="twitter:description"]', 'content', desc);
+      setMeta('meta[name="twitter:image"]', 'content', image);
+      setCanonical(url);
+      setJsonLd(jsonld);
     }
 
     function router() {
       if (typeof navMenu !== 'undefined' && navMenu && !navMenu.hidden) setMenu(false);
-      const hash = window.location.hash || '#/';
-      const path = hash.slice(1);
+
+      /* Old #/recipe/x links are still out in the world — shared, bookmarked and
+         on Pinterest — so translate them to the real path once and carry on. */
+      if (window.location.hash.startsWith('#/')) {
+        const legacy = window.location.hash.slice(1);
+        history.replaceState({}, '', legacy === '/' ? '/' : legacy);
+      }
+
+      /* Vercel serves /index.html for the root and local dev opens it directly,
+         so both have to resolve to the home route rather than a 404. */
+      let path = window.location.pathname || '/';
+      if (path === '/index.html' || path === '') path = '/';
+      if (path.length > 1 && path.endsWith('/')) path = path.slice(0, -1);
 
       currentRoute = path;
 
@@ -4477,31 +4605,28 @@
 
       if (path === '/' || path === '') {
         mainContent.innerHTML = renderHomePage();
-        document.title = 'Amazing Recipes';
       } else if (path === '/reviews') {
         mainContent.innerHTML = renderReviewsPage();
-        document.title = 'Reviews - Amazing Recipes';
         hydrateReviewsPage();
       } else if (path === '/texture-guide') {
         mainContent.innerHTML = renderTextureGuide();
-        document.title = 'Texture Guide - Amazing Recipes';
       } else if (path.startsWith('/recipe/')) {
         const slug = path.replace('/recipe/', '');
         batchMultiplier = 1;
         mainContent.innerHTML = renderRecipePage(slug);
-        document.title = `${recipes.find(r => r.slug === slug)?.title || 'Recipe'} - Amazing Recipes`;
         hydrateRecipeReviews(slug);
       } else {
         mainContent.innerHTML = `
           <div class="page">
             <h1>Page Not Found</h1>
             <p>The page you're looking for doesn't exist.</p>
-            <a href="#/" class="btn btn-primary">Return Home</a>
+            <a href="/" class="btn btn-primary">Return Home</a>
           </div>
         `;
-        document.title = 'Page Not Found - Amazing Recipes';
+        document.title = 'Page not found — Amazing Recipes';
       }
 
+      applySeo(path);
       window.scrollTo(0, 0);
 
       const mainHeading = mainContent.querySelector('h1');
@@ -4512,7 +4637,7 @@
     }
 
     document.getElementById('footer-levels').innerHTML = [7, 6, 5, 4, 3, 2]
-      .map(level => `<li><a href="#/texture-guide">Level ${level} &mdash; ${IDDSI_LEVELS[level].name}</a></li>`)
+      .map(level => `<li><a href="/texture-guide">Level ${level} &mdash; ${IDDSI_LEVELS[level].name}</a></li>`)
       .join('');
 
     const navToggle = document.getElementById('nav-toggle');
@@ -4533,6 +4658,15 @@
       if (e.key === 'Escape' && !navMenu.hidden) { setMenu(false); navToggle.focus(); }
     });
 
+    /* Same-origin links are handled in the page; anything else behaves normally. */
+    document.addEventListener('click', e => {
+      const a = e.target.closest && e.target.closest('a[href^="/"]');
+      if (!a || a.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+      e.preventDefault();
+      navigateTo(a.getAttribute('href'));
+    });
+
+    window.addEventListener('popstate', router);
     window.addEventListener('hashchange', router);
     /* load waits for every image on the page. Nothing is rendered until the
        router runs, so booting on load meant a blank page until the slowest
