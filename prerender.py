@@ -215,7 +215,9 @@ def recipe_jsonld(recipe, levels):
     for key, value in (('prepTime', iso_duration(recipe.get('prepTime'))),
                        ('cookTime', iso_duration(recipe.get('cookTime'))),
                        ('totalTime', minutes_to_iso(total)),
-                       ('datePublished', recipe.get('datePublished'))):
+                       ('datePublished', recipe.get('datePublished')),
+                       # Set only on dishes that really belong to one cuisine.
+                       ('recipeCuisine', recipe.get('cuisine'))):
         if value:
             data[key] = value
     nutrition = recipe.get('nutrition')

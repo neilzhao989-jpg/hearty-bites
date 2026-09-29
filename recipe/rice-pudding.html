@@ -2009,6 +2009,7 @@
       {
         id: 5,
         slug: "chicken-golden-soup",
+        cuisine: "Italian",
         datePublished: "2026-04-12",
         title: "Chicken Golden Soup with Pastina",
         description: "A soothing, golden-hued chicken soup with tiny star-shaped pastina pasta, designed to be gentle and nourishing.",
@@ -2290,6 +2291,7 @@
       {
         id: 11,
         slug: "chinese-steamed-egg",
+        cuisine: "Chinese",
         datePublished: "2026-07-30",
         title: "Chinese Steamed Egg",
         description: "Silky, savory steamed egg custard with a glossy soy-sesame sauce—so smooth it barely needs a spoon, let alone chewing.",
@@ -2339,6 +2341,7 @@
       {
         id: 12,
         slug: "joel-robuchon-mashed-potatoes",
+        cuisine: "French",
         datePublished: "2026-08-28",
         title: "Joël Robuchon Mashed Potatoes",
         description: "The legendary ultra-silky mashed potatoes, passed through a fine sieve until they are pure velvet — richer and smoother than a standard mash.",
@@ -2393,6 +2396,7 @@
       {
         id: 13,
         slug: "korean-soft-tofu-soup",
+        cuisine: "Korean",
         datePublished: "2026-08-28",
         title: "Korean Soft Tofu Soup (Sundubu-jjigae)",
         description: "A warming, spicy Korean stew built around silky soft tofu, simmered with soft vegetables and a gently set egg — customizable and endlessly comforting.",
@@ -2449,6 +2453,7 @@
       {
         id: 14,
         slug: "chinese-egg-drop-soup",
+        cuisine: "Chinese",
         datePublished: "2026-08-28",
         title: "Chinese Egg Drop Soup",
         description: "A gentle, golden broth threaded with soft ribbons of egg — built from a slow-simmered homemade chicken and mushroom stock.",
@@ -2503,6 +2508,7 @@
       {
         id: 15,
         slug: "kimchi-ramen",
+        cuisine: "Korean",
         datePublished: "2026-08-28",
         title: "Kimchi Ramen",
         description: "A quick, fiery bowl of ramen noodles in a kimchi-spiked broth, finished with a soft-boiled egg and scallions.",
@@ -2554,6 +2560,7 @@
       {
         id: 16,
         slug: "congee",
+        cuisine: "Chinese",
         datePublished: "2026-08-28",
         title: "Congee (Rice Porridge)",
         description: "A blank-canvas rice porridge, simmered low and slow until thick, creamy, and silky — one of the gentlest textures in this whole collection.",
@@ -2604,6 +2611,7 @@
       {
         id: 17,
         slug: "classic-meatloaf",
+        cuisine: "American",
         datePublished: "2026-08-28",
         title: "Classic Meatloaf",
         description: "A moist, tender meatloaf glazed with a tangy ketchup topping — comforting, familiar, and easy to soften further for gentler diets.",
@@ -2664,6 +2672,7 @@
       {
         id: 18,
         slug: "stovetop-mac-and-cheese",
+        cuisine: "American",
         datePublished: "2026-08-28",
         title: "Stovetop Mac and Cheese",
         description: "A rich, creamy stovetop mac and cheese made with an egg-and-cheddar sauce — no baking required.",
@@ -2713,6 +2722,7 @@
       {
         id: 19,
         slug: "mapo-tofu",
+        cuisine: "Chinese",
         datePublished: "2026-08-28",
         title: "Mapo Tofu",
         description: "Silky cubes of soft tofu simmered in a savory, saucy mixture with finely minced pork — a quick weeknight classic that's naturally gentle on the mouth.",
@@ -2761,6 +2771,7 @@
       {
         id: 20,
         slug: "chinese-silken-tofu",
+        cuisine: "Chinese",
         datePublished: "2026-08-28",
         title: "Chinese Silken Tofu with Warm Soy Sauce",
         description: "Chilled silken tofu topped with a fragrant warm soy, garlic, and scallion sauce — barely needs a spoon, let alone any chewing.",
@@ -2859,6 +2870,7 @@
       {
         id: 22,
         slug: "fluffy-pancakes",
+        cuisine: "American",
         datePublished: "2026-08-28",
         title: "Fluffy Pancakes",
         description: "Classic soft, fluffy pancakes made from a simple from-scratch batter — a gentle breakfast that's easy to soak in extra syrup for moisture.",
@@ -2958,6 +2970,7 @@
       {
         id: 24,
         slug: "ground-beef-curry",
+        cuisine: "Japanese",
         datePublished: "2026-08-28",
         title: "Ground Beef Curry",
         description: "A rich, quick Japanese-style curry made with ground beef, potato, and carrot — thickened with curry blocks and a spoonful of dark chocolate for depth.",
@@ -3239,6 +3252,7 @@
       {
         id: 30,
         slug: "chicken-noodle-soup",
+        cuisine: "American",
         datePublished: "2026-08-28",
         title: "Classic Chicken Noodle Soup",
         description: "A from-scratch chicken noodle soup, built on a slow-simmered homemade stock with shredded chicken and tender egg noodles.",
@@ -3435,6 +3449,7 @@
       {
         id: 34,
         slug: "lobster-bisque",
+        cuisine: "French",
         datePublished: "2026-09-27",
         title: "Lobster Bisque",
         description: "A classic creamy shellfish soup, built on a homemade lobster stock and blended until there is nothing left to chew.",
@@ -4613,6 +4628,9 @@
         totalTime: minutesToIso(durationMinutes(recipe.prepTime) + durationMinutes(recipe.cookTime)),
         datePublished: recipe.datePublished,
         recipeCategory: 'Texture-modified',
+        /* Only the dishes that genuinely belong to one cuisine carry this.
+           A wrong value is worse than none, so most recipes leave it unset. */
+        recipeCuisine: recipe.cuisine,
         keywords: [recipe.title, 'dysphagia', 'IDDSI Level ' + recipe.dysphagia, level.name,
                    'texture modified diet', 'soft food'].join(', '),
         recipeIngredient: recipe.ingredients.map(i => `${i.amount} ${i.item}`.trim()),
