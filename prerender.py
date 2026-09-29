@@ -250,9 +250,13 @@ def seo_for(path, recipes, levels):
         recipe = next((r for r in recipes if r['slug'] == slug), None)
         if recipe:
             level = levels[str(recipe['dysphagia'])]
-            title = '%s — IDDSI Level %s, %s' % (recipe['title'], recipe['dysphagia'], level['name'])
-            desc = '%s Graded IDDSI Level %s (%s). Serves %s.' % (
-                recipe['description'], recipe['dysphagia'], level['name'], recipe['servings'])
+            # Dish, then plain-language texture, then the clinical grade.
+            title = '%s — %s (IDDSI Level %s)' % (
+                recipe['title'], level['plain'], recipe['dysphagia'])
+            desc = ('%s A dysphagia-friendly recipe for anyone with swallowing difficulty '
+                    'or on a soft diet — graded IDDSI Level %s, %s. Serves %s.' % (
+                        recipe['description'], recipe['dysphagia'], level['name'],
+                        recipe['servings']))
             if recipe.get('image'):
                 image = '%s%s-1200.jpg' % (SITE, recipe['image'])
             jsonld = recipe_jsonld(recipe, levels)
@@ -301,6 +305,15 @@ def head_block(seo):
 # The app replaces all of this the moment it runs, so it only has to carry the
 # same information, not the same markup. Real headings and lists, no widgets.
 
+def texture_summary(recipe, level):
+    """Mirror of textureSummary() in index.html. Keep the two in step."""
+    return ('Suitable for anyone who finds food hard to chew or swallow. '
+            'Graded IDDSI Level %s (%s) &mdash; %s &mdash; the texture standard '
+            'used in dysphagia care and soft diets.'
+            % (recipe['dysphagia'], html.escape(level['name']),
+               html.escape(level['plain'].lower())))
+
+
 def recipe_body(recipe, levels, mixed):
     e = html.escape
     level = levels[str(recipe['dysphagia'])]
@@ -329,6 +342,7 @@ def recipe_body(recipe, levels, mixed):
     out.append('<b>Texture level</b>')
     out.append('<h2>%s &middot; %s</h2>' % (recipe['dysphagia'], e(level['name'])))
     out.append('<p>%s</p>' % e(level['desc']))
+    out.append('<p>%s</p>' % texture_summary(recipe, level))
     out.append('<a href="/texture-guide">See all texture levels</a>')
     out.append('</div>')
 

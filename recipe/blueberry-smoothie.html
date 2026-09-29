@@ -4,19 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- SEO:START - written by prerender.py. Do not hand-edit; regenerate. -->
-  <meta name="description" content="Blueberries blended with yogurt and milk, strained free of skins, and thickened to a mildly thick drink. Graded IDDSI Level 2 (Mildly Thick). Serves 2.">
+  <meta name="description" content="Blueberries blended with yogurt and milk, strained free of skins, and thickened to a mildly thick drink. A dysphagia-friendly recipe for anyone with swallowing difficulty or on a soft diet — graded IDDSI Level 2, Mildly Thick. Serves 2.">
   <link rel="canonical" href="https://amazingrecipes.org/recipe/blueberry-smoothie">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Amazing Recipes">
   <meta property="og:url" content="https://amazingrecipes.org/recipe/blueberry-smoothie">
-  <meta property="og:title" content="Blueberry Smoothie — IDDSI Level 2, Mildly Thick">
-  <meta property="og:description" content="Blueberries blended with yogurt and milk, strained free of skins, and thickened to a mildly thick drink. Graded IDDSI Level 2 (Mildly Thick). Serves 2.">
+  <meta property="og:title" content="Blueberry Smoothie — Thickened Drink (IDDSI Level 2)">
+  <meta property="og:description" content="Blueberries blended with yogurt and milk, strained free of skins, and thickened to a mildly thick drink. A dysphagia-friendly recipe for anyone with swallowing difficulty or on a soft diet — graded IDDSI Level 2, Mildly Thick. Serves 2.">
   <meta property="og:image" content="https://amazingrecipes.org/assets/blueberry-smoothie-1200.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Blueberry Smoothie — IDDSI Level 2, Mildly Thick">
-  <meta name="twitter:description" content="Blueberries blended with yogurt and milk, strained free of skins, and thickened to a mildly thick drink. Graded IDDSI Level 2 (Mildly Thick). Serves 2.">
+  <meta name="twitter:title" content="Blueberry Smoothie — Thickened Drink (IDDSI Level 2)">
+  <meta name="twitter:description" content="Blueberries blended with yogurt and milk, strained free of skins, and thickened to a mildly thick drink. A dysphagia-friendly recipe for anyone with swallowing difficulty or on a soft diet — graded IDDSI Level 2, Mildly Thick. Serves 2.">
   <meta name="twitter:image" content="https://amazingrecipes.org/assets/blueberry-smoothie-1200.jpg">
-  <title>Blueberry Smoothie — IDDSI Level 2, Mildly Thick</title>
+  <title>Blueberry Smoothie — Thickened Drink (IDDSI Level 2)</title>
   <script type="application/ld+json" id="recipe-jsonld">{"@context": "https://schema.org", "@type": "Recipe", "name": "Blueberry Smoothie", "description": "Blueberries blended with yogurt and milk, strained free of skins, and thickened to a mildly thick drink.", "recipeYield": "2 servings", "recipeCategory": "Texture-modified", "keywords": "Blueberry Smoothie, dysphagia, IDDSI Level 2, Mildly Thick, texture modified diet, soft food", "recipeIngredient": ["1/2 cup Blueberries", "1/2 cup Plain yogurt", "1/2 cup Milk", "1 tsp Sugar", "As directed Commercial thickener"], "recipeInstructions": [{"@type": "HowToStep", "position": 1, "text": "Blend the blueberries, yogurt, milk and sugar until smooth."}, {"@type": "HowToStep", "position": 2, "text": "Strain through a fine sieve to remove the skins."}, {"@type": "HowToStep", "position": 3, "text": "Add thickener only if needed to reach the prescribed Level 2, following the product's directions."}, {"@type": "HowToStep", "position": 4, "text": "Let it rest for the stated time, stir, and test before serving."}], "author": {"@type": "Organization", "name": "Amazing Recipes", "url": "https://amazingrecipes.org"}, "image": ["https://amazingrecipes.org/assets/blueberry-smoothie-1200.jpg"], "prepTime": "PT5M", "totalTime": "PT5M", "datePublished": "2026-09-27", "nutrition": {"@type": "NutritionInformation", "calories": "~110 kcal", "proteinContent": "~5 g", "fatContent": "~3 g", "carbohydrateContent": "~16 g", "sodiumContent": "~65 mg"}}</script>
   <!-- SEO:END -->
   <link rel="icon" href="/assets/favicon.ico" sizes="any">
@@ -1198,6 +1198,9 @@
       text-transform: uppercase; margin: 8px 0 9px;
     }
     .texture-tile p { margin: 0; font-size: 0.9rem; line-height: 1.55; }
+    /* The plain-language summary sits under the level description. Space it
+       and step it back so the two read as two notes, not one run-on block. */
+    .texture-tile p + p { margin-top: 10px; font-size: 0.84rem; opacity: .88; }
     .texture-tile a { color: var(--white); text-decoration: underline; font-size: 0.84rem; margin-top: 11px; display: inline-block; }
 
     .tip-tile {
@@ -1876,6 +1879,7 @@
       <b>Texture level</b>
       <h2>2 &middot; Mildly Thick</h2>
       <p>Flows off a spoon but noticeably slower than water. Sipped from a cup or through a wide straw, and it leaves a light coating as it moves. A drink level rather than a food one.</p>
+      <p>Suitable for anyone who finds food hard to chew or swallow. Graded IDDSI Level 2 (Mildly Thick) &mdash; thickened drink &mdash; the texture standard used in dysphagia care and soft diets.</p>
       <a href="/texture-guide">See all texture levels</a>
       </div>
       </div>
@@ -3705,36 +3709,42 @@
     const IDDSI_LEVELS = {
       2: {
         name: 'Mildly Thick',
+        plain: 'Thickened Drink',
         color: '#E0699F',
         deep: '#8E3560',
         desc: 'Flows off a spoon but noticeably slower than water. Sipped from a cup or through a wide straw, and it leaves a light coating as it moves. A drink level rather than a food one.'
       },
       3: {
         name: 'Liquidised',
+        plain: 'Smooth & Drinkable',
         color: '#F2C230',
         deep: '#8A6A12',
         desc: 'Pours smoothly like a thick drinkable soup. No lumps, no bits, and no chewing at all. Can be taken from a cup or spoon, and should not hold its shape on the plate.'
       },
       4: {
         name: 'Pureed',
+        plain: 'Smooth Purée, No Chewing',
         color: '#5FAE55',
         deep: '#2E6B34',
         desc: 'Completely smooth and thick enough to hold its shape on a spoon, but soft enough to need no chewing. Should never be sticky, lumpy, or stringy.'
       },
       5: {
         name: 'Minced & Moist',
+        plain: 'Soft, Minced & Easy to Swallow',
         color: '#F0902D',
         deep: '#8B4E13',
         desc: 'Soft, moist, and finely minced into very small pieces that mash easily with light pressure from a fork. Any sauce or gravy should cling rather than separate.'
       },
       6: {
         name: 'Soft & Bite-Sized',
+        plain: 'Soft & Bite-Sized, Easy to Chew',
         color: '#1F7FBE',
         deep: '#155A88',
         desc: 'Tender, moist bite-sized pieces that break apart under a fork without needing a knife. Some chewing is required, but nothing should be tough, fibrous, or dry.'
       },
       7: {
         name: 'Easy to Chew',
+        plain: 'Easy to Chew',
         color: '#1a1a1a',
         deep: '#1a1a1a',
         desc: 'Everyday soft foods at normal portion size. Normal chewing ability is needed, but hard, crunchy, stringy, and dry textures are avoided.'
@@ -3951,6 +3961,18 @@
       `;
     }
 
+    /* One plain-English sentence saying who the dish is for. The page was
+       written entirely in IDDSI vocabulary, which is what a clinician
+       searches; the people cooking for themselves type "hard to swallow".
+       Both belong on the page.                                           */
+    function textureSummary(recipe) {
+      const level = IDDSI_LEVELS[recipe.dysphagia];
+      return `Suitable for anyone who finds food hard to chew or swallow. `
+           + `Graded IDDSI Level ${recipe.dysphagia} (${level.name}) &mdash; `
+           + `${level.plain.toLowerCase()} &mdash; the texture standard used in `
+           + `dysphagia care and soft diets.`;
+    }
+
     function renderRecipePage(slug) {
       const recipe = recipes.find(r => r.slug === slug);
       if (!recipe) {
@@ -3993,6 +4015,7 @@
               <b>Texture level</b>
               <h2>${recipe.dysphagia} &middot; ${IDDSI_LEVELS[recipe.dysphagia].name}</h2>
               <p>${IDDSI_LEVELS[recipe.dysphagia].desc}</p>
+              <p>${textureSummary(recipe)}</p>
               <a href="/texture-guide">See all texture levels</a>
             </div>
 
@@ -4656,8 +4679,11 @@
         const recipe = recipes.find(r => r.slug === path.replace('/recipe/', ''));
         if (recipe) {
           const level = IDDSI_LEVELS[recipe.dysphagia];
-          title = `${recipe.title} — IDDSI Level ${recipe.dysphagia}, ${level.name}`;
-          desc = `${recipe.description} Graded IDDSI Level ${recipe.dysphagia} (${level.name}). Serves ${recipe.servings}.`;
+          /* "IDDSI Level 4" is what a speech therapist searches for. Everyone
+             else types "soft food for swallowing problems", so the title has
+             to carry both: dish, plain-language texture, then the grade. */
+          title = `${recipe.title} — ${level.plain} (IDDSI Level ${recipe.dysphagia})`;
+          desc = `${recipe.description} A dysphagia-friendly recipe for anyone with swallowing difficulty or on a soft diet — graded IDDSI Level ${recipe.dysphagia}, ${level.name}. Serves ${recipe.servings}.`;
           if (recipe.image) image = `${SITE}${recipe.image}-1200.jpg`;
           jsonld = recipeJsonLd(recipe);
         }
