@@ -1923,6 +1923,7 @@
         </ul>
         <div class="lang-switch" role="group" aria-label="Language">
           <button type="button" class="lang-btn is-active" data-lang="en" aria-pressed="true" onclick="setLang('en')">EN</button>
+          <button type="button" class="lang-btn" data-lang="fr" aria-pressed="false" onclick="setLang('fr')">FR</button>
           <button type="button" class="lang-btn" data-lang="zh" aria-pressed="false" onclick="setLang('zh')">中文</button>
         </div>
       </nav>
@@ -3876,8 +3877,6 @@
       'summary': 'Suitable for anyone who finds food hard to chew or swallow. Graded IDDSI Level {n} ({name}) — {plain} — the texture standard used in dysphagia care and soft diets.'
     };
 
-    /* 'fr' stays supported by the machinery and its UI strings are written;
-       it is absent from the switcher only until its recipes are translated. */
     const LANGS = ['en', 'fr', 'zh'];
     const LANG_LABEL = { en: 'EN', fr: 'FR', zh: '中文' };
     const HTML_LANG = { en: 'en', fr: 'fr', zh: 'zh-Hans' };

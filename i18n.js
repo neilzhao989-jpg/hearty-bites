@@ -110,8 +110,1992 @@ window.AR_I18N = {
       7: { name: 'Facile à mâcher', plain: 'Facile à mâcher',
            desc: 'Aliments ordinaires de texture tendre. Rien de dur, de croquant ni de filandreux, et aucun morceau difficile à mâcher.' }
     },
+    mixed: {
+      'chicken-noodle-soup': 'Mixez toute la soupe, ou épaississez le bouillon jusqu’à ce qu’il ne se sépare plus des nouilles et du poulet.',
+      'chinese-egg-drop-soup': 'Les rubans d’œuf flottent dans un bouillon fluide. Mixez le tout, ou épaississez le bouillon pour que les deux se déplacent ensemble.',
+      'korean-soft-tofu-soup': 'Le tofu et les légumes baignent dans un bouillon fluide. Mixez le tout, ou épaississez le bouillon avant de servir.',
+      'lamb-stew-tomatoes': 'Réduisez ou épaississez la sauce jusqu’à ce qu’elle adhère à la viande et aux légumes au lieu de former une flaque autour.',
+      'ground-beef-curry': 'Épaississez la sauce jusqu’à ce qu’elle enrobe la viande hachée et la pomme de terre au lieu de se séparer.',
+      'kimchi-ramen': 'Des nouilles dans un bouillon fluide. En dessous du niveau 7, mixez la soupe jusqu’à ce qu’elle soit lisse, ou écartez cette recette.',
+      'watermelon-sorbet': 'Le sorbet fond en un liquide fluide dans la bouche. Toute personne sous boissons épaissies ne doit pas en consommer, quel que soit le niveau attribué au solide glacé.'
+    },
     /* RECIPES:fr */
-    recipes: {}
+    recipes: {
+      "apple-sauce": {
+              "title": "Compote de pommes maison",
+              "description": "Une compote simple et délicatement épicée, cuite à partir de pommes fraîches — à rendre parfaitement lisse ou à garder légèrement texturée.",
+              "ingredients": [
+                      {
+                              "amount": "1 moyenne",
+                              "item": "Pomme",
+                              "note": "155 à 170 g"
+                      },
+                      {
+                              "amount": "3 c. à soupe",
+                              "item": "Eau"
+                      },
+                      {
+                              "amount": "1/2 c. à café",
+                              "item": "Sucre"
+                      },
+                      {
+                              "amount": "1/8 c. à café",
+                              "item": "Cannelle moulue"
+                      }
+              ],
+              "instructions": [
+                      "Pelez la pomme, retirez le cœur et coupez-la en morceaux.",
+                      "Dans une casserole d’un litre, réunissez la pomme, l’eau, le sucre et la cannelle.",
+                      "Portez à frémissement à feu moyen. Baissez à feu doux, couvrez et laissez cuire 20 à 25 minutes, en remuant une ou deux fois pour éviter que cela n’attache. La pomme est prête lorsqu’elle est tendre et s’écrase entièrement à la fourchette.",
+                      "Retirez du feu. Pour une compote avec morceaux, écrasez à la fourchette ou au presse-purée. Pour une compote lisse, utilisez un mixeur plongeant ou versez dans un blender.",
+                      "Si la compote est trop liquide, poursuivez la cuisson à découvert et à feu doux jusqu’à ce qu’elle épaississe."
+              ],
+              "servingTips": [
+                      "Préparez toujours la version lisse — mixée au mixeur plongeant jusqu’à disparition de tout morceau — pour toute personne suivant un régime à texture modifiée. La version avec morceaux ne convient pas en dessous du niveau 6.",
+                      "Pelez soigneusement la pomme ; les morceaux de peau restants sont coriaces et ne se désagrègent pas en si peu de cuisson.",
+                      "Cette compote est naturellement souple une fois cuite et se mixe sans peine, ce qui en fait l’un des desserts ou accompagnements de niveau 4 les plus simples du site.",
+                      "La compote sert souvent à faire passer plus facilement d’autres aliments ou des médicaments — demandez à un pharmacien ou à l’équipe soignante avant de la mélanger à un traitement."
+              ],
+              "dietaryNotes": "Naturellement sans gluten, sans produits laitiers et végétalienne. Les valeurs ci-dessus sont estimées à partir des ingrédients, la recette source n’en fournissant pas.",
+              "nutrition": {
+                      "basis": "Estimé à partir des ingrédients indiqués, pour 2 portions (une pomme moyenne au total). Il s’agit d’une estimation, non d’une analyse en laboratoire."
+              }
+      },
+      "baked-cinnamon-apples": {
+              "title": "Pommes au four à la cannelle",
+              "description": "Des pommes au four tièdes et fondantes, garnies d’un cœur de sucre et de cannelle — naturellement tendres, parfaites pour un dessert réconfortant et facile à manger.",
+              "ingredients": [
+                      {
+                              "amount": "4 grosses",
+                              "item": "Pommes fermes et sucrées",
+                              "note": "Honeycrisp, Fuji ou Gala conviennent le mieux"
+                      },
+                      {
+                              "amount": "4 c. à soupe",
+                              "item": "Cassonade blonde"
+                      },
+                      {
+                              "amount": "1 c. à café",
+                              "item": "Cannelle moulue"
+                      },
+                      {
+                              "amount": "1/4 c. à café",
+                              "item": "Noix de muscade moulue"
+                      },
+                      {
+                              "amount": "2 c. à soupe",
+                              "item": "Beurre doux, ramolli"
+                      },
+                      {
+                              "amount": "1/4 tasse",
+                              "item": "Cidre ou jus de pomme"
+                      }
+              ],
+              "instructions": [
+                      "Préchauffez le four à 190 °C. Beurrez légèrement un plat de 23 × 33 cm.",
+                      "Évidez les pommes en laissant environ 1,2 cm de chair au fond pour retenir la garniture. Utilisez une cuillère parisienne ou une cuillère à café pour retirer le cœur et creuser un puits.",
+                      "Dans un petit bol, mélangez la cassonade, la cannelle, la muscade et le beurre ramolli jusqu’à obtenir une texture sableuse.",
+                      "Garnissez chaque pomme du mélange en le tassant doucement.",
+                      "Disposez les pommes dans le plat. Versez le cidre autour des pommes.",
+                      "Couvrez hermétiquement de papier aluminium et enfournez 35 minutes.",
+                      "Retirez l’aluminium et poursuivez la cuisson 10 à 15 minutes, jusqu’à ce que les pommes soient parfaitement tendres à la pointe d’une fourchette. La chair doit être translucide et céder sous la pression.",
+                      "Laissez tiédir 10 minutes avant de servir. Les pommes doivent être assez tendres pour se manger à la cuillère, sans demander de mastication ou presque.",
+                      "Servez arrosées du jus de cuisson, avec une cuillerée de crème fouettée ou de glace vanille si vous le souhaitez."
+              ],
+              "servingTips": [
+                      "Les pommes sont cuites lorsque la fourchette entre sans résistance et que la peau se sépare facilement de la chair.",
+                      "Pour les régimes mixés, prélevez la chair cuite et écrasez-la ou mixez-la jusqu’à ce qu’elle soit lisse.",
+                      "Choisissez des pommes qui tiennent à la cuisson — évitez les variétés molles qui se transforment en compote.",
+                      "Vérifiez à la cuillère avant de servir : la pomme doit se prélever en morceaux souples et faciles à gérer.",
+                      "Les noix concassées dont on garnit souvent ce dessert ont été volontairement laissées de côté. Des éclats durs et croquants dans un plat par ailleurs souple constituent un risque de textures mélangées : les deux demandent des degrés de mastication différents, et cette association compte parmi les plus difficiles à gérer en sécurité."
+              ],
+              "dietaryNotes": "Sans gluten, avec une option sans produits laitiers (utilisez un beurre végétal). Sans fruits à coque tel qu’indiqué — voir les conseils de service pour comprendre pourquoi la garniture habituelle est écartée.",
+              "nutrition": {
+                      "basis": "Estimé à partir des ingrédients indiqués, pour 4 portions (une pomme farcie chacune). Il s’agit d’une estimation, non d’une analyse en laboratoire."
+              }
+      },
+      "banana-custard": {
+              "title": "Crème dessert à la banane",
+              "description": "Une banane bien mûre mixée dans une crème vanille lisse, puis tamisée jusqu’à ce qu’il n’y ait plus rien à mâcher. Trois ingrédients, aucune cuisson.",
+              "ingredients": [
+                      {
+                              "amount": "1/2 moyenne",
+                              "item": "Banane bien mûre",
+                              "note": "60 g — plus elle est mûre, mieux c’est"
+                      },
+                      {
+                              "amount": "3/4 tasse",
+                              "item": "Crème dessert vanille lisse, prête à l’emploi",
+                              "note": "180 g"
+                      },
+                      {
+                              "amount": "1/4 c. à café",
+                              "item": "Extrait de vanille"
+                      }
+              ],
+              "instructions": [
+                      "Écrasez soigneusement la banane.",
+                      "Mixez la banane, la crème dessert et la vanille jusqu’à obtenir un mélange parfaitement lisse.",
+                      "Passez au tamis fin s’il reste des fibres.",
+                      "Réfrigérez, ou servez à la température prescrite, et vérifiez la texture avant de passer à table."
+              ],
+              "servingTips": [
+                      "La photographie montre le dessert garni de rondelles de banane et de copeaux de chocolat. Ni l’un ni l’autre n’a sa place au niveau 3, où rien ne doit demander de mastication. Ce qui est classé ici, c’est la crème mixée seule.",
+                      "La banane est filandreuse, et le mixage seul n’en vient pas toujours à bout. L’étape 3 est ce qui fait la différence entre « niveau 3 » et « presque niveau 3 » : tamisez même si le mélange paraît lisse.",
+                      "Les crèmes du commerce varient beaucoup d’une marque à l’autre. Le niveau 3 doit encore couler de la cuillère : vérifiez la vôtre et détendez-la avec un peu de lait si elle se tient en dôme.",
+                      "Elle raffermit au réfrigérateur. Si vous la refroidissez, revérifiez la consistance une fois froide plutôt que tiède."
+              ],
+              "dietaryNotes": "Contient des produits laitiers et de l’œuf, selon la crème utilisée. Vérifiez la présence de gluten si cela compte : beaucoup de crèmes prêtes à l’emploi sont épaissies à l’amidon de blé.",
+              "nutrition": {
+                      "basis": "Estimé à partir des ingrédients indiqués, pour 2 portions, avec une crème vanille du commerce standard. Le document source ne fournissait aucune valeur nutritionnelle : il s’agit donc d’une estimation, non d’une analyse en laboratoire."
+              }
+      },
+      "banana-smoothie": {
+              "title": "Smoothie banane-orange",
+              "description": "Un smoothie simple et crémeux à la banane et à l’orange, avec du yaourt grec — lisse, versable et naturellement sucré.",
+              "ingredients": [
+                      {
+                              "amount": "1",
+                              "item": "Banane"
+                      },
+                      {
+                              "amount": "1/2",
+                              "item": "Orange, pelée et coupée en quartiers"
+                      },
+                      {
+                              "amount": "1/3 tasse",
+                              "item": "Yaourt grec"
+                      },
+                      {
+                              "amount": "1/4 tasse",
+                              "item": "Eau ou lait",
+                              "note": "Laitier ou végétal"
+                      },
+                      {
+                              "amount": "1-2 c. à café",
+                              "item": "Miel ou sirop d’érable",
+                              "note": "Facultatif"
+                      }
+              ],
+              "instructions": [
+                      "Coupez grossièrement la banane et les quartiers d’orange, puis mettez-les dans un blender avec le yaourt et l’eau (ou le lait).",
+                      "Mixez jusqu’à obtenir une texture crémeuse et lisse. Goûtez, puis rectifiez avec du miel si besoin."
+              ],
+              "servingTips": [
+                      "Mixez un peu plus longtemps que nécessaire : mal mixés, les quartiers d’orange laissent de fines fibres filandreuses, le principal risque dans une boisson par ailleurs très lisse.",
+                      "Ce smoothie se verse sans retenir sa forme, ce qui en fait naturellement une texture liquidifiée de niveau 3 une fois mixé.",
+                      "Pour qui a besoin d’une texture plus épaisse tenant à la cuillère plutôt que d’une boisson, ajoutez du yaourt ou un épaississant jusqu’à une consistance de niveau 4.",
+                      "Servez aussitôt après avoir mixé : les smoothies se séparent ou se fluidifient en attendant."
+              ],
+              "dietaryNotes": "Végétarien. Utilisez un yaourt et un lait végétaux pour une version sans produits laitiers.",
+              "nutrition": {
+                      "basis": "Par portion ; la recette en donne 2."
+              }
+      },
+      "blueberry-smoothie": {
+              "title": "Smoothie aux myrtilles",
+              "description": "Des myrtilles mixées avec du yaourt et du lait, filtrées pour retirer les peaux, puis épaissies en boisson légèrement épaisse.",
+              "ingredients": [
+                      {
+                              "amount": "1/2 tasse",
+                              "item": "Myrtilles",
+                              "note": "75 g"
+                      },
+                      {
+                              "amount": "1/2 tasse",
+                              "item": "Yaourt nature",
+                              "note": "120 ml"
+                      },
+                      {
+                              "amount": "1/2 tasse",
+                              "item": "Lait",
+                              "note": "120 ml"
+                      },
+                      {
+                              "amount": "1 c. à café",
+                              "item": "Sucre",
+                              "note": "Facultatif"
+                      },
+                      {
+                              "amount": "Selon les indications",
+                              "item": "Épaississant du commerce",
+                              "note": "Uniquement si nécessaire pour atteindre le niveau 2 prescrit"
+                      }
+              ],
+              "instructions": [
+                      "Mixez les myrtilles, le yaourt, le lait et le sucre jusqu’à obtenir un mélange lisse.",
+                      "Passez au tamis fin pour retirer les peaux.",
+                      "N’ajoutez de l’épaississant que si c’est nécessaire pour atteindre le niveau 2 prescrit, en suivant les indications du produit.",
+                      "Laissez reposer le temps indiqué, remuez, puis vérifiez avant de servir."
+              ],
+              "servingTips": [
+                      "Le niveau 2 désigne l’épaisseur d’une boisson, pas la texture d’un aliment. La quantité d’épaississant dépend du produit utilisé et du niveau réellement prescrit : suivez les indications du fabricant plutôt qu’un nombre de cuillères fixe.",
+                      "Laissez reposer le temps indiqué par l’épaississant avant de juger. La plupart continuent d’épaissir pendant plusieurs minutes, et une boisson qui paraît juste après le mélange peut être trop épaisse une fois à table.",
+                      "Vérifiez la boisson finie avec le test d’écoulement IDDSI, à la température à laquelle elle sera servie. Réchauffer ou refroidir modifie son écoulement.",
+                      "Filtrez avant d’épaissir. Les pépins, les peaux et les fibres de fruit sont la seule chose qu’un épaississant ne peut pas corriger."
+              ],
+              "dietaryNotes": "Contient des produits laitiers. Naturellement sans gluten. Les peaux de myrtille doivent être filtrées : elles ne se désagrègent pas au mixeur.",
+              "nutrition": {
+                      "basis": "Estimé à partir des ingrédients indiqués, pour 2 portions, sucre facultatif compris. Il s’agit d’une estimation, non d’une analyse en laboratoire."
+              }
+      },
+      "butternut-squash-bisque": {
+              "title": "Velouté de courge butternut",
+              "description": "Un velouté de courge butternut d’une douceur naturelle, parfaitement lisse, enrichi de crème et d’épices chaudes — un bol de pur réconfort.",
+              "ingredients": [
+                      {
+                              "amount": "900 g",
+                              "item": "Courge butternut, pelée et coupée en cubes",
+                              "note": "De la courge prédécoupée convient très bien pour gagner du temps"
+                      },
+                      {
+                              "amount": "1 moyen",
+                              "item": "Oignon, en dés"
+                      },
+                      {
+                              "amount": "2 gousses",
+                              "item": "Ail, haché"
+                      },
+                      {
+                              "amount": "4 tasses",
+                              "item": "Bouillon de volaille ou de légumes pauvre en sel"
+                      },
+                      {
+                              "amount": "1/2 tasse",
+                              "item": "Crème entière",
+                              "note": "Ou du lait de coco entier pour une version sans produits laitiers"
+                      },
+                      {
+                              "amount": "1/4 c. à café",
+                              "item": "Noix de muscade moulue"
+                      },
+                      {
+                              "amount": "1/4 c. à café",
+                              "item": "Cannelle moulue"
+                      },
+                      {
+                              "amount": "1/4 c. à café",
+                              "item": "Poivre blanc"
+                      },
+                      {
+                              "amount": "2 c. à soupe",
+                              "item": "Beurre"
+                      },
+                      {
+                              "amount": "1 c. à soupe",
+                              "item": "Sirop d’érable",
+                              "note": "Facultatif, pour un peu plus de douceur"
+                      }
+              ],
+              "instructions": [
+                      "Faites fondre le beurre dans une grande casserole à feu moyen. Ajoutez l’oignon et l’ail et faites cuire environ 5 minutes, jusqu’à ce qu’ils soient tendres et parfumés.",
+                      "Ajoutez la courge en cubes et remuez pour bien l’enrober de beurre.",
+                      "Versez le bouillon et portez à ébullition. Baissez à feu doux et laissez mijoter à couvert 25 à 30 minutes, jusqu’à ce que la courge soit très tendre et se perce sans effort à la fourchette.",
+                      "Retirez du feu. Mixez au mixeur plongeant jusqu’à obtenir une texture parfaitement lisse et soyeuse. Vous pouvez aussi mixer par fournées au blender, en faisant attention au liquide chaud.",
+                      "Remettez le velouté dans la casserole à feu doux. Incorporez la crème, la muscade, la cannelle, le poivre blanc et le sirop d’érable le cas échéant.",
+                      "Réchauffez doucement en remuant souvent, jusqu’à ce que le velouté soit chaud. Ne le laissez pas bouillir après l’ajout de la crème.",
+                      "Goûtez et rectifiez l’assaisonnement. Le velouté doit être parfaitement lisse, sans le moindre grumeau. Au besoin, mixez de nouveau pour une onctuosité absolue.",
+                      "Servez dans des bols chauds avec un filet de crème en spirale. Sa texture lisse en fait un plat facile en cas de difficultés de déglutition."
+              ],
+              "servingTips": [
+                      "Ce velouté est naturellement lisse, mais peut être passé au tamis fin pour plus de finesse encore si nécessaire.",
+                      "Il épaissit en refroidissant. Ajoutez du bouillon au réchauffage pour retrouver la consistance voulue.",
+                      "Servez tiède — trop chaud, le velouté peut brûler et compliquer la déglutition.",
+                      "Congelez-le en portions individuelles pour le réchauffer facilement plus tard."
+              ],
+              "dietaryNotes": "Sans gluten, avec une option naturellement sans produits laitiers. Pauvre en sodium avec un bouillon maison. Texture parfaitement lisse, adaptée aux régimes dysphagie.",
+              "nutrition": {
+                      "basis": "Estimé à partir des ingrédients indiqués, pour 6 portions, sirop d’érable facultatif compris. Il s’agit d’une estimation, non d’une analyse en laboratoire."
+              }
+      },
+      "chicken-golden-soup": {
+              "title": "Soupe dorée au poulet et aux pastina",
+              "description": "Une soupe de poulet apaisante à la teinte dorée, avec de minuscules pâtes pastina en forme d’étoile, pensée pour être douce et nourrissante.",
+              "ingredients": [
+                      {
+                              "amount": "450 g",
+                              "item": "Blancs de poulet désossés et sans peau"
+                      },
+                      {
+                              "amount": "8 tasses",
+                              "item": "Bouillon de volaille pauvre en sel"
+                      },
+                      {
+                              "amount": "1 tasse",
+                              "item": "Pâtes pastina",
+                              "note": "Petites étoiles ou autres petites pâtes à potage"
+                      },
+                      {
+                              "amount": "2 moyennes",
+                              "item": "Carottes, en tout petits dés"
+                      },
+                      {
+                              "amount": "2 branches",
+                              "item": "Céleri, en tout petits dés"
+                      },
+                      {
+                              "amount": "1 petit",
+                              "item": "Oignon, finement émincé"
+                      },
+                      {
+                              "amount": "3 gousses",
+                              "item": "Ail, haché"
+                      },
+                      {
+                              "amount": "1/4 tasse",
+                              "item": "Persil frais, ciselé"
+                      },
+                      {
+                              "amount": "1/4 c. à café",
+                              "item": "Curcuma",
+                              "note": "Pour la couleur dorée et ses vertus anti-inflammatoires"
+                      },
+                      {
+                              "amount": "1 c. à soupe",
+                              "item": "Huile d’olive"
+                      }
+              ],
+              "instructions": [
+                      "Poivrez les blancs de poulet. Dans une grande casserole, portez le bouillon à frémissement à feu moyen.",
+                      "Plongez les blancs entiers dans le bouillon frémissant. Baissez à feu doux, couvrez et laissez cuire 15 à 20 minutes, jusqu’à ce que le poulet soit cuit à cœur et très tendre.",
+                      "Retirez le poulet et laissez-le reposer 10 minutes. Effilochez-le en petits morceaux tendres à l’aide de deux fourchettes. Il doit se défaire sans aucune résistance.",
+                      "Dans la même casserole, faites chauffer l’huile d’olive à feu moyen. Ajoutez l’oignon, les carottes et le céleri. Laissez cuire environ 8 minutes, jusqu’à ce qu’ils soient très tendres.",
+                      "Ajoutez l’ail et le curcuma, et remuez 1 minute jusqu’à ce que le mélange embaume.",
+                      "Versez le bouillon et portez à ébullition. Ajoutez les pastina et faites-les cuire selon les indications du paquet, en général 8 à 10 minutes, jusqu’à ce qu’elles soient très tendres.",
+                      "Remettez le poulet effiloché dans la casserole. Les pâtes doivent être assez tendres pour s’écraser à la fourchette.",
+                      "Incorporez le persil frais. Goûtez et rectifiez l’assaisonnement. La soupe doit être réconfortante et facile à manger.",
+                      "En cas de difficultés de déglutition, la soupe peut être servie telle quelle ou légèrement écrasée pour mieux lier les pâtes et le poulet."
+              ],
+              "servingTips": [
+                      "Faites cuire les pâtes un peu plus longtemps que ne l’indique le paquet, pour une texture plus souple.",
+                      "Taillez les légumes très finement, afin qu’ils ne demandent aucune mastication.",
+                      "Le poulet doit être si tendre qu’il se défait dans le bouillon.",
+                      "Pour les régimes mixés, passez toute la soupe au mixeur jusqu’à ce qu’elle soit parfaitement lisse avant de servir."
+              ],
+              "dietaryNotes": "Option sans gluten possible avec des pâtes de riz, ou en supprimant les pâtes. Version pauvre en sel avec un bouillon maison.",
+              "nutrition": {
+                      "basis": "Estimé à partir des ingrédients indiqués, pour 4 portions, avec le bouillon pauvre en sel prévu par la recette. Il s’agit d’une estimation, non d’une analyse en laboratoire."
+              }
+      },
+      "chicken-noodle-soup": {
+              "title": "Soupe de poulet aux nouilles",
+              "description": "Une soupe de poulet aux nouilles entièrement maison, montée sur un bouillon mijoté longuement, avec du poulet effiloché et des nouilles aux œufs fondantes.",
+              "ingredients": [
+                      {
+                              "amount": "2 c. à soupe",
+                              "item": "Huile végétale"
+                      },
+                      {
+                              "amount": "4 c. à café",
+                              "item": "Sel, en deux fois"
+                      },
+                      {
+                              "amount": "900 g",
+                              "item": "Morceaux de poulet avec os et peau",
+                              "note": "De préférence un mélange de cuisses et de blancs"
+                      },
+                      {
+                              "amount": "8 tasses",
+                              "item": "Bouillon de volaille pauvre en sel"
+                      },
+                      {
+                              "amount": "4 tasses",
+                              "item": "Eau froide"
+                      },
+                      {
+                              "amount": "2",
+                              "item": "Brins de thym"
+                      },
+                      {
+                              "amount": "1",
+                              "item": "Feuille de laurier"
+                      },
+                      {
+                              "amount": "1 petit",
+                              "item": "Oignon jaune, grossièrement haché",
+                              "note": "Environ 1,25 tasse"
+                      },
+                      {
+                              "amount": "2",
+                              "item": "Branches de céleri, émincées à 3 mm",
+                              "note": "Environ 1,25 tasse"
+                      },
+                      {
+                              "amount": "1 grosse",
+                              "item": "Carotte, pelée et émincée à 3 mm",
+                              "note": "Environ 1 tasse"
+                      },
+                      {
+                              "amount": "170 g",
+                              "item": "Larges nouilles aux œufs",
+                              "note": "Cassez-les court avant de les ajouter, ou remplacez-les par une petite forme comme les pastina — les nouilles longues sont le seul vrai danger de ce bol"
+                      },
+                      {
+                              "amount": "1 c. à café",
+                              "item": "Poivre noir du moulin"
+                      },
+                      {
+                              "amount": "1/4 tasse",
+                              "item": "Persil frais, finement ciselé"
+                      }
+              ],
+              "instructions": [
+                      "Dans une grande casserole profonde, faites chauffer l’huile à feu moyen-vif. Salez le poulet sur toutes ses faces avec 2 cuillères à café de sel, puis déposez-le peau vers le bas. Laissez cuire sans y toucher jusqu’à ce qu’il soit bien doré d’un côté, environ 5 minutes. Retournez et laissez dorer l’autre face, environ 5 minutes de plus.",
+                      "Ajoutez le bouillon, l’eau, le thym et le laurier. Portez à tout petit frémissement à feu moyen-vif, puis baissez à feu doux-moyen et laissez cuire jusqu’à ce qu’un thermomètre planté dans la partie la plus épaisse d’un blanc indique 74 °C, soit 20 à 30 minutes.",
+                      "Transférez les blancs sur une planche. Poursuivez la cuisson de la viande brune environ 40 minutes de plus, puis transférez-la également et laissez tout refroidir au moins 10 minutes. Retirez la peau et les os et jetez-les. Effilochez le poulet en morceaux tendres, de la taille d’une bouchée.",
+                      "Pendant ce temps, retirez le thym et le laurier. Ajoutez l’oignon, le céleri et la carotte, et faites cuire à feu doux-moyen en ajustant pour maintenir un tout petit frémissement, en remuant de temps en temps, jusqu’à ce qu’ils soient tout juste tendres, environ 5 minutes. Cassez les nouilles en tronçons courts avant de les ajouter, puis laissez-les cuire en remuant de temps en temps jusqu’à ce qu’elles soient souples — une à deux minutes au-delà de l’al dente, et non à l’al dente.",
+                      "Incorporez le poulet et le poivre, puis salez avec les 2 cuillères à café de sel restantes selon le goût.",
+                      "Répartissez la soupe dans les bols. Parsemez de persil et d’un tour de poivre.",
+                      "À préparer à l’avance : la soupe (sans les nouilles) se prépare jusqu’à 5 jours à l’avance. Conservez-la au réfrigérateur dans un récipient hermétique. Pour servir, portez-la à frémissement dans une grande casserole, ajoutez les nouilles et laissez cuire jusqu’à l’al dente, environ 5 minutes."
+              ],
+              "servingTips": [
+                      "Les nouilles aux œufs, dans leur longueur normale, présentent un vrai risque d’étouffement — coupez-les court aux ciseaux de cuisine directement dans le bol, ou remplacez-les par une petite forme de pâtes comme les pastina, pour toute personne en dessous du niveau 6.",
+                      "Effilochez le poulet très finement et hachez les légumes très petits pour le niveau 5. Le blanc, surtout, doit se défaire sans presque aucune résistance une fois bien cuit.",
+                      "Pour les niveaux 3 à 4, égouttez le bouillon, mixez les légumes et le poulet avec un peu de bouillon jusqu’à obtenir une texture lisse, et supprimez complètement les nouilles.",
+                      "Préparer le bouillon (sans nouilles) jusqu’à 5 jours à l’avance est une excellente façon de cuisiner en quantité, puis de finir chaque bol selon la texture requise."
+              ],
+              "dietaryNotes": "Contient du gluten (nouilles aux œufs) ; remplacez-les par des nouilles sans gluten ou supprimez-les pour une version sans gluten.",
+              "nutrition": {
+                      "basis": "Par portion ; la recette en donne 8.",
+                      "flag": "à 1 140 mg par portion, c’est près de la moitié de la limite quotidienne de sodium d’un adulte. Utilisez un bouillon réellement pauvre en sel ou fait maison, et goûtez avant d’ajouter les 4 cuillères à café de sel complètes."
+              }
+      },
+      "chinese-egg-drop-soup": {
+              "title": "Soupe aux œufs à la chinoise",
+              "description": "Un bouillon doré et doux, traversé de rubans d’œuf soyeux — monté sur un fond de volaille et de champignons mijoté longuement.",
+              "ingredients": [
+                      {
+                              "amount": "1",
+                              "item": "Poulet entier ou morceaux de poulet",
+                              "note": "Pour le bouillon ; le poids n’était pas précisé dans la source"
+                      },
+                      {
+                              "amount": "Selon besoin",
+                              "item": "Eau, pour blanchir",
+                              "note": "Les aromates de blanchiment n’étaient pas précisés dans la source — de l’eau claire suffit"
+                      },
+                      {
+                              "amount": "Une poignée",
+                              "item": "Champignons shiitake séchés",
+                              "note": "Pour le fond de champignons ; faites tremper 15 à 30 minutes. Quantité non précisée dans la source"
+                      },
+                      {
+                              "amount": "Quelques tranches",
+                              "item": "Gingembre frais"
+                      },
+                      {
+                              "amount": "2-3",
+                              "item": "Ciboules",
+                              "note": "Entières, plus un peu de vert émincé pour la finition"
+                      },
+                      {
+                              "amount": "Quelques tranches",
+                              "item": "Radis daikon"
+                      },
+                      {
+                              "amount": "Un trait",
+                              "item": "Vin de Shaoxing"
+                      },
+                      {
+                              "amount": "Selon le goût",
+                              "item": "Sel et poivre blanc",
+                              "note": "Pour la soupe finie"
+                      },
+                      {
+                              "amount": "1/2 tasse",
+                              "item": "Fécule de pomme de terre",
+                              "note": "Délayée dans juste assez d’eau pour former une suspension ; ajoutez-en si besoin"
+                      },
+                      {
+                              "amount": "3-4",
+                              "item": "Œufs, battus",
+                              "note": "Quantité non précisée dans la source — ajustez selon la quantité de rubans souhaitée"
+                      }
+              ],
+              "instructions": [
+                      "Mettez le poulet et tous les ingrédients du blanchiment dans une casserole. Laissez frémir 5 à 10 minutes, puis jetez le liquide et rincez l’écume du poulet.",
+                      "Pour le fond de champignons, faites tremper les shiitake séchés dans l’eau 15 à 30 minutes.",
+                      "Remettez le poulet dans une casserole propre avec le gingembre, les ciboules et le radis. Versez le jus de trempage des champignons, le vin de Shaoxing et assez d’eau pour couvrir. Portez à ébullition, baissez à frémissement doux et laissez cuire 1 à 2 heures, jusqu’à ce que le poulet se défasse entièrement. Filtrez le bouillon une fois prêt.",
+                      "Pour la soupe, transvasez le bouillon filtré dans une casserole propre et assaisonnez de sel et de poivre blanc.",
+                      "Liez le bouillon avec la fécule délayée, en commençant par environ une demi-tasse et en ajoutant si vous le souhaitez plus épais.",
+                      "Versez les œufs battus en un mince filet, en les projetant vers l’avant dans la soupe pour qu’ils prennent en rubans fins et souples.",
+                      "Servez chaud, parsemé de vert de ciboule émincé."
+              ],
+              "servingTips": [
+                      "Une fois filtrée, cette recette est réellement douce pour la plupart des niveaux de texture : le bouillon est lisse et les rubans d’œuf sont naturellement tendres.",
+                      "La recette source ne précisait ni les quantités d’aromates ni le nombre d’œufs — commencez léger, goûtez et ajustez plutôt que de deviner de grandes quantités.",
+                      "Pour le niveau 4 ou en dessous, mixez brièvement la soupe finie afin que les rubans d’œuf et les éclats de champignon soient parfaitement lisses, et supprimez la ciboule de finition.",
+                      "Veillez à bien filtrer le bouillon — de petits éclats d’os ou des fibres de gingembre qui passeraient à travers représentent un vrai danger."
+              ],
+              "dietaryNotes": "Naturellement sans produits laitiers. Contient de l’œuf ; utilisez du tamari à la place de tout assaisonnement à base de soja pour une version sans gluten. Les valeurs ci-dessus sont estimées à partir des ingrédients, la recette source n’en fournissant pas.",
+              "nutrition": {
+                      "basis": "Estimé pour 6 portions de soupe finie. La recette source laissait plusieurs quantités ouvertes : on suppose ici un poulet de 1,4 kg, 4 œufs, un bouillon filtré et la chair servie à part plutôt que dans la soupe. À considérer comme un ordre de grandeur."
+              }
+      },
+      "chinese-silken-tofu": {
+              "title": "Tofu soyeux à la sauce soja tiède",
+              "description": "Du tofu soyeux bien frais, nappé d’une sauce tiède parfumée au soja, à l’ail et à la ciboule — il demande à peine une cuillère, et aucune mastication.",
+              "ingredients": [
+                      {
+                              "amount": "300 g",
+                              "item": "Tofu soyeux",
+                              "note": "Du tofu mou convient aussi"
+                      },
+                      {
+                              "amount": "1,5 c. à soupe",
+                              "item": "Huile végétale",
+                              "note": "Ou toute huile neutre"
+                      },
+                      {
+                              "amount": "2/3 tasse",
+                              "item": "Oignon jaune ou blanc, en petits dés"
+                      },
+                      {
+                              "amount": "1/2 tasse",
+                              "item": "Ciboule, finement ciselée"
+                      },
+                      {
+                              "amount": "3 gousses",
+                              "item": "Ail, haché"
+                      },
+                      {
+                              "amount": "3 c. à soupe",
+                              "item": "Sauce soja claire ou ordinaire"
+                      },
+                      {
+                              "amount": "1 c. à café",
+                              "item": "Sucre blanc"
+                      },
+                      {
+                              "amount": "1 c. à café",
+                              "item": "Huile de sésame grillé"
+                      }
+              ],
+              "instructions": [
+                      "Décollez le film plastique à un coin de la barquette de tofu. En le maintenant en place, retournez la barquette au-dessus de l’évier et laissez s’écouler le liquide. Posez un essuie-tout propre sur l’ouverture, retournez le tout sur une surface plane et laissez le papier absorber l’humidité de surface.",
+                      "Entaillez légèrement chaque coin de la barquette pour laisser entrer l’air. Posez une assiette de service à l’envers sur le tofu, puis retournez délicatement l’assiette et la barquette ensemble pour que le tofu se démoule de lui-même. Réfrigérez jusqu’à ce qu’il soit bien froid.",
+                      "Faites chauffer l’huile végétale dans une petite casserole à feu moyen. Ajoutez l’oignon, la ciboule et l’ail. Faites revenir 2 à 3 minutes, jusqu’à ce que l’oignon devienne tendre et translucide.",
+                      "Baissez à feu doux. Versez la sauce soja, le sucre et l’huile de sésame directement dans la casserole avec l’oignon et l’ail. Mélangez bien et laissez chauffer environ 1 minute. Laissez la sauce tiédir 1 minute.",
+                      "Sortez le tofu du réfrigérateur. Versez la sauce tiède uniformément sur le bloc froid — le tofu ne demande aucune cuisson, il est déjà parfaitement fondant à la sortie de la barquette."
+              ],
+              "servingTips": [
+                      "Le tofu soyeux est l’une des sources de protéines les plus tendres qui soient — il s’écrase à plat sous une pression de cuillère quasi nulle, ce qui en fait une base de niveau 4 immédiate.",
+                      "Les graines de sésame et la ciboule crue de la garniture ont été laissées de côté : ce plat est classé niveau 4, et ce sont des éléments petits, durs ou fibreux qui n’ont pas leur place dans un régime lisse. La ciboule cuite dans la sauce, elle, ne pose pas de problème : elle s’attendrit complètement à la casserole.",
+                      "S’il faut une texture pleinement de niveau 3, écrasez le tofu avec la sauce mélangée jusqu’à ce que l’ensemble se verse, plutôt que de le servir en bloc entier.",
+                      "Servez la sauce tiède, non brûlante, directement sur le tofu froid — le contraste fait partie du plat, mais une sauce bouillante présente un vrai risque."
+              ],
+              "dietaryNotes": "Végétarien, et végétalien possible (vérifiez le sucre). Utilisez du tamari pour une version sans gluten. Très riche en sodium — voir la note ci-dessus avant de servir à une personne suivant un régime pauvre en sel.",
+              "nutrition": {
+                      "basis": "Par portion ; cette recette en donne 2.",
+                      "flag": "à 1 523 mg de sodium par portion, c’est plus de la moitié de la limite quotidienne d’un adulte, presque entièrement dus à la sauce soja — utilisez une sauce soja pauvre en sel et commencez en dessous de la quantité indiquée."
+              }
+      },
+      "chinese-steamed-egg": {
+              "title": "Œufs vapeur à la chinoise",
+              "description": "Un flan d’œuf vapeur soyeux et salé, nappé d’une sauce brillante au soja et au sésame — si lisse qu’il demande à peine une cuillère, et encore moins de mastication.",
+              "ingredients": [
+                      {
+                              "amount": "2",
+                              "item": "Œufs"
+                      },
+                      {
+                              "amount": "3/4 tasse",
+                              "item": "Eau"
+                      },
+                      {
+                              "amount": "1/2 c. à café",
+                              "item": "Bouillon de poule en poudre"
+                      },
+                      {
+                              "amount": "1/4 c. à café",
+                              "item": "Sel"
+                      },
+                      {
+                              "amount": "1 c. à soupe",
+                              "item": "Sauce soja",
+                              "note": "Pour la sauce"
+                      },
+                      {
+                              "amount": "1 c. à café",
+                              "item": "Huile de sésame",
+                              "note": "Pour la sauce"
+                      },
+                      {
+                              "amount": "1/2 c. à café",
+                              "item": "Sucre",
+                              "note": "Pour la sauce"
+                      }
+              ],
+              "instructions": [
+                      "Battez les œufs avec l’eau, le bouillon en poudre et le sel.",
+                      "Passez le mélange au tamis dans un bol. Assurez-vous qu’il ne reste aucune bulle d’air — s’il en reste, crevez-les avec un briquet ou retirez-les à la cuillère.",
+                      "Couvrez de film alimentaire, percez quelques trous et faites cuire 15 minutes à la vapeur. Le flan doit être tout juste pris et trembler légèrement au centre.",
+                      "Pendant ce temps, préparez une sauce simple avec la sauce soja, l’huile de sésame et le sucre.",
+                      "À l’aide d’un petit couteau, tracez un motif dans le flan, versez la sauce dessus et servez."
+              ],
+              "servingTips": [
+                      "La garniture de ciboule dont on finit habituellement ce plat a été laissée de côté : le flan est classé niveau 4, les lanières de ciboule ne le sont pas. Si vous remettez une garniture pour quelqu’un sans restriction, filtrez d’abord la sauce pour qu’aucun éclat croquant d’huile pimentée ne l’accompagne.",
+                      "Le tamisage du mélange cru à l’étape 2 est ce qui rend le flan pris parfaitement lisse. Ne le sautez pas.",
+                      "Cuisez doucement. Un flan trop cuit devient caoutchouteux et rend de l’eau, ce qui crée une couche liquide fluide plus risquée à avaler que le flan lui-même.",
+                      "Servez tiède plutôt que brûlant — le flan retient bien la chaleur et peut ébouillanter."
+              ],
+              "dietaryNotes": "Naturellement sans gluten si vous remplacez la sauce soja par du tamari. Très riche en sodium — voir la note nutritionnelle ci-dessous avant de servir à une personne suivant un régime pauvre en sel.",
+              "nutrition": {
+                      "basis": "Par portion, calculé à partir des ingrédients indiqués (la recette en donne 2). On suppose que la totalité de la sauce est consommée."
+              }
+      },
+      "classic-meatloaf": {
+              "title": "Pain de viande classique",
+              "description": "Un pain de viande moelleux et tendre, glacé au ketchup acidulé — réconfortant, familier, et facile à attendrir encore pour les régimes plus doux.",
+              "ingredients": [
+                      {
+                              "amount": "2 gros",
+                              "item": "Œufs"
+                      },
+                      {
+                              "amount": "1 moyen",
+                              "item": "Oignon jaune, coupé en quartiers"
+                      },
+                      {
+                              "amount": "1 moyenne",
+                              "item": "Carotte, pelée et coupée en gros morceaux",
+                              "note": "Gros uniquement parce qu’ils passent ensuite au robot — ils finissent finement hachés dans le pain de viande"
+                      },
+                      {
+                              "amount": "1",
+                              "item": "Branche de céleri, coupée en gros morceaux",
+                              "note": "Également hachée fin ; aucune fibre de céleri ne subsiste dans le pain cuit"
+                      },
+                      {
+                              "amount": "1 gousse",
+                              "item": "Ail, pelée"
+                      },
+                      {
+                              "amount": "680 g",
+                              "item": "Viande hachée",
+                              "note": "De préférence un mélange bœuf, porc et veau, ou de la dinde 93/7"
+                      },
+                      {
+                              "amount": "3/4 tasse",
+                              "item": "Chapelure"
+                      },
+                      {
+                              "amount": "1/4 tasse",
+                              "item": "Persil frais, ciselé",
+                              "note": "Un peu plus pour la finition si souhaité"
+                      },
+                      {
+                              "amount": "1/4 tasse",
+                              "item": "Lait"
+                      },
+                      {
+                              "amount": "1/4 tasse",
+                              "item": "Ketchup"
+                      },
+                      {
+                              "amount": "1 c. à soupe",
+                              "item": "Sauce Worcestershire"
+                      },
+                      {
+                              "amount": "1 c. à café",
+                              "item": "Sel"
+                      },
+                      {
+                              "amount": "1/2 c. à café",
+                              "item": "Poivre noir concassé"
+                      },
+                      {
+                              "amount": "1/4 tasse",
+                              "item": "Ketchup",
+                              "note": "Pour le glaçage"
+                      },
+                      {
+                              "amount": "2 c. à soupe",
+                              "item": "Cassonade bien tassée",
+                              "note": "Pour le glaçage"
+                      },
+                      {
+                              "amount": "1 c. à soupe",
+                              "item": "Vinaigre de vin rouge",
+                              "note": "Pour le glaçage"
+                      }
+              ],
+              "instructions": [
+                      "Préchauffez le four à 175 °C. Graissez un moule à cake de 23 × 13 cm.",
+                      "Dans un grand bol, battez légèrement les deux œufs.",
+                      "Mettez l’oignon, le céleri, la carotte et l’ail dans un robot et mixez par impulsions jusqu’à obtenir un hachis fin — environ 1 tasse. Ajoutez-le au bol avec les œufs.",
+                      "Ajoutez la viande hachée, la chapelure, le persil, le lait, le ketchup, la sauce Worcestershire, le sel et le poivre. Mélangez à la main sans trop travailler la préparation. Tassez légèrement dans le moule.",
+                      "Dans un petit bol, mélangez le ketchup, la cassonade et le vinaigre de vin rouge pour le glaçage. Badigeonnez le pain de viande de la moitié du glaçage et enfournez 35 minutes.",
+                      "Badigeonnez du reste de glaçage et remettez au four 55 minutes, jusqu’à ce que le cœur atteigne au moins 74 °C au thermomètre et que le pain soit parfaitement tendre de part en part. La température continuera de monter légèrement pendant le repos.",
+                      "Laissez reposer 15 minutes avant de démouler ou de trancher."
+              ],
+              "servingTips": [
+                      "Une portion correspond à 2 tranches. Comme il s’agit de viande hachée, ce pain est naturellement tendre, sans fibre musculaire entière à mâcher — écrasez une tranche à la fourchette avec une cuillerée de glaçage pour un niveau 5 immédiat.",
+                      "Pour aller plus vite, façonnez la préparation en 6 petits pains sur une plaque à rebord et enfournez à 200 °C environ 25 minutes, en vérifiant les 74 °C à cœur.",
+                      "Ne travaillez pas trop la préparation : trop malaxée, elle donne un pain plus dense et plus difficile à défaire, ce qui va à l’encontre de l’objectif de texture souple.",
+                      "Servez avec un supplément de glaçage ou une sauce légère sur chaque tranche, pour garder le moelleux et faciliter la déglutition."
+              ],
+              "dietaryNotes": "Réalisable avec une seule viande hachée ou un mélange — les valeurs ci-dessus sont calculées avec du bœuf haché. Contient du gluten tel qu’indiqué ; utilisez une chapelure sans gluten pour l’adapter.",
+              "nutrition": {
+                      "basis": "Par portion (2 tranches), calculé avec du bœuf haché. Il s’agit d’une portion sur 5."
+              }
+      },
+      "congee": {
+              "title": "Congee (bouillie de riz)",
+              "description": "Une bouillie de riz à la saveur neutre, mijotée longuement à feu doux jusqu’à devenir épaisse, crémeuse et soyeuse — l’une des textures les plus douces de toute cette collection.",
+              "ingredients": [
+                      {
+                              "amount": "1 tasse",
+                              "item": "Riz blanc",
+                              "note": "Tout riz à grain moyen ou long convient — jasmin, à sushi ou ordinaire"
+                      },
+                      {
+                              "amount": "8-10 tasses",
+                              "item": "Eau ou bouillon",
+                              "note": "Plus d’eau donne un congee plus liquide ; le bouillon apporte goût et valeur nutritive"
+                      },
+                      {
+                              "amount": "Selon le goût",
+                              "item": "Sel"
+                      },
+                      {
+                              "amount": "Facultatif",
+                              "item": "Riz cuit de la veille",
+                              "note": "Pour un congee plus rapide — voir la méthode express ci-dessous"
+                      },
+                      {
+                              "amount": "Facultatif",
+                              "item": "Aromates",
+                              "note": "Gingembre, ail, extrémités de ciboule"
+                      },
+                      {
+                              "amount": "Facultatif",
+                              "item": "Légumes racines",
+                              "note": "Carotte, céleri, oignon — si vous préparez un bouillon"
+                      },
+                      {
+                              "amount": "Facultatif",
+                              "item": "Herbes",
+                              "note": "Tiges de coriandre, persil, laurier"
+                      }
+              ],
+              "instructions": [
+                      "Réunissez 1 tasse de riz blanc cru et 8 à 10 tasses d’eau ou de bouillon maison dans une grande casserole.",
+                      "Portez à ébullition, puis baissez le feu pour maintenir un frémissement régulier. Remuez de temps en temps pour éviter que cela n’attache.",
+                      "Laissez cuire à découvert 1 à 2 heures, jusqu’à ce que les grains se défassent, libèrent leur amidon et que le congee soit parfaitement fondant et crémeux. Ajoutez de l’eau si le mélange devient trop épais.",
+                      "Ajoutez le sel, des tranches de gingembre et les aromates de votre choix durant les 20 à 30 dernières minutes de cuisson.",
+                      "Le congee est prêt lorsqu’il est épais, crémeux et soyeux. Servez-le nature ou garni.",
+                      "Pour une version express, réunissez 4 tasses de riz cuit et 3 tasses de bouillon de poule dans une casserole moyenne. Portez à ébullition, puis laissez mijoter 15 à 20 minutes en remuant, jusqu’à ce que le riz se défasse en bouillie. Ajoutez du bouillon pour la consistance souhaitée."
+              ],
+              "servingTips": [
+                      "La proportion classique est de 1 volume de riz pour 8 à 10 volumes d’eau ou de bouillon — visez le haut de la fourchette, et cuisez doucement et longuement, pour le résultat le plus soyeux et le plus adapté au niveau 4.",
+                      "Remuez régulièrement pendant toute la cuisson : cela empêche le riz d’attacher au fond et accélère la désagrégation des grains.",
+                      "Pour une texture de niveau 4 entièrement mixée, passez le congee fini au mixeur. Tel que mijoté, un congee nature se situe plutôt au niveau 5, avec des grains fondus mais encore perceptibles.",
+                      "Gardez des garnitures simples et souples pour les régimes à texture modifiée : échalotes frites, ail frit et cacahuètes grillées sont des ajouts classiques, mais ne conviennent pas en dessous du niveau 6. Un filet de sauce soja ou d’huile de sésame, en revanche, ne pose pas de problème."
+              ],
+              "dietaryNotes": "Naturellement sans gluten et sans produits laitiers tel qu’indiqué. Utiliser du bouillon plutôt que de l’eau, ou ajouter de la viande effilochée, modifiera l’estimation nutritionnelle ci-dessus.",
+              "nutrition": {
+                      "basis": "Estimé pour la recette de base (1 tasse de riz cuite dans 9 tasses d’eau avec une pincée de sel, sans ajout facultatif), pour 6 portions. Il s’agit d’une estimation, non d’une analyse en laboratoire."
+              }
+      },
+      "cream-of-mushroom-soup": {
+              "title": "Velouté de champignons",
+              "description": "Un velouté de champignons d’une onctuosité veloutée, avec de la crème et un bouillon savoureux — chaud, réconfortant et naturellement tendre.",
+              "ingredients": [
+                      {
+                              "amount": "10",
+                              "item": "Champignons de Paris bruns",
+                              "note": "Nettoyés à l’aide d’un torchon"
+                      },
+                      {
+                              "amount": "100 ml",
+                              "item": "Crème entière"
+                      },
+                      {
+                              "amount": "150 ml",
+                              "item": "Bouillon",
+                              "note": "Tout type convient"
+                      },
+                      {
+                              "amount": "1/2",
+                              "item": "Oignon, en dés"
+                      },
+                      {
+                              "amount": "2 gousses",
+                              "item": "Ail"
+                      },
+                      {
+                              "amount": "1 c. à café",
+                              "item": "Paprika"
+                      },
+                      {
+                              "amount": "1 c. à café",
+                              "item": "Ail en poudre"
+                      },
+                      {
+                              "amount": "1 brin",
+                              "item": "Thym frais"
+                      },
+                      {
+                              "amount": "30 ml",
+                              "item": "Vin blanc",
+                              "note": "Facultatif"
+                      },
+                      {
+                              "amount": "2 c. à soupe",
+                              "item": "Fécule de maïs"
+                      },
+                      {
+                              "amount": "2 c. à soupe",
+                              "item": "Beurre"
+                      }
+              ],
+              "instructions": [
+                      "Nettoyez la terre des champignons avec un torchon. Émincez-les et réservez.",
+                      "Taillez finement l’oignon et les gousses d’ail.",
+                      "Dans une poêle, mettez le beurre et le brin de thym. Laissez chauffer jusqu’à ce que le beurre s’imprègne du thym, puis retirez le brin.",
+                      "Ajoutez les champignons, l’oignon et l’ail. Faites cuire en remuant de temps en temps, jusqu’à évaporation complète de l’eau des champignons.",
+                      "Déglacez au vin blanc. Laissez cuire jusqu’à évaporation complète.",
+                      "Versez le bouillon et portez à ébullition. Incorporez le paprika et l’ail en poudre.",
+                      "Délayez la fécule de maïs dans autant d’eau pour former une suspension. Mélangez jusqu’à disparition des grumeaux.",
+                      "Ajoutez cette suspension dans la casserole en ébullition. Baissez à feu doux et laissez mijoter jusqu’à épaississement.",
+                      "Une fois le velouté épaissi, incorporez la crème. Servez chaud."
+              ],
+              "servingTips": [
+                      "Émincez les champignons finement pour une texture finale plus tendre, qui demande un minimum de mastication.",
+                      "Pour une consistance encore plus lisse, mixez la moitié du velouté avant d’ajouter la crème.",
+                      "Le velouté épaissit en refroidissant. Ajoutez du bouillon au réchauffage si nécessaire.",
+                      "Servez tiède pour éviter les brûlures, ce qui compte d’autant plus en cas de difficultés de déglutition."
+              ],
+              "dietaryNotes": "Sans gluten avec de la fécule de maïs. Pour une version sans produits laitiers, remplacez la crème par de la crème de coco.",
+              "nutrition": {
+                      "basis": "Estimé à partir des ingrédients indiqués, pour 3 portions, vin blanc facultatif compris. Il s’agit d’une estimation, non d’une analyse en laboratoire."
+              }
+      },
+      "creamy-scrambled-eggs": {
+              "title": "Œufs brouillés crémeux",
+              "description": "Des œufs brouillés remués lentement et délicatement, en tout petits grains souples — l’une des protéines les plus simples et les plus douces à servir.",
+              "ingredients": [
+                      {
+                              "amount": "4 gros",
+                              "item": "Œufs"
+                      },
+                      {
+                              "amount": "1/8 c. à café",
+                              "item": "Sel",
+                              "note": "Ou davantage selon le goût"
+                      },
+                      {
+                              "amount": "1/2 c. à soupe",
+                              "item": "Beurre ou huile d’olive"
+                      },
+                      {
+                              "amount": "Facultatif",
+                              "item": "Poivre noir du moulin et ciboulette ciselée",
+                              "note": "Au moment de servir"
+                      }
+              ],
+              "instructions": [
+                      "Cassez les œufs dans un bol moyen, salez et fouettez jusqu’à obtenir un mélange lisse et mousseux. Laissez reposer 5 à 10 minutes.",
+                      "Faites fondre le beurre dans une poêle antiadhésive moyenne, à feu doux à moyen. Lorsque le beurre commence à grésiller, fouettez les œufs une dernière fois puis versez-les dans la poêle. Aussitôt, à l’aide d’une spatule souple, décrivez sans arrêt de petits cercles dans la poêle, jusqu’à ce que les œufs épaississent légèrement et que de très petits grains commencent à se former, environ 30 secondes.",
+                      "Passez des petits cercles à de grands mouvements de balayage dans la poêle, jusqu’à voir apparaître des grains plus gros, crémeux et fondants, environ 20 secondes.",
+                      "Lorsque les œufs sont tout juste pris et encore légèrement coulants par endroits, retirez la poêle du feu et laissez quelques secondes pour finir la cuisson. Mélangez une dernière fois et servez aussitôt, avec un peu de sel, un tour de poivre noir et quelques herbes fraîches ciselées si vous le souhaitez."
+              ],
+              "servingTips": [
+                      "La cuisson douce et lente, avec un remuage constant, est ce qui garde les grains petits, souples et moelleux — c’est naturellement l’une des protéines les plus douces de tout le site.",
+                      "Écrasez légèrement les œufs à la fourchette directement dans l’assiette pour un niveau 4 immédiat.",
+                      "Supprimez la ciboulette et le poivre concassé pour toute personne au niveau 4 ou en dessous — incorporez plutôt un peu de beurre ou de crème supplémentaire pour le moelleux.",
+                      "Ne laissez pas les œufs prendre complètement ni colorer : trop cuits, ils deviennent secs et friables, ce qui est plus difficile à gérer, non l’inverse."
+              ],
+              "dietaryNotes": "Sans gluten. Naturellement pauvre en glucides. Remplacez le beurre par de l’huile d’olive pour une version sans produits laitiers.",
+              "nutrition": {
+                      "basis": "Par portion (la recette en donne 2)."
+              }
+      },
+      "creamy-tomato-soup": {
+              "title": "Velouté de tomate",
+              "description": "Une soupe de tomate enrichie de crème et de purée, puis mixée et filtrée jusqu’à ce qu’il ne reste ni pépins ni peaux.",
+              "ingredients": [
+                      {
+                              "amount": "1 tasse",
+                              "item": "Soupe de tomate pauvre en sel",
+                              "note": "240 ml"
+                      },
+                      {
+                              "amount": "2 c. à soupe",
+                              "item": "Crème entière",
+                              "note": "30 ml"
+                      },
+                      {
+                              "amount": "1 c. à soupe",
+                              "item": "Purée de tomate lisse",
+                              "note": "15 ml"
+                      },
+                      {
+                              "amount": "Selon le goût",
+                              "item": "Sel et assaisonnement"
+                      },
+                      {
+                              "amount": "Selon les indications",
+                              "item": "Épaississant du commerce",
+                              "note": "Uniquement si nécessaire pour atteindre le niveau 3 prescrit"
+                      }
+              ],
+              "instructions": [
+                      "Réchauffez doucement la soupe. Ne la laissez pas bouillir.",
+                      "Incorporez la crème et la purée de tomate.",
+                      "Mixez jusqu’à obtenir une texture parfaitement lisse si nécessaire, puis filtrez pour retenir pépins et morceaux.",
+                      "Si elle reste plus fluide que le niveau 3 prescrit, épaississez-la selon les indications du produit.",
+                      "Vérifiez-la à la température à laquelle elle sera servie, et servez-la lisse, sans grumeaux ni fibres."
+              ],
+              "servingTips": [
+                      "Les pépins et la peau de tomate sont toute la raison d’être du filtrage à l’étape 3. Ils survivent au mixage, ils sont assez petits pour passer inaperçus, et ce sont précisément eux que le niveau 3 vise à exclure.",
+                      "Le basilic et la spirale de crème sur la photographie relèvent du stylisme. Les herbes ne conviennent pas au niveau 3 ; une spirale de crème mélangée à la soupe, en revanche, ne pose pas de problème.",
+                      "L’épaississant est un dernier recours, pas un ingrédient. Mixez et filtrez d’abord, puis n’en ajoutez que si la soupe reste plus fluide que le niveau prescrit, en suivant les indications du produit.",
+                      "La soupe de tomate en conserve est généralement riche en sodium, même dans ses versions pauvres en sel. Goûtez avant d’ajouter du sel."
+              ],
+              "dietaryNotes": "Contient des produits laitiers. Vérifiez la présence de gluten dans la soupe en conserve : il sert souvent d’épaississant.",
+              "nutrition": {
+                      "basis": "Estimé à partir des ingrédients indiqués, pour 2 portions, avec une soupe en conserve pauvre en sel. Le document source ne fournissait aucune valeur nutritionnelle : il s’agit donc d’une estimation, non d’une analyse en laboratoire."
+              }
+      },
+      "egg-salad": {
+              "title": "Salade d’œufs",
+              "description": "Une salade d’œufs crémeuse et classique, avec céleri, ciboulette et une pointe de moutarde à l’ancienne — souple, moelleuse et facile à prendre à la cuillère.",
+              "ingredients": [
+                      {
+                              "amount": "8",
+                              "item": "Œufs durs, écalés"
+                      },
+                      {
+                              "amount": "1/2",
+                              "item": "Branche de céleri, en tout petits dés",
+                              "note": "Environ 1/3 de tasse — ou supprimez-la ; ses fibres sont le principal risque de texture ici"
+                      },
+                      {
+                              "amount": "1/4 tasse",
+                              "item": "Mayonnaise"
+                      },
+                      {
+                              "amount": "2 c. à soupe",
+                              "item": "Ciboulette, finement ciselée"
+                      },
+                      {
+                              "amount": "2 c. à café",
+                              "item": "Jus de citron frais"
+                      },
+                      {
+                              "amount": "2 c. à café",
+                              "item": "Moutarde à l’ancienne"
+                      },
+                      {
+                              "amount": "Selon le goût",
+                              "item": "Sel et poivre noir du moulin"
+                      },
+                      {
+                              "amount": "Facultatif",
+                              "item": "Paprika",
+                              "note": "Au moment de servir"
+                      }
+              ],
+              "instructions": [
+                      "Hachez grossièrement les œufs et mettez-les dans un bol moyen. Écrasez-les légèrement à la fourchette pour défaire les jaunes et obtenir un mélange fondant et grumeleux. Ajoutez le céleri, la mayonnaise, la ciboulette, le jus de citron et la moutarde, puis mélangez. Salez et poivrez.",
+                      "Transvasez dans un bol de service. Saupoudrez de paprika."
+              ],
+              "servingTips": [
+                      "Les crackers qui accompagnent habituellement ce plat ont été laissés de côté : durs et croquants, associés à une salade souple, ils créent exactement la bouchée à textures mélangées la plus difficile à gérer. Servez plutôt à la cuillère.",
+                      "Écrasez les œufs plus soigneusement que pour une salade d’œufs ordinaire, à la fourchette ou au plat d’un couteau, jusqu’à ce qu’il ne reste aucun morceau distinct : vous obtenez un niveau 5 immédiat.",
+                      "Pour le niveau 4, mixez brièvement la salade finie au robot avec une cuillerée de mayonnaise supplémentaire, jusqu’à ce qu’elle soit lisse.",
+                      "Taillez le céleri très finement, ou supprimez-le, car ses fibres comptent parmi les rares textures réellement risquées de ce plat."
+              ],
+              "dietaryNotes": "Sans gluten tel qu’indiqué. Riche en cholestérol du fait des œufs — à noter pour qui en surveille l’apport.",
+              "nutrition": {
+                      "basis": "Par portion ; la recette en donne 4."
+              }
+      },
+      "fluffy-pancakes": {
+              "title": "Pancakes moelleux",
+              "description": "Des pancakes classiques, souples et aériens, à partir d’une pâte maison toute simple — un petit-déjeuner doux, facile à imbiber de sirop pour le moelleux.",
+              "ingredients": [
+                      {
+                              "amount": "2 tasses",
+                              "item": "Farine de blé"
+                      },
+                      {
+                              "amount": "1/4 tasse",
+                              "item": "Sucre en poudre ou édulcorant"
+                      },
+                      {
+                              "amount": "4 c. à café",
+                              "item": "Levure chimique"
+                      },
+                      {
+                              "amount": "1/4 c. à café",
+                              "item": "Bicarbonate de soude"
+                      },
+                      {
+                              "amount": "1/2 c. à café",
+                              "item": "Sel"
+                      },
+                      {
+                              "amount": "1,75 tasse",
+                              "item": "Lait"
+                      },
+                      {
+                              "amount": "1/4 tasse",
+                              "item": "Beurre fondu et légèrement refroidi"
+                      },
+                      {
+                              "amount": "2 c. à café",
+                              "item": "Extrait de vanille"
+                      },
+                      {
+                              "amount": "1 gros",
+                              "item": "Œuf"
+                      }
+              ],
+              "instructions": [
+                      "Réunissez la farine, le sucre (ou l’édulcorant), la levure, le bicarbonate et le sel dans un grand bol. Creusez un puits au centre et ajoutez le lait, le beurre fondu, la vanille et l’œuf.",
+                      "Fouettez d’abord les ingrédients liquides entre eux, puis incorporez-les lentement aux ingrédients secs. Mélangez jusqu’à obtenir une pâte lisse (quelques grumeaux ne posent pas de problème). La pâte sera épaisse et crémeuse — si elle est trop épaisse pour se verser aisément, ajoutez un peu de lait, petit à petit.",
+                      "Réservez la pâte et laissez-la reposer pendant que vous faites chauffer la poêle.",
+                      "Faites chauffer une poêle antiadhésive à feu doux à moyen et graissez-la légèrement au beurre. Versez 1/4 de tasse de pâte et étalez doucement en rond.",
+                      "Lorsque le dessous est doré et que des bulles apparaissent en surface, retournez à la spatule et laissez dorer l’autre face. Répétez avec le reste de la pâte.",
+                      "Servez avec du miel, du sirop d’érable, des fruits, de la glace ou du yaourt glacé — ou nature."
+              ],
+              "servingTips": [
+                      "Les textures aériennes et spongieuses comme celle des pancakes sont en réalité plus délicates qu’il n’y paraît pour certains troubles de la déglutition : l’éponge absorbe la salive et gonfle. Servez-les bien imbibés de sirop ou d’une sauce fluide, jamais secs.",
+                      "Cuisez un peu plus longtemps à feu plus doux pour un pancake plus dense et moins aéré, que certaines personnes trouvent plus facile et plus sûr à gérer.",
+                      "Pour une texture plus souple, déchirez le pancake en petits morceaux et laissez-les une minute dans du sirop tiède avant de servir, plutôt que de le servir entier.",
+                      "Écartez complètement les pancakes pour toute personne évaluée en dessous du niveau 6 — la mie spongieuse ne convient pas aux régimes hachés, mixés ou liquidifiés."
+              ],
+              "dietaryNotes": "Végétarien. Contient du gluten tel qu’indiqué ; un mélange de farines sans gluten 1:1 peut généralement être substitué.",
+              "nutrition": {
+                      "basis": "Par pancake (la recette en donne environ 12 ; une portion correspond généralement à 2)."
+              }
+      },
+      "ground-beef-curry": {
+              "title": "Curry de bœuf haché",
+              "description": "Un curry japonais riche et rapide, au bœuf haché, à la pomme de terre et à la carotte — lié avec des tablettes de curry et une cuillerée de chocolat noir pour la profondeur.",
+              "ingredients": [
+                      {
+                              "amount": "450 g",
+                              "item": "Bœuf haché",
+                              "note": "90/10"
+                      },
+                      {
+                              "amount": "5 gousses",
+                              "item": "Ail, finement haché"
+                      },
+                      {
+                              "amount": "1 c. à soupe",
+                              "item": "Gingembre, finement haché"
+                      },
+                      {
+                              "amount": "1/2 gros",
+                              "item": "Oignon, en petits dés"
+                      },
+                      {
+                              "amount": "1 moyenne",
+                              "item": "Pomme de terre, pelée et coupée en dés de 1,2 cm",
+                              "note": "De petits dés cuisent uniformément pendant le court mijotage"
+                      },
+                      {
+                              "amount": "1/2 tasse",
+                              "item": "Carottes, en petits dés"
+                      },
+                      {
+                              "amount": "2",
+                              "item": "Tablettes de curry japonais",
+                              "note": "La recette source utilisait la marque S&B"
+                      },
+                      {
+                              "amount": "1,5 tasse",
+                              "item": "Eau"
+                      },
+                      {
+                              "amount": "1 c. à soupe",
+                              "item": "Chocolat noir"
+                      }
+              ],
+              "instructions": [
+                      "Hachez finement l’ail et le gingembre. Coupez l’oignon en dés et la pomme de terre en dés de 1,2 cm. Réservez le tout.",
+                      "Versez de l’huile dans une poêle à feu moyen et ajoutez l’ail, le gingembre et l’oignon. Faites cuire deux minutes, jusqu’à ce que le mélange embaume et s’attendrisse un peu.",
+                      "Ajoutez le bœuf haché et faites-le cuire en l’émiettant, jusqu’à environ 80 % de cuisson.",
+                      "Incorporez les pommes de terre et les carottes et laissez cuire une minute pour les enrober d’aromates.",
+                      "Ajoutez les tablettes de curry et l’eau, en remuant brièvement pour aider les tablettes à fondre. Couvrez et laissez mijoter 10 minutes à feu doux.",
+                      "Retirez le couvercle, mélangez bien et terminez par le chocolat noir. Mélangez jusqu’à ce qu’il soit entièrement fondu et incorporé. La pomme de terre et la carotte doivent alors être parfaitement fondantes.",
+                      "Servez le curry à côté du riz ou dessus, et garnissez éventuellement de ciboule et de furikake."
+              ],
+              "servingTips": [
+                      "Coupez la pomme de terre et la carotte en petits dés dès le départ : plus les morceaux sont petits, plus ils cuiront uniformément jusqu’à être parfaitement fondants pendant les 10 minutes de mijotage.",
+                      "Le bœuf haché n’a aucune fibre musculaire à mâcher : une fois les légumes tendres, tout le plat s’écrase facilement à la fourchette pour une texture de niveau 5.",
+                      "Pour le niveau 4, écrasez ou mixez le curry fini — la sauce est déjà épaisse et lisse, ce qui facilite le mixage.",
+                      "Supprimez le furikake et la ciboule de finition pour les régimes à texture modifiée ; tous deux ajoutent de petits éléments secs ou fibreux."
+              ],
+              "dietaryNotes": "Contient du gluten (la plupart des tablettes de curry japonais sont à base de roux) et des produits laitiers. Vérifiez les allergènes de votre marque de tablettes ; il existe des versions sans gluten.",
+              "nutrition": {
+                      "basis": "Par portion."
+              }
+      },
+      "joel-robuchon-mashed-potatoes": {
+              "title": "Purée de pommes de terre de Joël Robuchon",
+              "description": "La légendaire purée ultra-soyeuse, passée au tamis fin jusqu’à devenir du pur velours — plus riche et plus lisse qu’une purée ordinaire.",
+              "ingredients": [
+                      {
+                              "amount": "1 kg",
+                              "item": "Pommes de terre"
+                      },
+                      {
+                              "amount": "250 g",
+                              "item": "Beurre doux, froid, en dés"
+                      },
+                      {
+                              "amount": "250 ml",
+                              "item": "Lait entier, tiédi"
+                      },
+                      {
+                              "amount": "Selon le goût",
+                              "item": "Sel"
+                      },
+                      {
+                              "amount": "Facultatif",
+                              "item": "Poivre blanc moulu",
+                              "note": "Pour l’assaisonnement"
+                      }
+              ],
+              "instructions": [
+                      "Lavez les pommes de terre.",
+                      "Mettez-les à cuire dans une casserole d’eau froide salée.",
+                      "Dès l’ébullition, baissez à frémissement et poursuivez la cuisson jusqu’à ce qu’elles soient parfaitement fondantes, environ 20 à 30 minutes.",
+                      "Égouttez-les et placez-les dans un récipient recouvert d’un torchon pour les garder au chaud.",
+                      "Pelez-les encore chaudes et déposez-les dans un second récipient tapissé de film alimentaire fendu au centre, pour y laisser tomber les pommes de terre pelées et les garder au chaud.",
+                      "Passez les pommes de terre au presse-purée dans une casserole.",
+                      "Chauffez à feu moyen en remuant 3 à 5 minutes pour évaporer l’excès d’humidité.",
+                      "Passez au tamis fin à l’aide d’une corne — c’est cette étape qui rend la purée parfaitement lisse.",
+                      "Remettez sur feu moyen et incorporez progressivement le beurre froid en dés, au fouet, pour émulsionner la purée.",
+                      "Fouettez sans arrêt afin que l’émulsion ne se brise pas.",
+                      "Ajoutez le lait tiède petit à petit jusqu’à la consistance crémeuse et aérienne souhaitée.",
+                      "Salez à votre goût. Ajoutez éventuellement une pincée de poivre blanc."
+              ],
+              "servingTips": [
+                      "Choisissez une pomme de terre à chair ferme comme la Ratte ou la Yukon Gold — elles tiennent à la cuisson et absorbent bien plus de beurre sans devenir élastiques.",
+                      "Le passage au presse-purée puis au tamis fin est ce qui élimine le moindre grumeau — ne sautez pas l’étape du tamis pour une personne suivant un régime mixé.",
+                      "Cette purée est très riche en beurre ; détendez-la avec un peu de lait tiède supplémentaire s’il lui faut couler plus facilement de la cuillère pour une texture de niveau 3.",
+                      "Servez tiède plutôt que brûlant, et ne gardez la finition classique au dessin de fourchette que pour la présentation — elle ne change rien à l’onctuosité de chaque bouchée."
+              ],
+              "dietaryNotes": "Sans gluten. Préparation très riche et grasse — pour une version allégée, réduisez le beurre et appuyez-vous davantage sur le lait tiède pour l’onctuosité.",
+              "nutrition": {
+                      "basis": "Tel qu’indiqué dans la recette source, par portion. Le détail du sodium et du cholestérol n’était pas fourni."
+              }
+      },
+      "kimchi-ramen": {
+              "title": "Ramen au kimchi",
+              "description": "Un bol de ramen rapide et incendiaire dans un bouillon relevé au kimchi, finis d’un œuf mollet et de ciboule.",
+              "ingredients": [
+                      {
+                              "amount": "100 ml",
+                              "item": "Huile de colza"
+                      },
+                      {
+                              "amount": "Une petite poignée",
+                              "item": "Ciboulette chinoise, ciselée"
+                      },
+                      {
+                              "amount": "150 g",
+                              "item": "Kimchi, haché"
+                      },
+                      {
+                              "amount": "200 ml",
+                              "item": "Jus de kimchi (saumure)"
+                      },
+                      {
+                              "amount": "200 ml",
+                              "item": "Eau"
+                      },
+                      {
+                              "amount": "20 g",
+                              "item": "Piment coréen en poudre (gochugaru)"
+                      },
+                      {
+                              "amount": "1 paquet",
+                              "item": "Nouilles ramen"
+                      },
+                      {
+                              "amount": "Selon le goût",
+                              "item": "Ciboule, finement émincée"
+                      },
+                      {
+                              "amount": "1",
+                              "item": "Œuf mollet, coupé en deux"
+                      }
+              ],
+              "instructions": [
+                      "Faites chauffer l’huile de colza dans une casserole à feu moyen. Ajoutez la ciboulette et le kimchi haché. Faites sauter 2 minutes.",
+                      "Versez le jus de kimchi et l’eau. Incorporez le piment en poudre. Portez à ébullition, puis baissez le feu et laissez frémir 5 minutes.",
+                      "Plongez les nouilles dans le bouillon et laissez cuire 58 secondes.",
+                      "Versez dans un bol et garnissez de ciboule et de l’œuf mollet."
+              ],
+              "servingTips": [
+                      "Les nouilles longues et les feuilles entières de kimchi présentent un véritable risque d’étouffement — telle qu’écrite, cette recette doit rester réservée au niveau 7 (facile à mâcher) ou à un régime sans restriction.",
+                      "Si vous l’adaptez vers le bas, coupez les nouilles cuites en tronçons de 3 à 5 cm avec des ciseaux de cuisine directement dans le bol, et hachez finement le kimchi avant de l’ajouter.",
+                      "Faites cuire l’œuf entièrement plutôt que mollet, et coupez-le en petits dés, pour qui a besoin d’une texture plus ferme et moins coulante.",
+                      "Le gochugaru pique vraiment — commencez en dessous de la quantité indiquée et ajustez au goût."
+              ],
+              "dietaryNotes": "Contient du gluten (nouilles ramen) et de l’œuf. Des nouilles ramen sans gluten peuvent être substituées.",
+              "nutrition": {
+                      "basis": "Selon le tableau nutritionnel de la recette source (le nombre de portions couvertes n’y est pas précisé).",
+                      "flag": "le kimchi, sa saumure et le gochugaru sont tous salés — si le sodium est une préoccupation, rincez légèrement le kimchi et utilisez une base d’assaisonnement ramen moins salée."
+              }
+      },
+      "korean-soft-tofu-soup": {
+              "title": "Soupe coréenne au tofu soyeux (sundubu-jjigae)",
+              "description": "Un ragoût coréen réconfortant et relevé, construit autour d’un tofu très tendre, mijoté avec des légumes fondants et un œuf tout juste pris — modulable et infiniment réconfortant.",
+              "ingredients": [
+                      {
+                              "amount": "Environ 3 tiges",
+                              "item": "Ciboules",
+                              "note": "Ciselées, blancs et verts séparés"
+                      },
+                      {
+                              "amount": "2 gousses",
+                              "item": "Ail, haché"
+                      },
+                      {
+                              "amount": "2 c. à café",
+                              "item": "Gochugaru (piment coréen en poudre)",
+                              "note": "Finement moulu"
+                      },
+                      {
+                              "amount": "1 c. à café",
+                              "item": "Huile de sésame"
+                      },
+                      {
+                              "amount": "1 tasse",
+                              "item": "Eau"
+                      },
+                      {
+                              "amount": "1 c. à café",
+                              "item": "Sauce de poisson"
+                      },
+                      {
+                              "amount": "1/2 c. à café",
+                              "item": "Sucre"
+                      },
+                      {
+                              "amount": "1 tasse",
+                              "item": "Aubergine, pelée et coupée en petits dés",
+                              "note": "Le pelage compte — la peau reste coriace et filandreuse quelle que soit la durée de cuisson"
+                      },
+                      {
+                              "amount": "2 pieds",
+                              "item": "Pak choï nain, finement ciselé",
+                              "note": "Hachez particulièrement fin les côtes blanches fibreuses"
+                      },
+                      {
+                              "amount": "1 barquette",
+                              "item": "Tofu mou ou soyeux",
+                              "note": "Écrasé à la taille de morceaux souhaitée"
+                      },
+                      {
+                              "amount": "1",
+                              "item": "Œuf",
+                              "note": "Facultatif — cuisez jusqu’à ce que le jaune soit ferme, non coulant"
+                      }
+              ],
+              "instructions": [
+                      "Faites chauffer l’huile de sésame dans un pot en pierre coréen (ou une casserole) à feu moyen.",
+                      "Une fois l’huile chaude, ajoutez l’ail, les blancs de ciboule et le gochugaru. Faites revenir jusqu’à ce que le mélange embaume et que le piment soit torréfié.",
+                      "Ajoutez l’eau et portez à ébullition. Ramenez ensuite à frémissement (feu doux à moyen) et incorporez le sucre et la sauce de poisson.",
+                      "Ajoutez le pak choï et l’aubergine. Laissez cuire jusqu’à ce qu’ils soient parfaitement fondants, environ 5 minutes — plus que les 2 minutes d’une version classique, car il leur faut céder sous la fourchette plutôt que rester croquants.",
+                      "Ajoutez le tofu mou. C’est le moment agréable : écrasez-le à la cuillère à la taille de morceaux souhaitée.",
+                      "Si vous utilisez un œuf, cassez-le au centre du pot et couvrez. Laissez cuire 5 à 6 minutes à la vapeur, jusqu’à ce que le blanc et le jaune soient entièrement pris — un jaune coulant fluidifie le bouillon de façon imprévisible pendant le repas, alors cuisez-le à cœur et mélangez-le.",
+                      "Parsemez du vert de ciboule restant et dégustez."
+              ],
+              "servingTips": [
+                      "Cette version laisse de côté les champignons enoki d’un sundubu-jjigae traditionnel. Leurs longs filaments ne se défont pas en bouche et ne peuvent pas être raccourcis dans le pot : c’est le seul ingrédient qu’il valait mieux retirer plutôt qu’adapter.",
+                      "L’aubergine est pelée et l’œuf cuit à cœur pour la même raison : la peau d’aubergine reste coriace et filandreuse quelle que soit la cuisson, et un jaune coulant fluidifie le bouillon pendant que vous mangez.",
+                      "Pour un niveau de texture inférieur, écrasez le tofu jusqu’à le fondre dans le bouillon et hachez le pak choï plus fin encore. Pour une version mixée, passez la soupe finie au mixeur jusqu’à ce qu’elle soit parfaitement lisse.",
+                      "Allégez le gochugaru pour les personnes sensibles au piquant — la chaleur monte vite dans ce bouillon."
+              ],
+              "dietaryNotes": "Contient de la sauce de poisson et de l’œuf. Naturellement sans gluten ; vérifiez la marque de gochugaru si un sans-gluten strict est nécessaire.",
+              "nutrition": {
+                      "basis": "Selon le calculateur nutritionnel de la recette (2 portions de 1,5 tasse chacune). La recette elle-même en donne environ 4.",
+                      "flag": "à 599 mg de sodium, et avec une sauce de poisson et un gochugaru salés par nature, utilisez une sauce de poisson pauvre en sel et goûtez avant d’ajouter du sel."
+              }
+      },
+      "lamb-stew-tomatoes": {
+              "title": "Ragoût d’agneau aux tomates",
+              "description": "Un ragoût d’agneau généreux et épicé, avec des morceaux fondants dans un bouillon de tomate riche — mijoté longuement jusqu’à ce que la viande se défasse.",
+              "ingredients": [
+                      {
+                              "amount": "900 g",
+                              "item": "Gigot d’agneau désossé",
+                              "note": "Coupé en cubes de 2,5 cm. Insistez sur le désossé : des éclats d’os sont difficiles à repérer dans une sauce tomate foncée"
+                      },
+                      {
+                              "amount": "1 boîte (800 g)",
+                              "item": "Tomates concassées ou entières"
+                      },
+                      {
+                              "amount": "1 gros",
+                              "item": "Oignon, émincé en julienne"
+                      },
+                      {
+                              "amount": "3 gousses",
+                              "item": "Ail frais, écrasé"
+                      },
+                      {
+                              "amount": "3 c. à soupe",
+                              "item": "Ail en poudre"
+                      },
+                      {
+                              "amount": "4 c. à soupe",
+                              "item": "Piment de Cayenne",
+                              "note": "À ajuster selon le goût"
+                      },
+                      {
+                              "amount": "3 c. à soupe",
+                              "item": "Sel"
+                      },
+                      {
+                              "amount": "2 c. à soupe",
+                              "item": "Poivre noir"
+                      },
+                      {
+                              "amount": "10 ml",
+                              "item": "Huile d’olive"
+                      },
+                      {
+                              "amount": "200 ml",
+                              "item": "Bouillon (tout type)",
+                              "note": "De l’eau convient aussi"
+                      }
+              ],
+              "instructions": [
+                      "Coupez l’agneau en cubes de 2,5 cm en dégraissant si nécessaire. Des cubes plus petits que pour un ragoût ordinaire : ils braisent plus uniformément jusqu’à être fondants, et chaque morceau est déjà d’une taille gérable une fois cuit.",
+                      "Dans un bol, mélangez l’ail en poudre, le poivre, le sel et le piment de Cayenne. Ajoutez l’huile d’olive et remuez jusqu’à obtenir une pâte lisse.",
+                      "Enduisez généreusement tous les morceaux d’agneau de cette pâte, en veillant à ce qu’ils soient uniformément couverts. Réservez-en un peu si besoin.",
+                      "Écrasez les trois gousses d’ail. Frottez-en la moitié sur les morceaux d’agneau et gardez l’autre moitié pour la cuisson.",
+                      "Émincez l’oignon en julienne. Mélangez-le au reste d’ail écrasé et réservez.",
+                      "Faites chauffer une grande cocotte à feu vif. Saisissez tous les morceaux d’agneau sur toutes leurs faces jusqu’à ce qu’ils soient bien dorés. Procédez en plusieurs fois pour ne pas surcharger la cocotte. Réservez.",
+                      "Dans la même cocotte, ajoutez les oignons et l’ail. Faites revenir environ 5 minutes, jusqu’à ce qu’ils soient tendres et légèrement caramélisés.",
+                      "Remettez l’agneau dans la cocotte. Ouvrez la boîte de tomates et ajoutez-les avec le bouillon. Couvrez et laissez cuire à feu doux 3 à 4 heures, ou enfournez à 190 °C pendant 2 à 4 heures.",
+                      "L’agneau est prêt lorsqu’il est parfaitement fondant et se défait sans effort. Testez à la fourchette : la viande ne doit opposer aucune résistance.",
+                      "Une fois fondant, défaites encore l’agneau à la fourchette directement dans la cocotte — au niveau 6, aucun morceau ne doit dépasser 1,5 cm, et il doit s’effondrer sous une légère pression.",
+                      "Montez le feu et laissez réduire le bouillon jusqu’à ce qu’il épaississe et nappe bien la cuillère.",
+                      "Servez chaud sur des pâtes ou avec du riz. L’agneau doit être assez tendre pour se manger avec un minimum de mastication."
+              ],
+              "servingTips": [
+                      "L’agneau est prêt lorsqu’une fourchette défait la viande sans aucune résistance — vérifiez plusieurs morceaux pour vous assurer d’une tendreté homogène.",
+                      "En cas de difficultés de déglutition, coupez l’agneau cuit en très petits morceaux ou écrasez-le légèrement avec la sauce.",
+                      "La sauce doit être assez épaisse pour napper une cuillère — ajustez en laissant réduire plus longtemps ou en ajoutant du liquide.",
+                      "Ce ragoût se conserve bien jusqu’à 3 jours au réfrigérateur, et ses saveurs continuent de se développer."
+              ],
+              "dietaryNotes": "Sans gluten. Réduisez le piment de Cayenne pour atténuer le piquant. Servez avec du riz ou des pâtes pour l’apport en glucides. Extrêmement riche en sodium tel qu’indiqué — voir la note nutritionnelle ci-dessus.",
+              "nutrition": {
+                      "basis": "Estimé à partir des ingrédients indiqués, pour 4 portions, en comptant la totalité du mélange d’épices puisqu’il est appliqué directement sur la viande. Il s’agit d’une estimation, non d’une analyse en laboratoire.",
+                      "flag": "les 3 cuillères à soupe de sel du mélange d’épices représentent environ 5 300 mg par portion — plus du double de la limite quotidienne d’un adulte. Réduisez le sel à environ 1 cuillère à café au total et assaisonnez plutôt en fin de cuisson ; la recette fonctionne toujours, et c’est le changement le plus important à faire avant de la servir à une personne suivant un régime pauvre en sel."
+              }
+      },
+      "lobster-bisque": {
+              "title": "Bisque de homard",
+              "description": "Une bisque de crustacés classique et crémeuse, montée sur un fumet de homard maison et mixée jusqu’à ce qu’il ne reste plus rien à mâcher.",
+              "ingredients": [
+                      {
+                              "amount": "4 c. à soupe",
+                              "item": "Beurre"
+                      },
+                      {
+                              "amount": "1 gros",
+                              "item": "Oignon jaune, en dés"
+                      },
+                      {
+                              "amount": "5 branches",
+                              "item": "Céleri, en dés"
+                      },
+                      {
+                              "amount": "3 moyennes",
+                              "item": "Carottes, en dés"
+                      },
+                      {
+                              "amount": "1 gousse",
+                              "item": "Ail, hachée"
+                      },
+                      {
+                              "amount": "Selon le goût",
+                              "item": "Sel et poivre blanc"
+                      },
+                      {
+                              "amount": "1 brin",
+                              "item": "Estragon frais",
+                              "note": "Ou 3/4 c. à café séché"
+                      },
+                      {
+                              "amount": "3 c. à soupe",
+                              "item": "Concentré de tomate"
+                      },
+                      {
+                              "amount": "1 c. à café",
+                              "item": "Paprika"
+                      },
+                      {
+                              "amount": "1/8 c. à café",
+                              "item": "Piment de Cayenne"
+                      },
+                      {
+                              "amount": "1/4 tasse",
+                              "item": "Farine de blé"
+                      },
+                      {
+                              "amount": "1 tasse",
+                              "item": "Vin blanc sec"
+                      },
+                      {
+                              "amount": "1/3 tasse",
+                              "item": "Xérès sec ou crème de xérès"
+                      },
+                      {
+                              "amount": "6 tasses",
+                              "item": "Fumet de homard ou de crustacés",
+                              "note": "À préparer ci-dessous, ou du commerce"
+                      },
+                      {
+                              "amount": "1 brin",
+                              "item": "Thym frais",
+                              "note": "Ou 1/4 c. à café séché"
+                      },
+                      {
+                              "amount": "1",
+                              "item": "Feuille de laurier"
+                      },
+                      {
+                              "amount": "1 tasse",
+                              "item": "Crème entière"
+                      },
+                      {
+                              "amount": "1 c. à café",
+                              "item": "Vinaigre de xérès",
+                              "note": "Ou vinaigre de vin rouge ou blanc"
+                      },
+                      {
+                              "amount": "300 g",
+                              "item": "Chair de homard cuite",
+                              "note": "Lisez le premier conseil de service avant de l’ajouter dans le bol"
+                      },
+                      {
+                              "amount": "Facultatif",
+                              "item": "Ciboulette ciselée",
+                              "note": "Garniture — ne convient pas au niveau 3"
+                      },
+                      {
+                              "amount": "1 gros",
+                              "item": "Oignon, coupé en deux",
+                              "note": "Pour le fumet"
+                      },
+                      {
+                              "amount": "2 branches",
+                              "item": "Céleri, coupées en deux",
+                              "note": "Pour le fumet"
+                      },
+                      {
+                              "amount": "1",
+                              "item": "Carotte, coupée en deux",
+                              "note": "Pour le fumet"
+                      },
+                      {
+                              "amount": "3 gousses",
+                              "item": "Ail, écrasées",
+                              "note": "Pour le fumet"
+                      },
+                      {
+                              "amount": "5",
+                              "item": "Grains de poivre",
+                              "note": "Pour le fumet"
+                      },
+                      {
+                              "amount": "4 brins",
+                              "item": "Thym",
+                              "note": "Pour le fumet"
+                      },
+                      {
+                              "amount": "2",
+                              "item": "Feuilles de laurier",
+                              "note": "Pour le fumet"
+                      },
+                      {
+                              "amount": "Autant que possible",
+                              "item": "Carapaces de homard, de crevette ou de crabe",
+                              "note": "Pour le fumet — plus il y en a, mieux c’est"
+                      },
+                      {
+                              "amount": "Pour couvrir",
+                              "item": "Eau",
+                              "note": "Pour le fumet"
+                      }
+              ],
+              "instructions": [
+                      "Faites fondre le beurre dans une grande cocotte à fond épais, à feu moyen.",
+                      "Ajoutez l’oignon, le céleri, les carottes et l’ail. Salez et poivrez au poivre blanc, puis faites cuire en remuant souvent, jusqu’à ce que les légumes soient tendres sans colorer, environ 8 minutes.",
+                      "Ajoutez l’estragon, le concentré de tomate, le piment de Cayenne et le paprika, puis mélangez jusqu’à ce que le concentré soit bien dispersé.",
+                      "Ajoutez la farine et mélangez jusqu’à incorporation.",
+                      "Ajoutez le vin blanc et le xérès, montez à feu moyen-vif et remuez jusqu’à absorption du liquide.",
+                      "Ajoutez le fumet, le thym et le laurier. Salez et poivrez, puis couvrez et laissez mijoter jusqu’à ce que les légumes soient parfaitement fondants, environ 20 minutes.",
+                      "Retirez le brin de thym et le laurier, puis mixez la soupe jusqu’à ce qu’elle soit totalement lisse, au mixeur plongeant ou par fournées au blender.",
+                      "Continuez jusqu’à ce qu’il ne reste plus aucun grumeau ni la moindre granulosité. Cela peut prendre bien plus longtemps que prévu. Si le mixeur n’y parvient pas, passez la soupe au tamis fin.",
+                      "Remettez la soupe à feu doux-moyen. Incorporez la crème et le vinaigre de xérès.",
+                      "Goûtez et rectifiez l’assaisonnement.",
+                      "Servez. Au niveau 3, la bisque va seule dans le bol — lisez le premier conseil de service avant d’ajouter chair de homard ou ciboulette.",
+                      "Pour préparer le fumet vous-même, mettez l’oignon, le céleri et la carotte coupés en deux, l’ail écrasé, les grains de poivre, le thym, les feuilles de laurier et les carapaces dans un grand faitout. Tassez pour combler les vides.",
+                      "Couvrez d’eau et portez à ébullition, puis baissez à frémissement doux et laissez cuire 20 à 30 minutes.",
+                      "Filtrez. Le rendement varie. Le fumet se conserve jusqu’à 6 mois au congélateur."
+              ],
+              "servingTips": [
+                      "La bisque elle-même est de niveau 3 une fois mixée, mais la chair de homard et la ciboulette dont on la finit habituellement ne le sont pas. Des morceaux de chair dans une soupe lisse constituent une consistance mixte, parmi les plus risquées à avaler. Au niveau 3, laissez les deux hors du bol, ou mixez la chair de homard avec la soupe à l’étape 7 pour qu’elle passe au mixeur avec le reste.",
+                      "L’étape 8 est celle qui décide si ce plat est de niveau 3 ou non. Les crustacés et le céleri laissent des fibres qu’un mixage rapide ne brise pas. S’il reste la moindre granulosité sur la langue, passez au tamis.",
+                      "Filtrez après le mixage même si la soupe paraît lisse. Les éclats de carapace passent facilement inaperçus dans une soupe opaque et ne se détectent qu’une fois en bouche.",
+                      "Elle épaissit en refroidissant, puis encore au réfrigérateur. Le niveau 3 doit encore couler de la cuillère : détendez-la avec un peu de fumet ou de lait au réchauffage et revérifiez avant de servir."
+              ],
+              "dietaryNotes": "Contient des crustacés et des produits laitiers. Contient du gluten tel qu’indiqué ; la farine peut être remplacée par de la fécule de maïs. Les valeurs fournies indiquent également 14 g d’acides gras saturés, 3 g de fibres, 6 g de sucres et 687 mg de potassium.",
+              "nutrition": {
+                      "basis": "Par portion, telle que fournie avec la recette. Elle en donne 6, et la valeur inclut la chair de homard.",
+                      "flag": "à 1 146 mg par portion, c’est environ la moitié de la limite quotidienne d’un adulte, et un fumet de crustacés du commerce fera généralement monter ce chiffre. Utilisez un fumet pauvre en sel ou maison, et assaisonnez en fin de cuisson, une fois la soupe réduite."
+              }
+      },
+      "mango-jam-with-yogurt": {
+              "title": "Confiture de mangue au yaourt",
+              "description": "Une confiture de mangue lisse et naturellement sucrée, mélangée à un yaourt crémeux — une cuillerée lumineuse, en dessert ou en collation.",
+              "ingredients": [
+                      {
+                              "amount": "2 tasses",
+                              "item": "Mangue fraîche, coupée en morceaux"
+                      },
+                      {
+                              "amount": "1/2 tasse",
+                              "item": "Sucre"
+                      },
+                      {
+                              "amount": "1 c. à soupe",
+                              "item": "Jus de citron"
+                      },
+                      {
+                              "amount": "Facultatif",
+                              "item": "Une pincée de sel ou 1/4 c. à café d’extrait de vanille",
+                              "note": "Pour plus de profondeur"
+                      },
+                      {
+                              "amount": "Pour servir",
+                              "item": "Yaourt nature"
+                      }
+              ],
+              "instructions": [
+                      "Mettez la mangue dans une casserole à feu moyen. Faites cuire 5 à 7 minutes jusqu’à ce qu’elle soit tendre, en remuant de temps en temps. Écrasez-la à la cuillère ou au presse-purée jusqu’à obtenir une pulpe bien fondante.",
+                      "Ajoutez le sucre et le jus de citron (ainsi que le sel ou la vanille, le cas échéant). Mélangez bien.",
+                      "Laissez mijoter à feu doux 15 à 20 minutes en remuant souvent, jusqu’à consistance de confiture. Elle est prête lorsqu’elle tient sa forme sur une cuillère ou une assiette froide.",
+                      "Laissez refroidir complètement. Transvasez dans un bocal propre et conservez au réfrigérateur.",
+                      "Mélangez une cuillerée à un pot de yaourt et dégustez."
+              ],
+              "servingTips": [
+                      "Écrasez soigneusement la mangue à l’étape 1 : les fibres filandreuses près du noyau sont le principal risque de texture ici, vérifiez leur absence avant de servir.",
+                      "Pour une texture de niveau 3, parfaitement lisse et versable, mixez la confiture finie avant de l’incorporer au yaourt.",
+                      "Pour les régimes à texture modifiée, choisissez un yaourt lisse et non sucré, sans morceaux de fruits ni granola.",
+                      "La confiture se conserve environ deux semaines au réfrigérateur — préparez-en une fournée à l’avance et portionnez-la."
+              ],
+              "dietaryNotes": "Naturellement sans gluten et végétarienne. Choisissez un yaourt végétal pour rendre l’ensemble sans produits laitiers.",
+              "nutrition": {
+                      "basis": "Par portion de confiture de mangue seule (le yaourt qui l’accompagne n’est pas compté)."
+              }
+      },
+      "mapo-tofu": {
+              "title": "Mapo tofu",
+              "description": "Des cubes de tofu soyeux mijotés dans une sauce relevée avec du porc finement haché — un classique de semaine, naturellement doux en bouche.",
+              "ingredients": [
+                      {
+                              "amount": "90 g",
+                              "item": "Porc haché"
+                      },
+                      {
+                              "amount": "2 c. à café",
+                              "item": "Ail, haché"
+                      },
+                      {
+                              "amount": "1 barquette",
+                              "item": "Tofu mou",
+                              "note": "Coupé en petits cubes d’environ 1,2 cm, ou écrasé dans la sauce pour une texture plus souple"
+                      },
+                      {
+                              "amount": "1 sachet",
+                              "item": "Sauce mapo tofu du commerce"
+                      },
+                      {
+                              "amount": "Selon le goût",
+                              "item": "Ciboule, finement ciselée"
+                      }
+              ],
+              "instructions": [
+                      "Faites chauffer un peu d’huile dans un wok et faites revenir l’ail jusqu’à ce qu’il embaume.",
+                      "Ajoutez le porc haché et faites-le cuire en l’émiettant, jusqu’à ce qu’il soit presque cuit.",
+                      "Ouvrez la sauce mapo tofu et mélangez-la au porc haché jusqu’à cuisson complète.",
+                      "Ajoutez le tofu mou et laissez cuire doucement à feu doux, jusqu’à ce que la sauce épaississe et que le tofu soit chaud et fondant.",
+                      "Parsemez de ciboule et servez avec du riz chaud."
+              ],
+              "servingTips": [
+                      "Le porc haché et le tofu mou sont déjà naturellement tendres : tel qu’écrit, c’est l’un des plats salés les plus doux de cette collection.",
+                      "Coupez le tofu en cubes plus petits, ou écrasez-le délicatement dans la sauce, pour rapprocher la texture du niveau 4.",
+                      "Lisez l’étiquette du sachet de sauce : ces préparations sont souvent riches en sodium, et certaines contiennent une pâte de fèves fermentées qui peut être très relevée.",
+                      "Servez sur du riz nature bien cuit, ou sur de la purée de pommes de terre plutôt que du riz pour qui a besoin d’une base encore plus souple."
+              ],
+              "dietaryNotes": "Contient du soja et du porc. Les valeurs ci-dessus sont estimées à partir des ingrédients, la recette source n’en fournissant pas — elles varieront beaucoup selon la sauce du commerce utilisée.",
+              "nutrition": {
+                      "basis": "Estimé pour 4 portions, en supposant une barquette de 300 g de tofu mou et un sachet de sauce mapo tofu d’environ 60 g. Le riz d’accompagnement n’est pas compté. Le sachet de sauce est la principale inconnue : lisez son étiquette, les marques varient beaucoup.",
+                      "flag": "environ 600 mg par portion, presque entièrement dus au sachet de sauce du commerce. Les marques varient beaucoup — lisez l’étiquette et n’utilisez pas tout le sachet si le sodium est une préoccupation."
+              }
+      },
+      "peach-smoothie": {
+              "title": "Smoothie à la pêche",
+              "description": "Des pêches au sirop léger mixées avec du yaourt, du lait et de la vanille en une boisson soyeuse légèrement épaisse.",
+              "ingredients": [
+                      {
+                              "amount": "1/2 tasse",
+                              "item": "Pêches en conserve au jus, égouttées",
+                              "note": "120 g"
+                      },
+                      {
+                              "amount": "1/2 tasse",
+                              "item": "Yaourt nature",
+                              "note": "120 ml"
+                      },
+                      {
+                              "amount": "1/2 tasse",
+                              "item": "Lait",
+                              "note": "120 ml"
+                      },
+                      {
+                              "amount": "1/2 c. à café",
+                              "item": "Extrait de vanille"
+                      },
+                      {
+                              "amount": "Selon les indications",
+                              "item": "Épaississant du commerce",
+                              "note": "Uniquement si nécessaire pour atteindre le niveau 2 prescrit"
+                      }
+              ],
+              "instructions": [
+                      "Mixez les pêches, le yaourt, le lait et la vanille jusqu’à obtenir une texture soyeuse.",
+                      "Filtrez s’il reste des fibres.",
+                      "Ajustez au niveau 2 prescrit avec de l’épaississant, en suivant les indications du produit.",
+                      "Respectez le temps d’hydratation indiqué, remuez de nouveau et vérifiez la consistance avant de servir."
+              ],
+              "servingTips": [
+                      "Le niveau 2 désigne l’épaisseur d’une boisson, pas la texture d’un aliment. La quantité d’épaississant dépend du produit utilisé et du niveau réellement prescrit : suivez les indications du fabricant plutôt qu’un nombre de cuillères fixe.",
+                      "Laissez reposer le temps indiqué par l’épaississant avant de juger. La plupart continuent d’épaissir pendant plusieurs minutes, et une boisson qui paraît juste après le mélange peut être trop épaisse une fois à table.",
+                      "Vérifiez la boisson finie avec le test d’écoulement IDDSI, à la température à laquelle elle sera servie. Réchauffer ou refroidir modifie son écoulement.",
+                      "Filtrez avant d’épaissir. Les pépins, les peaux et les fibres de fruit sont la seule chose qu’un épaississant ne peut pas corriger."
+              ],
+              "dietaryNotes": "Contient des produits laitiers. Naturellement sans gluten. Des pêches au sirop augmenteront nettement la teneur en sucre.",
+              "nutrition": {
+                      "basis": "Estimé à partir des ingrédients indiqués, pour 2 portions, avec des pêches au jus plutôt qu’au sirop. Il s’agit d’une estimation, non d’une analyse en laboratoire."
+              }
+      },
+      "pumpkin-soup": {
+              "title": "Velouté de potiron",
+              "description": "De la purée de potiron détendue au bouillon et à la crème, réchauffée avec de la cannelle, puis mixée jusqu’à être parfaitement lisse.",
+              "ingredients": [
+                      {
+                              "amount": "1 tasse",
+                              "item": "Purée de potiron",
+                              "note": "240 g"
+                      },
+                      {
+                              "amount": "3/4 tasse",
+                              "item": "Bouillon pauvre en sel",
+                              "note": "180 ml"
+                      },
+                      {
+                              "amount": "1/4 tasse",
+                              "item": "Crème",
+                              "note": "60 ml"
+                      },
+                      {
+                              "amount": "1/4 c. à café",
+                              "item": "Cannelle"
+                      },
+                      {
+                              "amount": "Une pincée",
+                              "item": "Sel"
+                      },
+                      {
+                              "amount": "Selon les indications",
+                              "item": "Épaississant du commerce",
+                              "note": "Uniquement si nécessaire pour atteindre le niveau 3 prescrit"
+                      }
+              ],
+              "instructions": [
+                      "Réunissez le potiron, le bouillon, la crème et les assaisonnements dans une casserole.",
+                      "Chauffez doucement 5 à 7 minutes en remuant souvent.",
+                      "Mixez jusqu’à obtenir une texture parfaitement lisse.",
+                      "N’ajustez la consistance avec de l’épaississant que selon les indications, pour le niveau 3 prescrit.",
+                      "Vérifiez la texture finale avant de servir."
+              ],
+              "servingTips": [
+                      "Utilisez de la purée, et non une garniture à tarte en conserve. Celle-ci est déjà sucrée et épicée, et prend beaucoup plus épais, ce qui ferait dépasser le niveau 3.",
+                      "Les graines grillées dont on garnit habituellement ce velouté ne conviennent à aucun des niveaux de texture de ce site. Laissez-les de côté.",
+                      "L’épaississant est un dernier recours, pas un ingrédient. Mixez et filtrez d’abord, puis n’en ajoutez que si la soupe reste plus fluide que le niveau prescrit, en suivant les indications du produit.",
+                      "Le velouté épaissit nettement en refroidissant. Le niveau 3 doit encore couler de la cuillère : revérifiez une fois à température de service plutôt qu’à la sortie du feu."
+              ],
+              "dietaryNotes": "Contient des produits laitiers. Naturellement sans gluten si le bouillon l’est. Utilisez une crème végétale et un bouillon de légumes pour une version sans produits laitiers.",
+              "nutrition": {
+                      "basis": "Estimé à partir des ingrédients indiqués, pour 2 portions, avec de la purée de potiron non sucrée et un bouillon pauvre en sel. Le document source ne fournissait aucune valeur nutritionnelle : il s’agit donc d’une estimation, non d’une analyse en laboratoire."
+              }
+      },
+      "rice-pudding": {
+              "title": "Riz au lait classique",
+              "description": "Un riz au lait crémeux mijoté au lait, relevé d’une pointe de vanille et de cannelle — un dessert doux, qui se mange à la cuillère.",
+              "ingredients": [
+                      {
+                              "amount": "4,5 tasses",
+                              "item": "Lait entier",
+                              "note": "1 080 ml"
+                      },
+                      {
+                              "amount": "1/4 tasse",
+                              "item": "Sucre en poudre",
+                              "note": "50 g"
+                      },
+                      {
+                              "amount": "Une pincée",
+                              "item": "Sel"
+                      },
+                      {
+                              "amount": "3/4 tasse",
+                              "item": "Riz blanc cru",
+                              "note": "Riz rond, 135 g"
+                      },
+                      {
+                              "amount": "1 c. à café",
+                              "item": "Extrait de vanille"
+                      },
+                      {
+                              "amount": "Selon le goût",
+                              "item": "Cannelle moulue"
+                      }
+              ],
+              "instructions": [
+                      "Dans une grande casserole, mélangez le lait, le sucre et le sel. Portez à ébullition à feu moyen-vif. Ajoutez le riz et mélangez.",
+                      "Baissez à feu doux et couvrez partiellement. Laissez mijoter en remuant souvent, jusqu’à ce que le riz soit fondant et le mélange épaissi, environ 25 à 30 minutes.",
+                      "Incorporez la vanille et la cannelle selon le goût. Poursuivez la cuisson jusqu’à l’épaisseur voulue — le riz au lait épaissira encore en refroidissant ; détendez-le avec un peu de lait s’il devient trop épais.",
+                      "Servez tiède, ou laissez refroidir à température ambiante puis réfrigérez dans un récipient hermétique et servez froid. Saupoudrez de cannelle si vous le souhaitez."
+              ],
+              "servingTips": [
+                      "Les raisins secs d’un riz au lait classique ont été laissés de côté. Des morceaux collants et élastiques dispersés dans un dessert souple comptent parmi les textures les plus risquées en cas de troubles de la déglutition, et contrairement à un gros légume, on ne peut pas les rendre plus sûrs en les coupant plus petits.",
+                      "Laissez mijoter un peu plus de 30 minutes si vous voulez que les grains se défassent davantage et disparaissent dans la crème, pour se rapprocher d’une texture de niveau 4.",
+                      "Pour un niveau 4 entièrement lisse, mixez le riz au lait fini jusqu’à ce qu’il soit crémeux.",
+                      "Il épaissit nettement en refroidissant — détendez-le d’un trait de lait tiède juste avant de servir s’il est devenu trop épais."
+              ],
+              "dietaryNotes": "Végétarien. Contient des produits laitiers tel qu’indiqué ; un lait sans lactose ou végétal peut être substitué. Les valeurs ci-dessus sont estimées à partir des ingrédients, la recette source n’en fournissant pas.",
+              "nutrition": {
+                      "basis": "Estimé à partir des ingrédients indiqués, pour 6 portions. Il s’agit d’une estimation, non d’une analyse en laboratoire."
+              }
+      },
+      "stovetop-mac-and-cheese": {
+              "title": "Macaronis au fromage à la casserole",
+              "description": "Des macaronis au fromage riches et crémeux préparés à la casserole, avec une sauce aux œufs et au cheddar — sans passage au four.",
+              "ingredients": [
+                      {
+                              "amount": "3 tasses",
+                              "item": "Macaronis ou coquillettes moyennes"
+                      },
+                      {
+                              "amount": "2",
+                              "item": "Œufs"
+                      },
+                      {
+                              "amount": "1 boîte (340 g)",
+                              "item": "Lait concentré non sucré"
+                      },
+                      {
+                              "amount": "1/4 c. à café",
+                              "item": "Moutarde en poudre"
+                      },
+                      {
+                              "amount": "Selon le goût",
+                              "item": "Sel et poivre"
+                      },
+                      {
+                              "amount": "4 c. à soupe",
+                              "item": "Beurre"
+                      },
+                      {
+                              "amount": "3 tasses",
+                              "item": "Cheddar râpé",
+                              "note": "Le plus affiné possible"
+                      }
+              ],
+              "instructions": [
+                      "Portez 2 litres d’eau à ébullition dans une grande casserole, versez les pâtes et faites-les cuire jusqu’à ce qu’elles soient presque tendres — deux minutes de plus que le temps al dente indiqué, pour une bouchée plus souple.",
+                      "Pendant ce temps, mélangez les œufs, la moitié du lait concentré, la moutarde en poudre, 1/2 cuillère à café de sel et 1/4 de cuillère à café de poivre.",
+                      "Égouttez les pâtes et remettez-les dans la casserole. Placez sur feu doux et incorporez le beurre jusqu’à ce qu’il fonde.",
+                      "Incorporez le mélange aux œufs et la moitié du cheddar. Poursuivez la cuisson à feu doux en ajoutant progressivement le reste de lait et de cheddar, jusqu’à ce que le mélange soit chaud et crémeux, environ 5 minutes.",
+                      "Salez et poivrez à votre goût."
+              ],
+              "servingTips": [
+                      "La sauce est un peu liquide juste après la préparation — laissez reposer 10 minutes avant de servir, ou servez aussitôt en bols avec des cuillères ; elle épaissit en refroidissant à mesure que les macaronis l’absorbent.",
+                      "Faites cuire les pâtes deux minutes de plus que ne l’indique le paquet, et coupez ou écrasez les coquillettes une fois dans l’assiette, pour qu’elles soient plus faciles à gérer.",
+                      "Pour un niveau de texture inférieur, mixez une partie du plat fini jusqu’à ce qu’il soit lisse — la sauce crémeuse aux œufs et au cheddar se mixe sans peine.",
+                      "Évitez de servir très chaud — la sauce au fromage retient la chaleur et peut ébouillanter."
+              ],
+              "dietaryNotes": "Contient du gluten tel qu’indiqué ; des pâtes sans gluten peuvent être substituées. Végétarien.",
+              "nutrition": {
+                      "basis": "Par portion ; il s’agit d’une portion sur 5."
+              }
+      },
+      "strawberry-yogurt-drink": {
+              "title": "Boisson fraise-yaourt",
+              "description": "Des fraises mixées avec du yaourt et du lait, puis filtrées et épaissies en boisson légèrement épaisse.",
+              "ingredients": [
+                      {
+                              "amount": "1/2 tasse",
+                              "item": "Fraises, équeutées",
+                              "note": "75 g"
+                      },
+                      {
+                              "amount": "3/4 tasse",
+                              "item": "Yaourt nature",
+                              "note": "180 ml"
+                      },
+                      {
+                              "amount": "1/2 tasse",
+                              "item": "Lait",
+                              "note": "120 ml"
+                      },
+                      {
+                              "amount": "1 c. à café",
+                              "item": "Sucre",
+                              "note": "Facultatif"
+                      },
+                      {
+                              "amount": "Selon les indications",
+                              "item": "Épaississant du commerce",
+                              "note": "Uniquement si nécessaire pour atteindre le niveau 2 prescrit"
+                      }
+              ],
+              "instructions": [
+                      "Mixez les fraises, le yaourt, le lait et le sucre jusqu’à obtenir un mélange parfaitement lisse.",
+                      "Passez au tamis fin pour retirer les akènes.",
+                      "Si la boisson est plus fluide que le niveau 2 prescrit, ajoutez de l’épaississant en suivant les indications du produit.",
+                      "Laissez reposer le temps indiqué par l’épaississant, remuez de nouveau, puis vérifiez la consistance avant de servir."
+              ],
+              "servingTips": [
+                      "Le niveau 2 désigne l’épaisseur d’une boisson, pas la texture d’un aliment. La quantité d’épaississant dépend du produit utilisé et du niveau réellement prescrit : suivez les indications du fabricant plutôt qu’un nombre de cuillères fixe.",
+                      "Laissez reposer le temps indiqué par l’épaississant avant de juger. La plupart continuent d’épaissir pendant plusieurs minutes, et une boisson qui paraît juste après le mélange peut être trop épaisse une fois à table.",
+                      "Vérifiez la boisson finie avec le test d’écoulement IDDSI, à la température à laquelle elle sera servie. Réchauffer ou refroidir modifie son écoulement.",
+                      "Filtrez avant d’épaissir. Les pépins, les peaux et les fibres de fruit sont la seule chose qu’un épaississant ne peut pas corriger."
+              ],
+              "dietaryNotes": "Contient des produits laitiers. Naturellement sans gluten. Les épaississants varient — vérifiez les allergènes du vôtre.",
+              "nutrition": {
+                      "basis": "Estimé à partir des ingrédients indiqués, pour 2 portions, sucre facultatif compris. L’épaississant apporte une énergie négligeable. Il s’agit d’une estimation, non d’une analyse en laboratoire."
+              }
+      },
+      "vanilla-bean-custard": {
+              "title": "Crème à la gousse de vanille",
+              "description": "Une crème à la vanille soyeuse et élégante, à la vraie gousse — parfaitement lisse et délicatement prise, pensée pour fondre sur la langue.",
+              "ingredients": [
+                      {
+                              "amount": "4 gros",
+                              "item": "Œufs"
+                      },
+                      {
+                              "amount": "4 gros",
+                              "item": "Jaunes d’œufs"
+                      },
+                      {
+                              "amount": "2/3 tasse",
+                              "item": "Sucre en poudre"
+                      },
+                      {
+                              "amount": "2 tasses",
+                              "item": "Crème entière"
+                      },
+                      {
+                              "amount": "1 tasse",
+                              "item": "Lait entier"
+                      },
+                      {
+                              "amount": "1",
+                              "item": "Gousse de vanille, fendue et grattée",
+                              "note": "Ou 2 c. à café d’extrait de vanille"
+                      },
+                      {
+                              "amount": "1/4 c. à café",
+                              "item": "Sel fin"
+                      },
+                      {
+                              "amount": "1/4 c. à café",
+                              "item": "Noix de muscade moulue",
+                              "note": "Facultatif"
+                      }
+              ],
+              "instructions": [
+                      "Préchauffez le four à 165 °C. Disposez six ramequins de 180 ml dans un grand plat à rôtir.",
+                      "Dans un bol moyen, fouettez les œufs, les jaunes et le sucre jusqu’à obtenir un mélange lisse et légèrement pâli.",
+                      "Dans une casserole, réunissez la crème, le lait, la gousse de vanille (graines et gousse) et le sel. Chauffez à feu moyen jusqu’aux premières vapeurs et à l’apparition de petites bulles sur les bords. Ne faites pas bouillir.",
+                      "Versez lentement le mélange chaud sur les œufs en fouettant sans arrêt pour les tempérer. Ajoutez-le progressivement pour éviter qu’ils ne coagulent.",
+                      "Passez le mélange au tamis fin dans un grand verre doseur. Cela retire les éventuels morceaux d’œuf cuit et garantit une onctuosité parfaite.",
+                      "Répartissez la crème dans les ramequins. Saupoudrez chacun d’une toute petite pincée de muscade, le cas échéant.",
+                      "Versez de l’eau chaude dans le plat à rôtir jusqu’à mi-hauteur des ramequins. Ce bain-marie assure une cuisson douce et régulière.",
+                      "Enfournez 40 à 45 minutes, jusqu’à ce que les bords soient pris mais que le centre tremble encore légèrement. Les crèmes doivent être cuites à cœur tout en restant soyeuses et tendres.",
+                      "Sortez les ramequins du bain-marie et laissez refroidir à température ambiante. Réfrigérez au moins 2 heures, jusqu’à ce qu’elles soient bien froides et prises.",
+                      "Avant de servir, passez un doigt sur le bord de chaque crème. Elle doit se détacher sans effort. La texture doit être soyeuse, tremblante et fondre en bouche."
+              ],
+              "servingTips": [
+                      "La crème est prête lorsqu’elle passe le test du tremblement : une tape légère ne doit provoquer qu’un petit mouvement au centre.",
+                      "Trop cuites, les crèmes deviennent granuleuses et rendent de l’eau — sortez-les du four quand le centre paraît encore un peu insuffisamment pris.",
+                      "Pour qui a besoin d’une texture mixée, passez la crème froide au mixeur jusqu’à ce qu’elle soit parfaitement lisse avant de servir.",
+                      "Servez légèrement fraîche ou à température ambiante — une crème froide se contrôle plus facilement en bouche."
+              ],
+              "dietaryNotes": "Sans gluten. Peut être allégée avec du lait demi-écrémé ou un mélange de lait et de crème.",
+              "nutrition": {
+                      "basis": "Estimé à partir des ingrédients indiqués, pour 6 ramequins. Il s’agit d’une estimation, non d’une analyse en laboratoire."
+              }
+      },
+      "watermelon-sorbet": {
+              "title": "Sorbet à la pastèque",
+              "description": "Un sorbet à la pastèque rafraîchissant en quatre ingrédients, mixé puis congelé — lumineux, simple et naturellement sucré.",
+              "ingredients": [
+                      {
+                              "amount": "6 tasses",
+                              "item": "Morceaux de pastèque congelés"
+                      },
+                      {
+                              "amount": "1 tasse",
+                              "item": "Sirop de pastèque",
+                              "note": "Ou sirop de sucre, agave ou miel"
+                      },
+                      {
+                              "amount": "1/2 tasse",
+                              "item": "Eau"
+                      },
+                      {
+                              "amount": "2 c. à soupe",
+                              "item": "Jus de citron vert frais"
+                      }
+              ],
+              "instructions": [
+                      "Mettez 3 tasses de pastèque, 1/2 tasse de sirop, 1/4 tasse d’eau et 1 cuillère à soupe de jus de citron vert dans un blender puissant. Mixez jusqu’à obtenir une texture lisse, en faisant des pauses pour repousser le mélange si les lames se bloquent.",
+                      "Transvasez le sorbet dans un moule à cake en métal ou un autre récipient adapté au congélateur, et placez-le au froid.",
+                      "Répétez avec le reste des ingrédients, puis servez aussitôt ou conservez couvert au congélateur jusqu’à une semaine."
+              ],
+              "servingTips": [
+                      "Les desserts glacés comportent un risque de texture facile à manquer : en fondant en bouche, le sorbet se transforme vite en un liquide fluide et rapide, plus difficile à contrôler que ne le laisse croire la boule glacée. Parlez-en à un orthophoniste ou à un diététicien avant de servir un dessert glacé à une personne au niveau 4 ou en dessous.",
+                      "Laissez le sorbet quelques minutes à température ambiante avant de servir, pour qu’il soit souple et granité plutôt que dur comme de la pierre — plus facile à prélever et plus sûr à avaler.",
+                      "Servez par petites cuillerées en laissant chacune s’attendrir légèrement en bouche, plutôt qu’une grosse boule glacée d’un coup.",
+                      "Cette recette ne contient ni produits laitiers ni presque aucune fibre : c’est une bonne option de douceur froide une fois la texture validée."
+              ],
+              "dietaryNotes": "Naturellement végétalien, sans gluten et sans produits laitiers. Voir la note ci-dessus sur les textures glacées et la sécurité de la déglutition avant de servir.",
+              "nutrition": {
+                      "basis": "Par portion ; la recette en donne environ 6."
+              }
+      }
+    }
     /* /RECIPES:fr */
   },
 
@@ -836,14 +2820,14 @@ window.AR_I18N = {
                       "用小刀在蒸好的蛋羹表面划出纹路，淋上酱汁即可食用。"
               ],
               "servingTips": [
-                      "蒸过头会出现蜂窝孔洞与水分析出。刚刚凝固即可离火。",
-                      "蛋液过筛、去除气泡，是这道菜能否完全细滑的关键，不可省略。",
-                      "温热食用。放凉后质地会变硬。",
-                      "若需更低的质地等级，可将蒸蛋连同酱汁一起搅打，使其完全顺滑。"
+                      "这道菜通常会撒的葱花已被略去，因为蛋羹评定为第 4 级，而葱丝并不属于这一等级。若为不受限饮食的人加回配料，请先过滤酱汁，以免混入酥脆的辣椒油碎粒。",
+                      "第 2 步过滤蛋液，正是成品蛋羹能够完全细滑的原因。请勿省略。",
+                      "务必小火慢蒸。蒸过头的蛋羹会变得橡胶般韧，并析出水分，形成一层稀薄流动的液体，比蛋羹本身更难安全吞咽。",
+                      "温热食用，不要滚烫——蛋羹很能保温，容易烫口。"
               ],
-              "dietaryNotes": "天然无麸质（请选用无麸质酱油）。蛋白质含量高，质地极为温和。",
+              "dietaryNotes": "若以日式溜酱油替代酱油，则天然无麸质。钠含量很高——在提供给需限钠者之前，请先参阅下方营养说明。",
               "nutrition": {
-                      "basis": "依所列食材按 2 份估算。此为估算值，并非实验室检测的营养标签。"
+                      "basis": "每份计，依所列食材计算（本食谱可做 2 份）。假设酱汁全部食用。"
               }
       },
       "classic-meatloaf": {
@@ -1841,14 +3825,14 @@ window.AR_I18N = {
                       "表面撒上葱花，配热米饭食用。"
               ],
               "servingTips": [
-                      "酱汁必须浓稠到附着于豆腐，而不是分离出来。稀酱汁会造成固液分离的混合质地风险。",
-                      "第 5 级食用时，请将豆腐压碎拌入酱汁，而不是保留成块。",
-                      "第 4 级及以下请略去葱花——葱叶不会化开，需要咀嚼。",
-                      "若喜欢更温和的口味，可减少酱料用量并多加一点水。"
+                      "这里的猪肉末与嫩豆腐本身就很柔软——按原方做法，这是本站较为温和的咸香主菜之一。",
+                      "将豆腐切成更小的块，或轻轻压碎拌入酱汁，可使质地更接近第 4 级。",
+                      "请查看市售酱料包的标签——这类酱料往往钠含量很高，有些还含有发酵豆瓣酱，辣度不低。",
+                      "可搭配煮得软烂的白米饭食用；若需要更柔软的主食，可用土豆泥代替米饭。"
               ],
-              "dietaryNotes": "豆制品蛋白质丰富。请注意市售酱料的钠含量通常较高。可用素肉末替代猪肉末。",
+              "dietaryNotes": "含大豆与猪肉。上方营养数据为依据食材估算，因原方未提供——实际数值会因所用市售酱料而有显著差异。",
               "nutrition": {
-                      "basis": "依所列食材及市售酱料按 2 份估算。此为估算值，并非实验室检测的营养标签。",
+                      "basis": "按 4 份估算，假设使用 300 克装嫩豆腐与一包约 60 克的麻婆豆腐酱。不含搭配的米饭。酱料包是最大的不确定因素——各品牌差异很大，请查看标签。",
                       "flag": "每份约 600 毫克，几乎全部来自市售酱料包。各品牌差异很大——请查看标签，若需控制钠摄入，可不用整包。"
               }
       },
