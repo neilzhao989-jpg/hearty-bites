@@ -1191,7 +1191,7 @@
       border: 1.5px solid var(--border, #E6D9C8); border-radius: 999px;
       background: transparent; cursor: pointer;
       font-family: inherit; font-size: 0.78rem; font-weight: 700;
-      color: var(--text-soft, #6B5B4B); line-height: 1;
+      color: var(--text-soft, #6B5B4B); line-height: 1; white-space: nowrap;
     }
     .lang-btn:hover { border-color: var(--coral); color: var(--coral); }
     .lang-btn.is-active { background: var(--coral); border-color: var(--coral); color: #fff; }
@@ -1878,7 +1878,6 @@
         </ul>
         <div class="lang-switch" role="group" aria-label="Language">
           <button type="button" class="lang-btn is-active" data-lang="en" aria-pressed="true" onclick="setLang('en')">EN</button>
-          <button type="button" class="lang-btn" data-lang="fr" aria-pressed="false" onclick="setLang('fr')">FR</button>
           <button type="button" class="lang-btn" data-lang="zh" aria-pressed="false" onclick="setLang('zh')">中文</button>
         </div>
       </nav>
@@ -3797,6 +3796,26 @@
       'review.empty': 'No reviews yet. Open any recipe and scroll to the bottom to leave the first one.',
       'review.public': 'Reviews are public: everyone visiting this site sees them.',
       'review.count': 'reviews',
+      'review.count.n': '{n} reviews',
+      'review.none': 'No reviews for this recipe yet. If you have cooked it, your notes would help whoever tries it next.',
+      'review.placeholder': 'How did it turn out? Anything worth knowing about the texture?',
+      'review.local': 'Shared reviews are unavailable right now, so this one was saved in this browser only.',
+      'review.loading': 'Loading…',
+      'review.needboth': 'Please add your name and a few words about the recipe.',
+      'review.stars': '{n} stars',
+      'nut.sodium.flag': 'On the sodium:',
+      'review.loadingList': 'Loading reviews…',
+      'time.freezing': '(freezing)',
+      'hero.count': 'recipes across five texture levels. Pick a level to narrow them.',
+      'ladder.title': 'Which texture level do you need?',
+      'ladder.all': 'All levels',
+      'card.mixed': 'Needs blending or thickening',
+      'card.level': 'Level {n} &middot; {name}',
+      'home.whatlevels': 'What do the texture levels mean?',
+      'guide.disclaimer': 'Texture levels on this site are a starting point, not a clinical assessment. A speech-language pathologist or dietitian should confirm the right level for the person you are cooking for.',
+      'reviews.eyebrow': 'From the people cooking these',
+      'reviews.intro': 'Notes left by anyone who has cooked from this collection — how a dish turned out, and how it behaved for the texture level it is graded at.',
+      'guide.intro': 'Every recipe here is graded against the IDDSI framework — the shared scale that clinicians use to describe how soft a food needs to be. Use it to match a recipe to the texture you or someone at your table needs.',
       'foot.browse': 'Browse',
       'foot.all': 'All Recipes',
       'foot.levels': 'Texture Levels',
@@ -3810,6 +3829,8 @@
       'summary': 'Suitable for anyone who finds food hard to chew or swallow. Graded IDDSI Level {n} ({name}) — {plain} — the texture standard used in dysphagia care and soft diets.'
     };
 
+    /* 'fr' stays supported by the machinery and its UI strings are written;
+       it is absent from the switcher only until its recipes are translated. */
     const LANGS = ['en', 'fr', 'zh'];
     const LANG_LABEL = { en: 'EN', fr: 'FR', zh: '中文' };
     const HTML_LANG = { en: 'en', fr: 'fr', zh: 'zh-Hans' };
@@ -3826,6 +3847,44 @@
     function difficulty(word) {
       const map = DIFFICULTY[lang];
       return (map && map[word]) || word;
+    }
+
+    /* Times are written as free text ("1 hour 30 minutes"), so rather than
+       carry 33 translated strings per language they are rewritten by pattern.
+       Anything that does not match is passed through untouched. */
+    const DURATION_WORDS = {
+      fr: { hour: 'heure', hours: 'heures', minute: 'minute', minutes: 'minutes' },
+      zh: { hour: '小时', hours: '小时', minute: '分钟', minutes: '分钟' }
+    };
+
+    function duration(text) {
+      const words = DURATION_WORDS[lang];
+      if (!words || !text) return text;
+      let out = text
+        .replace(/(\d+)\s*hours?/gi, (m, v) => v + (lang === 'zh' ? ' ' : ' ') + (Number(v) > 1 ? words.hours : words.hour))
+        .replace(/(\d+)\s*min(?:ute)?s?/gi, (m, v) => v + ' ' + (Number(v) > 1 ? words.minutes : words.minute));
+      out = out.replace(/\(freezing\)/gi, t('time.freezing'));
+      return lang === 'zh' ? out.replace(/\s+/g, ' ').trim() : out;
+    }
+
+    /* The mixed-consistency warnings are the most safety-critical prose on
+       the site, so they translate like everything else and fall back to the
+       English rather than vanishing. */
+    /* A handful of nutrition values are the literal string "Not specified"
+       rather than a number, so they translate as a value, not per recipe. */
+    const VALUE_WORDS = {
+      fr: { 'Not specified': 'Non précisé' },
+      zh: { 'Not specified': '未提供' }
+    };
+    function nv(value) {
+      const map = VALUE_WORDS[lang];
+      return (map && map[value]) || value;
+    }
+
+    function mixedNote(slug) {
+      const pack = langPack();
+      const over = pack && pack.mixed && pack.mixed[slug];
+      return over || MIXED_CONSISTENCY[slug] || '';
     }
 
     function langPack() {
@@ -4008,8 +4067,9 @@
       return counts;
     }
 
-    function recipeCard(recipe) {
-      const info = IDDSI_LEVELS[recipe.dysphagia];
+    function recipeCard(source) {
+      const recipe = RC(source);
+      const info = L(recipe.dysphagia);
       return `
         <article class="recipe-card" tabindex="0" role="button" aria-label="View recipe for ${recipe.title}"
           onclick="navigateTo('/recipe/${recipe.slug}')" onkeypress="if(event.key==='Enter')navigateTo('/recipe/${recipe.slug}')">
@@ -4018,17 +4078,17 @@
             ${recipePhoto(recipe, '(max-width: 640px) calc(100vw - 40px), (max-width: 1024px) calc(50vw - 38px), 360px')}
           </div>
           <div class="recipe-card-band" style="background:${info.deep}">
-            <span>Level ${recipe.dysphagia} &middot; ${info.name}</span>
+            <span>${t('card.level', { n: recipe.dysphagia, name: info.name })}</span>
             <span class="arrow" aria-hidden="true">&#8599;</span>
           </div>
           <div class="recipe-card-content">
             <h3>${recipe.title}</h3>
             <p>${recipe.description}</p>
-            ${MIXED_CONSISTENCY[recipe.slug] ? '<span class="mixed-flag">Needs blending or thickening</span>' : ''}
+            ${MIXED_CONSISTENCY[recipe.slug] ? `<span class="mixed-flag">${t('card.mixed')}</span>` : ''}
             <div class="recipe-card-meta">
-              <span>${icons.clock} ${recipe.cookTime}</span>
-              <span>${icons.users} ${recipe.servings} servings</span>
-              <span>${recipe.difficulty}</span>
+              <span>${icons.clock} ${duration(recipe.cookTime)}</span>
+              <span>${icons.users} ${recipe.servings} ${t('serves')}</span>
+              <span>${difficulty(recipe.difficulty)}</span>
             </div>
           </div>
         </article>
@@ -4075,9 +4135,9 @@
         <div class="page" id="home-page">
           <div class="bento">
             <section class="bento-hero">
-              <span class="kick">IDDSI levels 3 to 7</span>
-              <h1>Every recipe graded for texture</h1>
-              <p>From liquidised to easy to chew &mdash; so you always know how soft a dish actually is before you cook it.</p>
+              <span class="kick">${t('hero.eyebrow')}</span>
+              <h1>${t('hero.title')}</h1>
+              <p>${t('hero.lede')}</p>
               <div class="level-key" aria-hidden="true">
                 ${levels.map(l => `<span><i style="background:${L(l).color}"></i>${l} ${L(l).name}</span>`).join('')}
               </div>
@@ -4087,7 +4147,7 @@
             </div>
             <div class="bento-stat">
               <b>${recipes.length}</b>
-              <span>recipes across five texture levels. Pick a level to narrow them.</span>
+              <span>${t('hero.count')}</span>
             </div>
             <div class="bento-photo bento-photo--wide" style="background:${feature2.imageBg || ''}">
               ${recipePhoto(feature2, '(max-width: 720px) calc(100vw - 40px), 700px')}
@@ -4095,10 +4155,10 @@
           </div>
 
           <div class="ladder">
-            <h2 id="ladder-heading">Which texture level do you need?</h2>
+            <h2 id="ladder-heading">${t('ladder.title')}</h2>
             <div class="ladder-row" role="group" aria-labelledby="ladder-heading">
               <button type="button" class="lvl-btn" data-level="all" aria-pressed="${activeLevel === null}"
-                onclick="setLevel(null)">All levels <span class="count">${recipes.length}</span></button>
+                onclick="setLevel(null)">${t('ladder.all')} <span class="count">${recipes.length}</span></button>
               ${levels.map(l => `
                 <button type="button" class="lvl-btn" data-level="${l}" aria-pressed="${activeLevel === l}"
                   onclick="setLevel(${l})">
@@ -4108,12 +4168,12 @@
                 </button>
               `).join('')}
             </div>
-            <p id="filter-status" class="sr-only" role="status">Showing all ${recipes.length} recipes</p>
+            <p id="filter-status" class="sr-only" role="status">${t('filter.all', { n: recipes.length })}</p>
           </div>
 
           <div class="section-header">
-            <h2>All Recipes</h2>
-            <p><a href="/texture-guide">What do the texture levels mean?</a></p>
+            <h2>${t('foot.all')}</h2>
+            <p><a href="/texture-guide">${t('home.whatlevels')}</a></p>
           </div>
           <div class="recipe-grid" id="recipe-grid">${renderRecipeGrid()}</div>
         </div>
@@ -4133,20 +4193,20 @@
       return `
         <div class="page" id="guide-page">
           <section class="guide-intro">
-            <span class="eyebrow">Texture Guide</span>
-            <h1>Understanding IDDSI texture levels</h1>
-            <p>Every recipe here is graded against the IDDSI framework &mdash; the shared scale that clinicians use to describe how soft a food needs to be. Use it to match a recipe to the texture you or someone at your table needs.</p>
+            <span class="eyebrow">${t('nav.guide')}</span>
+            <h1>${t('guide.h1')}</h1>
+            <p>${t('guide.intro')}</p>
           </section>
 
           <ul class="level-list" role="list">
             ${levels.map(level => {
-              const info = IDDSI_LEVELS[level];
-              const matches = recipes.filter(r => r.dysphagia === level);
+              const info = L(level);
+              const matches = recipes.filter(r => r.dysphagia === level).map(RC);
               return `
                 <li class="level-row" role="listitem">
                   <span class="level-marker" style="background:${info.color}" aria-hidden="true">${level}</span>
                   <div>
-                    <h3>Level ${level} &mdash; ${info.name}</h3>
+                    <h3>${t('foot.levels.item', { n: level, name: info.name })}</h3>
                     <p class="level-desc">${info.desc}</p>
                     <div class="level-recipes">
                       ${matches.length
@@ -4160,7 +4220,7 @@
           </ul>
 
           <div class="guide-note">
-            <p>Texture levels on this site are a starting point, not a clinical assessment. A speech-language pathologist or dietitian should confirm the right level for the person you're cooking for.</p>
+            <p>${t('guide.disclaimer')}</p>
           </div>
         </div>
       `;
@@ -4206,7 +4266,7 @@
                 <h1>${recipe.title}</h1>
                 <p>${recipe.description}</p>
                 <div class="fact-row">
-                  <div class="fact"><b>${t('fact.time')}</b><span>${recipe.cookTime}</span></div>
+                  <div class="fact"><b>${t('fact.time')}</b><span>${duration(recipe.cookTime)}</span></div>
                   <div class="fact"><b>${t('fact.serves')}</b><span id="servings-value">${recipe.servings * batchMultiplier}</span></div>
                   <div class="fact"><b>${t('fact.effort')}</b><span>${difficulty(recipe.difficulty)}</span></div>
                 </div>
@@ -4228,7 +4288,7 @@
             ${MIXED_CONSISTENCY[recipe.slug] ? `
               <div class="mixed-warning" role="note">
                 ${icons.shield}
-                <div><strong>${t('mixed.warn')}</strong> ${t('mixed.note')} ${MIXED_CONSISTENCY[recipe.slug]}</div>
+                <div><strong>${t('mixed.warn')}</strong> ${t('mixed.note')} ${mixedNote(recipe.slug)}</div>
               </div>
             ` : ''}
             </div>
@@ -4316,17 +4376,17 @@
                 ${t('sec.nutrition')}
               </h2>
               <div class="nutrition-grid">
-                <div class="nutrition-cell"><strong>${t('nut.calories')}</strong><span>${recipe.nutrition.calories}</span></div>
-                <div class="nutrition-cell"><strong>${t('nut.protein')}</strong><span>${recipe.nutrition.protein}</span></div>
-                <div class="nutrition-cell"><strong>${t('nut.fat')}</strong><span>${recipe.nutrition.fat}</span></div>
-                <div class="nutrition-cell"><strong>${t('nut.carbs')}</strong><span>${recipe.nutrition.carbs}</span></div>
-                <div class="nutrition-cell${recipe.nutrition.flag ? ' is-flagged' : ''}"><strong>${t('nut.sodium')}</strong><span>${recipe.nutrition.sodium}</span></div>
-                <div class="nutrition-cell"><strong>${t('nut.cholesterol')}</strong><span>${recipe.nutrition.cholesterol}</span></div>
+                <div class="nutrition-cell"><strong>${t('nut.calories')}</strong><span>${nv(recipe.nutrition.calories)}</span></div>
+                <div class="nutrition-cell"><strong>${t('nut.protein')}</strong><span>${nv(recipe.nutrition.protein)}</span></div>
+                <div class="nutrition-cell"><strong>${t('nut.fat')}</strong><span>${nv(recipe.nutrition.fat)}</span></div>
+                <div class="nutrition-cell"><strong>${t('nut.carbs')}</strong><span>${nv(recipe.nutrition.carbs)}</span></div>
+                <div class="nutrition-cell${recipe.nutrition.flag ? ' is-flagged' : ''}"><strong>${t('nut.sodium')}</strong><span>${nv(recipe.nutrition.sodium)}</span></div>
+                <div class="nutrition-cell"><strong>${t('nut.cholesterol')}</strong><span>${nv(recipe.nutrition.cholesterol)}</span></div>
               </div>
               <p class="nutrition-basis">${recipe.nutrition.basis}</p>
               ${recipe.nutrition.flag ? `
                 <div class="nutrition-flag">
-                  <strong>On the sodium:</strong> ${recipe.nutrition.flag}
+                  <strong>${t('nut.sodium.flag')}</strong> ${recipe.nutrition.flag}
                 </div>
               ` : ''}
             </section>
@@ -4342,7 +4402,7 @@
           ` : ''}
 
           <section class="recipe-section" id="reviews-section" aria-labelledby="reviews-heading">
-            <p class="review-empty">Loading reviews&hellip;</p>
+            <p class="review-empty">${t('review.loadingList')}</p>
           </section>
         </div>
       `;
@@ -4613,9 +4673,9 @@
       },
 
       get scopeNote() {
-        if (this.shared === true) return 'Reviews are public: everyone visiting this site sees them.';
-        if (this.shared === false) return 'Shared reviews are unavailable right now, so this one was saved in this browser only.';
-        return 'Loading…';
+        if (this.shared === true) return t('review.public');
+        if (this.shared === false) return t('review.local');
+        return t('review.loading');
       }
     };
 
@@ -4656,26 +4716,26 @@
         <label>
           <input type="radio" name="rating" value="${n}" ${n === 5 ? 'checked' : ''}>
           <span aria-hidden="true">${n}★</span>
-          <span class="sr-only">${n} star${n === 1 ? '' : 's'}</span>
+          <span class="sr-only">${t('review.stars', { n: n })}</span>
         </label>
       `).join('');
       return `
         <form class="review-form" onsubmit="submitReview(event, '${slug}')">
           <label>
-            Your name
+            ${t('review.name')}
             <input type="text" name="name" maxlength="60" required autocomplete="name">
           </label>
           <fieldset class="rating-input">
-            <legend>Rating</legend>
+            <legend>${t('review.rating')}</legend>
             ${ratings}
           </fieldset>
           <label>
-            Your review
+            ${t('review.text')}
             <textarea name="text" maxlength="1000" required
-              placeholder="How did it turn out? Anything worth knowing about the texture?"></textarea>
+              placeholder="${t('review.placeholder')}"></textarea>
           </label>
           <div>
-            <button type="submit" class="btn btn-primary">Post review</button>
+            <button type="submit" class="btn btn-primary">${t('review.post')}</button>
           </div>
           <p class="form-error" role="alert" hidden></p>
         </form>
@@ -4687,17 +4747,17 @@
       return `
         <h2 id="reviews-heading">
           <span class="section-icon">${icons.star}</span>
-          Reviews
+          ${t('sec.reviews')}
         </h2>
         ${list.length ? `
           <div class="review-summary">
             <span class="score">${avg.toFixed(1)}</span>
             ${stars(avg)}
-            <span>${list.length} review${list.length === 1 ? '' : 's'}</span>
+            <span>${t('review.count.n', { n: list.length })}</span>
           </div>
           <ul class="review-list">${list.map(r => reviewCard(r)).join('')}</ul>
         ` : `
-          <p class="review-empty">No reviews for this recipe yet. If you have cooked it, your notes would help whoever tries it next.</p>
+          <p class="review-empty">${t('review.none')}</p>
         `}
         ${reviewForm(slug)}
         <p class="review-note">${escapeHtml(ReviewStore.scopeNote)}</p>
@@ -4722,7 +4782,7 @@
       const rating = Number(form.rating.value);
 
       if (!name || !text) {
-        error.textContent = 'Please add your name and a few words about the recipe.';
+        error.textContent = t('review.needboth');
         error.hidden = false;
         return;
       }
@@ -4749,11 +4809,11 @@
       return `
         <div class="page" id="reviews-page">
           <section class="hero">
-            <span class="eyebrow">From the people cooking these</span>
-            <h1>Reviews</h1>
-            <p>Notes left by anyone who has cooked from this collection &mdash; how a dish turned out, and how it behaved for the texture level it is graded at.</p>
+            <span class="eyebrow">${t('reviews.eyebrow')}</span>
+            <h1>${t('reviews.h1')}</h1>
+            <p>${t('reviews.intro')}</p>
           </section>
-          <div id="reviews-all"><p class="review-empty">Loading reviews&hellip;</p></div>
+          <div id="reviews-all"><p class="review-empty">${t('review.loadingList')}</p></div>
           <p class="review-note" id="reviews-scope-note">${escapeHtml(ReviewStore.scopeNote)}</p>
         </div>
       `;
