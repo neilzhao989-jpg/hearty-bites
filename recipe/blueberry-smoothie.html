@@ -1183,6 +1183,25 @@
     .fact span { font-size: 0.95rem; font-weight: 700; }
 
     /* Texture is safety information, so it gets a tile rather than a tag. */
+    /* Language switch — deliberately the same segmented shape as the batch
+       size control, so the two read as the same kind of affordance. */
+    .lang-switch { display: flex; gap: 4px; margin-left: 14px; }
+    .lang-btn {
+      min-height: 34px; padding: 0 10px;
+      border: 1.5px solid var(--border, #E6D9C8); border-radius: 999px;
+      background: transparent; cursor: pointer;
+      font-family: inherit; font-size: 0.78rem; font-weight: 700;
+      color: var(--text-soft, #6B5B4B); line-height: 1;
+    }
+    .lang-btn:hover { border-color: var(--coral); color: var(--coral); }
+    .lang-btn.is-active { background: var(--coral); border-color: var(--coral); color: #fff; }
+    .lang-btn:focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; }
+    @media (max-width: 860px) {
+      /* Inside the drawer the nav stacks, so the switch sits on its own row. */
+      .lang-switch { margin: 10px 0 0; }
+      .lang-btn { min-height: 44px; flex: 1; }
+    }
+
     .texture-tile {
       border-radius: var(--radius-lg);
       padding: 22px;
@@ -1832,7 +1851,7 @@
   <div class="top-bar">
     <span>
       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-      Every recipe graded to an IDDSI texture level
+      <span data-i18n="tagline">Every recipe graded to an IDDSI texture level</span>
     </span>
   </div>
 
@@ -1843,20 +1862,25 @@
           <img src="/assets/logo-spoon.png" alt="" width="44" height="44" aria-hidden="true">
         </div>
         <div class="logo-text">
-          Amazing Recipes
-          <small>Comforting Recipes for Easy Eating</small>
+          <span data-i18n="brand">Amazing Recipes</span>
+          <small data-i18n="brand.sub">Comforting Recipes for Easy Eating</small>
         </div>
       </a>
       <nav role="navigation" aria-label="Main navigation">
         <button type="button" class="nav-toggle" id="nav-toggle"
-          aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+          aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu" data-i18n-aria="nav.open">
           <span></span><span></span><span></span>
         </button>
         <ul class="nav-menu" id="nav-menu" hidden>
-          <li><a href="/" aria-current="page">Recipes</a></li>
-          <li><a href="/texture-guide">Texture Guide</a></li>
-          <li><a href="/reviews">Reviews</a></li>
+          <li><a href="/" aria-current="page" data-i18n="nav.recipes">Recipes</a></li>
+          <li><a href="/texture-guide" data-i18n="nav.guide">Texture Guide</a></li>
+          <li><a href="/reviews" data-i18n="nav.reviews">Reviews</a></li>
         </ul>
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button type="button" class="lang-btn is-active" data-lang="en" aria-pressed="true" onclick="setLang('en')">EN</button>
+          <button type="button" class="lang-btn" data-lang="fr" aria-pressed="false" onclick="setLang('fr')">FR</button>
+          <button type="button" class="lang-btn" data-lang="zh" aria-pressed="false" onclick="setLang('zh')">中文</button>
+        </div>
       </nav>
     </div>
   </header>
@@ -1921,17 +1945,17 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <h3>Amazing Recipes</h3>
-          <p>Comforting food that happens to be easy to eat. Every dish is built around soft textures and gentle flavours, and graded so you always know what you are getting.</p>
+          <p data-i18n="foot.blurb">Comforting food that happens to be easy to eat. Every dish is built around soft textures and gentle flavours, and graded so you always know what you are getting.</p>
         </div>
         <div class="footer-links">
-          <h4>Browse</h4>
+          <h4 data-i18n="foot.browse">Browse</h4>
           <ul>
-            <li><a href="/">All Recipes</a></li>
-            <li><a href="/texture-guide">Texture Guide</a></li>
+            <li><a href="/" data-i18n="foot.all">All Recipes</a></li>
+            <li><a href="/texture-guide" data-i18n="nav.guide">Texture Guide</a></li>
           </ul>
         </div>
         <div class="footer-links">
-          <h4>Texture Levels</h4>
+          <h4 data-i18n="foot.levels">Texture Levels</h4>
           <ul id="footer-levels"></ul>
         </div>
       </div>
@@ -3706,6 +3730,177 @@
       heart: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>'
     };
 
+    /* ---- Language ---------------------------------------------------------
+       English is the source: it lives in this file, and i18n.js supplies the
+       fr and zh replacements. Every lookup falls back to English when a string
+       is missing, so a gap shows the English rather than an empty space — on a
+       site where a missing line can be the one warning that a dish is unsafe
+       at a given level, blank is the worst possible failure.                */
+
+    /* The English source for every key the language packs override. */
+    const EN_UI = {
+      'skip': 'Skip to main content',
+      'tagline': 'Every recipe graded to an IDDSI texture level',
+      'brand': 'Amazing Recipes',
+      'brand.sub': 'Comforting Recipes for Easy Eating',
+      'nav.recipes': 'Recipes',
+      'nav.guide': 'Texture Guide',
+      'nav.reviews': 'Reviews',
+      'nav.open': 'Open menu',
+      'nav.close': 'Close menu',
+      'home.h1': 'Amazing Recipes — every recipe graded to an IDDSI texture level',
+      'home.lede': 'Soft, fork-tender cooking for anyone who needs food that is easy to chew and swallow. Every recipe carries the IDDSI texture level it is safe at.',
+      'hero.eyebrow': 'IDDSI levels 3 to 7',
+      'hero.title': 'Every recipe graded for texture',
+      'hero.lede': 'From liquidised to easy to chew — so you always know how soft a dish actually is before you cook it.',
+      'back': 'Back to All Recipes',
+      'fact.time': 'Time',
+      'fact.serves': 'Serves',
+      'fact.effort': 'Effort',
+      'texture.label': 'Texture level',
+      'texture.all': 'See all texture levels',
+      'sec.ingredients': 'Ingredients',
+      'sec.instructions': 'Instructions',
+      'sec.tips': 'Serving Tips',
+      'sec.tips.head': 'Important Guidance',
+      'sec.nutrition': 'Nutrition Facts',
+      'sec.dietary': 'Dietary Notes',
+      'sec.reviews': 'Reviews',
+      'batch.label': 'Batch size',
+      'batch.aria': 'times the recipe',
+      'nut.calories': 'Calories',
+      'nut.protein': 'Protein',
+      'nut.fat': 'Fat',
+      'nut.carbs': 'Carbohydrates',
+      'nut.sodium': 'Sodium',
+      'nut.cholesterol': 'Cholesterol',
+      'mixed.warn': 'Solids and liquid separate in this dish.',
+      'mixed.note': 'Not considered safe at Levels 4 to 6 as written.',
+      'guide.h1': 'Understanding IDDSI texture levels',
+      'guide.lede': 'The IDDSI framework grades food and drink from Level 0 to Level 7. These are the levels used on this site.',
+      'reviews.h1': 'Reviews',
+      'reviews.lede': 'Notes from people who have cooked these texture-graded recipes. Open any recipe and scroll to the bottom to leave one.',
+      'review.name': 'Your name',
+      'review.text': 'Your review',
+      'review.rating': 'Rating',
+      'review.post': 'Post review',
+      'review.empty': 'No reviews yet. Open any recipe and scroll to the bottom to leave the first one.',
+      'review.public': 'Reviews are public: everyone visiting this site sees them.',
+      'review.count': 'reviews',
+      'foot.browse': 'Browse',
+      'foot.all': 'All Recipes',
+      'foot.levels': 'Texture Levels',
+      'foot.blurb': 'Comforting food that happens to be easy to eat. Every dish is built around soft textures and gentle flavours, and graded so you always know what you are getting.',
+      'foot.rights': 'All rights reserved.',
+      'serves': 'servings',
+      'lang.label': 'Language',
+      'foot.levels.item': 'Level {n} &mdash; {name}',
+      'filter.level': '{n} recipes at Level {level}, {name}',
+      'filter.all': 'Showing all {n} recipes',
+      'summary': 'Suitable for anyone who finds food hard to chew or swallow. Graded IDDSI Level {n} ({name}) — {plain} — the texture standard used in dysphagia care and soft diets.'
+    };
+
+    const LANGS = ['en', 'fr', 'zh'];
+    const LANG_LABEL = { en: 'EN', fr: 'FR', zh: '中文' };
+    const HTML_LANG = { en: 'en', fr: 'fr', zh: 'zh-Hans' };
+    const LANG_KEY = 'ar-lang';
+
+    let lang = 'en';
+
+    /* Difficulty is a closed set of three words, so it maps rather than
+       living in each recipe's translation. */
+    const DIFFICULTY = {
+      fr: { 'Easy': 'Facile', 'Intermediate': 'Intermédiaire', 'Advanced': 'Difficile', 'Medium': 'Moyen', 'Hard': 'Difficile' },
+      zh: { 'Easy': '简单', 'Intermediate': '中等', 'Advanced': '较难', 'Medium': '中等', 'Hard': '较难' }
+    };
+    function difficulty(word) {
+      const map = DIFFICULTY[lang];
+      return (map && map[word]) || word;
+    }
+
+    function langPack() {
+      return (window.AR_I18N && window.AR_I18N[lang]) || null;
+    }
+
+    /* A UI string. `vars` fills {placeholders}. */
+    function t(key, vars) {
+      const pack = langPack();
+      let out = (pack && pack.ui && pack.ui[key] !== undefined) ? pack.ui[key] : EN_UI[key];
+      if (out === undefined) out = key;
+      if (vars) Object.keys(vars).forEach(k => {
+        out = out.split('{' + k + '}').join(vars[k]);
+      });
+      return out;
+    }
+
+    /* A level, with any translated name/plain/desc laid over the English.
+       Colours never come from the language pack. */
+    function L(n) {
+      const base = IDDSI_LEVELS[n];
+      const pack = langPack();
+      const over = pack && pack.levels && pack.levels[n];
+      return over ? Object.assign({}, base, over) : base;
+    }
+
+    /* A recipe, with translated fields laid over the English. Ingredients and
+       instructions are merged row by row and positionally, so a partly
+       translated recipe still renders every row rather than dropping the
+       untranslated ones. */
+    function RC(recipe) {
+      const pack = langPack();
+      const over = pack && pack.recipes && pack.recipes[recipe.slug];
+      if (!over) return recipe;
+
+      const merged = Object.assign({}, recipe, over);
+
+      if (over.ingredients) {
+        merged.ingredients = recipe.ingredients.map((row, i) => {
+          const o = over.ingredients[i];
+          return o ? Object.assign({}, row, o) : row;
+        });
+      }
+      if (over.instructions) {
+        merged.instructions = recipe.instructions.map((row, i) => {
+          const o = over.instructions[i];
+          return o ? Object.assign({}, row, { text: o }) : row;
+        });
+      }
+      if (over.nutrition) {
+        merged.nutrition = Object.assign({}, recipe.nutrition, over.nutrition);
+      }
+      return merged;
+    }
+
+    function setLang(next) {
+      if (LANGS.indexOf(next) === -1) next = 'en';
+      lang = next;
+      document.documentElement.lang = HTML_LANG[next];
+      try { localStorage.setItem(LANG_KEY, next); } catch (e) {}
+      applyStaticText();
+      syncLangButtons();
+      if (typeof router === 'function') router();
+    }
+
+    /* The header and footer are static markup rather than rendered from data,
+       so they are swapped by key the way Auric Aura does it. */
+    function applyStaticText() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        el.textContent = t(el.dataset.i18n);
+      });
+      document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+        el.setAttribute('aria-label', t(el.dataset.i18nAria));
+      });
+      if (document.getElementById('footer-levels')) renderFooterLevels();
+    }
+
+    function syncLangButtons() {
+      document.querySelectorAll('.lang-btn').forEach(b => {
+        const on = b.dataset.lang === lang;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+    }
+
     const IDDSI_LEVELS = {
       2: {
         name: 'Mildly Thick',
@@ -3855,8 +4050,8 @@
       if (status) {
         const n = activeLevel ? recipes.filter(r => r.dysphagia === activeLevel).length : recipes.length;
         status.textContent = activeLevel
-          ? `${n} recipe${n === 1 ? '' : 's'} at Level ${activeLevel}, ${IDDSI_LEVELS[activeLevel].name}`
-          : `Showing all ${n} recipes`;
+          ? t('filter.level', { n: n, level: activeLevel, name: L(activeLevel).name })
+          : t('filter.all', { n: n });
       }
     }
 
@@ -3874,7 +4069,7 @@
               <h1>Every recipe graded for texture</h1>
               <p>From liquidised to easy to chew &mdash; so you always know how soft a dish actually is before you cook it.</p>
               <div class="level-key" aria-hidden="true">
-                ${levels.map(l => `<span><i style="background:${IDDSI_LEVELS[l].color}"></i>${l} ${IDDSI_LEVELS[l].name}</span>`).join('')}
+                ${levels.map(l => `<span><i style="background:${L(l).color}"></i>${l} ${L(l).name}</span>`).join('')}
               </div>
             </section>
             <div class="bento-photo" style="background:${feature.imageBg || ''}">
@@ -3897,8 +4092,8 @@
               ${levels.map(l => `
                 <button type="button" class="lvl-btn" data-level="${l}" aria-pressed="${activeLevel === l}"
                   onclick="setLevel(${l})">
-                  <span class="dot" style="background:${IDDSI_LEVELS[l].deep}" aria-hidden="true">${l}</span>
-                  ${IDDSI_LEVELS[l].name}
+                  <span class="dot" style="background:${L(l).deep}" aria-hidden="true">${l}</span>
+                  ${L(l).name}
                   <span class="count">${counts[l] || 0}</span>
                 </button>
               `).join('')}
@@ -3966,16 +4161,17 @@
        searches; the people cooking for themselves type "hard to swallow".
        Both belong on the page.                                           */
     function textureSummary(recipe) {
-      const level = IDDSI_LEVELS[recipe.dysphagia];
-      return `Suitable for anyone who finds food hard to chew or swallow. `
-           + `Graded IDDSI Level ${recipe.dysphagia} (${level.name}) &mdash; `
-           + `${level.plain.toLowerCase()} &mdash; the texture standard used in `
-           + `dysphagia care and soft diets.`;
+      const level = L(recipe.dysphagia);
+      return t('summary', {
+        n: recipe.dysphagia,
+        name: level.name,
+        plain: lang === 'zh' ? level.plain : level.plain.toLowerCase()
+      });
     }
 
     function renderRecipePage(slug) {
-      const recipe = recipes.find(r => r.slug === slug);
-      if (!recipe) {
+      const recipe = RC(recipes.find(r => r.slug === slug) || {});
+      if (!recipe || !recipe.slug) {
         return `
           <div class="page">
             <h1>Recipe Not Found</h1>
@@ -3992,7 +4188,7 @@
           <div class="recipe-header">
             <a href="/" class="back-link">
               ${icons.arrowLeft}
-              Back to All Recipes
+              ${t('back')}
             </a>
 
             <div class="recipe-top">
@@ -4000,9 +4196,9 @@
                 <h1>${recipe.title}</h1>
                 <p>${recipe.description}</p>
                 <div class="fact-row">
-                  <div class="fact"><b>Time</b><span>${recipe.cookTime}</span></div>
-                  <div class="fact"><b>Serves</b><span id="servings-value">${recipe.servings * batchMultiplier}</span></div>
-                  <div class="fact"><b>Effort</b><span>${recipe.difficulty}</span></div>
+                  <div class="fact"><b>${t('fact.time')}</b><span>${recipe.cookTime}</span></div>
+                  <div class="fact"><b>${t('fact.serves')}</b><span id="servings-value">${recipe.servings * batchMultiplier}</span></div>
+                  <div class="fact"><b>${t('fact.effort')}</b><span>${difficulty(recipe.difficulty)}</span></div>
                 </div>
               </div>
 
@@ -4011,18 +4207,18 @@
                 : ''}
             </div>
 
-            <div class="texture-tile" style="background:${IDDSI_LEVELS[recipe.dysphagia].deep}">
-              <b>Texture level</b>
-              <h2>${recipe.dysphagia} &middot; ${IDDSI_LEVELS[recipe.dysphagia].name}</h2>
-              <p>${IDDSI_LEVELS[recipe.dysphagia].desc}</p>
+            <div class="texture-tile" style="background:${L(recipe.dysphagia).deep}">
+              <b>${t('texture.label')}</b>
+              <h2>${recipe.dysphagia} &middot; ${L(recipe.dysphagia).name}</h2>
+              <p>${L(recipe.dysphagia).desc}</p>
               <p>${textureSummary(recipe)}</p>
-              <a href="/texture-guide">See all texture levels</a>
+              <a href="/texture-guide">${t('texture.all')}</a>
             </div>
 
             ${MIXED_CONSISTENCY[recipe.slug] ? `
               <div class="mixed-warning" role="note">
                 ${icons.shield}
-                <div><strong>Solids and liquid separate in this dish.</strong> Not considered safe at Levels 4 to 6 as written. ${MIXED_CONSISTENCY[recipe.slug]}</div>
+                <div><strong>${t('mixed.warn')}</strong> ${t('mixed.note')} ${MIXED_CONSISTENCY[recipe.slug]}</div>
               </div>
             ` : ''}
             </div>
@@ -4031,18 +4227,18 @@
           <section class="recipe-section" aria-labelledby="ingredients-heading">
             <h2 id="ingredients-heading">
               <span class="section-icon">${icons.list}</span>
-              Ingredients
+              ${t('sec.ingredients')}
             </h2>
 
             <div class="batch-control">
-              <span class="batch-label" id="batch-label">Batch size</span>
+              <span class="batch-label" id="batch-label">${t('batch.label')}</span>
               <div class="batch-buttons" role="group" aria-labelledby="batch-label">
                 ${[1, 2, 3].map(multiplier => `
                   <button type="button"
                     class="batch-btn ${batchMultiplier === multiplier ? 'is-active' : ''}"
                     data-multiplier="${multiplier}"
                     aria-pressed="${batchMultiplier === multiplier}"
-                    aria-label="${multiplier} times the recipe, making ${recipe.servings * multiplier} servings"
+                    aria-label="${multiplier}${t('batch.aria')} — ${recipe.servings * multiplier} ${t('serves')}"
                     onclick="setBatch('${slug}', ${multiplier})">${multiplier}&times;</button>
                 `).join('')}
               </div>
@@ -4068,7 +4264,7 @@
           <section class="recipe-section" aria-labelledby="instructions-heading">
             <h2 id="instructions-heading">
               <span class="section-icon">${icons.list}</span>
-              Instructions
+              ${t('sec.instructions')}
             </h2>
             <ol class="instructions-list" role="list">
               ${recipe.instructions.map(inst => `
@@ -4085,12 +4281,12 @@
           <section class="recipe-section" aria-labelledby="tips-heading">
             <h2 id="tips-heading">
               <span class="section-icon">${icons.lightbulb}</span>
-              Serving Tips
+              ${t('sec.tips')}
             </h2>
             <div class="tips-box">
               <h3>
                 ${icons.heart}
-                Important Guidance
+                ${t('sec.tips.head')}
               </h3>
               <ul>
                 ${recipe.servingTips.map(tip => `
@@ -4107,15 +4303,15 @@
             <section class="recipe-section" aria-labelledby="nutrition-heading">
               <h2 id="nutrition-heading">
                 <span class="section-icon">${icons.list}</span>
-                Nutrition Facts
+                ${t('sec.nutrition')}
               </h2>
               <div class="nutrition-grid">
-                <div class="nutrition-cell"><strong>Calories</strong><span>${recipe.nutrition.calories}</span></div>
-                <div class="nutrition-cell"><strong>Protein</strong><span>${recipe.nutrition.protein}</span></div>
-                <div class="nutrition-cell"><strong>Fat</strong><span>${recipe.nutrition.fat}</span></div>
-                <div class="nutrition-cell"><strong>Carbs</strong><span>${recipe.nutrition.carbs}</span></div>
-                <div class="nutrition-cell${recipe.nutrition.flag ? ' is-flagged' : ''}"><strong>Sodium</strong><span>${recipe.nutrition.sodium}</span></div>
-                <div class="nutrition-cell"><strong>Cholesterol</strong><span>${recipe.nutrition.cholesterol}</span></div>
+                <div class="nutrition-cell"><strong>${t('nut.calories')}</strong><span>${recipe.nutrition.calories}</span></div>
+                <div class="nutrition-cell"><strong>${t('nut.protein')}</strong><span>${recipe.nutrition.protein}</span></div>
+                <div class="nutrition-cell"><strong>${t('nut.fat')}</strong><span>${recipe.nutrition.fat}</span></div>
+                <div class="nutrition-cell"><strong>${t('nut.carbs')}</strong><span>${recipe.nutrition.carbs}</span></div>
+                <div class="nutrition-cell${recipe.nutrition.flag ? ' is-flagged' : ''}"><strong>${t('nut.sodium')}</strong><span>${recipe.nutrition.sodium}</span></div>
+                <div class="nutrition-cell"><strong>${t('nut.cholesterol')}</strong><span>${recipe.nutrition.cholesterol}</span></div>
               </div>
               <p class="nutrition-basis">${recipe.nutrition.basis}</p>
               ${recipe.nutrition.flag ? `
@@ -4129,7 +4325,7 @@
           ${recipe.dietaryNotes ? `
             <section class="recipe-section">
               <div class="dietary-notes">
-                <h2>Dietary Notes</h2>
+                <h2>${t('sec.dietary')}</h2>
                 <p>${recipe.dietaryNotes}</p>
               </div>
             </section>
@@ -4166,6 +4362,30 @@
       tin: 'tins', apple: 'apples', egg: 'eggs', banana: 'bananas'
     };
 
+    /* French inflects its measure words, so scaling 1 to 2 has to carry the
+       plural with it. Chinese measure words do not inflect, which is why there
+       is no zh map: pluraliseUnit simply finds nothing and leaves them alone. */
+    const UNIT_PLURALS_FR = {
+      'tasse': 'tasses', 'cuillère': 'cuillères', 'gousse': 'gousses',
+      'branche': 'branches', 'brin': 'brins', 'boîte': 'boîtes',
+      'sachet': 'sachets', 'pincée': 'pincées', 'tranche': 'tranches',
+      'morceau': 'morceaux', 'litre': 'litres', 'gramme': 'grammes',
+      'oeuf': 'oeufs', 'œuf': 'œufs', 'pomme': 'pommes', 'banane': 'bananes'
+    };
+
+    function unitPlurals() {
+      return lang === 'fr' ? UNIT_PLURALS_FR : (lang === 'zh' ? {} : UNIT_PLURALS);
+    }
+
+    /* Units the instruction scaler will act on, for the language on screen.
+       A unit missing here is not a cosmetic problem: the number beside it
+       silently stops scaling while the ingredient list above it does scale. */
+    function scalableUnits() {
+      if (lang === 'en') return SCALABLE_UNITS;
+      const extra = (window.AR_UNITS && window.AR_UNITS[lang]) || [];
+      return new Set(extra.map(u => u.toLowerCase()));
+    }
+
     // Matches an integer, decimal, simple fraction, or mixed number.
     const QTY_PATTERN = '(\\d+\\s+\\d+\\/\\d+|\\d+\\/\\d+|\\d*\\.\\d+|\\d+)';
     const RANGE_RE = new RegExp('^(\\D*?)' + QTY_PATTERN + '\\s*[-\u2013]\\s*' + QTY_PATTERN + '(.*)$');
@@ -4201,8 +4421,8 @@
     // Pluralises the unit directly after the number, when scaling took it past 1.
     function pluraliseUnit(rest, value) {
       if (value <= 1) return rest;
-      return rest.replace(/^(\s*)([A-Za-z]+)/, (match, space, word) => {
-        const plural = UNIT_PLURALS[word.toLowerCase()];
+      return rest.replace(/^(\s*)([A-Za-z\u00C0-\u024F\u4e00-\u9fff]+)/, (match, space, word) => {
+        const plural = unitPlurals()[word.toLowerCase()];
         return plural ? space + plural : match;
       });
     }
@@ -4242,7 +4462,7 @@
     ]);
 
     const INSTRUCTION_QTY_RE = new RegExp(
-      QTY_PATTERN + '(?:\\s*[-–]\\s*' + QTY_PATTERN + ')?(\\s+)([A-Za-z]+)',
+      QTY_PATTERN + '(?:\\s*[-–]\\s*' + QTY_PATTERN + ')?(\\s*)([A-Za-z\u00C0-\u024F\u4e00-\u9fff]+)',
       'g'
     );
 
@@ -4250,7 +4470,7 @@
       if (multiplier === 1) return text;
 
       return text.replace(INSTRUCTION_QTY_RE, (match, low, high, space, unit) => {
-        if (!SCALABLE_UNITS.has(unit.toLowerCase())) return match;
+        if (!scalableUnits().has(unit.toLowerCase())) return match;
 
         const scaledLow = parseQty(low) * multiplier;
         if (high === undefined) {
@@ -4780,9 +5000,12 @@
       }
     }
 
-    document.getElementById('footer-levels').innerHTML = [7, 6, 5, 4, 3, 2]
-      .map(level => `<li><a href="/texture-guide">Level ${level} &mdash; ${IDDSI_LEVELS[level].name}</a></li>`)
-      .join('');
+    function renderFooterLevels() {
+      document.getElementById('footer-levels').innerHTML = [7, 6, 5, 4, 3, 2]
+        .map(level => `<li><a href="/texture-guide">${t('foot.levels.item', { n: level, name: L(level).name })}</a></li>`)
+        .join('');
+    }
+    renderFooterLevels();
 
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
@@ -4815,10 +5038,23 @@
     /* load waits for every image on the page. Nothing is rendered until the
        router runs, so booting on load meant a blank page until the slowest
        request finished, and a blank page for ever if one never did. */
+    /* Restore the reader's language before the first render, so a French or
+       Chinese visitor never sees a flash of English. setLang() calls router()
+       itself; a failure here must still leave the site rendered in English. */
+    function boot() {
+      let saved = null;
+      try { saved = localStorage.getItem(LANG_KEY); } catch (e) {}
+      try {
+        setLang(LANGS.indexOf(saved) !== -1 ? saved : 'en');
+      } catch (e) {
+        router();
+      }
+    }
+
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', router);
+      document.addEventListener('DOMContentLoaded', boot);
     } else {
-      router();
+      boot();
     }
 
     window.addEventListener('scroll', () => {
@@ -4839,6 +5075,7 @@
        banner, which is the point — the site still sets no cookies at all.
        Needs Web Analytics switched on for the project in the Vercel dashboard;
        until then this 404s harmlessly and the page is unaffected. -->
+  <script src="/i18n.js"></script>
   <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
