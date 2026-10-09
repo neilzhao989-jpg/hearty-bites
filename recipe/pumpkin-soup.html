@@ -25,8 +25,32 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
+    :root {
+      /* Latin: Anton for display, Atkinson Hyperlegible for reading — the
+         latter chosen for legibility, which matters on a site read largely
+         by older people. Neither face has Chinese glyphs. */
+      --font-display: "Anton", Impact, sans-serif;
+      --font-body: "Atkinson Hyperlegible", system-ui, sans-serif;
+      --display-weight: 400;      /* Anton ships one weight and reads as black */
+      --display-tracking: 0;
+    }
+
+    /* Chinese falls back to whatever gothic the OS happens to have, which is
+       why it looked nothing like the English. Noto Sans SC is the match: a
+       hei/gothic, so it carries the same legibility intent as Atkinson, and
+       its 900 weight stands in for Anton's blackness. Anton is condensed and
+       Noto is not, so mixing them inside one heading reads as a mistake —
+       Chinese headings use Noto throughout instead. The logo keeps Anton
+       because the brand name is not translated. */
+    html[lang="zh-Hans"] {
+      --font-display: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+      --display-weight: 900;
+      --display-tracking: 0.01em;   /* uppercase tracking looks gappy on CJK */
+    }
+
     :root {
       /* Bento Kitchen — cream ground, one loud coral, tints for tiles */
       --bg-cream: #FFF8F0;
@@ -74,7 +98,7 @@
     }
 
     body {
-      font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+      font-family: var(--font-body);
       font-size: 18px;
       line-height: 1.7;
       color: var(--text);
@@ -138,7 +162,7 @@
     h4 { font-size: 1.1rem; font-weight: 600; }
 
     .eyebrow {
-      font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+      font-family: var(--font-body);
       font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.12em;
@@ -327,7 +351,7 @@
     }
 
     .review-summary .score {
-      font-family: "Anton", Impact, sans-serif;
+      font-family: var(--font-display);
       font-size: 1.6rem;
       font-weight: 600;
       line-height: 1;
@@ -413,6 +437,8 @@
     .form-error { color: #8B2E2E; font-size: 0.88rem; }
 
     .logo-text {
+      /* Pinned to Anton: the brand name stays English in every language, so
+         it should not change face when the rest of the page does. */
       font-family: "Anton", Impact, sans-serif;
       font-size: 1.3rem;
       font-weight: 600;
@@ -422,7 +448,7 @@
 
     .logo-text small {
       display: block;
-      font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+      font-family: var(--font-body);
       font-size: 0.62rem;
       font-weight: 500;
       color: var(--text-muted);
@@ -534,7 +560,7 @@
       font-size: 1.2rem;
       color: var(--text-light);
       margin: 0 0 8px;
-      font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+      font-family: var(--font-body);
       line-height: 1.65;
     }
 
@@ -793,7 +819,7 @@
     }
 
     .recipe-description {
-      font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+      font-family: var(--font-body);
       font-size: 1.1rem;
       color: var(--text-light);
       line-height: 1.7;
@@ -1078,7 +1104,7 @@
       padding: 4px 11px;
     }
     .bento-hero h1 {
-      font-family: "Anton", Impact, sans-serif;
+      font-family: var(--font-display);
       font-weight: 400;
       font-size: clamp(2rem, 5.4vw, 3.1rem);
       line-height: .97;
@@ -1109,13 +1135,13 @@
       padding: 22px;
       display: flex; flex-direction: column; justify-content: center;
     }
-    .bento-stat b { font-family: "Anton", Impact, sans-serif; font-size: 2.6rem; line-height: 1; font-weight: 400; }
+    .bento-stat b { font-family: var(--font-display); font-size: 2.6rem; line-height: 1; font-weight: 400; }
     .bento-stat span { font-size: 0.86rem; line-height: 1.45; margin-top: 6px; }
 
     /* ---- Level ladder: the primary filter ---- */
     .ladder { margin-bottom: 24px; }
     .ladder h2 {
-      font-family: "Atkinson Hyperlegible", sans-serif;
+      font-family: var(--font-body);
       font-size: 1.02rem; font-weight: 700; margin: 0 0 11px;
     }
     .ladder-row { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -1166,7 +1192,7 @@
       padding: 22px;
     }
     .recipe-title-tile h1 {
-      font-family: "Anton", Impact, sans-serif; font-weight: 400;
+      font-family: var(--font-display); font-weight: 400;
       font-size: clamp(1.7rem, 4.4vw, 2.5rem); line-height: 1;
       text-transform: uppercase; margin: 0 0 10px;
     }
@@ -1212,7 +1238,7 @@
       font-size: 0.7rem; letter-spacing: .1em; text-transform: uppercase; opacity: .9;
     }
     .texture-tile h2 {
-      font-family: "Anton", Impact, sans-serif; font-weight: 400;
+      font-family: var(--font-display); font-weight: 400;
       font-size: clamp(1.5rem, 3.6vw, 2.1rem); line-height: 1;
       text-transform: uppercase; margin: 8px 0 9px;
     }
@@ -1328,7 +1354,7 @@
     }
 
     .nutrition-cell span {
-      font-family: "Anton", Impact, sans-serif;
+      font-family: var(--font-display);
       font-size: 1.25rem;
       font-weight: 600;
       color: var(--text);
@@ -1457,7 +1483,7 @@
     }
 
     .guide-intro p {
-      font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+      font-family: var(--font-body);
       font-size: 1.1rem;
       color: var(--text-light);
       line-height: 1.65;
@@ -1489,7 +1515,7 @@
       align-items: center;
       justify-content: center;
       color: var(--white);
-      font-family: "Anton", Impact, sans-serif;
+      font-family: var(--font-display);
       font-size: 1.6rem;
       font-weight: 700;
     }
@@ -1616,7 +1642,7 @@
       letter-spacing: 0.08em;
       color: var(--text-muted);
       margin-bottom: 16px;
-      font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+      font-family: var(--font-body);
     }
 
     .footer-links ul {
@@ -1843,6 +1869,25 @@
         align-self: flex-start;
       }
     }
+    /* Noto at 400 would read far lighter than Anton does, so the display
+       elements take the weight from the language. Anton has only one weight,
+       and 400 is it. */
+    .bento-hero h1,
+    .bento-stat b,
+    .nutrition-cell span,
+    .recipe-title-tile h1,
+    .review-summary .score,
+    .texture-tile h2,
+    .level-marker {
+      font-weight: var(--display-weight);
+      letter-spacing: var(--display-tracking);
+    }
+
+    /* CJK sets denser than Latin, so running text needs a little more room
+       between lines to stay comfortable at the same size. */
+    html[lang="zh-Hans"] body { line-height: 1.75; }
+    html[lang="zh-Hans"] p { line-height: 1.8; }
+
   </style>
 </head>
 <body>
