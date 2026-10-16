@@ -3,7 +3,8 @@
   "rewrites": [
     { "source": "/recipe/:slug", "destination": "/recipe/:slug.html" },
     { "source": "/texture-guide", "destination": "/texture-guide.html" },
-    { "source": "/reviews", "destination": "/reviews.html" }
+    { "source": "/reviews", "destination": "/reviews.html" },
+    { "source": "/about", "destination": "/about.html" }
   ],
   "headers": [
     {

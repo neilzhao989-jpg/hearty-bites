@@ -266,6 +266,10 @@ def seo_for(path, recipes, levels):
     elif path == '/reviews':
         title = 'Reviews — Amazing Recipes'
         desc = 'Notes from people who have cooked these texture-graded recipes.'
+    elif path == '/about':
+        title = 'About — Amazing Recipes'
+        desc = ('Why this site exists: a Grade 10 student in Ontario building recipes '
+                'for people living with oral dysphagia.')
 
     if not title:
         title, desc = HOME_TITLE, HOME_DESC
@@ -427,6 +431,40 @@ def texture_guide_body(recipes, levels):
     return '\n      '.join(out)
 
 
+ABOUT_BODY = (
+    '<div class="page" id="about-page">\n      '
+    '<section class="about-grid">\n      '
+    '<div class="about-photo">'
+    '<img src="/assets/about-neil-480.jpg" alt="Neil, who built this site." '
+    'width="480" height="600"></div>\n      '
+    '<div class="about-copy">\n      '
+    '<span class="eyebrow">About</span>\n      '
+    '<h1>Why I made this</h1>\n      '
+    '<p class="about-lede">My name is Neil, and I am a Grade 10 student in Ontario, '
+    'Canada &mdash; class of 2029.</p>\n      '
+    '<p>There is a noticeable difference at a table when someone cannot eat the same food '
+    'as everyone else. They might be given something soft or easy to swallow, finish their '
+    'meal quickly, and then sit while everyone else continues eating. It is not that they '
+    'are not hungry; they do not have many options for what they can safely eat, and often, '
+    'the people around them are not sure what to offer.</p>\n      '
+    '<p>My grandma would cook an amazing meal for everyone every time I visited; everyone '
+    'ate well, had a great time, and complimented the dishes afterwards. Yet she was the one '
+    'who sat down by herself with a simple meal every time after spending hours cooking for '
+    'others. She was not able to enjoy the food she spent hours making just because of oral '
+    'dysphagia.</p>\n      '
+    '<p>I keep thinking about how strange that is. Eating is supposed to be one of the '
+    'simple, enjoyable parts of the day, but for a lot of people, it can quietly become '
+    'something they have to worry about instead.</p>\n      '
+    '<p>That is why I built this. Every recipe includes the texture level it is suitable '
+    'for, so you can know what works before you start cooking. But I also wanted the recipes '
+    'to be more than just food that meets a requirement. They should be meals that someone '
+    'would actually want to eat. Congee that still tastes like congee. A bisque that you '
+    'would genuinely look forward to having.</p>\n      '
+    '<p class="about-close">If you are living with oral dysphagia, or you are cooking for '
+    'someone who is, I hope you find something here that you actually enjoy making and '
+    'eating.</p>\n      '
+    '</div>\n      </section>\n      </div>')
+
 REVIEWS_BODY = ('<div class="page">\n      <h1>Reviews</h1>\n      '
                 '<p>Notes from people who have cooked these texture-graded recipes. '
                 'Open any recipe and scroll to the bottom to leave one.</p>\n      </div>')
@@ -475,7 +513,8 @@ def main():
 
     for path, body, filename in (
             ('/texture-guide', texture_guide_body(recipes, levels), 'texture-guide.html'),
-            ('/reviews', REVIEWS_BODY, 'reviews.html')):
+            ('/reviews', REVIEWS_BODY, 'reviews.html'),
+            ('/about', ABOUT_BODY, 'about.html')):
         page = build_page(template, seo_for(path, recipes, levels), body)
         io.open(os.path.join(ROOT, filename), 'w', encoding='utf-8').write(page)
         written.append(path)

@@ -1228,6 +1228,55 @@
       .lang-btn { min-height: 44px; flex: 1; }
     }
 
+    /* About — photo and text sit side by side, stacking on a phone. The
+       portrait is a fixed column so the paragraphs keep a readable measure
+       rather than stretching the full width. */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 360px minmax(0, 1fr);
+      gap: 32px;
+      align-items: start;
+      margin-top: 8px;
+    }
+    .about-photo {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--bg-warm);
+      line-height: 0;
+      /* The story runs longer than the portrait, so pin it: the face stays
+         with the words instead of scrolling off at the second paragraph.
+         Offset clears the sticky header. */
+      position: sticky;
+      top: calc(env(safe-area-inset-top, 0px) + 96px);
+    }
+    .about-photo img { width: 100%; height: auto; display: block; }
+    .about-copy { max-width: 62ch; }
+    .about-copy h1 {
+      font-family: var(--font-display);
+      font-weight: var(--display-weight);
+      letter-spacing: var(--display-tracking);
+      font-size: clamp(1.9rem, 4.4vw, 2.9rem);
+      line-height: 1.04;
+      text-transform: uppercase;
+      margin: 10px 0 20px;
+    }
+    .about-copy p { margin: 0 0 16px; font-size: 1.02rem; line-height: 1.75; }
+    .about-lede { font-size: 1.1rem !important; }
+    .about-copy p:last-child { margin-bottom: 0; }
+    /* The closing paragraph is the point of the page, so it gets the accent. */
+    .about-close {
+      border-left: 4px solid var(--coral);
+      padding-left: 16px;
+      margin-top: 22px !important;
+      font-weight: 700;
+    }
+    @media (max-width: 780px) {
+      .about-grid { grid-template-columns: 1fr; gap: 22px; }
+      /* Single column, so sticking the photo would pin it while the story
+         scrolled underneath. It belongs in the flow here. */
+      .about-photo { max-width: 420px; position: static; }
+    }
+
     .texture-tile {
       border-radius: var(--radius-lg);
       padding: 22px;
@@ -1920,6 +1969,7 @@
           <li><a href="/" aria-current="page" data-i18n="nav.recipes">Recipes</a></li>
           <li><a href="/texture-guide" data-i18n="nav.guide">Texture Guide</a></li>
           <li><a href="/reviews" data-i18n="nav.reviews">Reviews</a></li>
+          <li><a href="/about" data-i18n="nav.about">About</a></li>
         </ul>
         <div class="lang-switch" role="group" aria-label="Language">
           <button type="button" class="lang-btn is-active" data-lang="en" aria-pressed="true" onclick="setLang('en')">EN</button>
@@ -1995,6 +2045,7 @@
           <ul>
             <li><a href="/" data-i18n="foot.all">All Recipes</a></li>
             <li><a href="/texture-guide" data-i18n="nav.guide">Texture Guide</a></li>
+            <li><a href="/about" data-i18n="nav.about">About</a></li>
           </ul>
         </div>
         <div class="footer-links">
@@ -3789,6 +3840,16 @@
       'nav.recipes': 'Recipes',
       'nav.guide': 'Texture Guide',
       'nav.reviews': 'Reviews',
+      'nav.about': 'About',
+      'about.eyebrow': 'About',
+      'about.h1': 'Why I made this',
+      'about.alt': 'Neil, who built this site.',
+      'about.p1': 'My name is Neil, and I am a Grade 10 student in Ontario, Canada — class of 2029.',
+      'about.p2': 'There is a noticeable difference at a table when someone cannot eat the same food as everyone else. They might be given something soft or easy to swallow, finish their meal quickly, and then sit while everyone else continues eating. It is not that they are not hungry; they do not have many options for what they can safely eat, and often, the people around them are not sure what to offer.',
+      'about.p3': 'My grandma would cook an amazing meal for everyone every time I visited; everyone ate well, had a great time, and complimented the dishes afterwards. Yet she was the one who sat down by herself with a simple meal every time after spending hours cooking for others. She was not able to enjoy the food she spent hours making just because of oral dysphagia.',
+      'about.p4': 'I keep thinking about how strange that is. Eating is supposed to be one of the simple, enjoyable parts of the day, but for a lot of people, it can quietly become something they have to worry about instead.',
+      'about.p5': 'That is why I built this. Every recipe includes the texture level it is suitable for, so you can know what works before you start cooking. But I also wanted the recipes to be more than just food that meets a requirement. They should be meals that someone would actually want to eat. Congee that still tastes like congee. A bisque that you would genuinely look forward to having.',
+      'about.p6': 'If you are living with oral dysphagia, or you are cooking for someone who is, I hope you find something here that you actually enjoy making and eating.',
       'nav.open': 'Open menu',
       'nav.close': 'Close menu',
       'home.h1': 'Amazing Recipes — every recipe graded to an IDDSI texture level',
@@ -4837,6 +4898,35 @@
       }
     }
 
+    function renderAboutPage() {
+      return `
+        <div class="page" id="about-page">
+          <section class="about-grid">
+            <div class="about-photo">
+              <picture>
+                <source type="image/webp" srcset="/assets/about-neil-480.webp 480w, /assets/about-neil-960.webp 960w"
+                        sizes="(max-width: 780px) calc(100vw - 40px), 360px">
+                <img src="/assets/about-neil-480.jpg"
+                     srcset="/assets/about-neil-480.jpg 480w, /assets/about-neil-960.jpg 960w"
+                     sizes="(max-width: 780px) calc(100vw - 40px), 360px"
+                     alt="${t('about.alt')}" width="480" height="600" fetchpriority="high" decoding="async">
+              </picture>
+            </div>
+            <div class="about-copy">
+              <span class="eyebrow">${t('about.eyebrow')}</span>
+              <h1>${t('about.h1')}</h1>
+              <p class="about-lede">${t('about.p1')}</p>
+              <p>${t('about.p2')}</p>
+              <p>${t('about.p3')}</p>
+              <p>${t('about.p4')}</p>
+              <p>${t('about.p5')}</p>
+              <p class="about-close">${t('about.p6')}</p>
+            </div>
+          </section>
+        </div>
+      `;
+    }
+
     function renderReviewsPage() {
       return `
         <div class="page" id="reviews-page">
@@ -5015,6 +5105,9 @@
       } else if (path === '/reviews') {
         title = 'Reviews — Amazing Recipes';
         desc = 'Notes from people who have cooked these texture-graded recipes.';
+      } else if (path === '/about') {
+        title = 'About — Amazing Recipes';
+        desc = 'Why this site exists: a Grade 10 student in Ontario building recipes for people living with oral dysphagia.';
       }
 
       if (!title) {
@@ -5076,6 +5169,8 @@
         hydrateReviewsPage();
       } else if (path === '/texture-guide') {
         mainContent.innerHTML = renderTextureGuide();
+      } else if (path === '/about') {
+        mainContent.innerHTML = renderAboutPage();
       } else if (path.startsWith('/recipe/')) {
         const slug = path.replace('/recipe/', '');
         batchMultiplier = 1;
