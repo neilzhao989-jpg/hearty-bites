@@ -121,7 +121,8 @@ window.AR_I18N = {
            desc: 'Aliments ordinaires de texture tendre. Rien de dur, de croquant ni de filandreux, et aucun morceau difficile à mâcher.' }
     },
     mixed: {
-      'cherry-tomato-pasta': 'Ne détendez à l’eau de cuisson que jusqu’à ce que la sauce nappe. Si du liquide s’accumule sous les pâtes au lieu d’y adhérer, faites-le réduire davantage avant de servir.',
+      'cherry-tomato-pasta': 'Les tomates éclatées rendent beaucoup de jus fluide. Faites sauter avec l’eau de cuisson jusqu’à ce que cela émulsionne en une sauce qui enrobe les brins, au lieu de les laisser baigner dedans.',
+      'spicy-creamy-ditalini': 'La sauce doit enrober chaque tube. Si du liquide s’accumule au fond du plat, faites-la réduire ou ajoutez du parmesan avant de servir.',
       'red-braised-pork-belly': 'Faites réduire le liquide de braisage jusqu’à ce qu’il enrobe la viande hachée. Laissé fluide, il devance les solides.',
       'tomato-egg-stir-fry': 'Faites réduire la sauce jusqu’à ce qu’elle enrobe les œufs au lieu de former une flaque autour. Laissée liquide, elle ne se déplace pas à la même vitesse que les morceaux.',
       'chicken-noodle-soup': 'Mixez toute la soupe, ou épaississez le bouillon jusqu’à ce qu’il ne se sépare plus des nouilles et du poulet.',
@@ -474,29 +475,34 @@ window.AR_I18N = {
       },
       "cherry-tomato-pasta": {
               "title": "Pâtes aux tomates cerises",
-              "description": "Des tomates cerises confites puis passées au tamis en une sauce douce et nappante, mélangée à de petites pâtes cuites bien au-delà de l’al dente.",
+              "description": "Des tomates cerises éclatées dans l’huile d’olive et l’ail, mêlées à des pâtes longues avec du basilic et du parmesan. Le tout prend à peu près le temps que met l’eau à bouillir.",
               "ingredients": [
                       {
                               "amount": "500 g",
-                              "item": "Tomates cerises"
+                              "item": "Tomates cerises",
+                              "note": "Laissées entières ; elles éclatent à la cuisson"
                       },
                       {
-                              "amount": "250 g",
-                              "item": "Petites pâtes",
-                              "note": "Ditalini, orzo, pastina ou petits coquillages. Pas de spaghettis — voir les conseils de service"
+                              "amount": "400 g",
+                              "item": "Spaghettis ou linguine"
                       },
                       {
-                              "amount": "3 c. à soupe",
+                              "amount": "4 c. à soupe",
                               "item": "Huile d’olive"
                       },
                       {
-                              "amount": "3 gousses",
-                              "item": "Ail, émincé",
-                              "note": "Il passe au tamis avec les tomates et n’arrive donc jamais entier dans l’assiette"
+                              "amount": "4 gousses",
+                              "item": "Ail, émincé finement"
                       },
                       {
                               "amount": "1/2 c. à café",
-                              "item": "Sel"
+                              "item": "Flocons de piment",
+                              "note": "Facultatif"
+                      },
+                      {
+                              "amount": "1 c. à café",
+                              "item": "Sel",
+                              "note": "Plus une bonne dose pour l’eau des pâtes"
                       },
                       {
                               "amount": "1 pincée",
@@ -504,46 +510,41 @@ window.AR_I18N = {
                               "note": "Seulement si les tomates sont acides"
                       },
                       {
-                              "amount": "30 g",
-                              "item": "Beurre",
-                              "note": "Pas facultatif à ce niveau de texture — voir les conseils de service"
-                      },
-                      {
                               "amount": "150 ml",
                               "item": "Eau de cuisson des pâtes",
                               "note": "Prélevée avant d’égoutter"
                       },
                       {
-                              "amount": "30 g",
-                              "item": "Parmesan finement râpé",
-                              "note": "Râpé en poudre, et non en copeaux"
+                              "amount": "Une poignée",
+                              "item": "Basilic frais, déchiré"
+                      },
+                      {
+                              "amount": "40 g",
+                              "item": "Parmesan, en copeaux ou râpé"
                       },
                       {
                               "amount": "Selon le goût",
-                              "item": "Poivre noir",
-                              "note": "À supprimer en dessous du niveau 5"
+                              "item": "Poivre noir"
                       }
               ],
               "instructions": [
-                      "Faites chauffer l’huile d’olive dans une large poêle à feu doux-moyen et ajoutez l’ail émincé. Laissez cuire une à deux minutes, jusqu’à ce qu’il embaume, sans le laisser colorer.",
-                      "Ajoutez les tomates cerises entières, le sel et la pincée de sucre le cas échéant. Couvrez et laissez cuire 15 à 20 minutes, en les écrasant au dos d’une cuillère une fois ramollies, jusqu’à ce qu’elles aient complètement éclaté et se soient affaissées en une sauce.",
-                      "Passez le tout au tamis fin ou au moulin à légumes, en pressant fermement. Ce qui reste est peau et pépin, et va à la poubelle. Cette seule étape est ce qui rend le plat sûr, et pas seulement tendre.",
-                      "Pendant ce temps, faites cuire les pâtes dans une eau bien salée 3 à 4 minutes de plus que l’indication du paquet. Elles doivent être tendres de part en part, sans aucune fermeté au cœur. Prélevez 150 ml d’eau de cuisson avant d’égoutter.",
-                      "Remettez la sauce tamisée dans la poêle à feu doux. Incorporez le beurre au fouet jusqu’à ce qu’elle émulsionne et devienne brillante.",
-                      "Ajoutez les pâtes égouttées et un peu d’eau de cuisson. Laissez cuire ensemble 2 minutes pour que les pâtes boivent la sauce, puis incorporez le parmesan râpé.",
-                      "Hachez les pâtes à 4 mm au maximum, ou donnez-leur deux ou trois impulsions au robot. Détendez avec le reste d’eau de cuisson jusqu’à ce que la sauce enrobe chaque morceau et que rien ne reste libre dans le bol. Servez aussitôt."
+                      "Mettez une grande casserole d’eau bien salée à bouillir.",
+                      "Faites chauffer l’huile d’olive dans une large poêle à feu doux-moyen avec l’ail émincé et les flocons de piment le cas échéant. Laissez l’ail blondir et embaumer sans brunir, environ 2 minutes.",
+                      "Ajoutez les tomates cerises entières, le sel et la pincée de sucre si les tomates en ont besoin. Laissez cuire 12 à 15 minutes, en écrasant au dos d’une cuillère celles qui ramollissent, jusqu’à ce que la plupart aient éclaté et rendu leur jus dans l’huile.",
+                      "Pendant ce temps, faites cuire les pâtes al dente et prélevez 150 ml d’eau de cuisson avant d’égoutter.",
+                      "Versez les pâtes égouttées dans les tomates avec une bonne louche d’eau de cuisson. Faites sauter vivement une à deux minutes sur le feu : l’amidon de l’eau et l’huile se lient en une sauce qui enrobe les brins au lieu de rester dessous.",
+                      "Hors du feu, incorporez le basilic déchiré et la majeure partie du parmesan. Terminez par le poivre noir et le reste du fromage."
               ],
               "servingTips": [
-                      "La photographie montre le plat tel qu’on le fait d’ordinaire : spaghettis longs, tomates entières éclatées avec leur peau, copeaux de parmesan et herbes ciselées. Rien de tout cela n’est ce qui est classé ici. Cette version utilise de petites pâtes, les tomates sont tamisées et le fromage est râpé en poudre.",
-                      "Les pâtes longues sont le plus grand danger dans un bol comme celui-ci. Les brins ne peuvent pas être réduits par la mastication comme le reste, et ils sont avalés sur toute leur longueur. Partez de ditalini, d’orzo ou de petits coquillages plutôt que de couper des spaghettis après coup.",
-                      "La peau des tomates cerises est plus coriace que celle des grosses tomates, et il y en a bien davantage par bol. Elle survit à n’importe quelle cuisson et se détache en copeaux. Le tamisage de l’étape 3 n’est pas un raffinement, c’est l’essentiel.",
-                      "Gardez le beurre. Des pâtes hachées aussi fin se dessèchent et s’agglomèrent en refroidissant, et c’est la matière grasse qui garde les morceaux séparés et la sauce nappante. Ce n’est pas le plat à alléger.",
-                      "Servez immédiatement. Les pâtes raffermissent et deviennent plus collantes en attendant : un bol parfait dans la poêle peut ne plus l’être à table. Détendez à l’eau tiède ou au bouillon et revérifiez avant de servir.",
-                      "Le niveau 4 est possible ici, mais c’est celui qu’il faut surveiller. Les pâtes de blé mixées deviennent gluantes, et le niveau 4 ne doit jamais être collant. Si vous y allez, mixez-les avec nettement plus de sauce qu’il n’y paraît nécessaire, plus le beurre, servez aussitôt, et testez au dos d’une cuillère : la préparation doit se détacher nettement plutôt que tirer en fils. Si elle reste collante quoi que vous fassiez, servez la sauce tamisée seule au niveau 4 plutôt que d’y forcer les pâtes. Une sauce tomate lisse est un très bon plat ; de la colle, non."
+                      "Ce plat est classé niveau 7, et ce classement a un sens précis. Les pâtes longues ne peuvent pas être réduites par la mastication comme la plupart des aliments : elles sont avalées à la longueur où elles entrent. Leur place est avec une mastication et une déglutition normales, pas en dessous.",
+                      "La peau des tomates cerises est plus coriace que celle des grosses tomates, et en éclatant elles la laissent derrière en copeaux. Sans problème au niveau 7 ; pas en dessous.",
+                      "Pour passer au niveau 6 : coupez les pâtes cuites en tronçons courts aux ciseaux de cuisine directement dans le bol, pelez les tomates avant de les mettre, et supprimez les feuilles de basilic. Râpez le parmesan finement plutôt qu’en copeaux.",
+                      "Pour le niveau 5, utilisez plutôt la version aux ditalini de ce site. Couper des pâtes longues donne la bonne longueur mais pas la bonne forme, et elles se séparent toujours de la sauce.",
+                      "L’eau de cuisson compte davantage qu’il n’y paraît. Sans elle, l’huile et le jus restent séparés et coulent des pâtes, ce qui est à la fois moins bon et plus difficile à avaler. Faites sauter jusqu’à ce que cela adhère."
               ],
-              "dietaryNotes": "Végétarien. Contient du gluten et des produits laitiers — de petites pâtes sans gluten conviennent, et l’huile d’olive peut remplacer le beurre, au prix d’une partie de ce qui empêche les morceaux de s’agglomérer. Teneur en sodium modérée telle qu’indiquée.",
+              "dietaryNotes": "Végétarien. Contient du gluten et des produits laitiers. Supprimez les flocons de piment pour qui trouve le piquant irritant.",
               "nutrition": {
-                      "basis": "Estimé à partir des ingrédients indiqués, pour 4 portions, en supposant que l’essentiel des peaux et pépins tamisés est écarté. Il s’agit d’une estimation, non d’une analyse en laboratoire."
+                      "basis": "Estimé à partir des ingrédients indiqués, pour 4 portions. Il s’agit d’une estimation, non d’une analyse en laboratoire."
               }
       },
       "chicken-golden-soup": {
@@ -2122,6 +2123,88 @@ window.AR_I18N = {
                       "basis": "Estimé à partir des ingrédients indiqués, pour 6 portions. Il s’agit d’une estimation, non d’une analyse en laboratoire."
               }
       },
+      "spicy-creamy-ditalini": {
+              "title": "Ditalini crémeux et relevés",
+              "description": "De petits tubes de ditalini dans une sauce tomate adoucie à la crème et relevée au piment — une sauce qui retient chaque morceau au lieu d’en glisser.",
+              "ingredients": [
+                      {
+                              "amount": "300 g",
+                              "item": "Ditalini",
+                              "note": "Ou tubetti. Le tube court est l’essentiel — voir les conseils de service"
+                      },
+                      {
+                              "amount": "400 g",
+                              "item": "Tomates concassées en conserve",
+                              "note": "Passées au tamis, ou utilisez de la passata et sautez cette étape"
+                      },
+                      {
+                              "amount": "2 c. à soupe",
+                              "item": "Huile d’olive"
+                      },
+                      {
+                              "amount": "1 petit",
+                              "item": "Oignon, en petits dés"
+                      },
+                      {
+                              "amount": "3 gousses",
+                              "item": "Ail, finement haché"
+                      },
+                      {
+                              "amount": "1/4 c. à café",
+                              "item": "Flocons de piment",
+                              "note": "Commencez ici et goûtez ; voir la note sur le piquant ci-dessous"
+                      },
+                      {
+                              "amount": "2 c. à soupe",
+                              "item": "Concentré de tomate"
+                      },
+                      {
+                              "amount": "150 ml",
+                              "item": "Crème entière",
+                              "note": "C’est elle qui fait adhérer la sauce et empêche les pâtes de s’agglomérer"
+                      },
+                      {
+                              "amount": "40 g",
+                              "item": "Parmesan finement râpé"
+                      },
+                      {
+                              "amount": "3/4 c. à café",
+                              "item": "Sel",
+                              "note": "Plus du sel pour l’eau des pâtes"
+                      },
+                      {
+                              "amount": "150 ml",
+                              "item": "Eau de cuisson des pâtes",
+                              "note": "Prélevée avant d’égoutter"
+                      },
+                      {
+                              "amount": "Quelques feuilles",
+                              "item": "Basilic frais",
+                              "note": "Finement ciselé, ou supprimé en dessous du niveau 6"
+                      }
+              ],
+              "instructions": [
+                      "Faites chauffer l’huile d’olive dans une large poêle à feu doux-moyen. Ajoutez l’oignon et laissez cuire doucement 8 minutes, jusqu’à ce qu’il soit parfaitement fondant et translucide — ni coloré, ni encore croquant. Un oignon insuffisamment cuit est la seule chose ferme capable de survivre jusqu’au plat fini.",
+                      "Ajoutez l’ail, les flocons de piment et le concentré de tomate. Faites cuire 2 minutes en remuant, jusqu’à ce que le concentré fonce légèrement et sente le sucré plutôt que le cru.",
+                      "Si vous utilisez des tomates concassées, passez-les maintenant au tamis et ajoutez la pulpe lisse, en laissant peaux et pépins derrière. Salez. Laissez mijoter doucement 10 minutes jusqu’à épaississement.",
+                      "Pendant ce temps, faites cuire les ditalini dans une eau bien salée 2 minutes de plus que l’indication du paquet, pour qu’il ne reste aucune fermeté au cœur. Prélevez 150 ml d’eau de cuisson avant d’égoutter.",
+                      "Incorporez la crème à la sauce et ramenez-la à tout petit frémissement. Elle doit passer du rouge à un orange doux et épaissir assez pour napper une cuillère.",
+                      "Ajoutez les ditalini égouttés et un peu d’eau de cuisson. Laissez cuire ensemble 2 minutes pour que les tubes se remplissent de sauce, puis incorporez le parmesan et le basilic ciselé.",
+                      "Vérifiez la consistance avant de servir : la sauce doit enrober chaque tube sans qu’il en reste au fond du plat. Détendez avec un peu d’eau de cuisson si elle a trop épaissi."
+              ],
+              "servingTips": [
+                      "Les ditalini sont la forme adaptée ici, et non un choix arbitraire. Le tube court se remplit de sauce autant qu’il en est enrobé, si bien que chaque morceau porte sa propre humidité ; les parois sont assez fines pour cuire tendres de part en part ; et à moins d’un centimètre, il entre déjà dans la taille requise au niveau 6 sans rien couper. L’orzo paraît un substitut raisonnable et ne l’est pas : lisse, la sauce en glisse, et il s’agglomère.",
+                      "La crème fait plus que de l’onctuosité. Les petites pâtes se dessèchent et collent entre elles en refroidissant, et c’est la matière grasse qui garde les morceaux séparés et la sauce accrochée. Une version à l’huile ou tout-tomate se tient nettement moins bien dans l’assiette au bout de dix minutes.",
+                      "Sur le piquant : le piment n’est pas ici une simple affaire de goût. La capsaïcine peut irriter la gorge et déclencher une quinte de toux, et tousser en plein milieu d’une déglutition est précisément ce qu’il faut éviter. Commencez à un quart de cuillère à café, goûtez, et supprimez-le entièrement pour qui y réagit. Le plat fonctionne très bien sans.",
+                      "Faites vraiment fondre l’oignon. Huit minutes à feu doux, pas trois. Un oignon à moitié cuit traverse tout le reste de la recette et devient le seul morceau du bol qui n’y a pas sa place.",
+                      "Pour le niveau 5, donnez au plat fini deux ou trois impulsions au robot, ou hachez-le, jusqu’à des morceaux de 4 mm au maximum, et détendez à l’eau de cuisson tiède. Il s’y prête mieux que la plupart des plats de pâtes, parce que la crème l’empêche de devenir gluant.",
+                      "Servez aussitôt. Comme toutes les petites pâtes, il raffermit en attendant, et un bol parfait dans la poêle peut demander à être détendu une fois à table."
+              ],
+              "dietaryNotes": "Végétarien. Contient du gluten et des produits laitiers — de petites pâtes sans gluten conviennent, et une crème végétale fera l’affaire, même si elle épaissit moins. Supprimez le piment pour qui trouve le piquant irritant.",
+              "nutrition": {
+                      "basis": "Estimé à partir des ingrédients indiqués, pour 4 portions. Il s’agit d’une estimation, non d’une analyse en laboratoire."
+              }
+      },
       "stovetop-mac-and-cheese": {
               "title": "Macaronis au fromage à la casserole",
               "description": "Des macaronis au fromage riches et crémeux préparés à la casserole, avec une sauce aux œufs et au cheddar — sans passage au four.",
@@ -2505,7 +2588,8 @@ window.AR_I18N = {
            desc: '质地柔软的普通食物。没有坚硬、酥脆或带筋的部分，也没有难以咀嚼的块状物。' }
     },
     mixed: {
-      'cherry-tomato-pasta': '用煮面水调稀时，只调到酱汁能裹住面粒为止。若碗底积起汤水而不是挂在面上，请先收稠再上桌。',
+      'cherry-tomato-pasta': '爆开的番茄会渗出大量稀汁。请用煮面水翻拌至乳化成能裹住面条的酱汁，而不是让面条泡在汤水里。',
+      'spicy-creamy-ditalini': '酱汁必须裹住每一粒面。若盘底积起汁水，请先收稠或加些芝士末再上桌。',
       'red-braised-pork-belly': '请把汤汁收到能裹住肉末的程度。汤汁太稀，会比肉粒跑得更快。',
       'tomato-egg-stir-fry': '请把汤汁收到能裹住鸡蛋，而不是在盘底积成一滩。汤汁留得太稀，液体和固体在口中移动的速度就不一样。',
       'chicken-noodle-soup': '请将整锅汤搅打细滑，或将汤汁增稠至不再从面条与鸡肉间流走。',
@@ -2858,29 +2942,34 @@ window.AR_I18N = {
       },
       "cherry-tomato-pasta": {
               "title": "小番茄意面",
-              "description": "小番茄煮塌后过筛，滤成清甜挂勺的酱汁，再拌入煮得比弹牙更软的小颗粒意面。",
+              "description": "小番茄在橄榄油与蒜香中爆开，拌入长条意面，再加罗勒与帕玛森芝士。整道菜做完，差不多就是水烧开的工夫。",
               "ingredients": [
                       {
                               "amount": "500 克",
-                              "item": "小番茄"
+                              "item": "小番茄",
+                              "note": "整颗下锅；加热后自己会爆开"
                       },
                       {
-                              "amount": "250 克",
-                              "item": "小颗粒意面",
-                              "note": "通心粉粒、米形面、星星面或小贝壳面。不要用意大利直面——原因见食用提示"
+                              "amount": "400 克",
+                              "item": "意大利直面或扁面"
                       },
                       {
-                              "amount": "3 汤匙",
+                              "amount": "4 汤匙",
                               "item": "橄榄油"
                       },
                       {
-                              "amount": "3 瓣",
-                              "item": "蒜，切片",
-                              "note": "会和番茄一起过筛，因此不会整片留到盘中"
+                              "amount": "4 瓣",
+                              "item": "蒜，切薄片"
                       },
                       {
                               "amount": "1/2 茶匙",
-                              "item": "盐"
+                              "item": "辣椒碎",
+                              "note": "可选"
+                      },
+                      {
+                              "amount": "1 茶匙",
+                              "item": "盐",
+                              "note": "另需足量的盐用于煮面水"
                       },
                       {
                               "amount": "1 小撮",
@@ -2888,46 +2977,41 @@ window.AR_I18N = {
                               "note": "番茄偏酸时才加"
                       },
                       {
-                              "amount": "30 克",
-                              "item": "黄油",
-                              "note": "在这个质地等级上不是可有可无——原因见食用提示"
-                      },
-                      {
                               "amount": "150 毫升",
                               "item": "煮面水",
                               "note": "沥面前先盛出来"
                       },
                       {
-                              "amount": "30 克",
-                              "item": "帕玛森芝士，擦成细末",
-                              "note": "要擦成粉末状，不要刨成薄片"
+                              "amount": "一小把",
+                              "item": "新鲜罗勒，撕碎"
+                      },
+                      {
+                              "amount": "40 克",
+                              "item": "帕玛森芝士，刨片或擦末"
                       },
                       {
                               "amount": "适量",
-                              "item": "黑胡椒",
-                              "note": "第 5 级以下请略去"
+                              "item": "黑胡椒"
                       }
               ],
               "instructions": [
-                      "宽口锅中以中小火热橄榄油，下蒜片，温火煸一两分钟至香气甜润，但不要上色。",
-                      "整颗小番茄连同盐、以及视情况加的那撮糖一起下锅。加盖煮 15 至 20 分钟，番茄变软后用勺背压一压，直到完全爆开、塌成松散的酱汁。",
-                      "把锅中所有内容倒入细筛或食物研磨器中过滤，用力压榨。留在筛上的是番茄皮与籽，全部丢掉。正是这一步，让这道菜从「软」变成「安全」。",
-                      "同时，在加足盐的水中煮意面，比包装标示的时间多煮 3 至 4 分钟，煮到中心完全没有硬芯。沥干前先留出 150 毫升煮面水。",
-                      "把滤好的酱汁倒回锅中小火加热，加入黄油搅打至乳化、酱汁变得油亮。",
-                      "放入沥干的意面与少许煮面水，一起煮 2 分钟让面吸饱酱汁，再拌入帕玛森芝士末。",
-                      "把拌好的意面剁到 4 毫米以下，或用料理机短促地打两三下。用剩下的煮面水调稀，直到酱汁裹住每一粒面、碗底不留汤水。立刻上桌。"
+                      "大锅中加足量盐的水，烧开备用。",
+                      "宽口锅中以中小火热橄榄油，下蒜片与辣椒碎（如使用）。煎约 2 分钟至蒜片呈浅金色、香气四溢，但不要上色过深。",
+                      "整颗小番茄连同盐、以及视情况加的那撮糖一起下锅。煮 12 至 15 分钟，番茄变软后用勺背压一压，直到大部分爆开、汁水融进油里。",
+                      "同时把意面煮至弹牙，沥干前先留出 150 毫升煮面水。",
+                      "把沥干的意面倒入番茄中，再加一大勺煮面水。开火快速翻拌一两分钟：面水里的淀粉与油会乳化成酱汁，裹住面条，而不是沉在底下。",
+                      "离火，拌入撕碎的罗勒与大部分芝士。最后撒黑胡椒与剩下的芝士。"
               ],
               "servingTips": [
-                      "照片拍的是这道菜通常的样子：长条意面、整颗带皮的爆浆番茄、刨片芝士和香草碎。这些都不是这里所评定的内容。本食谱用的是小颗粒意面，番茄要过筛，芝士要擦成粉末。",
-                      "长条意面是这样一碗里最大的风险。面条没法像别的食物那样被嚼短，往往是整条吞下去的。请一开始就用通心粉粒、米形面或小贝壳面，而不是事后把直面剪断。",
-                      "小番茄的皮比大番茄更韧，而且同样一碗里数量多得多。它们怎么煮都不会化开，入口时是一卷一卷的。第 3 步的过筛不是为了精致，而是这道菜的关键。",
-                      "黄油要留着。剁得这么细的意面放凉后会发干结团，而油脂正是让面粒彼此分开、让酱汁挂得住的东西。这道菜不适合做成清淡版。",
-                      "务必马上食用。意面放着会变硬、变黏，在锅里刚刚好的一碗，端上桌时可能已经不对了。食用前用温水或高汤调稀，并重新确认状态。",
-                      "第 4 级是可行的，但要格外留意。打碎的小麦意面会变得黏糊，而第 4 级绝不应该黏牙。若要往这个方向调整，请用比看起来更多的酱汁，连同黄油一起打匀，打好立刻上桌，并用勺背测试：应当干净地滑落，而不是拉出黏丝。若无论怎么调稀都依然发黏，请在第 4 级只提供过筛后的番茄酱汁，而不要硬把意面做进去。一碗细滑的番茄酱汁是一道很好的菜；一团浆糊不是。"
+                      "这道菜评定为第 7 级，而这个等级是有实际意义的。长条意面没法像大多数食物那样被嚼短——它是以入口时的长度被吞下去的。它适合咀嚼与吞咽功能正常的人，不适用于更低的等级。",
+                      "小番茄的皮比大番茄更韧，爆开之后皮会一卷一卷地留在锅里。第 7 级没问题；再低的等级就不行了。",
+                      "若要调整到第 6 级：煮好后直接在碗里用厨房剪把面剪短，番茄下锅前先去皮，并略去罗勒叶。芝士请擦成细末，而不是刨成薄片。",
+                      "若要第 5 级，请改用本站的通心粉粒版本。把长面剪短，只能得到合适的长度，却得不到合适的形状，酱汁依然挂不住。",
+                      "煮面水比听上去重要得多。没有它，油和番茄汁会各自分离、从面条上流走，既不好吃，也更难吞咽。请翻拌到酱汁真正裹住面条为止。"
               ],
-              "dietaryNotes": "素食。含麸质与乳制品——可改用无麸质小颗粒意面，黄油也可用橄榄油替代，只是会损失一部分防止面粒结团的作用。按原方钠含量适中。",
+              "dietaryNotes": "素食。含麸质与乳制品。对辣味敏感者请略去辣椒碎。",
               "nutrition": {
-                      "basis": "依所列食材按 4 份估算，并假设过筛后的皮与籽大部分已丢弃。此为估算值，并非实验室检测的营养标签。"
+                      "basis": "依所列食材按 4 份估算。此为估算值，并非实验室检测的营养标签。"
               }
       },
       "chicken-golden-soup": {
@@ -4504,6 +4588,88 @@ window.AR_I18N = {
               "dietaryNotes": "素食。按原方含乳制品；可用无乳糖牛奶或植物奶替代。上方营养数据为依据食材估算，因原方未提供。",
               "nutrition": {
                       "basis": "依所列食材按 6 份估算。此为估算值，并非实验室检测的营养标签。"
+              }
+      },
+      "spicy-creamy-ditalini": {
+              "title": "奶油辣味通心粉粒",
+              "description": "短管状的通心粉粒裹在加了奶油的番茄酱汁里，带一点辣意——这是一锅会牢牢抱住每一粒面的酱汁，而不是从上面滑下去。",
+              "ingredients": [
+                      {
+                              "amount": "300 克",
+                              "item": "通心粉粒（ditalini）",
+                              "note": "或 tubetti。短管的形状正是关键——原因见食用提示"
+                      },
+                      {
+                              "amount": "400 克",
+                              "item": "罐装番茄碎",
+                              "note": "过筛使用；若用番茄泥则可省略过筛"
+                      },
+                      {
+                              "amount": "2 汤匙",
+                              "item": "橄榄油"
+                      },
+                      {
+                              "amount": "1 个小",
+                              "item": "洋葱，切细丁"
+                      },
+                      {
+                              "amount": "3 瓣",
+                              "item": "蒜，切末"
+                      },
+                      {
+                              "amount": "1/4 茶匙",
+                              "item": "辣椒碎",
+                              "note": "先从这个量开始尝味；另见下方关于辣度的说明"
+                      },
+                      {
+                              "amount": "2 汤匙",
+                              "item": "番茄膏"
+                      },
+                      {
+                              "amount": "150 毫升",
+                              "item": "淡奶油",
+                              "note": "正是它让酱汁挂得住，也防止面粒结团"
+                      },
+                      {
+                              "amount": "40 克",
+                              "item": "帕玛森芝士，擦成细末"
+                      },
+                      {
+                              "amount": "3/4 茶匙",
+                              "item": "盐",
+                              "note": "另需盐用于煮面水"
+                      },
+                      {
+                              "amount": "150 毫升",
+                              "item": "煮面水",
+                              "note": "沥面前先盛出来"
+                      },
+                      {
+                              "amount": "几片",
+                              "item": "新鲜罗勒",
+                              "note": "切碎；第 6 级以下请略去"
+                      }
+              ],
+              "instructions": [
+                      "宽口锅中以中小火热橄榄油。下洋葱丁，温火炒足 8 分钟，直到完全变软、呈半透明——不要上色，也不要还带脆口。没有炒透的洋葱，是最后碗里唯一可能依然硬着的东西。",
+                      "加入蒜末、辣椒碎与番茄膏。翻炒 2 分钟，至番茄膏颜色转深、散发甜香而非生味。",
+                      "若用罐装番茄碎，此时过筛，把细滑的果肉加入锅中，皮与籽留在筛上丢掉。加盐，小火慢煮 10 分钟至酱汁变稠。",
+                      "同时在加足盐的水中煮通心粉粒，比包装标示多煮 2 分钟，煮到中心完全没有硬芯。沥干前先留出 150 毫升煮面水。",
+                      "把淡奶油拌入酱汁，重新加热至微微冒泡。酱汁会由红转为柔和的橙色，并稠到能挂在勺背上。",
+                      "放入沥干的通心粉粒与少许煮面水，一起煮 2 分钟，让酱汁灌进管子里，再拌入芝士末与罗勒碎。",
+                      "上桌前确认稠度：酱汁应当裹住每一粒面，盘底不应积汁。若变稠了，用少许煮面水调开。"
+              ],
+              "servingTips": [
+                      "这道菜选用通心粉粒不是随意为之。短管状的面不仅外面裹着酱汁，管内也会灌满，每一粒都自带湿润度；管壁够薄，能彻底煮软；而且不到一厘米长，本身就已在第 6 级的小块尺寸范围内，完全不必再切。米形面（orzo）看起来像是合理的替代，其实不是——它表面光滑，酱汁挂不住，而且容易结成一团。",
+                      "奶油在这里不只是为了浓郁。小颗粒的面放凉后会变干、彼此粘连，而油脂正是让面粒保持分开、让酱汁附着其上的东西。换成纯油或纯番茄版本的话，过十分钟再看盘子，状态会明显差很多。",
+                      "关于辣度：在这里，辣椒并不只是口味偏好的问题。辣椒素会刺激咽喉并引发呛咳，而吞咽过程中的咳嗽正是最该避免的情况。请从 1/4 茶匙开始，尝味后再调整；若对方有反应，就完全不要放。这道菜不加辣一样好吃。",
+                      "洋葱一定要炒到真正塌软。是 8 分钟的小火，不是 3 分钟。半生不熟的洋葱会一路挺到最后，成为碗里唯一不合群的那一口。",
+                      "若需第 5 级，把做好的成品用料理机短促地打两三下，或直接剁碎，至颗粒不超过 4 毫米，再用温热的煮面水调稀。它比大多数意面菜式更适合这样处理，因为奶油能防止它变得黏糊。",
+                      "请马上食用。和所有小颗粒意面一样，它放着会变稠，在锅里刚刚好的一碗，端上桌时可能就需要重新调稀了。"
+              ],
+              "dietaryNotes": "素食。含麸质与乳制品——可改用无麸质小颗粒意面，植物奶油也可以替代，只是稠度会稍差。对辣味敏感者请略去辣椒。",
+              "nutrition": {
+                      "basis": "依所列食材按 4 份估算。此为估算值，并非实验室检测的营养标签。"
               }
       },
       "stovetop-mac-and-cheese": {

@@ -2085,62 +2085,121 @@
        Google sees the right title and content on its first crawl. */
     const recipes = [
       {
+        id: 42,
+        slug: "spicy-creamy-ditalini",
+        cuisine: "Italian",
+        datePublished: "2026-10-28",
+        title: "Spicy Creamy Ditalini",
+        description: "Small tubes of ditalini in a tomato sauce softened with cream and warmed through with chilli \u2014 a sauce that holds onto every piece instead of running off it.",
+        prepTime: "10 minutes",
+        cookTime: "25 minutes",
+        servings: 4,
+        difficulty: "Easy",
+        icon: "pasta",
+        dysphagia: 6,
+        image: "/assets/spicy-creamy-ditalini",
+        imageAlt: "A plate of small ditalini pasta tubes coated in a creamy orange tomato sauce, with basil leaves.",
+        imageBg: "#B99062",
+        color: "#D4663F",
+        ingredients: [
+          { amount: "300 g", item: "Ditalini", note: "Or tubetti. The short tube is the point \u2014 see the serving tips" },
+          { amount: "400 g", item: "Tinned chopped tomatoes", note: "Passed through a sieve, or use passata and skip that step" },
+          { amount: "2 tbsp", item: "Olive oil" },
+          { amount: "1 small", item: "Onion, finely diced" },
+          { amount: "3 cloves", item: "Garlic, finely minced" },
+          { amount: "1/4 tsp", item: "Chilli flakes", note: "Start here and taste; see the note on heat below" },
+          { amount: "2 tbsp", item: "Tomato paste" },
+          { amount: "150 ml", item: "Double cream", note: "What makes the sauce cling and stops the pasta clumping" },
+          { amount: "40 g", item: "Parmesan, finely grated" },
+          { amount: "3/4 tsp", item: "Salt", note: "Plus more for the pasta water" },
+          { amount: "150 ml", item: "Pasta water", note: "Reserved before draining" },
+          { amount: "A few leaves", item: "Fresh basil", note: "Finely chopped, or left out below Level 6" }
+        ],
+        instructions: [
+          { step: 1, text: "Warm the olive oil in a wide pan over medium-low heat. Add the onion and cook gently for 8 minutes until completely soft and translucent \u2014 not browned, and not still crunchy. Onion that has not fully softened is the one firm thing that can survive into the finished dish.", forkTender: true },
+          { step: 2, text: "Add the garlic, chilli flakes and tomato paste. Cook for 2 minutes, stirring, until the paste darkens slightly and smells sweet rather than raw.", forkTender: false },
+          { step: 3, text: "If using tinned chopped tomatoes, press them through a sieve now and add the smooth pulp, leaving the skin and seed behind. Add the salt. Simmer gently for 10 minutes until it thickens.", forkTender: false },
+          { step: 4, text: "Meanwhile cook the ditalini in well-salted water for 2 minutes longer than the packet says, so there is no firmness left in the centre. Reserve 150 ml of the water before draining.", forkTender: true },
+          { step: 5, text: "Stir the cream into the sauce and let it come back to a bare simmer. It should turn from red to a soft orange and thicken enough to coat a spoon.", forkTender: false },
+          { step: 6, text: "Add the drained ditalini and a splash of the reserved water. Cook together for 2 minutes so the tubes fill with sauce, then stir through the parmesan and the chopped basil.", forkTender: false },
+          { step: 7, text: "Check the consistency before serving: the sauce should coat every tube with none pooling in the dish. Loosen with a little more pasta water if it has tightened.", forkTender: false }
+        ],
+        servingTips: [
+          "Ditalini is the right shape for this rather than an arbitrary one. The short tube fills with sauce as well as being coated by it, so each piece carries its own moisture; the walls are thin enough to cook soft all the way through; and at under a centimetre it is already within the bite-sized limit for Level 6 without anything being cut. Orzo looks like a sensible substitute and is not \u2014 it is smooth-sided, so the sauce slides off, and it clumps.",
+          "The cream is doing a job beyond richness. Small pasta dries and sticks to itself as it cools, and fat is what keeps the pieces separate and the sauce clinging to them. An oil-based or tomato-only version of this dish behaves noticeably worse on the plate ten minutes in.",
+          "On the heat: chilli is not simply a matter of preference here. Capsaicin can irritate the throat and set off coughing, and coughing mid-swallow is exactly what you do not want. Start at a quarter teaspoon, taste, and leave it out altogether for anyone who reacts. The dish works perfectly well without it.",
+          "Cook the onion until it genuinely collapses. Eight minutes of gentle heat, not three. Half-softened onion stays firm through everything that follows and becomes the one piece in the bowl that does not belong.",
+          "For Level 5, give the finished dish two or three short pulses in a food processor, or chop it, until the pieces are 4 mm or smaller, and loosen it with warm pasta water. It takes to this better than most pasta dishes because the cream keeps it from going gluey.",
+          "Serve it straight away. Like any small pasta it tightens as it stands, and a bowl that was right in the pan can need loosening by the time it reaches the table."
+        ],
+        nutrition: {
+          basis: "Estimated from the listed ingredients across 4 servings. This is an estimate, not a lab-tested nutrition label.",
+          calories: "~575 kcal",
+          protein: "~17 g",
+          fat: "~26 g",
+          carbs: "~68 g",
+          sodium: "~700 mg",
+          cholesterol: "~55 mg"
+        },
+        dietaryNotes: "Vegetarian. Contains gluten and dairy \u2014 a gluten-free small pasta works, and a plant cream will stand in, though it thickens less. Leave out the chilli for anyone who finds heat irritating."
+      },
+      {
         id: 41,
         slug: "cherry-tomato-pasta",
         cuisine: "Italian",
         datePublished: "2026-10-28",
         title: "Cherry Tomato Pasta",
-        description: "Cherry tomatoes cooked down and passed through a sieve into a sweet, clinging sauce, folded through small pasta cooked well past al dente.",
-        prepTime: "10 minutes",
-        cookTime: "30 minutes",
+        description: "Cherry tomatoes burst in olive oil and garlic, tossed through long pasta with basil and parmesan. The whole thing takes about as long as the water needs to boil.",
+        prepTime: "5 minutes",
+        cookTime: "20 minutes",
         servings: 4,
         difficulty: "Easy",
         icon: "pasta",
-        dysphagia: 5,
+        dysphagia: 7,
         image: "/assets/cherry-tomato-pasta",
-        imageAlt: "A bowl of pasta in a red cherry tomato sauce.",
+        imageAlt: "A bowl of long pasta tossed with burst cherry tomatoes, basil and shaved parmesan.",
         imageBg: "#C9A68D",
         color: "#C9472F",
         ingredients: [
-          { amount: "500 g", item: "Cherry tomatoes" },
-          { amount: "250 g", item: "Small pasta shape", note: "Ditalini, orzo, pastina or small shells. Not spaghetti \u2014 see the serving tips" },
-          { amount: "3 tbsp", item: "Olive oil" },
-          { amount: "3 cloves", item: "Garlic, sliced", note: "Goes through the sieve with the tomatoes, so it never reaches the plate whole" },
-          { amount: "1/2 tsp", item: "Salt" },
+          { amount: "500 g", item: "Cherry tomatoes", note: "Left whole; they burst as they cook" },
+          { amount: "400 g", item: "Spaghetti or linguine" },
+          { amount: "4 tbsp", item: "Olive oil" },
+          { amount: "4 cloves", item: "Garlic, thinly sliced" },
+          { amount: "1/2 tsp", item: "Chilli flakes", note: "Optional" },
+          { amount: "1 tsp", item: "Salt", note: "Plus plenty more for the pasta water" },
           { amount: "1 pinch", item: "Sugar", note: "Only if the tomatoes are sharp" },
-          { amount: "30 g", item: "Butter", note: "Not optional at this texture level \u2014 see the serving tips" },
           { amount: "150 ml", item: "Pasta water", note: "Reserved before draining" },
-          { amount: "30 g", item: "Parmesan, finely grated", note: "Grated to a powder, not shaved" },
-          { amount: "To taste", item: "Black pepper", note: "Leave it out below Level 5" }
+          { amount: "A handful", item: "Fresh basil, torn" },
+          { amount: "40 g", item: "Parmesan, shaved or grated" },
+          { amount: "To taste", item: "Black pepper" }
         ],
         instructions: [
-          { step: 1, text: "Warm the olive oil in a wide pan over medium-low heat and add the sliced garlic. Cook gently for a minute or two until it smells sweet, without letting it colour.", forkTender: false },
-          { step: 2, text: "Add the cherry tomatoes whole, along with the salt and the pinch of sugar if using. Cover and cook for 15 to 20 minutes, pressing them with the back of a spoon once they soften, until they have burst completely and collapsed into a loose sauce.", forkTender: true },
-          { step: 3, text: "Pass the whole lot through a fine sieve or a food mill, pressing hard on the solids. What stays behind is skin and seed, and it goes in the bin. This single step is what makes the dish safe rather than merely soft.", forkTender: false },
-          { step: 4, text: "Meanwhile, cook the pasta in well-salted water for 3 to 4 minutes longer than the packet says. It should be soft all the way through with no firmness left in the centre. Reserve 150 ml of the water before draining.", forkTender: true },
-          { step: 5, text: "Return the sieved sauce to the pan over low heat. Whisk in the butter until it emulsifies and the sauce turns glossy.", forkTender: false },
-          { step: 6, text: "Add the drained pasta and a splash of the reserved water. Cook together for 2 minutes so the pasta drinks in the sauce, then stir through the grated parmesan.", forkTender: false },
-          { step: 7, text: "Chop the finished pasta down to 4 mm, or give it two or three short pulses in a food processor. Loosen it with more of the reserved water until the sauce coats every piece and nothing sits loose in the bowl. Serve straight away.", forkTender: false }
+          { step: 1, text: "Put a large pan of well-salted water on to boil.", forkTender: false },
+          { step: 2, text: "Warm the olive oil in a wide pan over medium-low heat with the sliced garlic and the chilli flakes if using. Let the garlic go pale gold and fragrant without browning, about 2 minutes.", forkTender: false },
+          { step: 3, text: "Add the cherry tomatoes whole, along with the salt and the pinch of sugar if the tomatoes need it. Cook for 12 to 15 minutes, pressing the softened ones with the back of a spoon, until most have burst and released their juices into the oil.", forkTender: true },
+          { step: 4, text: "Meanwhile cook the pasta until al dente, and reserve 150 ml of the water before draining.", forkTender: false },
+          { step: 5, text: "Tip the drained pasta into the tomatoes with a good splash of the reserved water. Toss hard over the heat for a minute or two: the starch in the water and the oil come together into a sauce that coats the strands rather than sitting under them.", forkTender: false },
+          { step: 6, text: "Off the heat, fold through the torn basil and most of the parmesan. Finish with black pepper and the rest of the cheese.", forkTender: false }
         ],
         servingTips: [
-          "The photograph shows the dish as it is usually made: long spaghetti, whole burst tomatoes with their skins, shaved parmesan and chopped herbs. None of that is what is graded here. This version uses a small pasta shape, the tomatoes are sieved, and the cheese is grated to a powder.",
-          "Long pasta is the single biggest hazard in a bowl like this. Strands cannot be chewed into shorter pieces the way other food can, and they are swallowed in lengths. Use ditalini, orzo or small shells from the start rather than cutting spaghetti up afterwards.",
-          "Cherry tomato skins are tougher than those of large tomatoes, and there are far more of them per bowl. They survive any amount of cooking and come away in curls. Sieving at step 3 is not a refinement, it is the point.",
-          "Keep the butter. Pasta chopped this fine dries out and begins to clump as it cools, and fat is what keeps the pieces separate and the sauce clinging. This is not the dish to make lighter.",
-          "Serve it immediately. Pasta stiffens and turns tackier as it stands, so a bowl that was right in the pan can be wrong by the time it reaches the table. Loosen it with warm water or stock and check again before serving.",
-          "Level 4 is possible here but it is the one to watch. Blended wheat pasta turns gluey, and Level 4 should never be sticky. If you are going there, blend it with noticeably more sauce than looks right plus the butter, serve it at once, and test it against the back of a spoon: it should fall away cleanly rather than pull in threads. If it stays tacky however much you loosen it, serve the sieved sauce on its own at Level 4 rather than forcing the pasta through. A smooth tomato sauce is a perfectly good dish; glue is not."
+          "This one is graded Level 7, and that grading is doing real work. Long pasta cannot be chewed into shorter lengths the way most food can \u2014 it is swallowed at whatever length it goes in at. It belongs with normal chewing and swallowing, not below it.",
+          "Cherry tomato skins are tougher than those of large tomatoes, and bursting them leaves the skins behind in curls. Fine at Level 7; not at anything lower.",
+          "To bring it to Level 6: cut the cooked pasta into short lengths with kitchen scissors straight in the bowl, peel the tomatoes before they go in, and leave out the basil leaves. Shave the parmesan finely rather than in shards.",
+          "To bring it to Level 5, use the ditalini version on this site instead. Cutting long pasta short gets you pieces of the right length but not the right shape, and it still separates from the sauce.",
+          "The pasta water matters more than it sounds. Without it the oil and juices stay separate and run off the pasta, which is both worse to eat and worse to swallow. Toss until it clings."
         ],
         nutrition: {
-          basis: "Estimated from the listed ingredients across 4 servings, assuming most of the sieved skins and seeds are discarded. This is an estimate, not a lab-tested nutrition label.",
-          calories: "~415 kcal",
-          protein: "~13 g",
-          fat: "~18 g",
-          carbs: "~46 g",
-          sodium: "~400 mg",
-          cholesterol: "~25 mg"
+          basis: "Estimated from the listed ingredients across 4 servings. This is an estimate, not a lab-tested nutrition label.",
+          calories: "~560 kcal",
+          protein: "~17 g",
+          fat: "~19 g",
+          carbs: "~78 g",
+          sodium: "~520 mg",
+          cholesterol: "~10 mg"
         },
-        dietaryNotes: "Vegetarian. Contains gluten and dairy \u2014 a gluten-free small pasta shape works, and olive oil can replace the butter, though you lose some of what keeps the pieces from clumping. Moderate in sodium as written."
+        dietaryNotes: "Vegetarian. Contains gluten and dairy. Leave out the chilli flakes for anyone who finds heat irritating."
       },
+
       {
         id: 40,
         slug: "black-sesame-tong-sui",
@@ -4356,7 +4415,8 @@
        used to teach this, and both are on this site. The value is what the cook
        should do about it. NEEDS A CLINICIAN TO CHECK before this goes anywhere. */
     const MIXED_CONSISTENCY = {
-      'cherry-tomato-pasta': 'Loosen with pasta water only until the sauce coats. If liquid pools under the pasta rather than clinging to it, reduce it further before serving.',
+      'spicy-creamy-ditalini': 'The sauce should coat every tube. If liquid gathers in the dish, reduce it or add a little more parmesan before serving.',
+      'cherry-tomato-pasta': 'Burst tomatoes release a lot of thin juice. Toss with pasta water until it emulsifies into a sauce that coats the strands, rather than leaving them sitting in liquid.',
       'red-braised-pork-belly': 'Reduce the braising liquid until it coats the chopped meat. Left thin, the sauce runs ahead of the solids.',
       'tomato-egg-stir-fry': 'Reduce the sauce until it coats the egg instead of pooling around it. Left watery, the liquid and the solids move at different speeds.',
       'chicken-noodle-soup': 'Blend the whole soup smooth, or thicken the broth until it no longer runs away from the noodles and chicken.',
