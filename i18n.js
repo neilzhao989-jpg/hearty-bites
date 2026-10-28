@@ -304,6 +304,57 @@ window.AR_I18N = {
                       "basis": "Par portion ; la recette en donne 2."
               }
       },
+      "black-sesame-tong-sui": {
+              "title": "Tong sui au sésame noir",
+              "description": "Une soupe sucrée cantonaise de sésame noir torréfié et de riz, mixée puis filtrée jusqu’à tenir davantage de la soie tiède que du pudding.",
+              "ingredients": [
+                      {
+                              "amount": "150 g",
+                              "item": "Graines de sésame noir"
+                      },
+                      {
+                              "amount": "60 g",
+                              "item": "Riz gluant",
+                              "note": "Trempé au moins 2 heures à l’eau froide, puis égoutté. Du riz blanc ordinaire convient, mais donne moins de corps"
+                      },
+                      {
+                              "amount": "1 litre",
+                              "item": "Eau",
+                              "note": "En deux fois"
+                      },
+                      {
+                              "amount": "80 g",
+                              "item": "Sucre candi",
+                              "note": "Ou selon le goût ; la cassonade convient aussi"
+                      },
+                      {
+                              "amount": "1 pincée",
+                              "item": "Sel",
+                              "note": "Pas facultative — c’est elle qui empêche le sésame de paraître plat"
+                      }
+              ],
+              "instructions": [
+                      "Faites torréfier les graines de sésame à sec, à feu doux, 3 à 5 minutes, en secouant souvent, jusqu’à ce qu’elles embaument et commencent à éclater. Retirez-les du feu dès qu’elles sont parfumées : du sésame brûlé rend toute la casserole amère et rien ne le rattrape. Laissez refroidir.",
+                      "Égouttez le riz trempé. Mettez-le dans un blender avec le sésame refroidi et 500 ml d’eau.",
+                      "Mixez à pleine vitesse pendant 2 à 3 minutes complètes. Arrêtez, raclez les parois, et mixez de nouveau. C’est bien plus long qu’il n’y paraît nécessaire, et c’est la première des deux étapes qui décident si la soupe finie tient de la soie ou du sable.",
+                      "Versez le mélange à travers un tamis fin ou un sac à lait végétal posé sur un saladier, en pressant et en tordant pour tout faire passer. Jetez ce qui reste dans le tamis : ce résidu est l’enveloppe du sésame, et c’est exactement le grain que vous cherchez à retirer.",
+                      "Versez le liquide filtré dans une casserole avec les 500 ml d’eau restants, le sucre candi et le sel.",
+                      "Chauffez doucement en remuant sans arrêt à la spatule et en raclant le fond. Au bout de 5 à 10 minutes, l’amidon du riz prend et la préparation épaissit d’un coup, en une trentaine de secondes. Continuez de remuer pendant ce moment précis, sinon elle attache et brûle.",
+                      "Goûtez pour le sucre. Vérifiez la consistance à la température à laquelle elle sera servie, et non à la sortie du feu, puis servez tiède."
+              ],
+              "servingTips": [
+                      "Les étapes 3 et 4 sont toute la recette. L’enveloppe du sésame ne se défait pas, même dans un blender puissant, et non filtrée elle laisse un grain fin que l’on ne remarque qu’une fois en bouche. Mixez plus longtemps que vous ne le croyez, puis filtrez quand même.",
+                      "Dans les boutiques de desserts cantonaises, ce tong sui est servi avec des tang yuan, les boulettes de riz gluant. N’en ajoutez pas. Rondes, collantes et de la taille d’une gorge : c’est la pire combinaison de propriétés qu’un aliment puisse réunir, et elles comptent parmi les causes d’étouffement mortel les plus fréquentes en Asie de l’Est à chaque nouvel an.",
+                      "La soupe épaissit nettement en refroidissant, et encore au réfrigérateur. Le niveau 4 doit tenir sur la cuillère sans couler ; si elle est devenue assez ferme pour qu’il faille la travailler, détendez-la avec un peu d’eau tiède ou de lait et revérifiez.",
+                      "Pour le niveau 3, allongez-la d’eau tiède, de lait ou de boisson à l’avoine jusqu’à ce qu’elle coule de la cuillère tout en laissant un film. C’est l’un des plats du site les plus faciles à déplacer entre ces deux niveaux.",
+                      "Servez tiède plutôt que brûlant. Une soupe épaisse retient longtemps la chaleur et paraît moins chaude qu’elle ne l’est.",
+                      "Le sésame noir n’est pas seulement agréable ici : il est exceptionnellement riche en calcium, en fer et en magnésium, trois des éléments qui viennent justement à manquer lorsque les repas deviennent plus petits et plus mous."
+              ],
+              "dietaryNotes": "Végétalien et sans produits laitiers tel qu’indiqué, et sans gluten — malgré son nom, le riz gluant n’en contient pas. Contient du sésame, allergène à déclaration obligatoire au Canada, aux États-Unis et dans l’Union européenne. Naturellement très pauvre en sodium, et une bonne source de calcium et de fer.",
+              "nutrition": {
+                      "basis": "Estimé à partir des ingrédients indiqués, pour 4 portions, en supposant qu’environ un cinquième des solides reste dans le tamis. Il s’agit d’une estimation, non d’une analyse en laboratoire."
+              }
+      },
       "blueberry-smoothie": {
               "title": "Smoothie aux myrtilles",
               "description": "Des myrtilles mixées avec du yaourt et du lait, filtrées pour retirer les peaux, puis épaissies en boisson légèrement épaisse.",
@@ -2560,6 +2611,57 @@ window.AR_I18N = {
               "dietaryNotes": "素食。使用植物酸奶与植物奶即为无乳制品版本。",
               "nutrition": {
                       "basis": "每份计；本食谱可做 2 份。"
+              }
+      },
+      "black-sesame-tong-sui": {
+              "title": "黑芝麻糊",
+              "description": "一碗广式糖水：炒香的黑芝麻与米一同打碎、滤净，煮成的与其说是糊，不如说是温热的丝绸。",
+              "ingredients": [
+                      {
+                              "amount": "150 克",
+                              "item": "黑芝麻"
+                      },
+                      {
+                              "amount": "60 克",
+                              "item": "糯米",
+                              "note": "冷水浸泡至少 2 小时后沥干。用普通白米也可以，只是稠度会薄一些"
+                      },
+                      {
+                              "amount": "1 升",
+                              "item": "清水",
+                              "note": "分次使用"
+                      },
+                      {
+                              "amount": "80 克",
+                              "item": "冰糖",
+                              "note": "可按口味增减；用红糖亦可"
+                      },
+                      {
+                              "amount": "1 小撮",
+                              "item": "盐",
+                              "note": "不是可有可无——正是这一点盐让芝麻的香气不至于发闷"
+                      }
+              ],
+              "instructions": [
+                      "黑芝麻入干锅小火炒 3 至 5 分钟，不停晃锅，炒到香气扑鼻、开始噼啪作响。一闻到香味就立刻离火——芝麻一旦炒糊，整锅都会发苦，而且无法补救。炒好后摊凉。",
+                      "泡好的糯米沥干，与放凉的芝麻、500 毫升清水一起放入搅拌机。",
+                      "高速打足 2 至 3 分钟。停下来刮一刮杯壁，再打一次。这个时间比你以为需要的长得多，而它正是决定成品是「丝」还是「沙」的第一道关口。",
+                      "把浆液倒入细筛或豆浆袋中过滤，一边压一边拧，尽量把浆挤出来。筛网里剩下的渣全部丢掉——那就是芝麻的外壳，也正是你要去掉的颗粒感。",
+                      "把滤好的浆倒入锅中，加入剩下的 500 毫升水、冰糖与盐。",
+                      "小火加热，用刮刀不停搅拌并刮锅底。5 到 10 分钟后米浆中的淀粉会起作用，芝麻糊会在大约半分钟内突然变稠。这一刻千万不能停手，否则立刻粘底发焦。",
+                      "尝一下甜度。以实际入口的温度确认稠度，而不是刚离火时，温热食用。"
+              ],
+              "servingTips": [
+                      "第 3 步和第 4 步就是这道糖水的全部功夫。芝麻壳即便用高功率搅拌机也打不碎，不过滤就会留下细微的沙粒感，往往要等到入口才察觉。请打得比你以为的更久，然后无论如何都要过滤。",
+                      "广式糖水铺里常在芝麻糊里加汤圆。请不要加。又圆、又黏、大小又正好卡在喉咙，这是食物能同时具备的最糟糕的几项特征；每年春节前后，汤圆都是东亚地区最常见的噎食致死原因之一。",
+                      "芝麻糊放凉后会明显变稠，冷藏后更甚。第 4 级应当能在勺中保持形状而不流下；若已稠到需要费力搅动，请用少许温水或牛奶调稀后重新确认。",
+                      "若需第 4 级以下的第 3 级，用温水、牛奶或燕麦奶调稀，直到能顺畅地从勺上流下、但仍在勺背留下一层。这道糖水是本站最容易在这两个等级之间调整的之一。",
+                      "温热食用，不要滚烫。浓稠的糖水保温时间很长，摸上去的温度往往比实际低。",
+                      "黑芝麻在这里不只是好吃：它的钙、铁与镁含量都相当高，而当一个人的饭量变小、口感变软之后，恰恰最容易缺的就是这三样。"
+              ],
+              "dietaryNotes": "按原方为纯素、不含乳制品，且无麸质——糯米虽名为「糯」，并不含麸质。含芝麻，在加拿大、美国与欧盟均属法定申报过敏原。天然低钠，也是很好的钙与铁的来源。",
+              "nutrition": {
+                      "basis": "依所列食材按 4 份估算，并假设约五分之一的固形物留在了筛网中。此为估算值，并非实验室检测的营养标签。"
               }
       },
       "blueberry-smoothie": {

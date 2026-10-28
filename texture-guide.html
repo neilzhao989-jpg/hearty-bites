@@ -1990,7 +1990,7 @@
       <p>The IDDSI framework grades food and drink from Level 0 to Level 7. These are the levels the recipes on this site are graded at.</p>
       <section><h2>Level 2 &middot; Mildly Thick</h2><p>Flows off a spoon but noticeably slower than water. Sipped from a cup or through a wide straw, and it leaves a light coating as it moves. A drink level rather than a food one.</p><p>3 recipes at this level.</p></section>
       <section><h2>Level 3 &middot; Liquidised</h2><p>Pours smoothly like a thick drinkable soup. No lumps, no bits, and no chewing at all. Can be taken from a cup or spoon, and should not hold its shape on the plate.</p><p>7 recipes at this level.</p></section>
-      <section><h2>Level 4 &middot; Pureed</h2><p>Completely smooth and thick enough to hold its shape on a spoon, but soft enough to need no chewing. Should never be sticky, lumpy, or stringy.</p><p>7 recipes at this level.</p></section>
+      <section><h2>Level 4 &middot; Pureed</h2><p>Completely smooth and thick enough to hold its shape on a spoon, but soft enough to need no chewing. Should never be sticky, lumpy, or stringy.</p><p>8 recipes at this level.</p></section>
       <section><h2>Level 5 &middot; Minced &amp; Moist</h2><p>Soft, moist, and finely minced into very small pieces that mash easily with light pressure from a fork. Any sauce or gravy should cling rather than separate.</p><p>8 recipes at this level.</p></section>
       <section><h2>Level 6 &middot; Soft &amp; Bite-Sized</h2><p>Tender, moist bite-sized pieces that break apart under a fork without needing a knife. Some chewing is required, but nothing should be tough, fibrous, or dry.</p><p>9 recipes at this level.</p></section>
       <section><h2>Level 7 &middot; Easy to Chew</h2><p>Everyday soft foods at normal portion size. Normal chewing ability is needed, but hard, crunchy, stringy, and dry textures are avoided.</p><p>1 recipe at this level.</p></section>
@@ -2036,6 +2036,58 @@
        and commit what it writes: it bakes a real HTML file per recipe so
        Google sees the right title and content on its first crawl. */
     const recipes = [
+      {
+        id: 40,
+        slug: "black-sesame-tong-sui",
+        cuisine: "Chinese",
+        datePublished: "2026-10-27",
+        title: "Black Sesame Tong Sui",
+        description: "A Cantonese sweet soup of toasted black sesame and rice, blended and strained into something closer to warm silk than to pudding.",
+        prepTime: "15 minutes",
+        cookTime: "20 minutes",
+        servings: 4,
+        difficulty: "Easy",
+        icon: "custard",
+        dysphagia: 4,
+        image: "/assets/black-sesame-tong-sui",
+        imageAlt: "A bowl of thick, smooth black sesame soup with a spoon resting in it.",
+        imageBg: "#D5CFCD",
+        color: "#4A3F47",
+        ingredients: [
+          { amount: "150 g", item: "Black sesame seeds" },
+          { amount: "60 g", item: "Glutinous rice", note: "Soaked in cold water for at least 2 hours, then drained. Plain white rice works, but gives a thinner body" },
+          { amount: "1 litre", item: "Water", note: "Divided" },
+          { amount: "80 g", item: "Rock sugar", note: "Or to taste; brown sugar also works" },
+          { amount: "1 pinch", item: "Salt", note: "Not optional \u2014 it is what stops the sesame tasting flat" }
+        ],
+        instructions: [
+          { step: 1, text: "Toast the sesame seeds in a dry pan over low heat for 3 to 5 minutes, shaking often, until they smell nutty and start to pop. Take them off the heat the moment they are fragrant \u2014 scorched sesame turns the whole pot bitter and there is no fixing it. Let them cool.", forkTender: false },
+          { step: 2, text: "Drain the soaked rice. Put it in a blender with the cooled sesame and 500 ml of the water.", forkTender: false },
+          { step: 3, text: "Blend on high for a full 2 to 3 minutes. Stop, scrape down, and blend again. This runs far longer than feels necessary, and it is the first of the two steps that decide whether the finished soup is silk or sand.", forkTender: false },
+          { step: 4, text: "Pour the mixture through a fine sieve or a nut-milk bag set over a bowl, pressing and wringing to get everything through. Throw away what stays behind in the sieve \u2014 that residue is the sesame husk, and it is exactly the grit you are trying to remove.", forkTender: false },
+          { step: 5, text: "Pour the strained liquid into a pot with the remaining 500 ml water, the rock sugar and the salt.", forkTender: false },
+          { step: 6, text: "Heat gently, stirring constantly with a spatula and scraping the bottom. After 5 to 10 minutes the rice starch will take hold and it will thicken quite suddenly, over perhaps thirty seconds. Keep stirring through that moment or it will catch and scorch.", forkTender: true },
+          { step: 7, text: "Taste for sweetness. Check the consistency at the temperature it will be served at, not straight off the heat, and serve warm.", forkTender: false }
+        ],
+        servingTips: [
+          "Steps 3 and 4 are the whole recipe. Sesame husk does not break down even in a powerful blender, and unstrained it leaves a fine grit that is easy to miss until it is in someone\u2019s mouth. Blend longer than you think, then strain anyway.",
+          "This is served in Cantonese dessert shops with tang yuan, the chewy glutinous rice balls, floating in it. Do not add them. Round, sticky and roughly throat-sized is the worst combination of properties a food can have, and they are among the most common causes of choking deaths in East Asia every new year.",
+          "It thickens noticeably as it cools, and again in the fridge. Level 4 should hold its shape on a spoon without pouring off; if it has gone stiff enough to need working, loosen it with a little warm water or milk and check again.",
+          "For Level 3, thin it with warm water, milk or oat milk until it pours smoothly from a spoon but still leaves a coating. It is one of the easier dishes on this site to move between those two levels.",
+          "Serve warm rather than hot. A thick soup holds heat for a long time and does not feel as hot as it is.",
+          "Black sesame is genuinely worth eating here rather than just pleasant: it is unusually high in calcium, iron and magnesium, which are three of the things that tend to fall short when meals get smaller and softer."
+        ],
+        nutrition: {
+          basis: "Estimated from the listed ingredients across 4 servings, assuming roughly a fifth of the solids are left behind in the sieve. This is an estimate, not a lab-tested nutrition label.",
+          calories: "~330 kcal",
+          protein: "~7 g",
+          fat: "~19 g",
+          carbs: "~36 g",
+          sodium: "~30 mg",
+          cholesterol: "0 mg"
+        },
+        dietaryNotes: "Vegan and dairy-free as written, and gluten-free \u2014 despite the name, glutinous rice contains no gluten. Contains sesame, which is a declared allergen in Canada, the US and the EU. Naturally very low in sodium, and a genuinely good source of calcium and iron."
+      },
       {
         id: 39,
         slug: "red-braised-pork-belly",
