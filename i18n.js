@@ -121,6 +121,7 @@ window.AR_I18N = {
            desc: 'Aliments ordinaires de texture tendre. Rien de dur, de croquant ni de filandreux, et aucun morceau difficile à mâcher.' }
     },
     mixed: {
+      'tomato-egg-stir-fry': 'Faites réduire la sauce jusqu’à ce qu’elle enrobe les œufs au lieu de former une flaque autour. Laissée liquide, elle ne se déplace pas à la même vitesse que les morceaux.',
       'chicken-noodle-soup': 'Mixez toute la soupe, ou épaississez le bouillon jusqu’à ce qu’il ne se sépare plus des nouilles et du poulet.',
       'chinese-egg-drop-soup': 'Les rubans d’œuf flottent dans un bouillon fluide. Mixez le tout, ou épaississez le bouillon pour que les deux se déplacent ensemble.',
       'korean-soft-tofu-soup': 'Le tofu et les légumes baignent dans un bouillon fluide. Mixez le tout, ou épaississez le bouillon avant de servir.',
@@ -2005,6 +2006,78 @@ window.AR_I18N = {
                       "basis": "Estimé à partir des ingrédients indiqués, pour 2 portions, sucre facultatif compris. L’épaississant apporte une énergie négligeable. Il s’agit d’une estimation, non d’une analyse en laboratoire."
               }
       },
+      "tomato-egg-stir-fry": {
+              "title": "Œufs brouillés aux tomates",
+              "description": "Le plat que l’on retrouve sur plus de tables chinoises que presque aucun autre — des œufs tout juste pris, enrobés d’une sauce tomate aigre-douce, prêts en dix minutes.",
+              "ingredients": [
+                      {
+                              "amount": "4 petites",
+                              "item": "Tomates, pelées",
+                              "note": "Environ 500 g. Le pelage est la seule modification apportée ici — voir les conseils de service"
+                      },
+                      {
+                              "amount": "1",
+                              "item": "Ciboule, finement ciselée",
+                              "note": "Le vert s’attendrit complètement dans la sauce ; n’en gardez pas de cru"
+                      },
+                      {
+                              "amount": "4",
+                              "item": "Œufs"
+                      },
+                      {
+                              "amount": "3/4 c. à café",
+                              "item": "Sel",
+                              "note": "En deux fois. Commencez par la moitié — voir la note sur le sodium ci-dessous"
+                      },
+                      {
+                              "amount": "1/4 c. à café",
+                              "item": "Poivre blanc"
+                      },
+                      {
+                              "amount": "1/2 c. à café",
+                              "item": "Huile de sésame"
+                      },
+                      {
+                              "amount": "1 c. à café",
+                              "item": "Vin de Shaoxing"
+                      },
+                      {
+                              "amount": "3 c. à soupe",
+                              "item": "Huile végétale",
+                              "note": "En deux fois"
+                      },
+                      {
+                              "amount": "2 c. à café",
+                              "item": "Sucre",
+                              "note": "Équilibre l’acidité de la tomate ; il n’est pas facultatif dans ce plat"
+                      },
+                      {
+                              "amount": "1/4 tasse",
+                              "item": "Eau",
+                              "note": "Moins que dans la recette d’origine, pour que la sauce reste assez épaisse pour adhérer"
+                      }
+              ],
+              "instructions": [
+                      "Incisez une petite croix sous chaque tomate et plongez-les 30 secondes dans l’eau bouillante, puis dans l’eau froide. La peau se retire toute seule. Coupez les tomates pelées en petits quartiers et ciselez finement la ciboule.",
+                      "Cassez les œufs dans un bol et assaisonnez avec 1/4 de cuillère à café de sel, le poivre blanc, l’huile de sésame et le vin de Shaoxing. Battez une minute entière — c’est ce battage prolongé qui donne au brouillé sa texture souple et régulière.",
+                      "Faites chauffer un wok à feu moyen jusqu’aux premières fumées. Ajoutez 2 cuillères à soupe d’huile, puis les œufs aussitôt. Brouillez doucement et retirez-les tant qu’ils sont encore souples et à peine pris. Réservez.",
+                      "Ajoutez la dernière cuillère d’huile, montez à feu vif, et ajoutez les tomates et la ciboule. Faites sauter 1 minute, puis ajoutez le sucre, le reste du sel et 1/4 de tasse d’eau. Remettez les œufs dans le wok.",
+                      "Couvrez et laissez cuire 1 à 2 minutes, jusqu’à ce que les tomates se soient complètement affaissées et cèdent sous la cuillère sans résistance.",
+                      "Découvrez et faites sauter à feu vif jusqu’à ce que la sauce épaississe assez pour enrober les œufs au lieu de former une flaque autour. C’est l’étape qui décide si le plat se tient en bouche — ne vous arrêtez pas tant qu’il est encore liquide."
+              ],
+              "servingTips": [
+                      "Pelez les tomates. La peau de tomate ne se défait jamais, quelle que soit la cuisson, et elle se sépare en fines lanières, exactement la forme la plus susceptible d’accrocher. La recette d’origine garde la peau ; cette version non, et c’est la modification la plus importante pour toute personne suivant un régime à texture modifiée.",
+                      "La ciboule crue parsemée sur la photographie relève du stylisme. Les rondelles crues restent fibreuses et ne conviennent pas au niveau 6 ni en dessous — faites tout cuire dans la sauce, où la ciboule s’attendrit complètement.",
+                      "Faites réduire la sauce jusqu’à ce qu’elle adhère. Une sauce fluide autour de morceaux d’œuf souples constitue une consistance mixte, plus difficile à gérer que chacun des deux séparément.",
+                      "Pour le niveau 5, hachez la tomate cuite finement et défaites l’œuf au bord d’une cuillère jusqu’à ce qu’il ne reste aucun morceau distinct. Pour le niveau 4, mixez le plat fini — il se réduit très bien en purée une fois les peaux retirées.",
+                      "Les pépins de tomate résistent à la cuisson. Si vous cuisinez pour le niveau 5 ou en dessous, retirez-les en même temps que les peaux à l’étape 1."
+              ],
+              "dietaryNotes": "Végétarien. Naturellement sans produits laitiers. Contient de l’œuf et du gluten — le vin de Shaoxing est à base de blé : supprimez-le ou remplacez-le par un xérès sec pour une version sans gluten. Très riche en cholestérol, à deux œufs par portion.",
+              "nutrition": {
+                      "basis": "Par portion, telle que fournie avec la recette source (elle en donne 2). Peler les tomates et réduire l’eau ne change presque rien aux valeurs.",
+                      "flag": "à 925 mg par portion, c’est environ 40 % de la limite quotidienne d’un adulte, et presque tout vient du sel ajouté. Commencez par la moitié et assaisonnez en fin de cuisson — ici, ce sont surtout le sucre et la tomate qui portent le goût."
+              }
+      },
       "vanilla-bean-custard": {
               "title": "Crème à la gousse de vanille",
               "description": "Une crème à la vanille soyeuse et élégante, à la vraie gousse — parfaitement lisse et délicatement prise, pensée pour fondre sur la langue.",
@@ -2217,6 +2290,7 @@ window.AR_I18N = {
            desc: '质地柔软的普通食物。没有坚硬、酥脆或带筋的部分，也没有难以咀嚼的块状物。' }
     },
     mixed: {
+      'tomato-egg-stir-fry': '请把汤汁收到能裹住鸡蛋，而不是在盘底积成一滩。汤汁留得太稀，液体和固体在口中移动的速度就不一样。',
       'chicken-noodle-soup': '请将整锅汤搅打细滑，或将汤汁增稠至不再从面条与鸡肉间流走。',
       'chinese-egg-drop-soup': '蛋花漂浮在稀薄的汤中。请搅打细滑，或将汤汁增稠，使两者一同移动。',
       'korean-soft-tofu-soup': '豆腐与蔬菜浸在稀薄的汤中。请搅打细滑，或在食用前将汤汁增稠。',
@@ -4099,6 +4173,78 @@ window.AR_I18N = {
               "dietaryNotes": "含乳制品。天然无麸质。增稠剂产品各不相同——请查看所用产品的过敏原说明。",
               "nutrition": {
                       "basis": "依所列食材按 2 份估算，含可选的糖。增稠剂所含热量可忽略不计。此为估算值，并非实验室检测的营养标签。"
+              }
+      },
+      "tomato-egg-stir-fry": {
+              "title": "番茄炒蛋",
+              "description": "中国家庭餐桌上最常见的一道菜，北方多叫西红柿炒鸡蛋，也常是很多人学会的第一道菜。滑嫩的蛋裹着酸甜的番茄汁，十分钟就能端上桌。",
+              "ingredients": [
+                      {
+                              "amount": "4 个",
+                              "item": "番茄，去皮",
+                              "note": "中小个，约 500 克。去皮是这里唯一的改动——原因见食用提示"
+                      },
+                      {
+                              "amount": "1 根",
+                              "item": "小葱，切葱花",
+                              "note": "葱在汤汁里会完全变软；不要留生葱花撒面"
+                      },
+                      {
+                              "amount": "4 个",
+                              "item": "鸡蛋"
+                      },
+                      {
+                              "amount": "3/4 茶匙",
+                              "item": "盐",
+                              "note": "分次使用。先放一半——另见下方关于钠的说明"
+                      },
+                      {
+                              "amount": "1/4 茶匙",
+                              "item": "白胡椒粉"
+                      },
+                      {
+                              "amount": "1/2 茶匙",
+                              "item": "香油"
+                      },
+                      {
+                              "amount": "1 茶匙",
+                              "item": "绍兴酒"
+                      },
+                      {
+                              "amount": "3 汤匙",
+                              "item": "食用油",
+                              "note": "分次使用"
+                      },
+                      {
+                              "amount": "2 茶匙",
+                              "item": "糖",
+                              "note": "用来中和番茄的酸；这道菜里它不是可有可无的"
+                      },
+                      {
+                              "amount": "1/4 杯",
+                              "item": "清水",
+                              "note": "比原方少，好让汤汁稠到挂得住鸡蛋"
+                      }
+              ],
+              "instructions": [
+                      "番茄底部划十字，入沸水烫 30 秒后过凉水，皮一撕就掉。去皮后切成小块，小葱切成葱花。",
+                      "鸡蛋打入碗中，加 1/4 茶匙盐、白胡椒粉、香油与绍兴酒。充分搅打一分钟——打得够久，蛋才嫩滑、蛋花细匀。",
+                      "锅烧至将要冒烟，中火下 2 汤匙油，立刻倒入蛋液。轻轻推炒，蛋液刚刚凝固、还很滑嫩时就盛出备用。",
+                      "锅中再加 1 汤匙油，转大火，下番茄与葱花翻炒 1 分钟，加糖、剩下的盐与 1/4 杯清水，再把鸡蛋倒回锅中。",
+                      "加盖焖 1-2 分钟，至番茄彻底软烂，用勺子一压就化开。",
+                      "揭盖大火收汁，直到汤汁稠得能裹住鸡蛋，而不是在盘底积成一滩。这一步决定了入口时这道菜能不能聚在一起——汤汁还稀的时候千万别停火。"
+              ],
+              "servingTips": [
+                      "番茄一定要去皮。番茄皮无论炒多久都不会化开，还会散成细长的薄片，正是最容易挂在喉咙里的形状。原方是带皮做的，这个版本不是——对需要调整质地的人来说，这是最重要的一处改动。",
+                      "照片中撒在表面的生葱花只是摆盘。生葱圈始终带纤维，不适用于第 6 级及以下——请把葱全部炒进汤汁里，它在锅中会彻底变软。",
+                      "务必把汤汁收到能挂住鸡蛋。稀汤配软嫩的蛋块属于混合质地，比单独的任何一样都更难应付。",
+                      "第 5 级：把炒好的番茄再切碎，用勺沿把鸡蛋压散，直到看不出明显块状。第 4 级：将成品搅打细滑——去了皮之后很好打匀。",
+                      "番茄籽经得住加热。若是为第 5 级及以下做菜，请在第 1 步连皮带籽一起去掉。"
+              ],
+              "dietaryNotes": "素食。天然不含乳制品。含鸡蛋与麸质——绍兴酒以小麦酿造，若需无麸质可省略，或改用干雪利酒。每份两个鸡蛋，胆固醇含量很高。",
+              "nutrition": {
+                      "basis": "每份计，数据随原方提供（本食谱可做 2 份）。番茄去皮与减少用水量，对数值影响很小。",
+                      "flag": "每份 925 毫克，约为成人每日上限的四成，而且几乎全部来自额外加的盐。请先放一半，最后再按口味调整——这道菜的味道本来主要靠糖和番茄本身。"
               }
       },
       "vanilla-bean-custard": {

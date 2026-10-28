@@ -2083,6 +2083,62 @@
        Google sees the right title and content on its first crawl. */
     const recipes = [
       {
+        id: 38,
+        slug: "tomato-egg-stir-fry",
+        cuisine: "Chinese",
+        datePublished: "2026-10-27",
+        title: "Tomato and Egg Stir-Fry",
+        description: "The dish that sits on more Chinese dinner tables than almost any other — soft scrambled egg folded through sweet-sour tomato, ready in ten minutes.",
+        prepTime: "10 minutes",
+        cookTime: "5 minutes",
+        servings: 2,
+        difficulty: "Easy",
+        icon: "egg",
+        dysphagia: 6,
+        image: "/assets/tomato-egg-stir-fry",
+        imageAlt: "A plate of soft scrambled egg folded through tomato in a glossy orange-red sauce.",
+        imageBg: "#E1BE9D",
+        color: "#E8795A",
+        ingredients: [
+          { amount: "4 small", item: "Tomatoes, peeled", note: "About 500 g. Peeling is the one change that matters here \u2014 see the serving tips" },
+          { amount: "1", item: "Scallion, finely chopped", note: "The green tops soften in the sauce; keep none back raw" },
+          { amount: "4", item: "Eggs" },
+          { amount: "3/4 tsp", item: "Salt", note: "Divided. Start with half \u2014 see the note on sodium below" },
+          { amount: "1/4 tsp", item: "White pepper" },
+          { amount: "1/2 tsp", item: "Sesame oil" },
+          { amount: "1 tsp", item: "Shaoxing wine" },
+          { amount: "3 tbsp", item: "Vegetable oil", note: "Divided" },
+          { amount: "2 tsp", item: "Sugar", note: "Balances the acidity of the tomato; not optional in this dish" },
+          { amount: "1/4 cup", item: "Water", note: "Less than the original calls for, so the sauce stays thick enough to cling" }
+        ],
+        instructions: [
+          { step: 1, text: "Score a small cross in the base of each tomato and drop them into boiling water for 30 seconds, then into cold water. The skins slip off. Cut the peeled tomatoes into small wedges and finely chop the scallion.", forkTender: false },
+          { step: 2, text: "Crack the eggs into a bowl and season with 1/4 teaspoon salt, the white pepper, sesame oil, and Shaoxing wine. Beat for a full minute \u2014 the longer beating is what gives the egg its soft, even curd.", forkTender: false },
+          { step: 3, text: "Heat a wok over medium heat until it just begins to smoke. Add 2 tablespoons oil, then the eggs straight away. Scramble gently and lift them out while they are still soft and barely set. Set aside.", forkTender: false },
+          { step: 4, text: "Add the remaining tablespoon of oil, turn the heat to high, and add the tomatoes and scallion. Stir-fry for 1 minute, then add the sugar, remaining salt, and 1/4 cup water. Return the eggs to the wok.", forkTender: false },
+          { step: 5, text: "Cover and cook for 1-2 minutes, until the tomatoes have collapsed completely and give way under a spoon with no resistance.", forkTender: true },
+          { step: 6, text: "Uncover and stir-fry over high heat until the sauce thickens enough to coat the egg rather than pool around it. This is the step that decides whether the dish holds together in the mouth \u2014 do not stop while it is still watery.", forkTender: false }
+        ],
+        servingTips: [
+          "Peel the tomatoes. Tomato skin does not break down however long it cooks, and it separates into thin strips that are exactly the shape most likely to catch. The original recipe leaves the skins on; this version does not, and it is the single most important change for anyone on a texture-modified diet.",
+          "The raw scallion scattered over the top in the photograph is styling. Raw scallion rings stay fibrous and are not appropriate at Level 6 or below \u2014 cook all of it into the sauce instead, where it softens completely.",
+          "Reduce the sauce until it clings. A thin sauce around soft pieces of egg is a mixed consistency, which is harder to manage than either part on its own.",
+          "For Level 5, chop the cooked tomato small and break the egg up with the edge of a spoon until there are no distinct pieces left. For Level 4, blend the finished dish smooth \u2014 it purees well once the skins are out.",
+          "Tomato seeds survive cooking. If you are cooking for Level 5 or below, scoop them out with the skins at step 1."
+        ],
+        nutrition: {
+          basis: "Per serving, as supplied with the source recipe (it makes 2). Peeling the tomatoes and using less water changes the figures very little.",
+          calories: "~333 kcal",
+          protein: "~11 g",
+          fat: "~30 g",
+          carbs: "~6 g",
+          sodium: "~925 mg",
+          cholesterol: "~327 mg",
+          flag: "at 925 mg a serving this is roughly 40% of an adult\u2019s daily limit, and almost all of it is the added salt. Start with half the salt and season at the end \u2014 the sugar and the tomato carry most of the flavour here anyway."
+        },
+        dietaryNotes: "Vegetarian. Naturally dairy-free. Contains egg and gluten \u2014 Shaoxing wine is wheat-based, so leave it out or use a dry sherry for a gluten-free version. Very high in cholesterol at two eggs per serving."
+      },
+      {
         id: 3,
         slug: "butternut-squash-bisque",
         datePublished: "2026-04-12",
@@ -4125,6 +4181,7 @@
        used to teach this, and both are on this site. The value is what the cook
        should do about it. NEEDS A CLINICIAN TO CHECK before this goes anywhere. */
     const MIXED_CONSISTENCY = {
+      'tomato-egg-stir-fry': 'Reduce the sauce until it coats the egg instead of pooling around it. Left watery, the liquid and the solids move at different speeds.',
       'chicken-noodle-soup': 'Blend the whole soup smooth, or thicken the broth until it no longer runs away from the noodles and chicken.',
       'chinese-egg-drop-soup': 'The egg ribbons sit in thin broth. Blend smooth, or thicken the broth so the two move together.',
       'korean-soft-tofu-soup': 'The tofu and vegetables sit in thin broth. Blend smooth, or thicken the broth before serving.',
