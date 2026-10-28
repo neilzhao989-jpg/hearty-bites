@@ -121,6 +121,7 @@ window.AR_I18N = {
            desc: 'Aliments ordinaires de texture tendre. Rien de dur, de croquant ni de filandreux, et aucun morceau difficile à mâcher.' }
     },
     mixed: {
+      'red-braised-pork-belly': 'Faites réduire le liquide de braisage jusqu’à ce qu’il enrobe la viande hachée. Laissé fluide, il devance les solides.',
       'tomato-egg-stir-fry': 'Faites réduire la sauce jusqu’à ce qu’elle enrobe les œufs au lieu de former une flaque autour. Laissée liquide, elle ne se déplace pas à la même vitesse que les morceaux.',
       'chicken-noodle-soup': 'Mixez toute la soupe, ou épaississez le bouillon jusqu’à ce qu’il ne se sépare plus des nouilles et du poulet.',
       'chinese-egg-drop-soup': 'Les rubans d’œuf flottent dans un bouillon fluide. Mixez le tout, ou épaississez le bouillon pour que les deux se déplacent ensemble.',
@@ -1858,6 +1859,94 @@ window.AR_I18N = {
                       "basis": "Estimé à partir des ingrédients indiqués, pour 2 portions, avec de la purée de potiron non sucrée et un bouillon pauvre en sel. Le document source ne fournissait aucune valeur nutritionnelle : il s’agit donc d’une estimation, non d’une analyse en laboratoire."
               }
       },
+      "red-braised-pork-belly": {
+              "title": "Poitrine de porc braisée au caramel et au soja",
+              "description": "De la poitrine de porc braisée au caramel et au soja jusqu’à ce que le maigre se défasse sous une baguette, puis hachée fin et remise dans sa propre sauce brillante.",
+              "ingredients": [
+                      {
+                              "amount": "700 g",
+                              "item": "Poitrine de porc, sans couenne, en cubes de 2 cm",
+                              "note": "Demandez-la sans couenne, ou retirez-la vous-même : c’est la seule partie qui ne devient jamais sûre"
+                      },
+                      {
+                              "amount": "2 c. à soupe",
+                              "item": "Huile neutre"
+                      },
+                      {
+                              "amount": "40 g",
+                              "item": "Sucre candi",
+                              "note": "Ou 2 cuillères à soupe de sucre en poudre"
+                      },
+                      {
+                              "amount": "3 c. à soupe",
+                              "item": "Vin de Shaoxing"
+                      },
+                      {
+                              "amount": "2 c. à soupe",
+                              "item": "Sauce soja claire"
+                      },
+                      {
+                              "amount": "1 c. à soupe",
+                              "item": "Sauce soja épaisse",
+                              "note": "Pour la couleur plutôt que pour le sel"
+                      },
+                      {
+                              "amount": "4 tranches",
+                              "item": "Gingembre",
+                              "note": "Nouez les épices entières dans une mousseline si vous en avez une"
+                      },
+                      {
+                              "amount": "2",
+                              "item": "Ciboules, coupées en deux"
+                      },
+                      {
+                              "amount": "1",
+                              "item": "Anis étoilé",
+                              "note": "À retirer avant de hacher — voir les conseils de service"
+                      },
+                      {
+                              "amount": "1 petit morceau",
+                              "item": "Écorce de cannelle de Chine",
+                              "note": "À retirer avant de hacher"
+                      },
+                      {
+                              "amount": "500 ml",
+                              "item": "Eau chaude",
+                              "note": "De quoi tout juste couvrir"
+                      },
+                      {
+                              "amount": "Selon le goût",
+                              "item": "Sel",
+                              "note": "Ne goûtez qu’à la fin ; le soja fait l’essentiel du travail"
+                      }
+              ],
+              "instructions": [
+                      "Mettez le porc dans une casserole, couvrez d’eau froide, portez à ébullition et laissez frémir 3 minutes. Écumez, égouttez et rincez les cubes. C’est ce qui garde la sauce finale assez claire pour en juger.",
+                      "Séchez bien le porc. Faites chauffer l’huile dans une cocotte à fond épais à feu doux, ajoutez le sucre candi et laissez-le fondre jusqu’à une couleur ambrée. Surveillez sans vous éloigner : le caramel passe d’ambré à brûlé en quelques secondes, et un caramel brûlé rend tout le braisé amer.",
+                      "Ajoutez le porc et retournez les cubes jusqu’à ce que toutes les faces soient enrobées de caramel.",
+                      "Versez le vin de Shaoxing, puis les deux sauces soja, et mélangez.",
+                      "Ajoutez le gingembre, les ciboules, l’anis étoilé et la cannelle — dans une mousseline si vous en avez une, ce qui rend l’étape 7 bien plus sûre. Versez l’eau chaude pour tout juste couvrir.",
+                      "Portez à ébullition, baissez au frémissement le plus léger, couvrez et laissez cuire 1 h 30 à 2 h. C’est prêt lorsqu’une baguette traverse un cube sans la moindre résistance et que le maigre s’effiloche au lieu de se trancher. Ne vous arrêtez pas à « tendre ».",
+                      "Retirez chaque épice entière et comptez-les par rapport à ce qui est entré : 4 tranches de gingembre, 2 moitiés de ciboule, 1 anis étoilé, 1 morceau de cannelle. Les pointes d’anis et les éclats de cannelle restent durs quelle que soit la durée du braisage, et une fois la viande hachée ils deviennent presque invisibles.",
+                      "Sortez le porc. Hachez-le finement, à 4 mm au maximum, ou donnez-lui quelques impulsions au robot. La graisse fondue le fait se tenir au lieu de s’émietter.",
+                      "Faites réduire la sauce à feu moyen jusqu’à ce qu’elle soit sirupeuse et nappe le dos d’une cuillère. Dégraissez un peu si elle paraît grasse, mais pas entièrement — voir les conseils de service.",
+                      "Incorporez le porc haché à la sauce jusqu’à ce que chaque morceau soit enrobé et que rien ne coule dans l’assiette. Servez chaud."
+              ],
+              "servingTips": [
+                      "La photographie montre le plat tel qu’il est classiquement servi — couenne comprise, en gros cubes, avec l’anis étoilé encore dans la cocotte. Rien de tout cela n’est ce qui est classé ici. Cette recette décrit la version sans couenne, hachée fin et remise dans sa sauce réduite.",
+                      "La couenne se retire, et ce n’est pas facultatif. Braisée, elle devient molle mais ne cède pas : elle s’étire sous la fourchette au lieu de se rompre, et il faut la mordre. Mou et sûr ne sont pas la même chose.",
+                      "Comptez les épices entières en les sortant de la cocotte. Les pointes d’anis étoilé et la cannelle restent dures et pointues quelle que soit la cuisson, et une fois la viande hachée elles s’y fondent. Une mousseline transforme cette recherche en un simple geste.",
+                      "Le niveau 5 signifie des morceaux de 4 mm au maximum. Écrasez une cuillerée contre l’assiette : elle doit s’aplatir sous une légère pression sans rien laisser de filandreux.",
+                      "Ne retirez pas toute la graisse. Une viande maigre hachée aussi fin devient sèche et friable, ce qui est plus difficile à avaler, non l’inverse. La graisse fondue est ce qui garde le plat moelleux et le lie — c’est la raison pour laquelle un braisé gras s’adapte mieux qu’un rôti maigre.",
+                      "La sauce doit adhérer. De la viande hachée dans un liquide de braisage fluide constitue une consistance mixte, où le liquide va plus vite que les solides. Réduisez jusqu’à ce qu’elle nappe.",
+                      "Pour le niveau 4, mixez le plat fini avec un peu de sauce supplémentaire jusqu’à ce qu’il soit parfaitement lisse. Il se réduit bien en purée une fois la couenne et les épices retirées."
+              ],
+              "dietaryNotes": "Contient du gluten — la sauce soja comme le vin de Shaoxing sont à base de blé ; utilisez du tamari et un xérès sec pour une version sans gluten. Très riche en matières grasses, ce qui est volontaire à ce niveau de texture, mais à noter pour toute personne suivant un régime pauvre en graisses ou lié au cœur.",
+              "nutrition": {
+                      "basis": "Estimé à partir des ingrédients indiqués, pour 6 portions, en supposant la couenne retirée et environ un tiers de la graisse fondue dégraissée. La poitrine de porc varie énormément en teneur en gras : à considérer comme un ordre de grandeur plutôt qu’un chiffre à comptabiliser.",
+                      "flag": "environ 620 mg par portion, presque entièrement dus à la sauce soja. Utilisez une sauce soja claire pauvre en sel et tenez-vous à la seule cuillère de sauce épaisse — elle est là pour la couleur, pas pour l’assaisonnement. Goûtez avant d’ajouter du sel."
+              }
+      },
       "rice-pudding": {
               "title": "Riz au lait classique",
               "description": "Un riz au lait crémeux mijoté au lait, relevé d’une pointe de vanille et de cannelle — un dessert doux, qui se mange à la cuillère.",
@@ -2290,6 +2379,7 @@ window.AR_I18N = {
            desc: '质地柔软的普通食物。没有坚硬、酥脆或带筋的部分，也没有难以咀嚼的块状物。' }
     },
     mixed: {
+      'red-braised-pork-belly': '请把汤汁收到能裹住肉末的程度。汤汁太稀，会比肉粒跑得更快。',
       'tomato-egg-stir-fry': '请把汤汁收到能裹住鸡蛋，而不是在盘底积成一滩。汤汁留得太稀，液体和固体在口中移动的速度就不一样。',
       'chicken-noodle-soup': '请将整锅汤搅打细滑，或将汤汁增稠至不再从面条与鸡肉间流走。',
       'chinese-egg-drop-soup': '蛋花漂浮在稀薄的汤中。请搅打细滑，或将汤汁增稠，使两者一同移动。',
@@ -4025,6 +4115,94 @@ window.AR_I18N = {
               "dietaryNotes": "含乳制品。若高汤无麸质，则本品天然无麸质。使用植物奶油与蔬菜高汤即为无乳制品版本。",
               "nutrition": {
                       "basis": "依所列食材按 2 份估算，使用无糖南瓜泥与低钠高汤。原始资料未提供营养数据，故此为估算值而非实验室检测标签。"
+              }
+      },
+      "red-braised-pork-belly": {
+              "title": "红烧肉",
+              "description": "五花肉用糖色与酱油慢炖到瘦肉一抿就散，再剁细，拌回那锅油亮的汤汁里。",
+              "ingredients": [
+                      {
+                              "amount": "700 克",
+                              "item": "五花肉，去皮，切 2 厘米见方",
+                              "note": "请摊主帮忙去皮，或自己片掉——猪皮是这道菜里唯一怎么炖都安全不了的部分"
+                      },
+                      {
+                              "amount": "2 汤匙",
+                              "item": "食用油"
+                      },
+                      {
+                              "amount": "40 克",
+                              "item": "冰糖",
+                              "note": "或 2 汤匙白砂糖"
+                      },
+                      {
+                              "amount": "3 汤匙",
+                              "item": "绍兴酒"
+                      },
+                      {
+                              "amount": "2 汤匙",
+                              "item": "生抽"
+                      },
+                      {
+                              "amount": "1 汤匙",
+                              "item": "老抽",
+                              "note": "主要是上色，不是为了咸味"
+                      },
+                      {
+                              "amount": "4 片",
+                              "item": "姜",
+                              "note": "若有纱布袋，把整香料一起扎进去"
+                      },
+                      {
+                              "amount": "2 根",
+                              "item": "小葱，切段"
+                      },
+                      {
+                              "amount": "1 颗",
+                              "item": "八角",
+                              "note": "剁肉之前必须捞出——见食用提示"
+                      },
+                      {
+                              "amount": "1 小块",
+                              "item": "桂皮",
+                              "note": "剁肉之前必须捞出"
+                      },
+                      {
+                              "amount": "500 毫升",
+                              "item": "热水",
+                              "note": "刚好没过肉即可"
+                      },
+                      {
+                              "amount": "适量",
+                              "item": "盐",
+                              "note": "最后再尝味；咸味主要靠酱油"
+                      }
+              ],
+              "instructions": [
+                      "五花肉冷水下锅，水开后煮 3 分钟，撇净浮沫，捞出冲洗干净。这一步决定了最后的汤汁是否清亮到能看清状态。",
+                      "把肉擦干。厚底锅小火热油，下冰糖，慢慢融化至琥珀色。此时要寸步不离——糖色从琥珀到发苦只需几秒，炒糊了整锅都会带苦味。",
+                      "下五花肉，翻动到每一面都裹上糖色。",
+                      "淋入绍兴酒，再加生抽与老抽，翻匀。",
+                      "放入姜片、葱段、八角与桂皮——若有纱布袋就一起扎起来，第 7 步会安全得多。加热水刚好没过。",
+                      "大火烧开后转最小火，加盖炖 1 个半到 2 小时。筷子能毫无阻力地穿过肉块、瘦肉一拨就散时才算到位。仅仅「变软」还不够。",
+                      "把所有整块香料全部捞出，并对着下锅时的数目清点：姜 4 片、葱 2 段、八角 1 颗、桂皮 1 块。八角的尖角与桂皮的碎片无论炖多久都依然又硬又尖，而肉一旦剁碎，它们几乎无从辨认。",
+                      "把肉捞出剁细，不超过 4 毫米；也可以用料理机短促地打几下。渗出的油脂会让肉抱成团，而不是散开。",
+                      "汤汁中火收至浓稠挂勺。若看着太油可以撇掉一些，但不要全撇——原因见食用提示。",
+                      "把剁好的肉拌回汤汁中，直到每一粒都裹上酱汁、盘中不会有汤水流开。趁温热食用。"
+              ],
+              "servingTips": [
+                      "照片拍的是这道菜最经典的样子——带皮、整块、八角还在锅里。这些都不是这里所评定的内容。本食谱写的是去皮、剁细、再拌回收稠汤汁里的那个版本。",
+                      "猪皮必须去掉，这一点没有商量余地。炖过的猪皮会变软，但不会「化开」——用叉子压它只是被拉长，最后还是得咬断。软和安全，是两回事。",
+                      "整块香料要数着捞出锅。八角的尖角与桂皮无论炖多久都又硬又尖，肉剁碎之后它们就藏进去找不到了。用纱布袋，这一步就从「翻找」变成「提起来」。",
+                      "第 5 级指的是颗粒不超过 4 毫米。舀一勺压在盘子上：应当轻轻一压就摊平，不留任何丝状物。",
+                      "不要把油全撇掉。瘦肉剁得这么细，没有油会变得又干又散，反而更难吞咽。渗出的油脂正是让这道菜保持湿润、黏合成团的关键——这也是肥润的红烧肉比精瘦的烤肉更容易调整质地的原因。",
+                      "汤汁必须挂得住。剁碎的肉泡在稀汤里属于混合质地，汤汁会比肉粒跑得更快。一定要收到能裹住肉。",
+                      "若需第 4 级，把成品连同少许汤汁搅打至完全细滑。去了皮和香料之后，它很好打匀。"
+              ],
+              "dietaryNotes": "含麸质——酱油与绍兴酒都以小麦酿造；若需无麸质，可改用日式溜酱油与干雪利酒。脂肪含量很高，这在这个质地等级上是刻意为之，但需限制脂肪或有心血管问题者请留意。",
+              "nutrition": {
+                      "basis": "依所列食材按 6 份估算，假设已去皮并撇掉约三分之一渗出的油脂。五花肉的肥瘦差异极大，因此这里只能作为粗略参考，不宜用于精确计算。",
+                      "flag": "每份约 620 毫克，几乎全部来自酱油。可改用低钠生抽，老抽则保持 1 汤匙即可——它的作用是上色，而非调味。自行加盐前请先尝味。"
               }
       },
       "rice-pudding": {

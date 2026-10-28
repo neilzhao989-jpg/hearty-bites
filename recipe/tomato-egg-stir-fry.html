@@ -1185,6 +1185,11 @@
     /* ---- Recipe page tiles ---- */
     .recipe-top { display: grid; gap: 12px; grid-template-columns: 1fr; margin-bottom: 14px; }
     @media (min-width: 860px){ .recipe-top { grid-template-columns: 1.1fr 1fr; align-items: stretch; } }
+    /* A recipe with no photo renders no hero tile at all, which left the
+       second column empty and the title stranded in half the width. */
+    @media (min-width: 860px){
+      .recipe-top > .recipe-title-tile:only-child { grid-column: 1 / -1; }
+    }
 
     .recipe-title-tile {
       background: var(--butter);
@@ -2083,6 +2088,70 @@
        and commit what it writes: it bakes a real HTML file per recipe so
        Google sees the right title and content on its first crawl. */
     const recipes = [
+      {
+        id: 39,
+        slug: "red-braised-pork-belly",
+        cuisine: "Chinese",
+        datePublished: "2026-10-27",
+        title: "Red-Braised Pork Belly",
+        description: "Pork belly braised in caramel and soy until the lean shreds under a chopstick, then chopped fine and folded back through its own glossy sauce.",
+        prepTime: "20 minutes",
+        cookTime: "2 hours",
+        servings: 6,
+        difficulty: "Intermediate",
+        icon: "stew",
+        dysphagia: 5,
+        image: "/assets/red-braised-pork-belly",
+        imageAlt: "Glossy cubes of red-braised pork belly piled on rice in a dark bowl.",
+        imageBg: "#42383C",
+        color: "#8C4A2F",
+        ingredients: [
+          { amount: "700 g", item: "Pork belly, skin removed, cut into 2 cm cubes", note: "Ask for it skinned, or slice the skin off yourself \u2014 it is the one part that never becomes safe" },
+          { amount: "2 tbsp", item: "Neutral oil" },
+          { amount: "40 g", item: "Rock sugar", note: "Or 2 tbsp granulated sugar" },
+          { amount: "3 tbsp", item: "Shaoxing wine" },
+          { amount: "2 tbsp", item: "Light soy sauce" },
+          { amount: "1 tbsp", item: "Dark soy sauce", note: "For colour rather than salt" },
+          { amount: "4 slices", item: "Ginger", note: "Tie the whole aromatics into a muslin bag if you have one" },
+          { amount: "2", item: "Scallions, halved" },
+          { amount: "1", item: "Star anise", note: "Comes out before chopping \u2014 see the serving tips" },
+          { amount: "1 small piece", item: "Cassia bark or cinnamon stick", note: "Comes out before chopping" },
+          { amount: "500 ml", item: "Hot water", note: "Enough to just cover" },
+          { amount: "To taste", item: "Salt", note: "Taste only at the end; the soy does most of the work" }
+        ],
+        instructions: [
+          { step: 1, text: "Put the pork in a pot, cover with cold water, bring to the boil and simmer for 3 minutes. Skim off the scum, drain, and rinse the cubes clean. This is what keeps the finished sauce clear enough to judge.", forkTender: false },
+          { step: 2, text: "Dry the pork thoroughly. Heat the oil in a heavy pot over low heat, add the rock sugar, and let it melt and turn amber. Watch it closely \u2014 caramel goes from amber to burnt in seconds, and burnt caramel turns the whole braise bitter.", forkTender: false },
+          { step: 3, text: "Add the pork and turn the cubes until every side is coated in the caramel.", forkTender: false },
+          { step: 4, text: "Pour in the Shaoxing wine, then both soy sauces, and stir to combine.", forkTender: false },
+          { step: 5, text: "Add the ginger, scallions, star anise and cassia bark \u2014 in a muslin bag if you have one, which makes step 7 far safer. Add the hot water to just cover.", forkTender: false },
+          { step: 6, text: "Bring to the boil, drop to the barest simmer, cover, and cook for 1 1/2 to 2 hours. It is ready when a chopstick passes through a cube with no resistance at all and the lean layers shred rather than slice. Do not stop at merely tender.", forkTender: true },
+          { step: 7, text: "Take out every piece of whole aromatic and count them against what went in: 4 ginger slices, 2 scallion halves, 1 star anise, 1 piece of cassia. Star anise points and cassia splinters stay hard through any amount of braising, and once the meat is chopped they are almost impossible to see.", forkTender: false },
+          { step: 8, text: "Lift the pork out. Chop it finely, to no larger than 4 mm, or give it a few short pulses in a food processor. The rendered fat makes it hold together rather than crumble.", forkTender: false },
+          { step: 9, text: "Reduce the sauce over medium heat until it is syrupy and coats the back of a spoon. Skim some of the fat if it looks greasy, but not all of it \u2014 see the serving tips.", forkTender: false },
+          { step: 10, text: "Fold the chopped pork back through the sauce until every piece is coated and nothing runs loose on the plate. Serve warm.", forkTender: false }
+        ],
+        servingTips: [
+          "The photograph shows the dish as it is classically served \u2014 skin on, in whole cubes, with the star anise still in the pot. None of that is what is graded here. What this recipe describes is the skinned version, chopped fine and folded back through its reduced sauce.",
+          "The skin comes off, and this is not optional. Braised pork skin turns soft but not yielding \u2014 it stretches under a fork instead of breaking, and it has to be bitten through. Soft and safe are not the same thing.",
+          "Count the whole spices out of the pot. Star anise points and cassia bark stay hard and sharp no matter how long they cook, and after the meat is chopped they disappear into it. A muslin bag turns this from a search into a lift.",
+          "Level 5 means pieces no larger than 4 mm. Press a spoonful against the plate: it should flatten with light pressure and leave nothing stringy behind.",
+          "Do not skim all the fat. Lean meat chopped this fine goes dry and crumbly, which is harder to swallow, not easier. The rendered fat is what keeps this moist and binds it together \u2014 it is the reason a fatty braise adapts better than a lean roast.",
+          "The sauce has to cling. Chopped meat sitting in thin braising liquid is a mixed consistency, where the liquid moves faster than the solids. Reduce it until it coats.",
+          "For Level 4, blend the finished dish with a little extra sauce until completely smooth. It purees well once the skin and spices are out."
+        ],
+        nutrition: {
+          basis: "Estimated from the listed ingredients across 6 servings, assuming the skin is removed and roughly a third of the rendered fat is skimmed. Pork belly varies enormously in fat content, so treat this as a rough guide rather than a figure to count against.",
+          calories: "~430 kcal",
+          protein: "~16 g",
+          fat: "~36 g",
+          carbs: "~8 g",
+          sodium: "~620 mg",
+          cholesterol: "~75 mg",
+          flag: "roughly 620 mg a serving, almost all from the soy sauce. Use a low-sodium light soy and keep the dark soy to the single tablespoon \u2014 it is there for colour, not seasoning. Taste before adding any salt of your own."
+        },
+        dietaryNotes: "Contains gluten \u2014 both the soy sauce and the Shaoxing wine are wheat-based; use tamari and dry sherry for a gluten-free version. Very high in fat, which is deliberate at this texture level, but worth noting for anyone on a fat-restricted or heart-related diet."
+      },
       {
         id: 38,
         slug: "tomato-egg-stir-fry",
@@ -4182,6 +4251,7 @@
        used to teach this, and both are on this site. The value is what the cook
        should do about it. NEEDS A CLINICIAN TO CHECK before this goes anywhere. */
     const MIXED_CONSISTENCY = {
+      'red-braised-pork-belly': 'Reduce the braising liquid until it coats the chopped meat. Left thin, the sauce runs ahead of the solids.',
       'tomato-egg-stir-fry': 'Reduce the sauce until it coats the egg instead of pooling around it. Left watery, the liquid and the solids move at different speeds.',
       'chicken-noodle-soup': 'Blend the whole soup smooth, or thicken the broth until it no longer runs away from the noodles and chicken.',
       'chinese-egg-drop-soup': 'The egg ribbons sit in thin broth. Blend smooth, or thicken the broth so the two move together.',
