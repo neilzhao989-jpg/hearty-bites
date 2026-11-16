@@ -267,6 +267,10 @@ def seo_for(path, recipes, levels):
     elif path == '/reviews':
         title = 'Reviews — Amazing Recipes'
         desc = 'Notes from people who have cooked these texture-graded recipes.'
+    elif path == '/dysphagia':
+        title = 'What Is Dysphagia? IDDSI Levels Explained — Amazing Recipes'
+        desc = ('A plain-language introduction to dysphagia (difficulty swallowing) and the IDDSI '
+                'food and drink levels, with links to the official IDDSI sources.')
     elif path == '/about':
         title = 'About — Amazing Recipes'
         desc = ('Why this site exists: a Grade 10 student in Ontario building recipes '
@@ -522,6 +526,32 @@ REVIEWS_BODY = ('<div class="page">\n      <h1>Reviews</h1>\n      '
                 'Open any recipe and scroll to the bottom to leave one.</p>\n      </div>')
 
 
+def learn_body(ui, sources):
+    """The dysphagia explainer, from the same English strings the app uses."""
+    e = html.escape
+    out = ['<div class="page" id="learn-page"><article class="learn">',
+           '<h1>%s</h1>' % e(ui['learn.h1']), '<p>%s</p>' % e(ui['learn.lede'])]
+    for head, keys in (('learn.d.h', ['learn.d.p1', 'learn.d.p2', 'learn.d.p3']),
+                       ('learn.i.h', ['learn.i.p1', 'learn.i.p2']),
+                       ('learn.l.h', ['learn.l.p1'])):
+        out.append('<h2>%s</h2>' % e(ui[head]))
+        out += ['<p>%s</p>' % e(ui[k]) for k in keys]
+    out.append('<h3>%s</h3><ol>%s</ol>' % (e(ui['learn.l.foods']), ''.join(
+        '<li>Level %d: %s</li>' % (n, e(ui['learn.l.f%d' % n])) for n in (7, 6, 5, 4, 3))))
+    out.append('<h3>%s</h3><ol>%s</ol>' % (e(ui['learn.l.drinks']), ''.join(
+        '<li>Level %d: %s</li>' % (n, e(ui['learn.l.d%d' % n])) for n in (4, 3, 2, 1, 0))))
+    out += ['<p>%s</p>' % e(ui['learn.l.p2']),
+            '<p>%s <a href="/texture-guide">%s</a>.</p>' % (e(ui['learn.l.site']), e(ui['learn.l.link'])),
+            '<h2>%s</h2>' % e(ui['learn.t.h'])]
+    out += ['<p>%s</p>' % e(ui[k]) for k in ('learn.t.p1', 'learn.t.p2', 'learn.t.p3')]
+    out.append('<p>%s</p>' % e(DISCLAIMER))
+    out.append('<h2>%s</h2><p>%s</p><ol>' % (e(ui['learn.s.h']), e(ui['learn.s.note'])))
+    for i, url in enumerate(sources):
+        out.append('<li>%s <a href="%s">%s</a></li>' % (e(ui['learn.s.%d' % (i + 1)]), e(url, quote=True), e(url)))
+    out.append('</ol></article></div>')
+    return '\n      '.join(out)
+
+
 NOT_FOUND_BODY = ('<div class="page">\n      <h1>Page not found</h1>\n      '
                   '<p>There is nothing at this address.</p>\n      '
                   '<a href="/" class="btn btn-primary">Back to All Recipes</a>\n      </div>')
@@ -631,6 +661,9 @@ def main():
          os.path.join(ROOT, 'texture-guide.html'), 'monthly', '0.8')
     for path, body, target in recipe_pages:
         emit(path, body, target, 'monthly', '0.8')
+    emit('/dysphagia', learn_body(read_literal(template, 'const EN_UI = '),
+                                  read_literal(template, 'const LEARN_SOURCES = ')),
+         os.path.join(ROOT, 'dysphagia.html'), 'monthly', '0.7')
     emit('/reviews', REVIEWS_BODY, os.path.join(ROOT, 'reviews.html'), 'weekly', '0.5')
     emit('/about', ABOUT_BODY, os.path.join(ROOT, 'about.html'), 'monthly', '0.5')
 

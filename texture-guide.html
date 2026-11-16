@@ -401,7 +401,7 @@
     /* On anything wider than a phone the three destinations fit on one line, so
        show them. A hamburger on a 1440px screen hides the whole site behind a
        guess. Below 760px the dropdown above takes over again. */
-    @media (min-width: 760px) {
+    @media (min-width: 1100px) {
       .nav-toggle { display: none; }
       .nav-menu,
       .nav-menu[hidden] {
@@ -1325,6 +1325,82 @@
     }
     .ladder-row { display: flex; flex-wrap: wrap; gap: 8px; }
 
+    /* The level picker. Rows narrow from Level 7 down to Level 2, the way the
+       food side of the IDDSI diagram does, but this is the site's own
+       navigation and not a copy of that diagram: the official one is shown,
+       unaltered, on the Texture Guide. Each row is one button — the level,
+       what it means in plain words, and how many recipes sit at it. */
+    .pyramid { display: grid; gap: 6px; max-width: 780px; }
+    .pyr-row {
+      display: grid; grid-template-columns: minmax(0, 46%) 1fr auto;
+      align-items: center; gap: 14px;
+      width: 100%; min-height: 56px; padding: 5px 14px 5px 5px;
+      font: inherit; text-align: left; color: var(--text);
+      background: var(--white); border: 2px solid transparent; border-radius: var(--radius);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: background-color var(--resp-press) var(--spring),
+                  border-color var(--resp-press) var(--spring),
+                  transform var(--resp-press) var(--spring);
+    }
+    .pyr-row:hover { background: var(--bg-warm); }
+    .pyr-row[data-pressed] { transform: scale(0.985); }
+    .pyr-row[aria-pressed="true"] { border-color: var(--text); background: var(--butter); }
+    .pyr-row:focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; }
+    .pyr-bar {
+      justify-self: center;
+      width: calc(100% - var(--step) * 8%);
+      min-height: 44px; padding: 4px 10px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      border-radius: 9px;
+      font-size: 0.86rem; font-weight: 700; line-height: 1.2; text-align: center;
+    }
+    .pyr-bar b {
+      font-family: var(--font-display); font-weight: var(--display-weight);
+      font-size: 1.3rem; line-height: 1;
+    }
+    .pyr-desc { font-size: 0.92rem; line-height: 1.35; color: var(--text-light); }
+    .pyr-row .count { font-size: 0.8rem; font-weight: 700; color: var(--text-light); font-variant-numeric: tabular-nums; }
+    .pyr-all { margin-top: 10px; }
+    .course { margin-top: 0; }
+    .course h2 { font-family: var(--font-body); font-size: 1.02rem; font-weight: 700; margin: 0 0 11px; letter-spacing: 0; }
+    /* The count tile carries the level picker: the number of recipes, then
+       the levels they are spread across, each one a way in. */
+    .bento-stat .stat-line { margin: 0 0 14px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+    .bento-stat .stat-line span { margin-top: 0; flex: 1; min-width: 12ch; }
+    .bento-stat h2 { font-family: var(--font-body); font-size: 1.02rem; font-weight: 700; margin: 0 0 10px; letter-spacing: 0; }
+    .bento-stat .pyr-row { grid-template-columns: minmax(0, 50%) 1fr auto; gap: 10px; min-height: 52px; padding-right: 10px; }
+    .bento-stat .pyr-desc { font-size: 0.84rem; }
+    .bento-stat .pyr-all { align-self: flex-start; }
+    @media (min-width: 720px) { .bento { grid-template-columns: 1.5fr 1fr 1fr; align-items: stretch; } }
+    @media (max-width: 640px) {
+      .pyr-row { grid-template-columns: minmax(0, 48%) 1fr auto; gap: 10px; padding-right: 10px; }
+      .pyr-bar { width: calc(100% - var(--step) * 5%); font-size: 0.78rem; gap: 6px; padding: 4px 6px; }
+      .pyr-desc { font-size: 0.82rem; }
+    }
+
+    /* The dysphagia explainer: reading prose, held to a comfortable measure. */
+    .learn { max-width: 68ch; }
+    .learn h2 { margin: 36px 0 12px; }
+    .learn p { margin-bottom: 14px; }
+    .learn sup { font-size: 0.72em; font-weight: 700; color: var(--primary-dark); margin-left: 2px; }
+    .learn-levels { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0; }
+    .learn-levels div { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+    .learn-levels h3 { font-family: var(--font-body); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-light); margin: 0 0 8px; }
+    .learn-levels ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 0.95rem; line-height: 1.35; }
+    .learn-levels b { display: inline-block; min-width: 1.4em; font-variant-numeric: tabular-nums; }
+    .learn-sources { margin: 0; padding-left: 22px; display: grid; gap: 8px; font-size: 0.92rem; }
+    .learn-sources a { overflow-wrap: anywhere; }
+    @media (max-width: 520px) { .learn-levels { grid-template-columns: 1fr; } }
+
+    .guide-diagram { margin: 0 0 36px; max-width: 720px; }
+    .guide-diagram img {
+      display: block; width: 100%; height: auto;
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 14px;
+    }
+    .guide-diagram figcaption { margin-top: 8px; font-size: 0.84rem; color: var(--text-light); }
+    #recipes-heading { scroll-margin-top: 96px; }
+
     .home-search { margin-top: 14px; max-width: 460px; position: relative; }
     .home-search input {
       width: 100%; min-height: 48px;
@@ -1347,7 +1423,8 @@
     @media (max-width: 640px) {
       .bento { margin-bottom: 18px; }
       .bento-hero { padding: 20px 20px 18px; }
-      .bento-hero .level-key, .bento-stat, a.bento-photo--wide { display: none; }
+      .bento-hero .level-key, a.bento-photo--wide { display: none; }
+      .bento-stat { padding: 16px; }
       .bento-photo { min-height: 0; aspect-ratio: 16 / 9; }
       .ladder { margin-bottom: 18px; }
       .ladder-row {
@@ -1462,7 +1539,7 @@
     .lang-btn[data-pressed] { transform: scale(0.93); }
     .lang-btn.is-active { background: var(--coral); border-color: var(--coral); color: #fff; }
     .lang-btn:focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; }
-    @media (max-width: 759px) {
+    @media (max-width: 1099px) {
       .nav-menu a { padding: 12px 14px; font-size: 0.95rem; }
       .nav-lang { margin: 6px 0 0; padding: 8px 4px 2px; border-top: 1px solid var(--border); }
       .lang-switch { flex: 1; }
@@ -2324,6 +2401,7 @@
       .lang-btn[data-pressed], .nav-toggle[data-pressed],
       .ingredient-item[data-pressed], .back-link[data-pressed],
       .level-key button[data-pressed], .print-inline[data-pressed], a.bento-photo[data-pressed],
+      .pyr-row[data-pressed],
       .instruction-step:hover,
       .nav-menu, .nav-menu[hidden] {
         transform: none !important;
@@ -2386,6 +2464,7 @@
         <ul class="nav-menu" id="nav-menu" hidden>
           <li><a href="/" aria-current="page" data-i18n="nav.recipes">Recipes</a></li>
           <li><a href="/texture-guide" data-i18n="nav.guide">Texture Guide</a></li>
+          <li><a href="/dysphagia" data-i18n="nav.learn">Dysphagia</a></li>
           <li><a href="/reviews" data-i18n="nav.reviews">Reviews</a></li>
           <li><a href="/about" data-i18n="nav.about">About</a></li>
           <li class="nav-lang">
@@ -2426,6 +2505,7 @@
           <ul>
             <li><a href="/" data-i18n="foot.all">All Recipes</a></li>
             <li><a href="/texture-guide" data-i18n="nav.guide">Texture Guide</a></li>
+            <li><a href="/dysphagia" data-i18n="nav.learn">Dysphagia</a></li>
             <li><a href="/reviews" data-i18n="nav.reviews">Reviews</a></li>
             <li><a href="/about" data-i18n="nav.about">About</a></li>
           </ul>
@@ -4615,7 +4695,7 @@
       'guide.intro': 'Every recipe here is graded against the IDDSI framework — the shared scale that clinicians use to describe how soft a food needs to be. Use it to match a recipe to the texture you or someone at your table needs.',
       'foot.browse': 'Browse',
       'foot.all': 'All Recipes',
-      'foot.levels': 'Texture Levels',
+      'foot.levels': 'Recipes by level',
       'foot.blurb': 'Comforting food that happens to be easy to eat. Every dish is built around soft textures and gentle flavours, and graded so you always know what you are getting.',
       'foot.rights': 'All rights reserved.',
       'serves': 'servings',
@@ -4624,6 +4704,55 @@
       'filter.level': '{n} recipes at Level {level}, {name}',
       'filter.all': 'Showing all {n} recipes',
       'filter.search': '{n} recipes match “{q}”',
+      'filter.count': '{n} recipes shown',
+      "nav.learn": "Dysphagia",
+      "learn.eyebrow": "The basics",
+      "learn.h1": "What dysphagia is, and what the IDDSI levels mean",
+      "learn.lede": "A short, plain-language introduction. Every fact on this page comes from IDDSI, the organisation that publishes the standard, and the sources are listed at the bottom.",
+      "learn.d.h": "What is dysphagia?",
+      "learn.d.p1": "Dysphagia is the medical word for difficulty swallowing. IDDSI describes it as difficulty with eating and drinking.",
+      "learn.d.p2": "It is far more common than most people expect. IDDSI puts the number of people living with dysphagia at over 590 million worldwide.",
+      "learn.d.p3": "For someone with dysphagia, the texture of food and the thickness of drinks are a safety matter. IDDSI warns that errors in choosing diet texture or drink thickness have been associated with choking and death.",
+      "learn.i.h": "What is IDDSI?",
+      "learn.i.p1": "IDDSI stands for the International Dysphagia Diet Standardisation Initiative. It is a not-for-profit standards organisation. Its standard, the IDDSI Framework, describes foods and drinks from the point of view of a person with swallowing difficulties, so that everyone uses the same names for the same textures. The Framework and its documents are free to use.",
+      "learn.i.p2": "The standard describes food and drink. It does not describe people, so it cannot tell you which level someone needs. IDDSI recommends working with a healthcare provider trained in IDDSI and dysphagia to decide that.",
+      "learn.l.h": "How the levels are organised",
+      "learn.l.p1": "The Framework is a continuum of eight levels, numbered 0 to 7. Drinks are measured from Level 0 to Level 4, and foods from Level 3 to Level 7. Each level has a number, a name and a colour.",
+      "learn.l.drinks": "Drinks",
+      "learn.l.foods": "Foods",
+      "learn.l.d0": "Thin",
+      "learn.l.d1": "Slightly Thick",
+      "learn.l.d2": "Mildly Thick",
+      "learn.l.d3": "Moderately Thick",
+      "learn.l.d4": "Extremely Thick",
+      "learn.l.f3": "Liquidised",
+      "learn.l.f4": "Pureed",
+      "learn.l.f5": "Minced & Moist",
+      "learn.l.f6": "Soft & Bite-Sized",
+      "learn.l.f7": "Easy to Chew, and Regular",
+      "learn.l.p2": "Levels 3 and 4 appear on both sides: the diagram pairs Liquidised with Moderately Thick, and Pureed with Extremely Thick. The Framework also has a category called transitional foods.",
+      "learn.l.site": "The recipes on this site are graded from Level 2 to Level 7.",
+      "learn.l.link": "See the official diagram and the recipes at each level",
+      "learn.t.h": "How a level is checked",
+      "learn.t.p1": "IDDSI publishes testing methods so that a food or drink can be checked rather than guessed. Tests are done as the food or drink will be served, especially at the same temperature.",
+      "learn.t.p2": "Drinks are checked with the IDDSI Flow Test, which measures how fast a liquid flows out of a 10 ml syringe.",
+      "learn.t.p3": "Foods are checked with ordinary forks and spoons. The methods include the Fork Drip Test, the Spoon Tilt Test, the Fork or Spoon Pressure Test, the Chopstick Test and the Finger Test.",
+      "learn.s.h": "Sources",
+      "learn.s.note": "All sources are pages of the official IDDSI website, read in November 2026.",
+      "learn.s.1": "IDDSI: Overview, “What is IDDSI?”",
+      "learn.s.2": "IDDSI: home page",
+      "learn.s.3": "IDDSI: The IDDSI Framework (the Standard)",
+      "learn.s.4": "IDDSI: Testing Methods",
+      "learn.s.5": "IDDSI: Framework documents, including the detailed definitions in other languages",
+      'course.title': 'What kind of dish?',
+      'course.all': 'All dishes',
+      'course.main': 'Mains',
+      'course.soup': 'Soups',
+      'course.light': 'Breakfast & light meals',
+      'course.dessert': 'Desserts',
+      'course.drink': 'Drinks',
+      'guide.diagram.alt': 'The IDDSI Framework diagram. Foods run from Level 7, Regular and Easy to Chew, down to Level 3, Liquidised. Drinks run from Level 4, Extremely Thick, down to Level 0, Thin.',
+      'guide.diagram.cap': 'The official IDDSI Framework diagram, shown unaltered.',
       'search.label': 'Search recipes',
       'search.placeholder': 'Search by dish or ingredient',
       'grid.empty.title': 'No recipes match.',
@@ -4940,7 +5069,30 @@
 
     // Level filter state. null = show everything.
     let activeLevel = null;
+    let activeCourse = null;
     let searchQuery = '';
+
+    /* The kind of dish, as a second way in beside the texture level. Kept as
+       one table rather than a field on each recipe so the whole set can be
+       read, and corrected, at a glance. A recipe missing from it simply never
+       matches a course filter. */
+    const COURSES = ['main', 'soup', 'light', 'dessert', 'drink'];
+    const COURSE = {
+      'spicy-creamy-ditalini': 'main', 'cherry-tomato-pasta': 'main', 'red-braised-pork-belly': 'main',
+      'tomato-egg-stir-fry': 'main', 'lamb-stew-tomatoes': 'main', 'classic-meatloaf': 'main',
+      'stovetop-mac-and-cheese': 'main', 'ground-beef-curry': 'main', 'mapo-tofu': 'main', 'kimchi-ramen': 'main',
+      'butternut-squash-bisque': 'soup', 'chicken-golden-soup': 'soup', 'chicken-noodle-soup': 'soup',
+      'chinese-egg-drop-soup': 'soup', 'korean-soft-tofu-soup': 'soup', 'cream-of-mushroom-soup': 'soup',
+      'lobster-bisque': 'soup', 'creamy-tomato-soup': 'soup', 'pumpkin-soup': 'soup',
+      'creamy-scrambled-eggs': 'light', 'fluffy-pancakes': 'light', 'egg-salad': 'light',
+      'chinese-steamed-egg': 'light', 'chinese-silken-tofu': 'light', 'joel-robuchon-mashed-potatoes': 'light',
+      'congee': 'light',
+      'black-sesame-tong-sui': 'dessert', 'baked-cinnamon-apples': 'dessert', 'vanilla-bean-custard': 'dessert',
+      'banana-custard': 'dessert', 'mango-jam-with-yogurt': 'dessert', 'apple-sauce': 'dessert',
+      'watermelon-sorbet': 'dessert', 'rice-pudding': 'dessert',
+      'banana-smoothie': 'drink', 'strawberry-yogurt-drink': 'drink', 'peach-smoothie': 'drink',
+      'blueberry-smoothie': 'drink'
+    };
 
     /* The filter is part of the address (/?level=4&q=egg), so a filtered list
        can be bookmarked, shared, and survives a reload. */
@@ -4949,6 +5101,7 @@
         const params = new URLSearchParams(window.location.search);
         const level = Number(params.get('level'));
         if (IDDSI_LEVELS[level]) activeLevel = level;
+        if (COURSES.indexOf(params.get('course')) !== -1) activeCourse = params.get('course');
         searchQuery = (params.get('q') || '').slice(0, 60);
       } catch (e) {}
     })();
@@ -4957,6 +5110,7 @@
       if (currentRoute !== '/') return;
       const params = new URLSearchParams();
       if (activeLevel) params.set('level', activeLevel);
+      if (activeCourse) params.set('course', activeCourse);
       if (searchQuery.trim()) params.set('q', searchQuery.trim());
       const query = params.toString();
       const next = window.location.pathname + (query ? '?' + query : '');
@@ -4975,13 +5129,16 @@
     function visibleRecipes() {
       const q = searchQuery.trim().toLowerCase();
       return recipes.filter(r =>
-        (!activeLevel || r.dysphagia === activeLevel) && (!q || haystack(r).indexOf(q) !== -1));
+        (!activeLevel || r.dysphagia === activeLevel) &&
+        (!activeCourse || COURSE[r.slug] === activeCourse) &&
+        (!q || haystack(r).indexOf(q) !== -1));
     }
 
     function filterStatus() {
       const n = visibleRecipes().length;
       const q = searchQuery.trim();
       if (q) return t('filter.search', { n: n, q: q });
+      if (activeCourse) return t('filter.count', { n: n });
       return activeLevel
         ? t('filter.level', { n: n, level: activeLevel, name: L(activeLevel).name })
         : t('filter.all', { n: n });
@@ -5041,9 +5198,13 @@
     }
 
     function syncFilterControls() {
-      document.querySelectorAll('.lvl-btn, .level-key button').forEach(btn => {
+      document.querySelectorAll('[data-level]').forEach(btn => {
         const v = btn.dataset.level === 'all' ? null : Number(btn.dataset.level);
         btn.setAttribute('aria-pressed', v === activeLevel ? 'true' : 'false');
+      });
+      document.querySelectorAll('[data-course]').forEach(btn => {
+        const v = btn.dataset.course === 'all' ? null : btn.dataset.course;
+        btn.setAttribute('aria-pressed', v === activeCourse ? 'true' : 'false');
       });
       const status = document.getElementById('filter-status');
       if (status) status.textContent = filterStatus();
@@ -5060,8 +5221,15 @@
     /* The chips in the hero: choose the level, then bring the grid to it. */
     function pickLevel(level) {
       setLevel(activeLevel === level ? null : level);
-      const heading = document.getElementById('ladder-heading');
+      const heading = document.getElementById('recipes-heading');
       if (heading) heading.scrollIntoView({ block: 'start', behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+    }
+
+    function setCourse(course) {
+      activeCourse = course;
+      const grid = document.getElementById('recipe-grid');
+      if (grid) quietTransition(() => { grid.innerHTML = renderRecipeGrid(); });
+      syncFilterControls();
     }
 
     /* Typing redraws the list directly — no transition per keystroke — and
@@ -5077,6 +5245,7 @@
       searchQuery = '';
       const field = document.getElementById('recipe-search');
       if (field) field.value = '';
+      activeCourse = null;
       setLevel(null);
     }
 
@@ -5093,16 +5262,25 @@
               <span class="kick">${t('hero.eyebrow')}</span>
               <h1>${t('hero.title')}</h1>
               <p>${t('hero.lede')}</p>
-              <div class="level-key" role="group" aria-label="${t('ladder.title')}">
-                ${levels.map(l => `<button type="button" data-level="${l}" aria-pressed="${activeLevel === l}" onclick="pickLevel(${l})"><i style="background:${L(l).color}"></i>${l} ${L(l).name}</button>`).join('')}
-              </div>
             </section>
             <a class="bento-photo" href="/recipe/${feature.slug}" aria-label="${t('card.aria', { title: RC(feature).title })}" style="background:${feature.imageBg || ''}">
               ${recipePhoto(feature, '(max-width: 720px) calc(100vw - 40px), 340px', true)}
             </a>
             <div class="bento-stat">
-              <b>${recipes.length}</b>
-              <span>${t('hero.count', { n: Object.keys(counts).length })}</span>
+              <p class="stat-line"><b>${recipes.length}</b> <span>${t('hero.count', { n: Object.keys(counts).length })}</span></p>
+              <h2 id="ladder-heading">${t('ladder.title')}</h2>
+            <div class="pyramid" role="group" aria-labelledby="ladder-heading">
+              ${[7, 6, 5, 4, 3, 2].map((l, step) => `
+                <button type="button" class="pyr-row" data-level="${l}" aria-pressed="${activeLevel === l}"
+                  onclick="pickLevel(${l})" style="--step:${step}">
+                  <span class="pyr-bar" style="background:${L(l).color};color:${L(l).ink}"><b>${l}</b> ${L(l).name}</span>
+                  <span class="pyr-desc">${L(l).plain}</span>
+                  <span class="count">${counts[l] || 0}</span>
+                </button>
+              `).join('')}
+            </div>
+            <button type="button" class="lvl-btn pyr-all" data-level="all" aria-pressed="${activeLevel === null}"
+              onclick="setLevel(null)">${t('ladder.all')} <span class="count">${recipes.length}</span></button>
             </div>
             <a class="bento-photo bento-photo--wide" href="/recipe/${feature2.slug}" aria-label="${t('card.aria', { title: RC(feature2).title })}" style="background:${feature2.imageBg || ''}">
               ${recipePhoto(feature2, '(max-width: 720px) calc(100vw - 40px), 700px')}
@@ -5110,18 +5288,17 @@
           </div>
 
           <div class="ladder">
-            <h2 id="ladder-heading">${t('ladder.title')}</h2>
-            <div class="ladder-row" role="group" aria-labelledby="ladder-heading">
-              <button type="button" class="lvl-btn" data-level="all" aria-pressed="${activeLevel === null}"
-                onclick="setLevel(null)">${t('ladder.all')} <span class="count">${recipes.length}</span></button>
-              ${levels.map(l => `
-                <button type="button" class="lvl-btn" data-level="${l}" aria-pressed="${activeLevel === l}"
-                  onclick="setLevel(${l})">
-                  <span class="dot" style="background:${L(l).deep}" aria-hidden="true">${l}</span>
-                  ${L(l).name}
-                  <span class="count">${counts[l] || 0}</span>
-                </button>
-              `).join('')}
+            <div class="course">
+              <h2 id="course-heading">${t('course.title')}</h2>
+              <div class="ladder-row" role="group" aria-labelledby="course-heading">
+                <button type="button" class="lvl-btn" data-course="all" aria-pressed="${activeCourse === null}"
+                  onclick="setCourse(null)">${t('course.all')}</button>
+                ${COURSES.map(c => `
+                  <button type="button" class="lvl-btn" data-course="${c}" aria-pressed="${activeCourse === c}"
+                    onclick="setCourse('${c}')">${t('course.' + c)}
+                    <span class="count">${recipes.filter(r => COURSE[r.slug] === c).length}</span></button>
+                `).join('')}
+              </div>
             </div>
             <div class="home-search">
               ${icons.search}
@@ -5132,7 +5309,7 @@
             <p id="filter-status" class="sr-only" role="status">${filterStatus()}</p>
           </div>
 
-          <div class="section-header">
+          <div class="section-header" id="recipes-heading">
             <h2>${t('foot.all')}</h2>
             <p><a href="/texture-guide">${t('home.whatlevels')}</a></p>
           </div>
@@ -5158,6 +5335,11 @@
             <h1>${t('guide.h1')}</h1>
             <p>${t('guide.intro')}</p>
           </section>
+
+          <figure class="guide-diagram">
+            <img src="/assets/iddsi-framework.webp" alt="${t('guide.diagram.alt')}" width="2385" height="2004" loading="lazy" decoding="async">
+            <figcaption>${t('guide.diagram.cap')}</figcaption>
+          </figure>
 
           <ul class="level-list" role="list">
             ${levels.map(level => {
@@ -5838,6 +6020,63 @@
       }
     }
 
+    /* What dysphagia is and what the levels are, for someone meeting both
+       words for the first time. Every statement is one IDDSI makes on its own
+       site, and the number after it points at the page it came from. Nothing
+       medical is asserted here on the site's own authority. */
+    const LEARN_SOURCES = [
+      'https://www.iddsi.org/about-us/overview',
+      'https://www.iddsi.org/',
+      'https://www.iddsi.org/standards/framework',
+      'https://www.iddsi.org/standards/testing-methods',
+      'https://www.iddsi.org/resources/framework-documents'
+    ];
+
+    function renderLearnPage() {
+      const ref = n => `<sup>[${n}]</sup>`;
+      const list = (prefix, numbers) => numbers.map(n => `<li><b>${n}</b> ${t('learn.l.' + prefix + n)}</li>`).join('');
+      return `
+        <div class="page" id="learn-page">
+          <article class="learn">
+            <span class="eyebrow">${t('learn.eyebrow')}</span>
+            <h1>${t('learn.h1')}</h1>
+            <p>${t('learn.lede')}</p>
+
+            <h2>${t('learn.d.h')}</h2>
+            <p>${t('learn.d.p1')} ${ref(1)}</p>
+            <p>${t('learn.d.p2')} ${ref(2)}</p>
+            <p>${t('learn.d.p3')} ${ref(3)}</p>
+
+            <h2>${t('learn.i.h')}</h2>
+            <p>${t('learn.i.p1')} ${ref(1)}</p>
+            <p>${t('learn.i.p2')} ${ref(1)}</p>
+
+            <h2>${t('learn.l.h')}</h2>
+            <p>${t('learn.l.p1')} ${ref(3)} ${ref(5)}</p>
+            <div class="learn-levels">
+              <div><h3>${t('learn.l.foods')}</h3><ol>${list('f', [7, 6, 5, 4, 3])}</ol></div>
+              <div><h3>${t('learn.l.drinks')}</h3><ol>${list('d', [4, 3, 2, 1, 0])}</ol></div>
+            </div>
+            <p>${t('learn.l.p2')} ${ref(5)}</p>
+            <p>${t('learn.l.site')} <a href="/texture-guide">${t('learn.l.link')}</a>.</p>
+
+            <h2>${t('learn.t.h')}</h2>
+            <p>${t('learn.t.p1')} ${ref(4)}</p>
+            <p>${t('learn.t.p2')} ${ref(4)}</p>
+            <p>${t('learn.t.p3')} ${ref(4)}</p>
+
+            <div class="guide-note"><p>${t('guide.disclaimer')}</p></div>
+
+            <h2>${t('learn.s.h')}</h2>
+            <p>${t('learn.s.note')}</p>
+            <ol class="learn-sources">
+              ${LEARN_SOURCES.map((url, i) => `<li>${t('learn.s.' + (i + 1))}<br><a href="${url}" rel="noopener">${url}</a></li>`).join('')}
+            </ol>
+          </article>
+        </div>
+      `;
+    }
+
     function renderAboutPage() {
       return `
         <div class="page" id="about-page">
@@ -5929,7 +6168,13 @@
     }
 
     function navigateTo(route, source, back) {
-      if (window.location.pathname === route) return;
+      /* A link such as /?level=4 carries a filter. Take it on board before
+         the home page is drawn, and let it through even from the home page. */
+      const query = route.indexOf('?') === -1 ? '' : route.slice(route.indexOf('?'));
+      if (query) {
+        const level = Number(new URLSearchParams(query).get('level'));
+        if (IDDSI_LEVELS[level]) { activeLevel = level; activeCourse = null; searchQuery = ''; }
+      } else if (window.location.pathname === route) return;
       history.pushState({}, '', route);
       changeRoute({ source: source, back: back });
     }
@@ -6158,7 +6403,7 @@
         return (recipe ? RC(recipe).title : t('nf.recipe.h1')) + ' — ' + site;
       }
       if (path === '/') return site + ' — ' + t('tagline');
-      const key = { '/texture-guide': 'nav.guide', '/reviews': 'nav.reviews', '/about': 'nav.about' }[path];
+      const key = { '/texture-guide': 'nav.guide', '/reviews': 'nav.reviews', '/about': 'nav.about', '/dysphagia': 'nav.learn' }[path];
       return t(key || 'nf.page.h1') + ' — ' + site;
     }
 
@@ -6191,6 +6436,9 @@
       } else if (path === '/reviews') {
         title = 'Reviews — Amazing Recipes';
         desc = 'Notes from people who have cooked these texture-graded recipes.';
+      } else if (path === '/dysphagia') {
+        title = 'What Is Dysphagia? IDDSI Levels Explained — Amazing Recipes';
+        desc = 'A plain-language introduction to dysphagia (difficulty swallowing) and the IDDSI food and drink levels, with links to the official IDDSI sources.';
       } else if (path === '/about') {
         title = 'About — Amazing Recipes';
         desc = 'Why this site exists: a Grade 10 student in Ontario building recipes for people living with oral dysphagia.';
@@ -6251,8 +6499,9 @@
 
       const normalizedPath = path === '' ? '/' : path;
       document.querySelectorAll('nav a').forEach(link => {
-        const target = link.getAttribute('href').slice(1);
-        link.setAttribute('aria-current', target === normalizedPath ? 'page' : 'false');
+        /* Compared whole. With the leading slash cut off one side, no link
+           ever matched and the current page was never marked. */
+        link.setAttribute('aria-current', link.getAttribute('href') === normalizedPath ? 'page' : 'false');
       });
 
       if (path.startsWith('/recipe/')) {
@@ -6268,6 +6517,8 @@
         hydrateReviewsPage();
       } else if (path === '/texture-guide') {
         mainContent.innerHTML = renderTextureGuide();
+      } else if (path === '/dysphagia') {
+        mainContent.innerHTML = renderLearnPage();
       } else if (path === '/about') {
         mainContent.innerHTML = renderAboutPage();
       } else if (path.startsWith('/recipe/')) {
@@ -6312,7 +6563,7 @@
 
     function renderFooterLevels() {
       document.getElementById('footer-levels').innerHTML = [7, 6, 5, 4, 3, 2]
-        .map(level => `<li><a href="/texture-guide">${t('foot.levels.item', { n: level, name: L(level).name })}</a></li>`)
+        .map(level => `<li><a href="/?level=${level}">${t('foot.levels.item', { n: level, name: L(level).name })}</a></li>`)
         .join('');
     }
     renderFooterLevels();
@@ -6379,7 +6630,7 @@
        start a tap, think better of it, and back out. */
     const PRESSABLE = '.btn, .recipe-card, .lvl-btn, .batch-btn, .lang-btn, ' +
       '.nav-toggle, .print-fab, .print-inline, .ingredient-item, .back-link, ' +
-      '.level-key button, a.bento-photo';
+      '.level-key button, a.bento-photo, .pyr-row';
     let pressedEl = null, pressX = 0, pressY = 0;
 
     function releasePress() {
