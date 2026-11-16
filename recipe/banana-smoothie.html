@@ -6,9 +6,9 @@
   <!-- SEO:START - written by prerender.py. Do not hand-edit; regenerate. -->
   <meta name="description" content="A simple, creamy banana and orange smoothie with Greek yogurt — smooth, pourable, and naturally sweet. A dysphagia-friendly recipe for anyone with swallowing difficulty or on a soft diet — graded IDDSI Level 3, Liquidised. Serves 2.">
   <link rel="canonical" href="https://amazingrecipes.org/recipe/banana-smoothie">
+  <meta property="og:url" content="https://amazingrecipes.org/recipe/banana-smoothie">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Amazing Recipes">
-  <meta property="og:url" content="https://amazingrecipes.org/recipe/banana-smoothie">
   <meta property="og:title" content="Banana Orange Smoothie — Smooth &amp; Drinkable (IDDSI Level 3)">
   <meta property="og:description" content="A simple, creamy banana and orange smoothie with Greek yogurt — smooth, pourable, and naturally sweet. A dysphagia-friendly recipe for anyone with swallowing difficulty or on a soft diet — graded IDDSI Level 3, Liquidised. Serves 2.">
   <meta property="og:image" content="https://amazingrecipes.org/assets/banana-smoothie-1200.jpg">
@@ -34,7 +34,32 @@
       --font-display: "Anton", Impact, sans-serif;
       --font-body: "Atkinson Hyperlegible", system-ui, sans-serif;
       --display-weight: 400;      /* Anton ships one weight and reads as black */
-      --display-tracking: 0;
+      --display-tracking: -0.01em;  /* display sizes are large: pull them in */
+
+      /* ---- Motion -------------------------------------------------------
+         Apple specifies springs as damping ratio + response, never duration.
+         CSS has no spring, so these two curves stand in for the only two
+         cases the house style allows. --spring is critically damped: it
+         settles without overshoot, which is right for anything that merely
+         changes state. --spring-bounce overshoots a little, and is reserved
+         for motion that follows a press, where the momentum came from the
+         person rather than from us. Response maps onto the duration; the
+         curve supplies the shape. */
+      --resp-press: 0.16s;   /* press feedback — must feel immediate */
+      --resp: 0.3s;          /* default UI */
+      --resp-slow: 0.4s;     /* repositioning, larger surfaces */
+      --spring: cubic-bezier(0.32, 0.72, 0, 1);
+      --spring-bounce: cubic-bezier(0.17, 0.89, 0.32, 1.28);
+
+      /* ---- Materials ----------------------------------------------------
+         Floating chrome is a translucent layer with the page running under
+         it, not an opaque strip that eats a band of the screen. Kept on the
+         solid side of Apple's own values on purpose: this site is read
+         largely by older people, and legibility outranks the effect. */
+      --material-thin: rgba(255, 248, 240, 0.78);
+      --material-thick: rgba(255, 255, 255, 0.90);
+      --material-blur: blur(24px) saturate(180%);
+      --material-edge: rgba(255, 255, 255, 0.6);
     }
 
     /* Chinese falls back to whatever gothic the OS happens to have, which is
@@ -58,18 +83,21 @@
       --bg-card: #FFFFFF;
       --bg-sage: #D8E8DC;
       --bg-sage-light: #E9F1EB;
-      --coral: #E24E33;
-      --coral-dark: #C23F27;
+      /* Deepened from #E24E33, which gave white text 3.9:1. At this value white
+         on coral is 4.7:1 and coral on the cream ground is 4.5:1, so it can
+         carry small text in both directions. */
+      --coral: #CC442B;
+      --coral-dark: #B23A22;
       --butter: #FCE3BE;
       --mint: #D8E8DC;
-      --primary: #E24E33;
-      --primary-dark: #C23F27;
+      --primary: #CC442B;
+      --primary-dark: #B23A22;
       --primary-light: #F08268;
       --accent: #C4956A;
       --accent-dark: #A67B52;
       --text: #1B1B1F;
       --text-light: #4A4A52;
-      --text-muted: #77737A;
+      --text-muted: #6E6A71;   /* 5.0:1 on cream; the old value was 4.4 */
       --success: #2E6B34;
       --warning: #8B4E13;
       --warning-text: #6B3B0E;
@@ -99,7 +127,10 @@
 
     body {
       font-family: var(--font-body);
-      font-size: 18px;
+      /* rem, not px: a reader who has set a larger default text size in the
+         browser gets it. The whole layout is already in rem, so it scales
+         with them instead of spilling. 1.125rem is the old 18px exactly. */
+      font-size: 1.125rem;
       line-height: 1.7;
       color: var(--text);
       background-color: var(--bg-cream);
@@ -108,12 +139,9 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
+    /* The three preference overrides — reduced motion, reduced transparency
+       and increased contrast — live at the end of this stylesheet, where they
+       can actually win against the component rules below. */
 
     .skip-link {
       position: absolute;
@@ -127,11 +155,13 @@
       text-decoration: none;
       font-weight: 600;
       z-index: 1000;
-      transition: top 0.3s ease;
+      /* translate, not top: the compositor can animate it, and the skip link
+         is the very first thing a keyboard user touches. */
+      transition: transform var(--resp) var(--spring);
     }
 
     .skip-link:focus {
-      top: 0;
+      transform: translate(-50%, 100px);
       outline: 3px solid var(--primary);
       outline-offset: 2px;
     }
@@ -150,16 +180,23 @@
     }
 
     h1, h2, h3, h4 {
-      font-family: 'Playfair Display', Georgia, serif;
-      line-height: 1.35;
-      letter-spacing: -0.01em;
+      /* Georgia, said plainly. This used to ask for Playfair Display first,
+         which was never loaded, so Georgia is what every reader has always
+         seen. */
+      font-family: Georgia, 'Times New Roman', serif;
       color: var(--text);
+      font-optical-sizing: auto;
+      text-wrap: balance;
     }
 
-    h1 { font-size: clamp(2.4rem, 5vw, 3.4rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; }
-    h2 { font-size: clamp(1.75rem, 3vw, 2.1rem); font-weight: 600; line-height: 1.2; }
-    h3 { font-size: 1.3rem; font-weight: 600; line-height: 1.25; }
-    h4 { font-size: 1.1rem; font-weight: 600; }
+    /* Tracking is a function of size, never one value for the whole scale:
+       letters drift apart as type grows, so the large sizes are pulled in and
+       the small ones are left alone. Leading runs the other way — tight on a
+       headline, open on body copy, where the eye has to find the next line. */
+    h1 { font-size: clamp(2.4rem, 5vw, 3.4rem); font-weight: 600; letter-spacing: -0.022em; line-height: 1.1; }
+    h2 { font-size: clamp(1.75rem, 3vw, 2.1rem); font-weight: 600; letter-spacing: -0.014em; line-height: 1.2; }
+    h3 { font-size: 1.3rem; font-weight: 600; letter-spacing: -0.006em; line-height: 1.3; }
+    h4 { font-size: 1.1rem; font-weight: 600; letter-spacing: 0; line-height: 1.35; }
 
     .eyebrow {
       font-family: var(--font-body);
@@ -195,25 +232,44 @@
       text-transform: uppercase;
     }
 
+    /* On a phone the line wrapped in two and took 53px. Slightly smaller and
+       tighter, it stays on one. */
+    @media (max-width: 480px) {
+      .top-bar { padding: 7px 12px; font-size: 0.66rem; letter-spacing: 0.04em; }
+    }
+
     .top-bar span {
       display: inline-flex;
       align-items: center;
       gap: 6px;
     }
 
-    header {
+    .site-header {
       position: sticky;
       top: 0;
-      background: rgba(250, 250, 247, 0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      background: var(--material-thin);
+      backdrop-filter: var(--material-blur);
+      -webkit-backdrop-filter: var(--material-blur);
       z-index: 100;
-      transition: box-shadow 0.3s ease;
     }
 
-    header.scrolled {
-      box-shadow: 0 4px 20px var(--shadow);
+    /* A 1px rule under floating chrome draws itself whether or not there is
+       anything to separate. A soft edge instead, faded in only once content
+       is actually passing underneath. */
+    .site-header::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 100%;
+      height: 20px;
+      pointer-events: none;
+      opacity: 0;
+      background: linear-gradient(to bottom, rgba(27, 27, 31, 0.08), transparent);
+      transition: opacity var(--resp) var(--spring);
     }
+
+    .site-header.scrolled::after { opacity: 1; }
 
     .header-content {
       max-width: 1180px;
@@ -278,6 +334,9 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-sm);
       cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: background-color var(--resp-press) var(--spring),
+                  transform var(--resp-press) var(--spring);
     }
 
     .nav-toggle span {
@@ -285,10 +344,11 @@
       height: 2px;
       background: var(--text);
       border-radius: 2px;
-      transition: transform 0.2s ease, opacity 0.2s ease;
+      transition: transform var(--resp) var(--spring), opacity var(--resp-press) var(--spring);
     }
 
     .nav-toggle:hover { background: var(--bg-sage-light); }
+    .nav-toggle[data-pressed] { transform: scale(0.94); }
     .nav-toggle:focus-visible { outline: 2px solid var(--primary-dark); outline-offset: 2px; }
 
     /* Turns into an X while the menu is open */
@@ -307,13 +367,35 @@
       margin: 0;
       padding: 6px;
       list-style: none;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
+      background: var(--material-thick);
+      backdrop-filter: var(--material-blur);
+      -webkit-backdrop-filter: var(--material-blur);
+      border: 1px solid var(--material-edge);
       border-radius: var(--radius);
-      box-shadow: 0 10px 30px var(--shadow-lg);
+      box-shadow: 0 14px 36px var(--shadow-lg);
+      /* The menu grows out of the button that opened it and shrinks back
+         into it, so the two read as one object rather than two. Scale and
+         blur move together, so it arrives as a material instead of a fade. */
+      transform-origin: top right;
+      transition: opacity var(--resp-press) var(--spring),
+                  transform var(--resp) var(--spring),
+                  backdrop-filter var(--resp) var(--spring),
+                  -webkit-backdrop-filter var(--resp) var(--spring),
+                  visibility var(--resp) var(--spring);
     }
 
-    .nav-menu[hidden] { display: none; }
+    /* display:none cannot animate, so the closed state is held open in the
+       box tree and hidden by visibility — which keeps it out of the
+       accessibility tree and off the tab order just the same. */
+    .nav-menu[hidden] {
+      display: block;
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.94) translateY(-6px);
+      backdrop-filter: blur(0) saturate(100%);
+      -webkit-backdrop-filter: blur(0) saturate(100%);
+    }
     .nav-menu li { margin: 0; }
     .nav-menu a { display: block; }
 
@@ -330,14 +412,22 @@
         min-width: 0;
         padding: 0;
         background: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
         border: 0;
         box-shadow: none;
+        /* Laid out inline at this width, so the dropdown's closed state must
+           be undone or the links vanish on a desktop screen. */
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+        transform: none;
       }
       .nav-menu a { white-space: nowrap; }
     }
 
     /* Reviews */
-    .stars { color: var(--accent-dark); letter-spacing: 2px; white-space: nowrap; }
+    .stars { color: #8A6440; letter-spacing: 2px; white-space: nowrap; }   /* 5.3:1 on white */
 
     .review-summary {
       display: flex;
@@ -402,6 +492,7 @@
     }
 
     .review-form textarea { min-height: 110px; resize: vertical; }
+    .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
     .review-form input:focus-visible,
     .review-form textarea:focus-visible {
@@ -491,9 +582,18 @@
       font-size: 0.95rem;
       cursor: pointer;
       border: none;
-      transition: all 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+      /* Named properties, not `all`: only transform and opacity are free on
+         the compositor, and `all` quietly animates layout too. */
+      transition: background-color var(--resp-press) var(--spring),
+                  color var(--resp-press) var(--spring),
+                  box-shadow var(--resp) var(--spring),
+                  transform var(--resp-press) var(--spring);
       text-decoration: none;
     }
+
+    /* Feedback belongs on the press, not the release. */
+    .btn[data-pressed] { transform: scale(0.97); }
 
     .btn-primary {
       background: var(--primary);
@@ -508,8 +608,10 @@
       box-shadow: 0 4px 12px var(--shadow);
     }
 
+    .btn-primary[data-pressed],
     .btn-primary:active {
-      transform: scale(0.98);
+      transform: scale(0.97);
+      box-shadow: 0 1px 4px var(--shadow);
     }
 
     .btn svg {
@@ -526,11 +628,11 @@
     }
 
     .page {
-      animation: fadeIn 0.4s ease-out;
+      animation: fadeIn var(--resp-slow) var(--spring);
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
+      from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
@@ -603,6 +705,8 @@
       margin: 0;
     }
 
+    .section-header p a { display: inline-block; padding: 10px 0; }
+
     .section-header p {
       color: var(--text-light);
       font-size: 0.95rem;
@@ -622,7 +726,13 @@
       cursor: pointer;
       display: flex;
       flex-direction: column;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform var(--resp-press) var(--spring);
     }
+
+    /* The card gives under the finger the instant it is touched, which is the
+       only feedback a touch screen gets — there is no hover there to borrow. */
+    .recipe-card[data-pressed] { transform: scale(0.98); }
 
     .recipe-card:focus-visible {
       outline: 3px solid var(--primary);
@@ -638,7 +748,7 @@
     }
 
     .recipe-card-image .card-gradient {
-      transition: transform 0.4s ease;
+      transition: transform var(--resp-slow) var(--spring);
     }
 
     .recipe-card:hover .card-gradient {
@@ -769,6 +879,43 @@
       border-bottom: 1px solid var(--border);
     }
 
+    .recipe-actions { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+
+    /* On a phone the floating print button sat on top of the ingredient
+       text. There it becomes an ordinary button beside the back link. */
+    .print-inline {
+      display: none;
+      align-items: center; gap: 7px;
+      min-height: 44px; padding: 0 14px;
+      font: inherit; font-size: 0.86rem; font-weight: 700; color: var(--text);
+      background: var(--white); border: 2px solid var(--text); border-radius: var(--radius);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform var(--resp-press) var(--spring);
+    }
+    .print-inline svg { width: 18px; height: 18px; }
+    .print-inline[data-pressed] { transform: scale(0.95); }
+    @media (max-width: 640px) {
+      .print-inline { display: inline-flex; }
+      .print-fab { display: none !important; }
+    }
+
+    .photo-note {
+      margin: 0; padding: 9px 12px;
+      font-size: 0.84rem; line-height: 1.45; color: var(--warning-text);
+      background: var(--warning-bg);
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    }
+    .recipe-hero-wrap { display: flex; flex-direction: column; min-width: 0; }
+    .recipe-hero-wrap.has-note .recipe-hero-image { border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+
+    .safety-note {
+      margin: 0 0 20px; font-size: 0.86rem; line-height: 1.55; color: var(--text-light);
+    }
+
+    /* the metric equivalent of a cup, pound or ounce measure */
+    .ingredient-metric { font-weight: 400; color: var(--text-light); white-space: nowrap; }
+
     .back-link {
       display: inline-flex;
       align-items: center;
@@ -777,8 +924,13 @@
       font-weight: 500;
       color: var(--text-light);
       text-decoration: none;
-      transition: color 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+      transform-origin: left center;
+      transition: color var(--resp-press) var(--spring),
+                  transform var(--resp-press) var(--spring);
     }
+
+    .back-link[data-pressed] { transform: scale(0.96); }
 
     .back-link:hover {
       color: var(--primary);
@@ -912,8 +1064,15 @@
       border-radius: var(--radius-sm);
       border: 1px solid var(--border-light);
       cursor: pointer;
-      transition: all 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+      transition: background-color var(--resp-press) var(--spring),
+                  border-color var(--resp-press) var(--spring),
+                  transform var(--resp-press) var(--spring);
     }
+
+    /* Barely there on purpose: a tick box is a small commitment, and a big
+       squash on a full-width row reads as the page lurching. */
+    .ingredient-item[data-pressed] { transform: scale(0.995); }
 
     .ingredient-item:hover {
       background: var(--bg-warm);
@@ -987,8 +1146,13 @@
       border: none;
       border-radius: var(--radius-sm);
       cursor: pointer;
-      transition: background 0.15s ease, color 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+      transition: background-color var(--resp-press) var(--spring),
+                  color var(--resp-press) var(--spring),
+                  transform var(--resp-press) var(--spring);
     }
+
+    .batch-btn[data-pressed] { transform: scale(0.93); }
 
     .batch-btn:hover {
       background: var(--bg-sage);
@@ -1030,7 +1194,8 @@
       border-radius: var(--radius);
       border: 1px solid var(--border-light);
       box-shadow: 0 1px 3px var(--shadow-sm);
-      transition: all 0.2s ease;
+      transition: border-color var(--resp) var(--spring),
+                  box-shadow var(--resp) var(--spring);
     }
 
     .instruction-step:hover {
@@ -1115,16 +1280,31 @@
     .bento-hero p { margin: 0; font-size: 0.96rem; line-height: 1.55; max-width: 42ch; }
 
     .level-key { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
-    .level-key span {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(255,255,255,.18);
-      border-radius: 999px; padding: 4px 11px;
-      font-size: 0.74rem; font-weight: 700;
+    /* These looked like buttons and did nothing. They are buttons now: each
+       one sets the level filter and takes you to the grid. Solid white with
+       dark text, because white on a tinted coral chip was under 3.6:1. */
+    .level-key button {
+      display: inline-flex; align-items: center; gap: 7px;
+      min-height: 44px;
+      background: var(--white); color: var(--text);
+      border: 0; border-radius: 999px; padding: 4px 14px;
+      font: inherit; font-size: 0.8rem; font-weight: 700;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: background-color var(--resp-press) var(--spring),
+                  transform var(--resp-press) var(--spring);
     }
+    .level-key button:hover { background: var(--butter); }
+    .level-key button[data-pressed] { transform: scale(0.95); }
+    .level-key button[aria-pressed="true"] { background: var(--text); color: var(--white); }
+    .level-key button:focus-visible { outline: 3px solid var(--white); outline-offset: 2px; }
     .level-key i { width: 11px; height: 11px; border-radius: 50%; display: block; }
 
     .bento-photo { border-radius: var(--radius-xl); overflow: hidden; min-height: 160px; background: var(--bg-warm); }
     /* span 2 unconditionally would force an implicit second column on phones */
+    a.bento-photo { display: block; -webkit-tap-highlight-color: transparent;
+      transition: transform var(--resp-press) var(--spring); }
+    a.bento-photo[data-pressed] { transform: scale(0.985); }
     .bento-photo--wide { grid-column: span 1; }
     @media (min-width: 720px){ .bento-photo--wide { grid-column: span 2; } }
     .bento-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -1145,15 +1325,60 @@
       font-size: 1.02rem; font-weight: 700; margin: 0 0 11px;
     }
     .ladder-row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .home-search { margin-top: 14px; max-width: 460px; position: relative; }
+    .home-search input {
+      width: 100%; min-height: 48px;
+      padding: 10px 14px 10px 44px;
+      font: inherit; font-size: 1rem; color: var(--text);
+      background: var(--white);
+      border: 2px solid var(--text); border-radius: var(--radius);
+    }
+    .home-search input::placeholder { color: var(--text-muted); opacity: 1; }
+    .home-search input:focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; }
+    .home-search svg {
+      position: absolute; left: 14px; top: 50%; width: 20px; height: 20px;
+      transform: translateY(-50%); color: var(--text-light); pointer-events: none;
+    }
+
+    /* On a phone the first recipe used to start 1,650px down. The header is
+       one row now; here the intro gives up its second photo, its count tile
+       and the duplicate level chips, and the level buttons run in a single
+       scrolling row instead of stacking four deep. */
+    @media (max-width: 640px) {
+      .bento { margin-bottom: 18px; }
+      .bento-hero { padding: 20px 20px 18px; }
+      .bento-hero .level-key, .bento-stat, a.bento-photo--wide { display: none; }
+      .bento-photo { min-height: 0; aspect-ratio: 16 / 9; }
+      .ladder { margin-bottom: 18px; }
+      .ladder-row {
+        flex-wrap: nowrap; overflow-x: auto;
+        margin-inline: -20px; padding: 4px 20px 10px;
+        scroll-snap-type: x proximity; scroll-padding-inline: 20px;
+        -webkit-overflow-scrolling: touch;
+        /* fades the right edge, so it is plain the row carries on */
+        mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent);
+        -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent);
+      }
+      .ladder-row { scrollbar-width: none; }
+      .ladder-row::-webkit-scrollbar { display: none; }
+      .lvl-btn { scroll-snap-align: start; white-space: nowrap; }
+      .home-search { max-width: none; }
+    }
     .lvl-btn {
+      min-height: 44px; flex: 0 0 auto;
       display: inline-flex; align-items: center; gap: 8px;
       font: inherit; font-size: 0.86rem; font-weight: 700;
       color: var(--text); background: var(--white);
       border: 2px solid var(--text); border-radius: var(--radius);
       padding: 8px 13px; cursor: pointer;
-      transition: background .15s ease, color .15s ease;
+      -webkit-tap-highlight-color: transparent;
+      transition: background-color var(--resp-press) var(--spring),
+                  color var(--resp-press) var(--spring),
+                  transform var(--resp-press) var(--spring);
     }
     .lvl-btn:hover { background: var(--bg-warm); }
+    .lvl-btn[data-pressed] { transform: scale(0.95); }
     .lvl-btn:focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; }
     .lvl-btn[aria-pressed="true"] { background: var(--text); color: var(--white); }
     .lvl-btn .dot {
@@ -1216,21 +1441,33 @@
     /* Texture is safety information, so it gets a tile rather than a tag. */
     /* Language switch — deliberately the same segmented shape as the batch
        size control, so the two read as the same kind of affordance. */
-    .lang-switch { display: flex; gap: 4px; margin-left: 14px; }
+    /* The switch is the last item of the menu. On a wide screen that puts it
+       at the end of the nav row, where it always was. On a phone it sits
+       inside the dropdown, which is what lets the header be one row instead
+       of two. */
+    .nav-lang { display: flex; align-items: center; margin-left: 10px; }
+    .lang-switch { display: flex; gap: 4px; }
     .lang-btn {
-      min-height: 34px; padding: 0 10px;
+      min-height: 44px; min-width: 44px; padding: 0 10px;
       border: 1.5px solid var(--border, #E6D9C8); border-radius: 999px;
       background: transparent; cursor: pointer;
       font-family: inherit; font-size: 0.78rem; font-weight: 700;
       color: var(--text-soft, #6B5B4B); line-height: 1; white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
+      transition: background-color var(--resp-press) var(--spring),
+                  border-color var(--resp-press) var(--spring),
+                  color var(--resp-press) var(--spring),
+                  transform var(--resp-press) var(--spring);
     }
     .lang-btn:hover { border-color: var(--coral); color: var(--coral); }
+    .lang-btn[data-pressed] { transform: scale(0.93); }
     .lang-btn.is-active { background: var(--coral); border-color: var(--coral); color: #fff; }
     .lang-btn:focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; }
-    @media (max-width: 860px) {
-      /* Inside the drawer the nav stacks, so the switch sits on its own row. */
-      .lang-switch { margin: 10px 0 0; }
-      .lang-btn { min-height: 44px; flex: 1; }
+    @media (max-width: 759px) {
+      .nav-menu a { padding: 12px 14px; font-size: 0.95rem; }
+      .nav-lang { margin: 6px 0 0; padding: 8px 4px 2px; border-top: 1px solid var(--border); }
+      .lang-switch { flex: 1; }
+      .lang-btn { flex: 1; }
     }
 
     /* About — photo and text sit side by side, stacking on a phone. The
@@ -1568,7 +1805,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--white);
+      /* colour is set inline from the level: white fails on the yellow,
+         orange, green and pink discs, so those carry dark numerals */
       font-family: var(--font-display);
       font-size: 1.6rem;
       font-weight: 700;
@@ -1628,6 +1866,15 @@
     .guide-note p {
       margin-bottom: 0;
     }
+    .guide-note p + p { margin-top: 10px; }
+
+    /* A button that reads as a link, for "show all recipes" inside a sentence. */
+    .link-btn {
+      font: inherit; color: var(--primary-dark); background: none; border: 0; padding: 0;
+      text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
+    }
+
+    #ladder-heading { scroll-margin-top: 96px; }
 
     /* Print Button */
     .print-fab {
@@ -1645,13 +1892,25 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.3s ease;
+      -webkit-tap-highlight-color: transparent;
+      /* --spring-bounce is deliberately not used here. Overshoot is earned by
+         momentum the person supplied — a flick, a throw — and a tap on a
+         button supplies none. Nothing on this site is drag-driven yet, so the
+         bounce curve stays defined and unused rather than sprinkled on. */
+      transition: background-color var(--resp-press) var(--spring),
+                  box-shadow var(--resp) var(--spring),
+                  transform var(--resp-press) var(--spring);
       z-index: 50;
     }
 
     .print-fab:hover {
       background: var(--primary-dark);
       transform: scale(1.08);
+    }
+
+    .print-fab[data-pressed] {
+      transform: scale(0.92);
+      box-shadow: 0 2px 8px var(--shadow-lg);
     }
 
     .print-fab svg {
@@ -1711,6 +1970,9 @@
       color: var(--text);
       text-decoration: none;
       font-size: 0.95rem;
+      /* a 19px-tall link is a hard thing to hit with an unsteady hand */
+      display: inline-block;
+      padding: 12px 0;
     }
 
     .footer-links a:hover {
@@ -1725,6 +1987,16 @@
       border-top: 1px solid var(--border);
     }
 
+    .footer-care {
+      max-width: 760px; margin: 0 auto 18px;
+      color: var(--text-light); font-size: 0.9rem; line-height: 1.6;
+    }
+    .footer-credit {
+      max-width: 760px; margin: 10px auto 0;
+      font-size: 0.78rem; line-height: 1.55;
+    }
+    .footer-credit a { color: inherit; }
+
     /* Print Styles */
     @media print {
       body {
@@ -1733,7 +2005,8 @@
         color: black;
       }
 
-      .top-bar, header, footer, .print-fab, .skip-link, .trust-banner {
+      .top-bar, .site-header, footer, .print-fab, .print-inline, .skip-link, .trust-banner,
+      .home-search, .safety-note a {
         display: none !important;
       }
 
@@ -1826,8 +2099,9 @@
       }
 
       .header-content {
-        padding: 12px 20px;
+        padding: 8px 20px;
         gap: 10px;
+        flex-wrap: nowrap;
       }
 
       .logo-text {
@@ -1942,6 +2216,146 @@
     html[lang="zh-Hans"] body { line-height: 1.75; }
     html[lang="zh-Hans"] p { line-height: 1.8; }
 
+    /* Negative tracking is a Latin correction — it closes gaps that open up
+       between letterforms as they grow. CJK glyphs sit on a fixed body and
+       have no such gaps, so the same value just crowds them. */
+    html[lang="zh-Hans"] :is(h1, h2, h3, h4) { letter-spacing: 0; }
+
+    /* The heading stack is a Latin serif, which carries no Chinese glyphs, so
+       Chinese headings were falling through to whatever serif the OS happened
+       to have — a different face on every machine. Noto is already loaded for
+       this language; headings use it too, matching what the display elements
+       below already do. */
+    html[lang="zh-Hans"] :is(h1, h2, h3, h4) { font-family: var(--font-display); }
+
+    /* ---- Page transitions ---------------------------------------------
+       Moving between pages is a View Transition. Three things take part:
+
+       · the page itself fades through — the old one out quickly, the new one
+         in with a short rise — so a change of page reads as a change;
+       · the header and the top bar are named, which keeps them out of that
+         fade. Chrome that flickers on every click says "new site", and this
+         is the same site;
+       · a recipe's photo is one object. It grows out of the card that was
+         pressed into the recipe page, and on the way back it shrinks into
+         the same card, along the same path.
+
+       Browsers without the API skip all of this and get the plain .page
+       fade further up. */
+    .site-header { view-transition-name: site-header; }
+    .top-bar { view-transition-name: top-bar; }
+
+    /* The overlay must never swallow a tap: someone who presses the next
+       thing while this is still settling should get the next thing. */
+    ::view-transition { pointer-events: none; }
+
+    ::view-transition-old(root) { animation: vt-out var(--resp-press) var(--spring) both; }
+    ::view-transition-new(root) { animation: vt-in var(--resp) var(--spring) both; }
+
+    @keyframes vt-out { to { opacity: 0; } }
+    @keyframes vt-in { from { opacity: 0; transform: translateY(8px); } }
+    @keyframes vt-fade { from { opacity: 0; } }
+
+    /* Filtering the grid is not a change of page, so nothing travels: the
+       browser's own cross-fade, which holds unchanged pixels perfectly still. */
+    html.vt-quiet::view-transition-old(root),
+    html.vt-quiet::view-transition-new(root) {
+      animation-name: -ua-view-transition-fade-out;
+      animation-duration: var(--resp-press);
+    }
+    html.vt-quiet::view-transition-new(root) { animation-name: -ua-view-transition-fade-in; }
+
+    ::view-transition-group(site-header) {
+      animation-duration: var(--resp);
+      animation-timing-function: var(--spring);
+    }
+    ::view-transition-old(site-header) { display: none; }
+    ::view-transition-new(site-header) { animation: none; }
+
+    /* The top bar scrolls away with the page, so on the way to a new page it
+       can be thousands of pixels above the screen. Left to travel, it would
+       drop the whole distance in a third of a second. It is simply in place,
+       and the header — which was covering that strip — slides down off it. */
+    ::view-transition-group(top-bar) { animation: none; }
+
+    ::view-transition-group(recipe-photo) {
+      animation-duration: var(--resp-slow);
+      animation-timing-function: var(--spring);
+    }
+    /* Card and hero are the same 4:3 crop of the same file, so the two
+       snapshots can simply fill the moving frame. */
+    ::view-transition-old(recipe-photo),
+    ::view-transition-new(recipe-photo) {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation-duration: var(--resp);
+    }
+
+    /* Reduced motion does not mean no feedback — it means feedback without
+       the part that moves you. Travel, scale and overshoot go; opacity and
+       colour stay, so a press still answers. Blanking every transition to
+       0.01ms, which is what this used to do, took the answer away too. */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 140ms !important;
+        transition-timing-function: linear !important;
+      }
+
+      .page { animation: none; }
+
+      /* Pages cross-fade and nothing travels. The script also declines to
+         pair the photos, so there is no growing or shrinking either. */
+      ::view-transition-group(*) { animation-duration: 0.01ms !important; }
+      ::view-transition-old(root) { animation: vt-out 140ms linear both; }
+      ::view-transition-new(root) { animation: vt-fade 140ms linear both; }
+
+      /* The hamburger's rotation into an X is state, not decoration, so it
+         is deliberately not in this list. */
+      .btn:hover, .btn[data-pressed], .btn:active,
+      .btn-primary:hover, .btn-primary:active,
+      .print-fab:hover, .print-fab[data-pressed],
+      .recipe-card:hover .card-gradient,
+      .recipe-card[data-pressed],
+      .lvl-btn[data-pressed], .batch-btn[data-pressed],
+      .lang-btn[data-pressed], .nav-toggle[data-pressed],
+      .ingredient-item[data-pressed], .back-link[data-pressed],
+      .level-key button[data-pressed], .print-inline[data-pressed], a.bento-photo[data-pressed],
+      .instruction-step:hover,
+      .nav-menu, .nav-menu[hidden] {
+        transform: none !important;
+      }
+    }
+
+    /* Translucency is a nicety; reading the page is not. When someone has
+       asked for less of it, the materials go solid and the blur comes off. */
+    @media (prefers-reduced-transparency: reduce) {
+      .site-header, .nav-menu {
+        background: var(--bg-card);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+      .site-header { border-bottom: 1px solid var(--border); }
+    }
+
+    @media (prefers-contrast: more) {
+      .site-header, .nav-menu {
+        background: var(--white);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+      .site-header { border-bottom: 1px solid var(--text); }
+      .nav-menu { border-color: var(--text); }
+      .ingredient-item, .instruction-step, .meta-card, .recipe-card-image {
+        border-color: var(--text-light);
+      }
+    }
+
+
   </style>
 </head>
 <body>
@@ -1954,7 +2368,7 @@
     </span>
   </div>
 
-  <header id="header">
+  <header id="header" class="site-header">
     <div class="header-content">
       <a href="/" class="logo" aria-label="Amazing Recipes - Home">
         <div class="logo-icon">
@@ -1975,12 +2389,14 @@
           <li><a href="/texture-guide" data-i18n="nav.guide">Texture Guide</a></li>
           <li><a href="/reviews" data-i18n="nav.reviews">Reviews</a></li>
           <li><a href="/about" data-i18n="nav.about">About</a></li>
+          <li class="nav-lang">
+            <div class="lang-switch" role="group" aria-label="Language" data-i18n-aria="lang.label">
+              <button type="button" class="lang-btn is-active" data-lang="en" lang="en" aria-pressed="true" onclick="setLang('en')">EN</button>
+              <button type="button" class="lang-btn" data-lang="fr" lang="fr" aria-pressed="false" onclick="setLang('fr')">FR</button>
+              <button type="button" class="lang-btn" data-lang="zh" lang="zh-Hans" aria-pressed="false" onclick="setLang('zh')">中文</button>
+            </div>
+          </li>
         </ul>
-        <div class="lang-switch" role="group" aria-label="Language">
-          <button type="button" class="lang-btn is-active" data-lang="en" aria-pressed="true" onclick="setLang('en')">EN</button>
-          <button type="button" class="lang-btn" data-lang="fr" aria-pressed="false" onclick="setLang('fr')">FR</button>
-          <button type="button" class="lang-btn" data-lang="zh" aria-pressed="false" onclick="setLang('zh')">中文</button>
-        </div>
       </nav>
     </div>
   </header>
@@ -1993,11 +2409,11 @@
       <h1>Banana Orange Smoothie</h1>
       <p>A simple, creamy banana and orange smoothie with Greek yogurt — smooth, pourable, and naturally sweet.</p>
       <div class="fact-row">
-      <div class="fact"><b>Time</b><span>0 minutes</span></div>
+      <div class="fact"><b>Time</b><span>5 min</span></div>
       <div class="fact"><b>Serves</b><span>2</span></div>
       <div class="fact"><b>Effort</b><span>Easy</span></div>
       </div></div>
-      <div class="recipe-hero-image" style="background:#D8BE9C"><img src="/assets/banana-smoothie-800.jpg" alt="A tall glass of pale, creamy banana smoothie with a striped straw." width="800" height="600"></div>
+      <div class="recipe-hero-wrap"><div class="recipe-hero-image" style="background:#D8BE9C"><picture style="background:#D8BE9C"><source type="image/webp" srcset="/assets/banana-smoothie-400.webp?v=2 400w, /assets/banana-smoothie-800.webp?v=2 800w, /assets/banana-smoothie-1200.webp?v=2 1200w" sizes="(max-width: 860px) calc(100vw - 40px), 520px"><img src="/assets/banana-smoothie-800.jpg?v=2" srcset="/assets/banana-smoothie-400.jpg?v=2 400w, /assets/banana-smoothie-800.jpg?v=2 800w, /assets/banana-smoothie-1200.jpg?v=2 1200w" sizes="(max-width: 860px) calc(100vw - 40px), 520px" alt="A tall glass of pale, creamy banana smoothie with a striped straw." width="1200" height="900" loading="eager" decoding="async" fetchpriority="high"></picture></div></div>
       </div>
       <div class="texture-tile" style="background:#8A6A12">
       <b>Texture level</b>
@@ -2006,6 +2422,7 @@
       <p>Suitable for anyone who finds food hard to chew or swallow. Graded IDDSI Level 3 (Liquidised) &mdash; smooth &amp; drinkable &mdash; the texture standard used in dysphagia care and soft diets.</p>
       <a href="/texture-guide">See all texture levels</a>
       </div>
+      <p class="safety-note">Texture levels on this site are a starting point, not a clinical assessment. A speech-language pathologist or dietitian should confirm the right level for the person you are cooking for.</p>
       </div>
       <section class="recipe-section"><h2>Ingredients</h2><ul class="ingredients-list">
       <li class="ingredient-item"><span class="ingredient-amount">1</span> Banana</li>
@@ -2050,6 +2467,7 @@
           <ul>
             <li><a href="/" data-i18n="foot.all">All Recipes</a></li>
             <li><a href="/texture-guide" data-i18n="nav.guide">Texture Guide</a></li>
+            <li><a href="/reviews" data-i18n="nav.reviews">Reviews</a></li>
             <li><a href="/about" data-i18n="nav.about">About</a></li>
           </ul>
         </div>
@@ -2059,12 +2477,16 @@
         </div>
       </div>
       <div class="footer-info">
+        <p class="footer-care" data-i18n="guide.disclaimer">Texture levels on this site are a starting point, not a clinical assessment. A speech-language pathologist or dietitian should confirm the right level for the person you are cooking for.</p>
         <p>Amazing Recipes &copy; 2026. Cooking that stays gentle, for whoever is at the table.</p>
+        <!-- The attribution IDDSI asks for, in its own words, so it stays in English in every language. -->
+        <p class="footer-credit" lang="en">The IDDSI Framework and Descriptors: &copy; The International Dysphagia Diet Standardisation Initiative 2019 @ <a href="https://iddsi.org/" rel="noopener">https://iddsi.org/</a>. Licensed under the CreativeCommons Attribution Sharealike 4.0 License <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode" rel="noopener license">https://creativecommons.org/licenses/by-sa/4.0/legalcode</a>. Derivative works extending beyond language translation are NOT PERMITTED.</p>
+        <p class="footer-credit" data-i18n="foot.independent">This site is independent. It is not affiliated with or endorsed by IDDSI.</p>
       </div>
     </div>
   </footer>
 
-  <button class="print-fab" id="print-btn" aria-label="Print recipe" style="display: none;">
+  <button class="print-fab" id="print-btn" aria-label="Print recipe" data-i18n-aria="print" style="display: none;">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <polyline points="6 9 6 2 18 2 18 9"/>
       <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
@@ -2092,7 +2514,7 @@
         dysphagia: 6,
         image: "/assets/spicy-creamy-ditalini",
         imageAlt: "A plate of small ditalini pasta tubes coated in a creamy orange tomato sauce, with basil leaves.",
-        imageBg: "#B99062",
+        imageBg: "#BE9D77",
         color: "#D4663F",
         ingredients: [
           { amount: "300 g", item: "Ditalini", note: "Or tubetti. The short tube is the point \u2014 see the serving tips" },
@@ -2151,7 +2573,7 @@
         dysphagia: 7,
         image: "/assets/cherry-tomato-pasta",
         imageAlt: "A bowl of long pasta tossed with burst cherry tomatoes, basil and shaved parmesan.",
-        imageBg: "#C9A68D",
+        imageBg: "#BB8E73",
         color: "#C9472F",
         ingredients: [
           { amount: "500 g", item: "Cherry tomatoes", note: "Left whole; they burst as they cook" },
@@ -2248,6 +2670,7 @@
       {
         id: 39,
         slug: "red-braised-pork-belly",
+        photoDiffers: true,   // the photo is styled differently from what is graded; see servingTips
         cuisine: "Chinese",
         datePublished: "2026-10-27",
         title: "Red-Braised Pork Belly",
@@ -2312,6 +2735,7 @@
       {
         id: 38,
         slug: "tomato-egg-stir-fry",
+        photoDiffers: true,   // the photo is styled differently from what is graded; see servingTips
         cuisine: "Chinese",
         datePublished: "2026-10-27",
         title: "Tomato and Egg Stir-Fry",
@@ -3945,6 +4369,7 @@
       {
         id: 35,
         slug: "banana-custard",
+        photoDiffers: true,   // the photo is styled differently from what is graded; see servingTips
         datePublished: "2026-09-27",
         title: "Banana Custard",
         description: "Ripe banana blended into smooth vanilla custard and sieved until there is nothing left to chew. Three ingredients and no cooking.",
@@ -3989,6 +4414,7 @@
       {
         id: 36,
         slug: "creamy-tomato-soup",
+        photoDiffers: true,   // the photo is styled differently from what is graded; see servingTips
         datePublished: "2026-09-27",
         title: "Creamy Tomato Soup",
         description: "Tomato soup enriched with cream and pur\u00e9e, then blended and strained until no seeds or skins remain.",
@@ -4086,12 +4512,36 @@
     let currentRoute = '/';
     let checkedIngredients = {};
     let batchMultiplier = 1;
+    let appRendered = false;   // false until the app has drawn over the prerendered page once
+
+    /* Ticked ingredients survive a reload or a change of language, which is
+       when people lose their place. They lapse after twelve hours, so nobody
+       opens a recipe next week to find it half ticked off. */
+    const TICKS_KEY = 'ar-ticks';
+    const TICKS_TTL = 12 * 60 * 60 * 1000;
+    (function loadTicks() {
+      try {
+        const raw = JSON.parse(localStorage.getItem(TICKS_KEY) || '{}');
+        Object.keys(raw).forEach(slug => {
+          if (raw[slug] && Date.now() - raw[slug].at < TICKS_TTL) checkedIngredients[slug] = raw[slug].on || {};
+        });
+      } catch (e) {}
+    })();
+    function saveTicks(slug) {
+      try {
+        const raw = JSON.parse(localStorage.getItem(TICKS_KEY) || '{}');
+        raw[slug] = { at: Date.now(), on: checkedIngredients[slug] };
+        localStorage.setItem(TICKS_KEY, JSON.stringify(raw));
+      } catch (e) {}
+    }
 
     const mainContent = document.getElementById('main-content');
     const header = document.getElementById('header');
     const printBtn = document.getElementById('print-btn');
 
     const icons = {
+      search: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
+      printer: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>',
       beef: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 2.5c2 1 3.5 3.5 3.5 6.5 0 4-3 7-6.5 8.5"/><path d="M8.5 2.5C6.5 3.5 5 6 5 9c0 4 3 7 6.5 8.5"/><circle cx="12" cy="9" r="3"/></svg>',
       stew: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"/><line x1="6" y1="17" x2="18" y2="17"/></svg>',
       soup: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M8 4h8"/><path d="M6 8h12a2 2 0 0 1 2 2v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-8a2 2 0 0 1 2-2z"/></svg>',
@@ -4146,10 +4596,10 @@
       'nav.open': 'Open menu',
       'nav.close': 'Close menu',
       'home.h1': 'Amazing Recipes — every recipe graded to an IDDSI texture level',
-      'home.lede': 'Soft, fork-tender cooking for anyone who needs food that is easy to chew and swallow. Every recipe carries the IDDSI texture level it is safe at.',
-      'hero.eyebrow': 'IDDSI levels 3 to 7',
+      'home.lede': 'Soft, fork-tender cooking for anyone who needs food that is easy to chew and swallow. Every recipe carries the IDDSI texture level it is graded to.',
+      'hero.eyebrow': 'IDDSI levels 2 to 7',
       'hero.title': 'Every recipe graded for texture',
-      'hero.lede': 'From liquidised to easy to chew — so you always know how soft a dish actually is before you cook it.',
+      'hero.lede': 'From thickened drinks to easy to chew — so you always know how soft a dish actually is before you cook it.',
       'back': 'Back to All Recipes',
       'fact.time': 'Time',
       'fact.serves': 'Serves',
@@ -4172,7 +4622,7 @@
       'nut.sodium': 'Sodium',
       'nut.cholesterol': 'Cholesterol',
       'mixed.warn': 'Solids and liquid separate in this dish.',
-      'mixed.note': 'Not considered safe at Levels 4 to 6 as written.',
+      'mixed.note': 'Left as it is, that is not safe at Levels 4 to 6. The level shown here assumes you do the following.',
       'guide.h1': 'Understanding IDDSI texture levels',
       'guide.lede': 'The IDDSI framework grades food and drink from Level 0 to Level 7. These are the levels used on this site.',
       'reviews.h1': 'Reviews',
@@ -4194,7 +4644,7 @@
       'nut.sodium.flag': 'On the sodium:',
       'review.loadingList': 'Loading reviews…',
       'time.freezing': '(freezing)',
-      'hero.count': 'recipes across five texture levels. Pick a level to narrow them.',
+      'hero.count': 'recipes across {n} texture levels. Pick a level to narrow them.',
       'ladder.title': 'Which texture level do you need?',
       'ladder.all': 'All levels',
       'card.mixed': 'Needs blending or thickening',
@@ -4214,6 +4664,24 @@
       'foot.levels.item': 'Level {n} &mdash; {name}',
       'filter.level': '{n} recipes at Level {level}, {name}',
       'filter.all': 'Showing all {n} recipes',
+      'filter.search': '{n} recipes match “{q}”',
+      'search.label': 'Search recipes',
+      'search.placeholder': 'Search by dish or ingredient',
+      'grid.empty.title': 'No recipes match.',
+      'grid.empty.body': 'Try another level or a different word, or',
+      'grid.empty.reset': 'show all {n} recipes',
+      'card.aria': 'View recipe for {title}',
+      'guide.empty': 'No recipes at this level yet.',
+      'guide.official': 'The level summaries above are this site’s own plain-language wording. The official descriptors and testing methods are published by IDDSI:',
+      'foot.independent': 'This site is independent. It is not affiliated with or endorsed by IDDSI.',
+      'photo.differs': 'The photo is not exactly the version graded here. Read the serving tips before you cook.',
+      'print': 'Print recipe',
+      'print.short': 'Print',
+      'review.stars.one': '{n} star',
+      'nf.recipe.h1': 'Recipe not found',
+      'nf.recipe.p': 'That recipe is not here. It may have been renamed.',
+      'nf.page.h1': 'Page not found',
+      'nf.page.p': 'There is nothing at this address.',
       'summary': 'Suitable for anyone who finds food hard to chew or swallow. Graded IDDSI Level {n} ({name}) — {plain} — the texture standard used in dysphagia care and soft diets.'
     };
 
@@ -4242,6 +4710,29 @@
       fr: { hour: 'heure', hours: 'heures', minute: 'minute', minutes: 'minutes' },
       zh: { hour: '小时', hours: '小时', minute: '分钟', minutes: '分钟' }
     };
+
+    /* What a cook wants from "Time" is how long until it is on the table, so
+       cards and recipe pages show preparation and cooking together — the same
+       total search engines are given. Short units, held together with
+       non-breaking spaces, so a narrow tile breaks between "1 hr" and
+       "20 min" and never inside either. */
+    const CLOCK_UNITS = {
+      en: { h: 'hr', m: 'min' },
+      fr: { h: 'h', m: 'min' },
+      zh: { h: '小时', m: '分钟' }
+    };
+
+    function clock(minutes) {
+      const u = CLOCK_UNITS[lang] || CLOCK_UNITS.en;
+      const h = Math.floor(minutes / 60), m = minutes % 60;
+      return [h ? h + '\u00A0' + u.h : '', m ? m + '\u00A0' + u.m : ''].filter(Boolean).join(' ');
+    }
+
+    function totalTime(recipe) {
+      const minutes = durationMinutes(recipe.prepTime) + durationMinutes(recipe.cookTime);
+      if (!minutes) return duration(recipe.cookTime);
+      return clock(minutes) + (/\(freezing\)/i.test(recipe.cookTime || '') ? ' ' + t('time.freezing') : '');
+    }
 
     function duration(text) {
       const words = DURATION_WORDS[lang];
@@ -4326,14 +4817,41 @@
       return merged;
     }
 
+    /* The French and Chinese text is a third of a megabyte, and an English
+       reader never needs it. It is fetched the first time someone asks for
+       another language (or returns having chosen one), not on every visit. */
+    let packLoading = null;
+    function loadPack() {
+      if (window.AR_I18N) return Promise.resolve();
+      if (!packLoading) {
+        packLoading = new Promise((resolve, reject) => {
+          const tag = document.createElement('script');
+          tag.src = '/i18n.js';
+          tag.onload = resolve;
+          tag.onerror = () => { packLoading = null; tag.remove(); reject(new Error('language pack unavailable')); };
+          document.head.appendChild(tag);
+        });
+      }
+      return packLoading;
+    }
+
     function setLang(next) {
       if (LANGS.indexOf(next) === -1) next = 'en';
+      if (next !== 'en' && !window.AR_I18N) {
+        /* Offline, or the file failed: stay in the language already showing. */
+        loadPack().then(() => setLang(next), () => {});
+        return;
+      }
       lang = next;
       document.documentElement.lang = HTML_LANG[next];
       try { localStorage.setItem(LANG_KEY, next); } catch (e) {}
       applyStaticText();
       syncLangButtons();
-      if (typeof router === 'function') router();
+      /* Changing language is not a change of page: the reader keeps their
+         place, their batch size and their keyboard focus. */
+      if (typeof router === 'function') {
+        router(appRendered ? { restoreScroll: window.scrollY, keepBatch: true, keepFocus: true } : undefined);
+      }
     }
 
     /* The header and footer are static markup rather than rendered from data,
@@ -4361,6 +4879,7 @@
         name: 'Mildly Thick',
         plain: 'Thickened Drink',
         color: '#E0699F',
+        ink: '#1B1B1F',
         deep: '#8E3560',
         desc: 'Flows off a spoon but noticeably slower than water. Sipped from a cup or through a wide straw, and it leaves a light coating as it moves. A drink level rather than a food one.'
       },
@@ -4368,6 +4887,7 @@
         name: 'Liquidised',
         plain: 'Smooth & Drinkable',
         color: '#F2C230',
+        ink: '#1B1B1F',
         deep: '#8A6A12',
         desc: 'Pours smoothly like a thick drinkable soup. No lumps, no bits, and no chewing at all. Can be taken from a cup or spoon, and should not hold its shape on the plate.'
       },
@@ -4375,6 +4895,7 @@
         name: 'Pureed',
         plain: 'Smooth Purée, No Chewing',
         color: '#5FAE55',
+        ink: '#1B1B1F',
         deep: '#2E6B34',
         desc: 'Completely smooth and thick enough to hold its shape on a spoon, but soft enough to need no chewing. Should never be sticky, lumpy, or stringy.'
       },
@@ -4382,13 +4903,15 @@
         name: 'Minced & Moist',
         plain: 'Soft, Minced & Easy to Swallow',
         color: '#F0902D',
+        ink: '#1B1B1F',
         deep: '#8B4E13',
         desc: 'Soft, moist, and finely minced into very small pieces that mash easily with light pressure from a fork. Any sauce or gravy should cling rather than separate.'
       },
       6: {
         name: 'Soft & Bite-Sized',
         plain: 'Soft & Bite-Sized, Easy to Chew',
-        color: '#1F7FBE',
+        color: '#1C76B1',   // a touch deeper than #1F7FBE so white numerals reach 4.9:1
+        ink: '#FFFFFF',
         deep: '#155A88',
         desc: 'Tender, moist bite-sized pieces that break apart under a fork without needing a knife. Some chewing is required, but nothing should be tough, fibrous, or dry.'
       },
@@ -4396,6 +4919,7 @@
         name: 'Easy to Chew',
         plain: 'Easy to Chew',
         color: '#1a1a1a',
+        ink: '#FFFFFF',
         deep: '#1a1a1a',
         desc: 'Everyday soft foods at normal portion size. Normal chewing ability is needed, but hard, crunchy, stringy, and dry textures are avoided.'
       }
@@ -4428,28 +4952,87 @@
 
     // Renders a responsive, lazily-loaded photo when the recipe has one.
     // If the file is missing the <img> removes itself, leaving the gradient + icon fallback.
+    /* Photos are cached for a year under their own name, so a replaced photo
+       never reached anyone who had already seen the old one. Bump this when
+       any photo file changes and every reader fetches the new set once.
+       prerender.py reads the same number. */
+    const IMAGE_VERSION = 2;
+
     function recipePhoto(recipe, sizes, eager) {
       if (!recipe.image) return '';
       const widths = [400, 800, 1200];
-      const srcset = w => widths.map(n => `${recipe.image}-${n}.${w} ${n}w`).join(', ');
+      const v = '?v=' + IMAGE_VERSION;
+      const srcset = w => widths.map(n => `${recipe.image}-${n}.${w}${v} ${n}w`).join(', ');
       const tone = recipe.imageBg || 'var(--bg-warm)';
       return `
         <picture style="background:${tone}">
           <source type="image/webp" srcset="${srcset('webp')}" sizes="${sizes}">
-          <img src="${recipe.image}-800.jpg"
+          <img src="${recipe.image}-800.jpg${v}"
                srcset="${srcset('jpg')}"
                sizes="${sizes}"
                alt="${recipe.imageAlt || recipe.title}"
                width="1200" height="900"
                loading="${eager ? 'eager' : 'lazy'}"
                decoding="async"
-               onerror="const p=this.closest('picture'),h=p.closest('.recipe-hero-image');(h||p).remove()">
+               onerror="const p=this.closest('picture');(p.closest('.recipe-hero-wrap')||p.closest('.recipe-hero-image')||p).remove()">
         </picture>
       `;
     }
 
     // Level filter state. null = show everything.
     let activeLevel = null;
+    let searchQuery = '';
+
+    /* The filter is part of the address (/?level=4&q=egg), so a filtered list
+       can be bookmarked, shared, and survives a reload. */
+    (function readHomeState() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const level = Number(params.get('level'));
+        if (IDDSI_LEVELS[level]) activeLevel = level;
+        searchQuery = (params.get('q') || '').slice(0, 60);
+      } catch (e) {}
+    })();
+
+    function syncHomeUrl() {
+      if (currentRoute !== '/') return;
+      const params = new URLSearchParams();
+      if (activeLevel) params.set('level', activeLevel);
+      if (searchQuery.trim()) params.set('q', searchQuery.trim());
+      const query = params.toString();
+      const next = window.location.pathname + (query ? '?' + query : '');
+      if (next !== window.location.pathname + window.location.search) history.replaceState(history.state, '', next);
+    }
+
+    /* Matched against the dish name, its description and its ingredients, in
+       the language on screen and in English, so "congee" finds 白粥 too. */
+    function haystack(recipe) {
+      const shown = RC(recipe);
+      return [recipe.title, shown.title, shown.description]
+        .concat(shown.ingredients.map(i => i.item), recipe.ingredients.map(i => i.item))
+        .join(' ').toLowerCase();
+    }
+
+    function visibleRecipes() {
+      const q = searchQuery.trim().toLowerCase();
+      return recipes.filter(r =>
+        (!activeLevel || r.dysphagia === activeLevel) && (!q || haystack(r).indexOf(q) !== -1));
+    }
+
+    function filterStatus() {
+      const n = visibleRecipes().length;
+      const q = searchQuery.trim();
+      if (q) return t('filter.search', { n: n, q: q });
+      return activeLevel
+        ? t('filter.level', { n: n, level: activeLevel, name: L(activeLevel).name })
+        : t('filter.all', { n: n });
+    }
+
+    function cardKey(event, card) {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();   // Space would otherwise scroll the page
+      navigateTo('/recipe/' + card.dataset.slug, card);
+    }
 
     function levelCounts() {
       const counts = {};
@@ -4461,8 +5044,8 @@
       const recipe = RC(source);
       const info = L(recipe.dysphagia);
       return `
-        <article class="recipe-card" tabindex="0" role="button" aria-label="View recipe for ${recipe.title}"
-          onclick="navigateTo('/recipe/${recipe.slug}')" onkeypress="if(event.key==='Enter')navigateTo('/recipe/${recipe.slug}')">
+        <article class="recipe-card" data-slug="${recipe.slug}" tabindex="0" role="button" aria-label="${t('card.aria', { title: recipe.title })}"
+          onclick="navigateTo('/recipe/${recipe.slug}', this)" onkeydown="cardKey(event, this)">
           <div class="recipe-card-image" style="background:${recipe.imageBg || 'var(--bg-warm)'}">
             <div class="card-gradient">${icons[recipe.icon] || icons.stew}</div>
             ${recipePhoto(recipe, '(max-width: 640px) calc(100vw - 40px), (max-width: 1024px) calc(50vw - 38px), 360px')}
@@ -4476,7 +5059,7 @@
             <p>${recipe.description}</p>
             ${MIXED_CONSISTENCY[recipe.slug] ? `<span class="mixed-flag">${t('card.mixed')}</span>` : ''}
             <div class="recipe-card-meta">
-              <span>${icons.clock} ${duration(recipe.cookTime)}</span>
+              <span>${icons.clock} ${totalTime(recipe)}</span>
               <span>${icons.users} ${recipe.servings} ${t('serves')}</span>
               <span>${difficulty(recipe.difficulty)}</span>
             </div>
@@ -4486,33 +5069,56 @@
     }
 
     function renderRecipeGrid() {
-      const shown = activeLevel ? recipes.filter(r => r.dysphagia === activeLevel) : recipes;
+      const shown = visibleRecipes();
       if (!shown.length) {
         return `
           <div class="grid-empty">
-            <strong>No recipes at Level ${activeLevel} yet.</strong>
-            <p>Try another level, or <button type="button" class="link-btn" onclick="setLevel(null)">show all ${recipes.length} recipes</button>.</p>
+            <strong>${t('grid.empty.title')}</strong>
+            <p>${t('grid.empty.body')} <button type="button" class="link-btn" onclick="resetFilters()">${t('grid.empty.reset', { n: recipes.length })}</button>.</p>
           </div>
         `;
       }
       return shown.map(recipeCard).join('');
     }
 
-    function setLevel(level) {
-      activeLevel = level;
-      document.querySelectorAll('.lvl-btn').forEach(btn => {
+    function syncFilterControls() {
+      document.querySelectorAll('.lvl-btn, .level-key button').forEach(btn => {
         const v = btn.dataset.level === 'all' ? null : Number(btn.dataset.level);
         btn.setAttribute('aria-pressed', v === activeLevel ? 'true' : 'false');
       });
+      const status = document.getElementById('filter-status');
+      if (status) status.textContent = filterStatus();
+      syncHomeUrl();
+    }
+
+    function setLevel(level) {
+      activeLevel = level;
+      const grid = document.getElementById('recipe-grid');
+      if (grid) quietTransition(() => { grid.innerHTML = renderRecipeGrid(); });
+      syncFilterControls();
+    }
+
+    /* The chips in the hero: choose the level, then bring the grid to it. */
+    function pickLevel(level) {
+      setLevel(activeLevel === level ? null : level);
+      const heading = document.getElementById('ladder-heading');
+      if (heading) heading.scrollIntoView({ block: 'start', behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+    }
+
+    /* Typing redraws the list directly — no transition per keystroke — and
+       leaves the field alone, so the caret never jumps. */
+    function setSearch(value) {
+      searchQuery = String(value || '').slice(0, 60);
       const grid = document.getElementById('recipe-grid');
       if (grid) grid.innerHTML = renderRecipeGrid();
-      const status = document.getElementById('filter-status');
-      if (status) {
-        const n = activeLevel ? recipes.filter(r => r.dysphagia === activeLevel).length : recipes.length;
-        status.textContent = activeLevel
-          ? t('filter.level', { n: n, level: activeLevel, name: L(activeLevel).name })
-          : t('filter.all', { n: n });
-      }
+      syncFilterControls();
+    }
+
+    function resetFilters() {
+      searchQuery = '';
+      const field = document.getElementById('recipe-search');
+      if (field) field.value = '';
+      setLevel(null);
     }
 
     function renderHomePage() {
@@ -4528,20 +5134,20 @@
               <span class="kick">${t('hero.eyebrow')}</span>
               <h1>${t('hero.title')}</h1>
               <p>${t('hero.lede')}</p>
-              <div class="level-key" aria-hidden="true">
-                ${levels.map(l => `<span><i style="background:${L(l).color}"></i>${l} ${L(l).name}</span>`).join('')}
+              <div class="level-key" role="group" aria-label="${t('ladder.title')}">
+                ${levels.map(l => `<button type="button" data-level="${l}" aria-pressed="${activeLevel === l}" onclick="pickLevel(${l})"><i style="background:${L(l).color}"></i>${l} ${L(l).name}</button>`).join('')}
               </div>
             </section>
-            <div class="bento-photo" style="background:${feature.imageBg || ''}">
+            <a class="bento-photo" href="/recipe/${feature.slug}" aria-label="${t('card.aria', { title: RC(feature).title })}" style="background:${feature.imageBg || ''}">
               ${recipePhoto(feature, '(max-width: 720px) calc(100vw - 40px), 340px', true)}
-            </div>
+            </a>
             <div class="bento-stat">
               <b>${recipes.length}</b>
-              <span>${t('hero.count')}</span>
+              <span>${t('hero.count', { n: Object.keys(counts).length })}</span>
             </div>
-            <div class="bento-photo bento-photo--wide" style="background:${feature2.imageBg || ''}">
+            <a class="bento-photo bento-photo--wide" href="/recipe/${feature2.slug}" aria-label="${t('card.aria', { title: RC(feature2).title })}" style="background:${feature2.imageBg || ''}">
               ${recipePhoto(feature2, '(max-width: 720px) calc(100vw - 40px), 700px')}
-            </div>
+            </a>
           </div>
 
           <div class="ladder">
@@ -4558,7 +5164,13 @@
                 </button>
               `).join('')}
             </div>
-            <p id="filter-status" class="sr-only" role="status">${t('filter.all', { n: recipes.length })}</p>
+            <div class="home-search">
+              ${icons.search}
+              <label class="sr-only" for="recipe-search">${t('search.label')}</label>
+              <input type="search" id="recipe-search" placeholder="${t('search.placeholder')}" value="${escapeHtml(searchQuery)}"
+                autocomplete="off" enterkeyhint="search" maxlength="60" oninput="setSearch(this.value)">
+            </div>
+            <p id="filter-status" class="sr-only" role="status">${filterStatus()}</p>
           </div>
 
           <div class="section-header">
@@ -4594,14 +5206,14 @@
               const matches = recipes.filter(r => r.dysphagia === level).map(RC);
               return `
                 <li class="level-row" role="listitem">
-                  <span class="level-marker" style="background:${info.color}" aria-hidden="true">${level}</span>
+                  <span class="level-marker" style="background:${info.color};color:${info.ink}" aria-hidden="true">${level}</span>
                   <div>
                     <h3>${t('foot.levels.item', { n: level, name: info.name })}</h3>
                     <p class="level-desc">${info.desc}</p>
                     <div class="level-recipes">
                       ${matches.length
                         ? matches.map(r => `<a href="/recipe/${r.slug}">${r.title}</a>`).join('')
-                        : '<span class="level-empty">No recipes at this level yet.</span>'}
+                        : `<span class="level-empty">${t('guide.empty')}</span>`}
                     </div>
                   </div>
                 </li>
@@ -4611,6 +5223,7 @@
 
           <div class="guide-note">
             <p>${t('guide.disclaimer')}</p>
+            <p>${t('guide.official')} <a href="https://iddsi.org/" rel="noopener">iddsi.org</a></p>
           </div>
         </div>
       `;
@@ -4634,36 +5247,43 @@
       if (!recipe || !recipe.slug) {
         return `
           <div class="page">
-            <h1>Recipe Not Found</h1>
-            <p>The recipe you're looking for doesn't exist.</p>
-            <a href="/" class="btn btn-primary">Return Home</a>
+            <h1>${t('nf.recipe.h1')}</h1>
+            <p>${t('nf.recipe.p')}</p>
+            <a href="/" class="btn btn-primary">${t('back')}</a>
           </div>
         `;
       }
 
       const recipeIngredients = checkedIngredients[slug] || {};
+      const source = recipes.find(r => r.slug === slug);   // English amounts, for the metric equivalents
 
       return `
         <div class="page" id="recipe-page">
           <div class="recipe-header">
-            <a href="/" class="back-link">
-              ${icons.arrowLeft}
-              ${t('back')}
-            </a>
+            <div class="recipe-actions">
+              <a href="/" class="back-link">
+                ${icons.arrowLeft}
+                ${t('back')}
+              </a>
+              <button type="button" class="print-inline" onclick="window.print()" aria-label="${t('print')}">${icons.printer} ${t('print.short')}</button>
+            </div>
 
             <div class="recipe-top">
               <div class="recipe-title-tile">
                 <h1>${recipe.title}</h1>
                 <p>${recipe.description}</p>
                 <div class="fact-row">
-                  <div class="fact"><b>${t('fact.time')}</b><span>${duration(recipe.cookTime)}</span></div>
+                  <div class="fact"><b>${t('fact.time')}</b><span>${totalTime(recipe)}</span></div>
                   <div class="fact"><b>${t('fact.serves')}</b><span id="servings-value">${recipe.servings * batchMultiplier}</span></div>
                   <div class="fact"><b>${t('fact.effort')}</b><span>${difficulty(recipe.difficulty)}</span></div>
                 </div>
               </div>
 
               ${recipe.image
-                ? `<div class="recipe-hero-image" style="background:${recipe.imageBg || 'var(--bg-warm)'}">${recipePhoto(recipe, '(max-width: 860px) calc(100vw - 40px), 520px', true)}</div>`
+                ? `<div class="recipe-hero-wrap ${recipe.photoDiffers ? 'has-note' : ''}">
+                     <div class="recipe-hero-image" style="background:${recipe.imageBg || 'var(--bg-warm)'}">${recipePhoto(recipe, '(max-width: 860px) calc(100vw - 40px), 520px', true)}</div>
+                     ${recipe.photoDiffers ? `<p class="photo-note">${t('photo.differs')}</p>` : ''}
+                   </div>`
                 : ''}
             </div>
 
@@ -4681,6 +5301,7 @@
                 <div><strong>${t('mixed.warn')}</strong> ${t('mixed.note')} ${mixedNote(recipe.slug)}</div>
               </div>
             ` : ''}
+            <p class="safety-note">${t('guide.disclaimer')}</p>
             </div>
           </div>
 
@@ -4712,7 +5333,7 @@
                     <input type="checkbox" id="ing-${index}" ${isChecked ? 'checked' : ''}
                       onchange="toggleIngredient('${slug}', ${index}, this.checked)">
                     <label for="ing-${index}">
-                      <span class="ingredient-amount">${scaleAmount(ing.amount, batchMultiplier)}</span> ${ing.item}
+                      <span class="ingredient-amount">${amountHtml(source.ingredients[index], ing.amount, batchMultiplier)}</span> ${ing.item}
                       ${ing.note ? `<span class="ingredient-note">${ing.note}</span>` : ''}
                     </label>
                   </li>
@@ -4906,6 +5527,63 @@
       return amount;
     }
 
+    /* Most of these recipes were written in cups, pounds and ounces, and most
+       of the people reading them cook in millilitres and grams. Rather than
+       rewrite every amount in three languages, the metric equivalent is
+       worked out from the English amount and shown beside whatever is on
+       screen. Spoons are left alone: a tablespoon is a tablespoon. Anything
+       already metric gets no hint. */
+    const METRIC = {
+      cup: ['ml', 240], cups: ['ml', 240],
+      quart: ['ml', 946], quarts: ['ml', 946], pint: ['ml', 473], pints: ['ml', 473],
+      lb: ['g', 453.6], lbs: ['g', 453.6], pound: ['g', 453.6], pounds: ['g', 453.6],
+      oz: ['g', 28.35], ounce: ['g', 28.35], ounces: ['g', 28.35]
+    };
+    const METRIC_WORDS = {
+      en: { ml: 'ml', l: 'L', g: 'g', kg: 'kg' },
+      fr: { ml: 'ml', l: 'L', g: 'g', kg: 'kg' },
+      zh: { ml: '毫升', l: '升', g: '克', kg: '千克' }
+    };
+    const METRIC_HINT_RE = new RegExp('^\\s*' + QTY_PATTERN + '(?:\\s*[-\u2013]\\s*' + QTY_PATTERN + ')?\\s*([A-Za-z]+)\\b');
+    const ALREADY_METRIC_RE = /\d\s?(g|kg|ml|cl|l|litres?|liters?)\b|克|毫升|公斤|升/i;
+
+    function metricText(value, unit) {
+      const words = METRIC_WORDS[lang] || METRIC_WORDS.en;
+      const rounded = value < 100 ? Math.round(value / 5) * 5
+                    : value < 1000 ? Math.round(value / 10) * 10
+                    : Math.round(value / 50) * 50;
+      if (rounded >= 1000) {
+        let big = String(Math.round(rounded / 10) / 100);
+        if (lang === 'fr') big = big.replace('.', ',');
+        return big + '\u00A0' + (unit === 'ml' ? words.l : words.kg);
+      }
+      return rounded + '\u00A0' + (unit === 'ml' ? words.ml : words.g);
+    }
+
+    function metricHint(amountEn, shown, multiplier) {
+      if (!amountEn || ALREADY_METRIC_RE.test(amountEn) || ALREADY_METRIC_RE.test(shown || '')) return '';
+      const m = amountEn.match(METRIC_HINT_RE);
+      const rule = m && METRIC[m[3].toLowerCase()];
+      if (!rule) return '';
+      const low = metricText(parseQty(m[1]) * multiplier * rule[1], rule[0]);
+      return m[2] ? low + '\u2013' + metricText(parseQty(m[2]) * multiplier * rule[1], rule[0]) : low;
+    }
+
+    function amountHtml(sourceRow, shown, multiplier) {
+      const hint = metricHint(sourceRow && sourceRow.amount, shown, multiplier);
+      return scaleAmount(shown, multiplier) + (hint ? ` <span class="ingredient-metric">(${hint})</span>` : '');
+    }
+
+    /* Oven and thermometer temperatures written only in Fahrenheit get the
+       Celsius beside them, unless the sentence already gives one. */
+    function withCelsius(text) {
+      return text.replace(/(\d{2,3})\s?\u00B0F/g, (match, f, at, all) => {
+        if (/\u00B0C/.test(all.slice(Math.max(0, at - 16), at + match.length + 16))) return match;
+        const c = (Number(f) - 32) * 5 / 9;
+        return match + ' (' + (Number(f) >= 250 ? Math.round(c / 5) * 5 : Math.round(c)) + '\u00B0C)';
+      });
+    }
+
     /* Instruction text is prose, so scaling there is opt-in by unit rather
        than opt-out: a number is only touched when a measurement unit follows
        it directly. That leaves times ("20 minutes"), temperatures ("350°F"),
@@ -4946,17 +5624,18 @@
     // Instruction markup is rebuilt on every batch change, so the fork-tender
     // highlight has to be reapplied here rather than only at first render.
     function instructionHtml(instruction, multiplier) {
-      const text = instruction.noScale
+      const text = withCelsius(instruction.noScale
         ? instruction.text
-        : scaleInstruction(instruction.text, multiplier);
+        : scaleInstruction(instruction.text, multiplier));
       return instruction.forkTender
         ? text.replace(/fork-tender/gi, '<span class="fork-tender">fork-tender</span>')
         : text;
     }
 
     function setBatch(slug, multiplier) {
-      const recipe = recipes.find(r => r.slug === slug);
-      if (!recipe) return;
+      const source = recipes.find(r => r.slug === slug);
+      if (!source) return;
+      const recipe = RC(source);
 
       batchMultiplier = multiplier;
 
@@ -4968,7 +5647,7 @@
 
       document.querySelectorAll('.ingredient-amount').forEach((el, index) => {
         const ingredient = recipe.ingredients[index];
-        if (ingredient) el.textContent = scaleAmount(ingredient.amount, multiplier);
+        if (ingredient) el.innerHTML = amountHtml(source.ingredients[index], ingredient.amount, multiplier);
       });
 
       document.querySelectorAll('.step-content p').forEach((el, index) => {
@@ -5039,7 +5718,7 @@
           const res = await fetch('/api/reviews', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ slug, name: review.name, rating: review.rating, text: review.text })
+            body: JSON.stringify({ slug, name: review.name, rating: review.rating, text: review.text, website: review.website || '' })
           });
           if (res.ok) { this.shared = true; return { ok: true }; }
 
@@ -5106,7 +5785,7 @@
         <label>
           <input type="radio" name="rating" value="${n}" ${n === 5 ? 'checked' : ''}>
           <span aria-hidden="true">${n}★</span>
-          <span class="sr-only">${t('review.stars', { n: n })}</span>
+          <span class="sr-only">${t(n === 1 ? 'review.stars.one' : 'review.stars', { n: n })}</span>
         </label>
       `).join('');
       return `
@@ -5124,6 +5803,11 @@
             <textarea name="text" maxlength="1000" required
               placeholder="${t('review.placeholder')}"></textarea>
           </label>
+          <!-- Off screen and out of the tab order: a person never fills this in,
+               and the server quietly drops anything that does. -->
+          <div class="hp-field" aria-hidden="true">
+            <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+          </div>
           <div>
             <button type="submit" class="btn btn-primary">${t('review.post')}</button>
           </div>
@@ -5178,7 +5862,7 @@
       }
 
       button.disabled = true;
-      const result = await ReviewStore.add(slug, { name, text, rating, date: new Date().toISOString() });
+      const result = await ReviewStore.add(slug, { name, text, rating, date: new Date().toISOString(), website: form.website ? form.website.value : '' });
       button.disabled = false;
 
       if (!result.ok) {
@@ -5275,7 +5959,8 @@
         checkedIngredients[slug] = {};
       }
       checkedIngredients[slug][index] = isChecked;
-      
+      saveTicks(slug);
+
       const item = document.querySelector(`#ing-${index}`).closest('.ingredient-item');
       if (isChecked) {
         item.classList.add('checked');
@@ -5284,10 +5969,135 @@
       }
     }
 
-    function navigateTo(route) {
+    function navigateTo(route, source, back) {
       if (window.location.pathname === route) return;
       history.pushState({}, '', route);
-      router();
+      changeRoute({ source: source, back: back });
+    }
+
+    /* ---- Page transitions -----------------------------------------------
+       See the stylesheet for what moves and why. This half decides which
+       photo, if any, is carried across, and puts the grid back where the
+       reader left it. */
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const canTransition = typeof document.startViewTransition === 'function';
+    let homeScrollY = 0;
+
+    /* A transition's update only runs when the browser next draws a frame,
+       and a tab nobody is looking at draws none — so in the background the
+       page change itself would wait. There, and wherever the API is missing,
+       the change is made directly. A skipped transition rejects `ready`;
+       that is routine (a second tap, say), not an error worth reporting. */
+    function transition(update, after) {
+      if (!canTransition || document.visibilityState !== 'visible') {
+        update();
+        if (after) after();
+        return;
+      }
+      const vt = document.startViewTransition(update);
+      vt.ready.catch(() => {});
+      if (after) vt.finished.then(after, after);
+    }
+
+    function slugOf(path) {
+      return path.indexOf('/recipe/') === 0 ? path.slice('/recipe/'.length) : null;
+    }
+
+    function onScreen(el) {
+      if (!el) return false;
+      const r = el.getBoundingClientRect();
+      return r.bottom > 0 && r.top < window.innerHeight && r.width > 0;
+    }
+
+    function loadedSrc(frame) {
+      const img = frame && frame.querySelector('img');
+      return img && img.complete && img.naturalWidth ? img.currentSrc : '';
+    }
+
+    /* The page being arrived at has to fetch its own, larger copy of the
+       photo. Until it lands, the frame shows the copy the reader was just
+       looking at instead of a flat tint, so the picture never blinks out
+       halfway through growing. */
+    function holdPhoto(frame, src) {
+      const pic = frame && frame.querySelector('picture');
+      if (!pic || !src) return;
+      pic.style.backgroundImage = 'url("' + src + '")';
+      pic.style.backgroundSize = 'cover';
+      pic.style.backgroundPosition = 'center';
+    }
+
+    function clearPhotoNames() {
+      document.querySelectorAll('.recipe-card-image, .recipe-hero-image').forEach(el => {
+        el.style.viewTransitionName = '';
+      });
+    }
+
+    function cardFrame(slug, card) {
+      card = card || document.querySelector('.recipe-card[data-slug="' + slug + '"]');
+      return card ? card.querySelector('.recipe-card-image') : null;
+    }
+
+    /* Call once the address has changed and the old page is still on screen. */
+    function changeRoute(opts) {
+      opts = opts || {};
+      const from = currentRoute;
+      const to = routePath();
+      const fromSlug = slugOf(from);
+      const toSlug = slugOf(to);
+      const opening = from === '/' && toSlug;
+      const returning = fromSlug && to === '/' && opts.back;
+      const pair = !reduceMotion.matches;
+      let held = '';
+      let carried = false;
+
+      document.documentElement.classList.remove('vt-quiet');
+      clearPhotoNames();
+
+      if (opening) {
+        homeScrollY = window.scrollY;
+        const frame = cardFrame(toSlug, opts.source && opts.source.closest ? opts.source.closest('.recipe-card') : null);
+        if (onScreen(frame)) {
+          held = loadedSrc(frame);
+          if (pair) { frame.style.viewTransitionName = 'recipe-photo'; carried = true; }
+        }
+      } else if (returning) {
+        const hero = document.querySelector('.recipe-hero-image');
+        if (onScreen(hero)) {
+          held = loadedSrc(hero);
+          if (pair) { hero.style.viewTransitionName = 'recipe-photo'; carried = true; }
+        }
+      }
+
+      const render = () => {
+        router({ restoreScroll: returning ? homeScrollY : null });
+
+        if (canTransition) {
+          /* The transition is the entrance; the keyframed one would run
+             inside it and dip the new page to nothing halfway through. */
+          const page = mainContent.querySelector('.page');
+          if (page) page.style.animation = 'none';
+        }
+
+        if (opening) {
+          const hero = document.querySelector('.recipe-hero-image');
+          holdPhoto(hero, held);
+          if (hero && carried) hero.style.viewTransitionName = 'recipe-photo';
+        } else if (returning) {
+          const frame = cardFrame(fromSlug);
+          if (onScreen(frame)) {
+            holdPhoto(frame, held);
+            if (carried) frame.style.viewTransitionName = 'recipe-photo';
+          }
+        }
+      };
+
+      transition(render, clearPhotoNames);
+    }
+
+    function quietTransition(run) {
+      const root = document.documentElement;
+      root.classList.add('vt-quiet');
+      transition(run, () => root.classList.remove('vt-quiet'));
     }
 
     /* ---- Per-page SEO -----------------------------------------------------
@@ -5380,7 +6190,27 @@
       };
     }
 
-    function applySeo(path) {
+    /* The tab title follows the language on screen. The meta tags do not:
+       they are what a crawler reads, and every address serves English. */
+    function localTitle(path) {
+      const site = 'Amazing Recipes';
+      if (path.startsWith('/recipe/')) {
+        const recipe = recipes.find(r => r.slug === path.replace('/recipe/', ''));
+        return (recipe ? RC(recipe).title : t('nf.recipe.h1')) + ' — ' + site;
+      }
+      if (path === '/') return site + ' — ' + t('tagline');
+      const key = { '/texture-guide': 'nav.guide', '/reviews': 'nav.reviews', '/about': 'nav.about' }[path];
+      return t(key || 'nf.page.h1') + ' — ' + site;
+    }
+
+    function setRobots(value) {
+      let tag = document.head.querySelector('meta[name="robots"]');
+      if (!value) { if (tag) tag.remove(); return; }
+      if (!tag) { tag = document.createElement('meta'); tag.name = 'robots'; document.head.appendChild(tag); }
+      tag.content = value;
+    }
+
+    function applySeo(path, notFound) {
       const url = SITE + (path === '/' ? '/' : path);
       let title, desc, image = `${SITE}/assets/social-card.jpg`, jsonld = null;
 
@@ -5407,12 +6237,18 @@
         desc = 'Why this site exists: a Grade 10 student in Ontario building recipes for people living with oral dysphagia.';
       }
 
-      if (!title) {
+      if (notFound) {
+        /* A missing page used to borrow the home page's title and description. */
+        title = 'Page not found — Amazing Recipes';
+        desc = 'There is nothing at this address.';
+        jsonld = null;
+      } else if (!title) {
         title = 'Amazing Recipes — every recipe graded to an IDDSI texture level';
-        desc = 'Soft, fork-tender cooking for anyone who needs food that is easy to chew and swallow. Every recipe carries the IDDSI texture level it is safe at.';
+        desc = 'Soft, fork-tender cooking for anyone who needs food that is easy to chew and swallow. Every recipe carries the IDDSI texture level it is graded to.';
       }
+      setRobots(notFound ? 'noindex' : '');
 
-      document.title = title;
+      document.title = lang === 'en' ? title : localTitle(notFound ? '' : path);
       setMeta('meta[name="description"]', 'content', desc);
       setMeta('meta[property="og:title"]', 'content', title);
       setMeta('meta[property="og:description"]', 'content', desc);
@@ -5425,7 +6261,23 @@
       setJsonLd(jsonld);
     }
 
-    function router() {
+    /* Vercel serves /index.html for the root and local dev opens it directly,
+       so both have to resolve to the home route rather than a 404. The .html
+       suffix matters too: prerender.py writes real files, and a visitor or a
+       crawler can land on /recipe/congee.html rather than the rewritten
+       /recipe/congee. Both have to mean the same route. */
+    function routePath() {
+      let path = window.location.pathname || '/';
+      if (path.endsWith('.html')) path = path.slice(0, -'.html'.length);
+      if (path === '/index' || path === '') path = '/';
+      if (path.length > 1 && path.endsWith('/')) path = path.slice(0, -1);
+      return path;
+    }
+
+    function router(opts) {
+      opts = (opts && !opts.type) ? opts : {};   // also registered as an event listener, so opts may be an Event
+      const restoreScroll = typeof opts.restoreScroll === 'number' ? opts.restoreScroll : 0;
+      let notFound = false;
       if (typeof navMenu !== 'undefined' && navMenu && !navMenu.hidden) setMenu(false);
 
       /* Old #/recipe/x links are still out in the world — shared, bookmarked and
@@ -5435,16 +6287,7 @@
         history.replaceState({}, '', legacy === '/' ? '/' : legacy);
       }
 
-      /* Vercel serves /index.html for the root and local dev opens it directly,
-         so both have to resolve to the home route rather than a 404. The .html
-         suffix matters too: prerender.py writes real files, and a visitor or a
-         crawler can land on /recipe/congee.html rather than the rewritten
-         /recipe/congee. Both have to mean the same route. */
-      let path = window.location.pathname || '/';
-      if (path.endsWith('.html')) path = path.slice(0, -'.html'.length);
-      if (path === '/index' || path === '') path = '/';
-      if (path.length > 1 && path.endsWith('/')) path = path.slice(0, -1);
-
+      const path = routePath();
       currentRoute = path;
 
       const normalizedPath = path === '' ? '/' : path;
@@ -5470,27 +6313,41 @@
         mainContent.innerHTML = renderAboutPage();
       } else if (path.startsWith('/recipe/')) {
         const slug = path.replace('/recipe/', '');
-        batchMultiplier = 1;
+        if (!opts.keepBatch) batchMultiplier = 1;
+        notFound = !recipes.some(r => r.slug === slug);
         mainContent.innerHTML = renderRecipePage(slug);
-        hydrateRecipeReviews(slug);
+        if (!notFound) hydrateRecipeReviews(slug);
       } else {
+        notFound = true;
         mainContent.innerHTML = `
           <div class="page">
-            <h1>Page Not Found</h1>
-            <p>The page you're looking for doesn't exist.</p>
-            <a href="/" class="btn btn-primary">Return Home</a>
+            <h1>${t('nf.page.h1')}</h1>
+            <p>${t('nf.page.p')}</p>
+            <a href="/" class="btn btn-primary">${t('back')}</a>
           </div>
         `;
-        document.title = 'Page not found — Amazing Recipes';
       }
 
-      applySeo(path);
-      window.scrollTo(0, 0);
+      /* The first draw replaces the prerendered page with the same content,
+         and a change of language redraws the page the reader is already on.
+         Fading either in makes the page blink for no reason. */
+      if (!appRendered || opts.keepFocus) {
+        const first = mainContent.querySelector('.page');
+        if (first) first.style.animation = 'none';
+      }
+      appRendered = true;
+
+      applySeo(path, notFound);
+      if (path === '/') syncHomeUrl();
+      /* Instant, not the stylesheet's smooth scroll: a new page should arrive
+         at its position, not be seen gliding there. Coming back from a recipe
+         returns to the card that was opened rather than the top of the grid. */
+      window.scrollTo({ top: restoreScroll, left: 0, behavior: 'instant' });
 
       const mainHeading = mainContent.querySelector('h1');
-      if (mainHeading) {
+      if (mainHeading && !opts.keepFocus) {
         mainHeading.setAttribute('tabindex', '-1');
-        mainHeading.focus();
+        mainHeading.focus({ preventScroll: true });
       }
     }
 
@@ -5507,7 +6364,7 @@
     function setMenu(open) {
       navMenu.hidden = !open;
       navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      navToggle.setAttribute('aria-label', t(open ? 'nav.close' : 'nav.open'));
     }
 
     navToggle.addEventListener('click', () => setMenu(navMenu.hidden));
@@ -5524,10 +6381,10 @@
       const a = e.target.closest && e.target.closest('a[href^="/"]');
       if (!a || a.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
       e.preventDefault();
-      navigateTo(a.getAttribute('href'));
+      navigateTo(a.getAttribute('href'), null, a.classList.contains('back-link'));
     });
 
-    window.addEventListener('popstate', router);
+    window.addEventListener('popstate', () => changeRoute({ back: true }));
     window.addEventListener('hashchange', router);
     /* load waits for every image on the page. Nothing is rendered until the
        router runs, so booting on load meant a blank page until the slowest
@@ -5538,11 +6395,12 @@
     function boot() {
       let saved = null;
       try { saved = localStorage.getItem(LANG_KEY); } catch (e) {}
-      try {
-        setLang(LANGS.indexOf(saved) !== -1 ? saved : 'en');
-      } catch (e) {
-        router();
-      }
+      const want = LANGS.indexOf(saved) !== -1 ? saved : 'en';
+      const start = code => { try { setLang(code); } catch (e) { router(); } };
+      if (want === 'en') start('en');
+      /* The prerendered English page stays up for the moment the language
+         pack takes to arrive; if it never does, the site runs in English. */
+      else loadPack().then(() => start(want), () => start('en'));
     }
 
     if (document.readyState === 'loading') {
@@ -5550,6 +6408,45 @@
     } else {
       boot();
     }
+
+    /* ---- Press feedback -------------------------------------------------
+       Feedback has to land on pointer-down. Waiting for the click reads as
+       lag, and on a touch screen there is no hover to fall back on. Safari
+       only honours :active for some elements, so the press state is driven
+       from pointer events directly rather than left to CSS.
+
+       It is let go on cancel and once the finger has travelled about 10px,
+       so sliding off a control un-presses it: that is what lets someone
+       start a tap, think better of it, and back out. */
+    const PRESSABLE = '.btn, .recipe-card, .lvl-btn, .batch-btn, .lang-btn, ' +
+      '.nav-toggle, .print-fab, .print-inline, .ingredient-item, .back-link, ' +
+      '.level-key button, a.bento-photo';
+    let pressedEl = null, pressX = 0, pressY = 0;
+
+    function releasePress() {
+      if (!pressedEl) return;
+      pressedEl.removeAttribute('data-pressed');
+      pressedEl = null;
+    }
+
+    document.addEventListener('pointerdown', e => {
+      if (e.button !== 0 && e.pointerType === 'mouse') return;
+      const el = e.target.closest && e.target.closest(PRESSABLE);
+      if (!el) return;
+      releasePress();
+      pressedEl = el;
+      pressX = e.clientX;
+      pressY = e.clientY;
+      el.setAttribute('data-pressed', '');
+    }, { passive: true });
+
+    document.addEventListener('pointermove', e => {
+      if (pressedEl && Math.hypot(e.clientX - pressX, e.clientY - pressY) > 10) releasePress();
+    }, { passive: true });
+
+    document.addEventListener('pointerup', releasePress, { passive: true });
+    document.addEventListener('pointercancel', releasePress, { passive: true });
+    window.addEventListener('blur', releasePress);
 
     window.addEventListener('scroll', () => {
       if (window.scrollY > 10) {
@@ -5569,7 +6466,6 @@
        banner, which is the point — the site still sets no cookies at all.
        Needs Web Analytics switched on for the project in the Vercel dashboard;
        until then this 404s harmlessly and the page is unaffected. -->
-  <script src="/i18n.js"></script>
   <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

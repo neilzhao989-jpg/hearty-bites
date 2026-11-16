@@ -21,6 +21,7 @@ It reads the recipe data straight out of index.html, so index.html stays the
 one place recipes are defined.
 """
 
+import datetime
 import html
 import io
 import json
@@ -235,7 +236,7 @@ def recipe_jsonld(recipe, levels):
 
 HOME_TITLE = 'Amazing Recipes — every recipe graded to an IDDSI texture level'
 HOME_DESC = ('Soft, fork-tender cooking for anyone who needs food that is easy to chew and '
-             'swallow. Every recipe carries the IDDSI texture level it is safe at.')
+             'swallow. Every recipe carries the IDDSI texture level it is graded to.')
 
 
 def seo_for(path, recipes, levels):
@@ -271,6 +272,11 @@ def seo_for(path, recipes, levels):
         desc = ('Why this site exists: a Grade 10 student in Ontario building recipes '
                 'for people living with oral dysphagia.')
 
+    if path == '/404':
+        return {'url': None, 'title': 'Page not found — Amazing Recipes',
+                'desc': 'There is nothing at this address.', 'image': image,
+                'jsonld': None, 'noindex': True}
+
     if not title:
         title, desc = HOME_TITLE, HOME_DESC
 
@@ -282,10 +288,17 @@ def head_block(seo):
     lines = [
         '  <!-- SEO:START - written by prerender.py. Do not hand-edit; regenerate. -->',
         '  <meta name="description" content="%s">' % e(seo['desc'], quote=True),
-        '  <link rel="canonical" href="%s">' % e(seo['url'], quote=True),
+    ]
+    if seo.get('noindex'):
+        # The error page stands in for any address, so it has no canonical
+        # address of its own and must never be indexed.
+        lines.append('  <meta name="robots" content="noindex">')
+    else:
+        lines.append('  <link rel="canonical" href="%s">' % e(seo['url'], quote=True))
+        lines.append('  <meta property="og:url" content="%s">' % e(seo['url'], quote=True))
+    lines += [
         '  <meta property="og:type" content="%s">' % ('article' if seo['jsonld'] else 'website'),
         '  <meta property="og:site_name" content="Amazing Recipes">',
-        '  <meta property="og:url" content="%s">' % e(seo['url'], quote=True),
         '  <meta property="og:title" content="%s">' % e(seo['title'], quote=True),
         '  <meta property="og:description" content="%s">' % e(seo['desc'], quote=True),
         '  <meta property="og:image" content="%s">' % e(seo['image'], quote=True),
@@ -318,9 +331,44 @@ def texture_summary(recipe, level):
                html.escape(level['plain'].lower())))
 
 
+DISCLAIMER = ('Texture levels on this site are a starting point, not a clinical assessment. '
+              'A speech-language pathologist or dietitian should confirm the right level for '
+              'the person you are cooking for.')
+
+IMAGE_VERSION = 1   # replaced in main() with the value index.html declares
+
+
+def clock(minutes):
+    """Mirror of clock() in index.html: 80 -> "1 hr 20 min"."""
+    hours, mins = divmod(minutes, 60)
+    return ' '.join(p for p in ('%d hr' % hours if hours else '', '%d min' % mins if mins else '') if p)
+
+
+def hero_picture(recipe):
+    """The same <picture> the app draws for the recipe photo, byte for byte in
+    the parts that decide which file is fetched. When this was a bare JPEG the
+    browser downloaded it, then downloaded the WebP as soon as the app drew
+    over the page: every recipe paid for its main photo twice."""
+    e = html.escape
+    sizes = '(max-width: 860px) calc(100vw - 40px), 520px'
+    v = '?v=%d' % IMAGE_VERSION
+    srcset = lambda ext: ', '.join('%s-%d.%s%s %dw' % (recipe['image'], n, ext, v, n)
+                                   for n in (400, 800, 1200))
+    return ('<picture style="background:%s">'
+            '<source type="image/webp" srcset="%s" sizes="%s">'
+            '<img src="%s-800.jpg%s" srcset="%s" sizes="%s" alt="%s" width="1200" height="900" '
+            'loading="eager" decoding="async" fetchpriority="high">'
+            '</picture>' % (e(recipe.get('imageBg', '#FBEFE1'), quote=True),
+                            e(srcset('webp'), quote=True), e(sizes, quote=True),
+                            e(recipe['image'], quote=True), v,
+                            e(srcset('jpg'), quote=True), e(sizes, quote=True),
+                            e(recipe.get('imageAlt', recipe['title']), quote=True)))
+
+
 def recipe_body(recipe, levels, mixed):
     e = html.escape
     level = levels[str(recipe['dysphagia'])]
+    total = duration_minutes(recipe.get('prepTime')) + duration_minutes(recipe.get('cookTime'))
     out = ['<div class="page" id="recipe-page">']
     out.append('<div class="recipe-header">')
     out.append('<a href="/" class="back-link">Back to All Recipes</a>')
@@ -328,18 +376,19 @@ def recipe_body(recipe, levels, mixed):
     out.append('<h1>%s</h1>' % e(recipe['title']))
     out.append('<p>%s</p>' % e(recipe['description']))
     out.append('<div class="fact-row">')
-    out.append('<div class="fact"><b>Time</b><span>%s</span></div>' % e(recipe.get('cookTime', '')))
+    out.append('<div class="fact"><b>Time</b><span>%s</span></div>'
+               % e(clock(total) if total else recipe.get('cookTime', '')))
     out.append('<div class="fact"><b>Serves</b><span>%s</span></div>' % recipe['servings'])
     out.append('<div class="fact"><b>Effort</b><span>%s</span></div>' % e(recipe.get('difficulty', '')))
     out.append('</div></div>')
 
     if recipe.get('image'):
+        note = ('<p class="photo-note">The photo is not exactly the version graded here. '
+                'Read the serving tips before you cook.</p>' if recipe.get('photoDiffers') else '')
         out.append(
-            '<div class="recipe-hero-image" style="background:%s">'
-            '<img src="%s-800.jpg" alt="%s" width="800" height="600">'
-            '</div>' % (e(recipe.get('imageBg', '#FBEFE1'), quote=True),
-                        e(recipe['image'], quote=True),
-                        e(recipe.get('imageAlt', recipe['title']), quote=True)))
+            '<div class="recipe-hero-wrap%s"><div class="recipe-hero-image" style="background:%s">%s</div>%s</div>'
+            % (' has-note' if note else '', e(recipe.get('imageBg', '#FBEFE1'), quote=True),
+               hero_picture(recipe), note))
     out.append('</div>')
 
     out.append('<div class="texture-tile" style="background:%s">' % e(level['deep'], quote=True))
@@ -353,8 +402,10 @@ def recipe_body(recipe, levels, mixed):
     if recipe['slug'] in mixed:
         out.append('<div class="mixed-warning" role="note"><div>'
                    '<strong>Solids and liquid separate in this dish.</strong> '
-                   'Not considered safe at Levels 4 to 6 as written. %s'
+                   'Left as it is, that is not safe at Levels 4 to 6. The level shown here '
+                   'assumes you do the following. %s'
                    '</div></div>' % e(mixed[recipe['slug']]))
+    out.append('<p class="safety-note">%s</p>' % e(DISCLAIMER))
     out.append('</div>')
 
     out.append('<section class="recipe-section"><h2>Ingredients</h2><ul class="ingredients-list">')
@@ -427,6 +478,7 @@ def texture_guide_body(recipes, levels):
         count = len([r for r in recipes if str(r['dysphagia']) == number])
         out.append('<section><h2>Level %s &middot; %s</h2><p>%s</p><p>%d recipe%s at this level.</p></section>'
                    % (number, e(level['name']), e(level['desc']), count, '' if count == 1 else 's'))
+    out.append('<p>%s</p>' % e(DISCLAIMER))
     out.append('</div>')
     return '\n      '.join(out)
 
@@ -470,6 +522,45 @@ REVIEWS_BODY = ('<div class="page">\n      <h1>Reviews</h1>\n      '
                 'Open any recipe and scroll to the bottom to leave one.</p>\n      </div>')
 
 
+NOT_FOUND_BODY = ('<div class="page">\n      <h1>Page not found</h1>\n      '
+                  '<p>There is nothing at this address.</p>\n      '
+                  '<a href="/" class="btn btn-primary">Back to All Recipes</a>\n      </div>')
+
+
+# --- sitemap --------------------------------------------------------------
+#
+# lastmod is only worth sending if it is true. A page keeps the date it
+# already has unless what is on it actually changed in this run; stamping
+# every page with today's date on every build teaches a crawler to ignore it.
+
+def page_fingerprint(page):
+    head = HEAD_RE.search(page)
+    main = MAIN_RE.search(page)
+    return (head.group(0) if head else '') + (main.group(0) if main else '')
+
+
+def read_lastmods(path):
+    if not os.path.exists(path):
+        return {}
+    text = io.open(path, encoding='utf-8').read()
+    return dict(re.findall(r'<loc>([^<]+)</loc>\s*<lastmod>([^<]+)</lastmod>', text))
+
+
+def write_sitemap(entries):
+    """entries: (path, lastmod, changefreq, priority)"""
+    out = ['<?xml version="1.0" encoding="UTF-8"?>',
+           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    for path, lastmod, freq, priority in entries:
+        out += ['  <url>',
+                '    <loc>%s%s</loc>' % (SITE, '/' if path == '/' else path),
+                '    <lastmod>%s</lastmod>' % lastmod,
+                '    <changefreq>%s</changefreq>' % freq,
+                '    <priority>%s</priority>' % priority,
+                '  </url>']
+    out.append('</urlset>')
+    io.open(os.path.join(ROOT, 'sitemap.xml'), 'w', encoding='utf-8').write('\n'.join(out) + '\n')
+
+
 # --- putting the files together -------------------------------------------
 
 HEAD_RE = re.compile(r'[ \t]*<!-- SEO:START.*?SEO:END -->', re.S)
@@ -496,33 +587,66 @@ def main():
     except ValueError:
         mixed = {}
 
-    out_dir = os.path.join(ROOT, 'recipe')
-    if os.path.isdir(out_dir):
-        shutil.rmtree(out_dir)
-    os.makedirs(out_dir)
+    global IMAGE_VERSION
+    version = re.search(r'const IMAGE_VERSION = (\d+);', template)
+    if not version:
+        sys.exit('index.html does not declare IMAGE_VERSION.')
+    IMAGE_VERSION = int(version.group(1))
 
+    out_dir = os.path.join(ROOT, 'recipe')
+    today = datetime.date.today().isoformat()
+    lastmods = read_lastmods(os.path.join(ROOT, 'sitemap.xml'))
+    sitemap = []
     written = []
 
-    for recipe in recipes:
-        path = '/recipe/%s' % recipe['slug']
-        page = build_page(template, seo_for(path, recipes, levels),
-                          recipe_body(recipe, levels, mixed))
-        target = os.path.join(out_dir, '%s.html' % recipe['slug'])
+    def emit(path, body, target, freq=None, priority=None):
+        """Write one page; record it for the sitemap with an honest lastmod."""
+        page = build_page(template, seo_for(path, recipes, levels), body)
+        old = io.open(target, encoding='utf-8').read() if os.path.exists(target) else ''
+        url = SITE + ('/' if path == '/' else path)
+        changed = page_fingerprint(old) != page_fingerprint(page)
         io.open(target, 'w', encoding='utf-8').write(page)
         written.append(path)
+        if freq:
+            sitemap.append((path, today if changed or url not in lastmods else lastmods[url],
+                            freq, priority))
 
-    for path, body, filename in (
-            ('/texture-guide', texture_guide_body(recipes, levels), 'texture-guide.html'),
-            ('/reviews', REVIEWS_BODY, 'reviews.html'),
-            ('/about', ABOUT_BODY, 'about.html')):
-        page = build_page(template, seo_for(path, recipes, levels), body)
-        io.open(os.path.join(ROOT, filename), 'w', encoding='utf-8').write(page)
-        written.append(path)
+    # Pages are overwritten in place rather than the folder being wiped first,
+    # so each can be compared with what was there. Files for recipes that no
+    # longer exist are removed afterwards.
+    os.makedirs(out_dir, exist_ok=True)
+    keep = set()
+    recipe_pages = []
+    for recipe in recipes:
+        target = os.path.join(out_dir, '%s.html' % recipe['slug'])
+        keep.add(os.path.basename(target))
+        recipe_pages.append(('/recipe/%s' % recipe['slug'], recipe_body(recipe, levels, mixed), target))
+    for name in os.listdir(out_dir):
+        if name.endswith('.html') and name not in keep:
+            os.remove(os.path.join(out_dir, name))
 
     # The homepage is index.html itself, so it gets the same treatment in place.
-    home = build_page(template, seo_for('/', recipes, levels), home_body(recipes, levels))
-    io.open(SOURCE, 'w', encoding='utf-8').write(home)
-    written.append('/')
+    emit('/', home_body(recipes, levels), SOURCE, 'weekly', '1.0')
+    emit('/texture-guide', texture_guide_body(recipes, levels),
+         os.path.join(ROOT, 'texture-guide.html'), 'monthly', '0.8')
+    for path, body, target in recipe_pages:
+        emit(path, body, target, 'monthly', '0.8')
+    emit('/reviews', REVIEWS_BODY, os.path.join(ROOT, 'reviews.html'), 'weekly', '0.5')
+    emit('/about', ABOUT_BODY, os.path.join(ROOT, 'about.html'), 'monthly', '0.5')
+
+    # Vercel serves 404.html for any address that matches nothing. The app
+    # boots on it like any other page, so the error screen is the site's own
+    # and follows the reader's language.
+    emit('/404', NOT_FOUND_BODY, os.path.join(ROOT, '404.html'))
+
+    write_sitemap(sitemap)
+
+    # The review API only accepts reviews for recipes that exist. It cannot
+    # read index.html at run time, so the list is written out for it here.
+    slugs = sorted(r['slug'] for r in recipes)
+    io.open(os.path.join(ROOT, 'api', '_slugs.js'), 'w', encoding='utf-8').write(
+        '// Written by prerender.py. Do not hand-edit; regenerate.\n'
+        'export default %s;\n' % json.dumps(slugs, indent=2))
 
     print('Prerendered %d pages from %d recipes.' % (len(written), len(recipes)))
     return written

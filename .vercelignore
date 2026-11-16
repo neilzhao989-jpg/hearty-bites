@@ -1,0 +1,13 @@
+# Build tooling, notes and scratch files. None of it is needed to serve the
+# site, and without this file every one of them was downloadable.
+prerender.py
+optimize-image.sh
+CLAUDE.md
+.claude
+__pycache__
+/_*.html
+/_enhance-preview
+/*.jpg
+/*.jpeg
+/*.png
+/*.webp
