@@ -44,8 +44,19 @@ changes state, and `--spring-bounce` for motion the person's own momentum
 started — a flick or a throw. Nothing on this site is drag-driven yet, so
 `--spring-bounce` is defined and deliberately unused; don't sprinkle it on
 taps. Durations come from `--resp-press` (0.16s), `--resp` (0.3s) and
-`--resp-slow` (0.4s). Animate only `transform` and `opacity`; never
+`--resp-slow` (0.4s); `--resp-page` (0.5s) is only for a whole page or a
+photo crossing it. Animate only `transform` and `opacity`; never
 `transition: all`, which quietly animates layout too.
+
+**Page changes.** `.claude/skills/view-transitions/SKILL.md` (downloaded from
+agents-inc/skills) covers the View Transitions API; read it with apple-design
+before touching navigation. A page change is made longer by choreography,
+never by slowing one motion: the old page leaves, the new one fades up, and
+its first five sections rise in turn (`.vt-rise`, `--stagger`). Direction is
+fixed — `html.vt-forward` into a recipe (old page recedes towards the card
+pressed), `html.vt-back` the reverse with no stagger, plain lift between
+top-level pages. Filtering stays a quick cross-fade (`vt-quiet`): it is not a
+change of page.
 
 **Contrast.** Small text needs 4.5:1. White fails on the yellow, orange, green
 and pink IDDSI colours, so anything printed on a level's `color` takes its

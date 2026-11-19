@@ -48,6 +48,8 @@
       --resp-press: 0.16s;   /* press feedback — must feel immediate */
       --resp: 0.3s;          /* default UI */
       --resp-slow: 0.4s;     /* repositioning, larger surfaces */
+      --resp-page: 0.5s;     /* a whole page, or a photo crossing it: the largest thing that moves */
+      --stagger: 70ms;       /* gap between one section of an arriving page and the next */
       --spring: cubic-bezier(0.32, 0.72, 0, 1);
       --spring-bounce: cubic-bezier(0.17, 0.89, 0.32, 1.28);
 
@@ -2367,12 +2369,83 @@
        thing while this is still settling should get the next thing. */
     ::view-transition { pointer-events: none; }
 
-    ::view-transition-old(root) { animation: vt-out var(--resp-press) var(--spring) both; }
-    ::view-transition-new(root) { animation: vt-in var(--resp) var(--spring) both; }
+    /* A change of page is choreographed rather than slowed down. Every
+       single motion keeps a house response; the length comes from the
+       sequence — the old page leaves, the new one fades up behind it, and
+       its sections arrive one after another (.vt-rise, below). Each step is
+       short, so it still feels quick; the whole reads as one movement.
 
-    @keyframes vt-out { to { opacity: 0; } }
-    @keyframes vt-in { from { opacity: 0; transform: translateY(8px); } }
+       The direction carries meaning, so it is the same every time:
+       · forward, into a recipe — the old page recedes into the card that
+         was pressed (its transform-origin is set from that card), and the
+         new page rises in front of it;
+       · back — the reverse: the recipe drops away and the list comes
+         forward to meet the reader. Back is quicker, with no stagger;
+       · across, between top-level pages — a short lift and fade. */
+    ::view-transition-old(root) {
+      animation: vt-out var(--resp) var(--spring) both;
+      transform-origin: var(--vt-x, 50%) var(--vt-y, 30%);
+    }
+    ::view-transition-new(root) { animation: vt-fade var(--resp-slow) var(--spring) 60ms both; }
+
+    html.vt-forward::view-transition-old(root) { animation-name: vt-recede; animation-duration: var(--resp-slow); }
+    html.vt-back::view-transition-old(root) { animation-name: vt-drop; }
+    html.vt-back::view-transition-new(root) { animation-name: vt-come-forward; animation-delay: 0s; }
+
+    @keyframes vt-out { to { opacity: 0; transform: translateY(-12px); } }
+    @keyframes vt-recede { to { opacity: 0; transform: scale(0.94); } }
+    @keyframes vt-drop { to { opacity: 0; transform: translateY(28px); } }
+    @keyframes vt-come-forward { from { opacity: 0; transform: scale(0.97); } }
     @keyframes vt-fade { from { opacity: 0; } }
+    @keyframes vt-fade-out { to { opacity: 0; } }
+
+    /* The swoosh. Opening a recipe sends a wash of that recipe's level
+       colour out of the card that was pressed until it fills the screen;
+       the recipe page then pops up out of the wash as it clears. It is one
+       circle, scaled — transform and opacity only — and it is tinted, not
+       the full level colour: a screen of saturated yellow is a flash, not
+       a transition. It exists only for the length of the transition, and
+       sits under the travelling photo so the photo flies across it. */
+    .swoosh {
+      position: fixed;
+      z-index: 2147483000;
+      left: var(--sw-x);
+      top: var(--sw-y);
+      width: var(--sw-d);
+      height: var(--sw-d);
+      margin: calc(var(--sw-d) / -2) 0 0 calc(var(--sw-d) / -2);
+      border-radius: 50%;
+      background: color-mix(in srgb, var(--sw-color) 32%, var(--bg-cream));
+      pointer-events: none;
+      view-transition-name: swoosh;
+    }
+    ::view-transition-group(swoosh) { animation: none; z-index: 1; }
+    ::view-transition-group(recipe-photo) { z-index: 2; }
+    /* The header stays on top of the wash: it is the same site either side. */
+    ::view-transition-group(site-header),
+    ::view-transition-group(top-bar) { z-index: 3; }
+    ::view-transition-new(swoosh) {
+      animation: vt-swoosh var(--resp-slow) var(--spring) both,
+                 vt-fade-out var(--resp) var(--spring) 0.34s forwards;
+    }
+    @keyframes vt-swoosh { from { transform: scale(0); } }
+
+    /* The recipe page pops up out of the wash: a short rise in scale, with
+       no overshoot — the press was a tap, not a throw. */
+    html.vt-forward::view-transition-new(root) {
+      animation: vt-pop var(--resp-slow) var(--spring) 0.26s both;
+    }
+    @keyframes vt-pop { from { opacity: 0; transform: scale(0.92); } }
+
+    /* Follow-through: the arriving page's sections settle in sequence, top
+       to bottom, so the eye is led down the page instead of handed all of
+       it at once. The new side of a view transition is live, so these run
+       inside it. Set from script, and only while a transition is running. */
+    .page .vt-rise {
+      animation: vt-rise var(--resp-slow) var(--spring)
+                 calc(var(--vt-lead, 120ms) + var(--i, 0) * var(--stagger)) both;
+    }
+    @keyframes vt-rise { from { opacity: 0; transform: translateY(20px); } }
 
     /* Filtering the grid is not a change of page, so nothing travels: the
        browser's own cross-fade, which holds unchanged pixels perfectly still. */
@@ -2397,7 +2470,7 @@
     ::view-transition-group(top-bar) { animation: none; }
 
     ::view-transition-group(recipe-photo) {
-      animation-duration: var(--resp-slow);
+      animation-duration: var(--resp-page);
       animation-timing-function: var(--spring);
     }
     /* Card and hero are the same 4:3 crop of the same file, so the two
@@ -2430,8 +2503,9 @@
       /* Pages cross-fade and nothing travels. The script also declines to
          pair the photos, so there is no growing or shrinking either. */
       ::view-transition-group(*) { animation-duration: 0.01ms !important; }
-      ::view-transition-old(root) { animation: vt-out 140ms linear both; }
+      ::view-transition-old(root) { animation: vt-fade-out 140ms linear both; }
       ::view-transition-new(root) { animation: vt-fade 140ms linear both; }
+      .page .vt-rise { animation: none !important; }
 
       /* The hamburger's rotation into an X is state, not decoration, so it
          is deliberately not in this list. */
@@ -6393,6 +6467,13 @@
       }
       const vt = document.startViewTransition(update);
       vt.ready.catch(() => {});
+      /* A page can report itself visible and still draw nothing — a
+         hidden pane or a minimised window — and then the update waits for
+         a frame that never comes. Skipping still runs the update, so after
+         a second the new page is simply there. */
+      let done = false;
+      vt.updateCallbackDone.then(() => { done = true; }, () => { done = true; });
+      setTimeout(() => { if (!done) vt.skipTransition(); }, 1000);
       if (after) vt.finished.then(after, after);
     }
 
@@ -6447,8 +6528,24 @@
       let held = '';
       let carried = false;
 
-      document.documentElement.classList.remove('vt-quiet');
+      const root = document.documentElement;
+      root.classList.remove('vt-quiet', 'vt-forward', 'vt-back');
       clearPhotoNames();
+
+      /* Direction is decided once, here, so the stylesheet can pick the
+         matching pair of moves. Reduced motion gets neither: it cross-fades. */
+      const kind = !pair ? '' : opts.back ? 'vt-back' : toSlug ? 'vt-forward' : '';
+      if (kind) root.classList.add(kind);
+
+      /* The old page recedes towards whatever was pressed. */
+      const src = opts.source && opts.source.getBoundingClientRect ? opts.source.getBoundingClientRect() : null;
+      if (src && src.width) {
+        root.style.setProperty('--vt-x', Math.round(src.left + src.width / 2) + 'px');
+        root.style.setProperty('--vt-y', Math.round(src.top + src.height / 2) + 'px');
+      } else {
+        root.style.removeProperty('--vt-x');
+        root.style.removeProperty('--vt-y');
+      }
 
       if (opening) {
         homeScrollY = window.scrollY;
@@ -6486,9 +6583,64 @@
             if (carried) frame.style.viewTransitionName = 'recipe-photo';
           }
         }
+
+        if (kind === 'vt-forward') swoosh(toSlug, src);
+
+        /* After the photo is named, so its section can be left out. */
+        const page = mainContent.querySelector('.page');
+        if (page && canTransition && pair && kind !== 'vt-back' && document.visibilityState === 'visible') stagger(page, kind === 'vt-forward' ? 330 : 120);
       };
 
-      transition(render, clearPhotoNames);
+      transition(render, () => {
+        clearPhotoNames();
+        root.classList.remove('vt-forward', 'vt-back');
+        document.querySelectorAll('.swoosh').forEach(el => el.remove());
+      });
+    }
+
+    /* Added to the new page only, so the transition sees it appear and
+       grows it out of the card (.swoosh in the stylesheet). Its diameter
+       reaches the farthest corner of the screen from where it starts. */
+    function swoosh(slug, rect) {
+      const recipe = recipes.find(r => r.slug === slug);
+      const level = recipe && IDDSI_LEVELS[recipe.dysphagia];
+      const w = window.innerWidth, h = window.innerHeight;
+      const x = rect && rect.width ? rect.left + rect.width / 2 : w / 2;
+      const y = rect && rect.width ? rect.top + rect.height / 2 : h / 2;
+      const d = 2 * Math.hypot(Math.max(x, w - x), Math.max(y, h - y));
+      const el = document.createElement('div');
+      el.className = 'swoosh';
+      el.setAttribute('aria-hidden', 'true');
+      el.style.cssText = `--sw-x:${x}px;--sw-y:${y}px;--sw-d:${Math.ceil(d)}px;--sw-color:${level ? level.color : 'var(--coral)'}`;
+      document.body.appendChild(el);
+    }
+
+    /* The arriving page's top-level sections, numbered for .vt-rise. Only
+       the first few take part — past the fold nobody sees the order, and a
+       long tail would leave the bottom of the page blank for no one. A
+       travelling photo and its ancestors are left still: it is already the
+       thing the eye is following, and moving a parent would pull it off the
+       path it is flying along. */
+    function stagger(page, lead) {
+      const named = '[style*="view-transition-name"]';
+      const parts = [];
+      (function collect(el) {
+        for (const child of el.children) {
+          if (parts.length > 4) return;
+          if (child.matches(named)) continue;
+          /* A section holding the travelling photo is opened up instead:
+             its other contents still arrive in turn around the photo. */
+          if (child.querySelector(named)) collect(child);
+          else parts.push(child);
+        }
+      })(page);
+      parts.forEach((el, i) => {
+        el.style.setProperty('--i', i);
+        /* Set on the element, not read from the direction class: that
+           class goes when the transition ends, mid-way through these. */
+        el.style.setProperty('--vt-lead', lead + 'ms');
+        el.classList.add('vt-rise');
+      });
     }
 
     function quietTransition(run) {
