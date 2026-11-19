@@ -1306,6 +1306,42 @@
       transition: transform var(--resp-press) var(--spring); }
     a.bento-photo[data-pressed] { transform: scale(0.985); }
     .bento-photo--wide { grid-column: span 1; }
+
+    /* The featured photo turns over every three seconds, each one a way into
+       its recipe. Only opacity moves. It holds still while it is hovered or
+       focused, when its pause button is pressed, when the tab is hidden, and
+       for anyone who has asked for reduced motion — content that changes by
+       itself has to be stoppable. */
+    .slideshow { position: relative; }
+    .slide-link { position: absolute; inset: 0; display: block; -webkit-tap-highlight-color: transparent; }
+    .slide-link:focus-visible { outline: 3px solid var(--coral); outline-offset: -3px; }
+    .slide { position: absolute; inset: 0; opacity: 0; transition: opacity var(--resp-slow) var(--spring); }
+    .slide.is-on { opacity: 1; }
+    .slide { overflow: hidden; }
+    .slide picture { display: block; width: 100%; height: 100%; }
+    .slideshow .slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .slide-caption {
+      position: absolute; left: 12px; bottom: 12px; right: 68px; margin: 0;
+      pointer-events: none;
+    }
+    .slide-caption span {
+      display: inline-flex; align-items: center; gap: 8px; max-width: 100%;
+      padding: 7px 12px; border-radius: 999px;
+      background: var(--white); color: var(--text);
+      font-size: 0.86rem; font-weight: 700; line-height: 1.25;
+    }
+    .slide-caption i { flex: 0 0 auto; width: 12px; height: 12px; border-radius: 50%; }
+    .slide-pause {
+      position: absolute; right: 12px; bottom: 12px;
+      width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%;
+      display: grid; place-items: center;
+      background: var(--white); color: var(--text); cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform var(--resp-press) var(--spring);
+    }
+    .slide-pause svg { width: 20px; height: 20px; }
+    .slide-pause[data-pressed] { transform: scale(0.92); }
+    .slide-pause:focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; }
     @media (min-width: 720px){ .bento-photo--wide { grid-column: span 2; } }
     .bento-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
@@ -1424,7 +1460,12 @@
     @media (max-width: 640px) {
       .bento { margin-bottom: 18px; }
       .bento-hero { padding: 20px 20px 18px; }
-      .bento-hero .level-key, a.bento-photo--wide { display: none; }
+      /* On a phone the slideshow takes the static photo's place, in a 4:3
+         frame. Trimming a square slide to 4:3 removes exactly the strips that
+         were added, so what shows is the original photo, dish and all. */
+      .bento-hero .level-key, a.bento-photo:not(.slideshow) { display: none; }
+      .bento-photo.slideshow { order: -1; aspect-ratio: 4 / 3; min-height: 0; }
+      .bento-hero { order: -2; }
       .bento-stat { padding: 16px; }
       .bento-photo { min-height: 0; aspect-ratio: 16 / 9; }
       .ladder { margin-bottom: 18px; }
@@ -2384,6 +2425,7 @@
       }
 
       .page { animation: none; }
+      .slide-pause { display: none; }   /* nothing rotates, so nothing to pause */
 
       /* Pages cross-fade and nothing travels. The script also declines to
          pair the photos, so there is no growing or shrinking either. */
@@ -2402,7 +2444,7 @@
       .lang-btn[data-pressed], .nav-toggle[data-pressed],
       .ingredient-item[data-pressed], .back-link[data-pressed],
       .level-key button[data-pressed], .print-inline[data-pressed], a.bento-photo[data-pressed],
-      .pyr-row[data-pressed],
+      .pyr-row[data-pressed], .slide-pause[data-pressed],
       .instruction-step:hover,
       .nav-menu, .nav-menu[hidden] {
         transform: none !important;
@@ -4632,6 +4674,8 @@
     const printBtn = document.getElementById('print-btn');
 
     const icons = {
+      pause: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>',
+      play: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.500 4.640A1 1 0 0 0 8 5.5z"/></svg>',
       search: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
       printer: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>',
       beef: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 2.5c2 1 3.5 3.5 3.5 6.5 0 4-3 7-6.5 8.5"/><path d="M8.5 2.5C6.5 3.5 5 6 5 9c0 4 3 7 6.5 8.5"/><circle cx="12" cy="9" r="3"/></svg>',
@@ -4758,6 +4802,8 @@
       'filter.all': 'Showing all {n} recipes',
       'filter.search': '{n} recipes match “{q}”',
       'filter.count': '{n} recipes shown',
+      'slides.pause': 'Pause the slideshow',
+      'slides.play': 'Play the slideshow',
       "nav.learn": "Dysphagia",
       "learn.eyebrow": "The basics",
       "learn.h1": "What dysphagia is, and what the IDDSI levels mean",
@@ -5302,6 +5348,105 @@
       setLevel(null);
     }
 
+    /* ---- Featured slideshow ---------------------------------------------- */
+    const SLIDE_SIZES = '(max-width: 720px) calc(100vw - 40px), 700px';
+    const SLIDE_MS = 3000;
+    let slideTimer = null, slideIndex = 0, slidesPaused = false, slideBusy = false;
+
+    function slideDeck() { return recipes.filter(r => r.image); }
+
+    /* The frame is close to square and the recipe photos are 4:3, so the
+       slideshow uses a square version of each photo, extended above and below
+       (see slidePhoto). The real photo is untouched in the middle; only the
+       added strips are generated. Falls back to the ordinary photo for any
+       recipe that has no square version. */
+    const SQUARE_PHOTOS = true;
+    // The extension went wrong on these, so they show the ordinary photo.
+    const NO_SQUARE = new Set(['joel-robuchon-mashed-potatoes']);
+    const hasSquare = recipe => SQUARE_PHOTOS && !NO_SQUARE.has(recipe.slug);
+
+    function slidePhoto(recipe) {
+      if (!hasSquare(recipe)) return recipePhoto(recipe, SLIDE_SIZES, true);
+      const v = '?v=' + IMAGE_VERSION;
+      const base = recipe.image + '-square';
+      const set = ext => `${base}-800.${ext}${v} 800w, ${base}-1200.${ext}${v} 1200w`;
+      return `
+        <picture style="background:${recipe.imageBg || 'var(--bg-warm)'}">
+          <source type="image/webp" srcset="${set('webp')}" sizes="${SLIDE_SIZES}">
+          <img src="${base}-800.jpg${v}" srcset="${set('jpg')}" sizes="${SLIDE_SIZES}"
+               alt="${recipe.imageAlt || recipe.title}" width="1200" height="1200" decoding="async">
+        </picture>`;
+    }
+
+    function slideCaption(recipe) {
+      const shown = RC(recipe);
+      return `<span><i style="background:${L(recipe.dysphagia).color}"></i>${shown.title}</span>`;
+    }
+
+    function stopSlides() {
+      if (slideTimer) clearInterval(slideTimer);
+      slideTimer = null; slideBusy = false;
+    }
+
+    function startSlides() {
+      stopSlides();
+      const box = document.getElementById('slideshow');
+      if (!box) return;
+      const deck = slideDeck();
+      slideIndex = Math.max(0, deck.findIndex(r => r.slug === 'chicken-noodle-soup'));
+      syncSlideButton();
+      if (reduceMotion.matches || deck.length < 2) return;
+      slideTimer = setInterval(nextSlide, SLIDE_MS);
+    }
+
+    function syncSlideButton() {
+      const button = document.getElementById('slide-pause');
+      if (!button) return;
+      button.innerHTML = slidesPaused ? icons.play : icons.pause;
+      button.setAttribute('aria-pressed', slidesPaused ? 'true' : 'false');
+      button.setAttribute('aria-label', t(slidesPaused ? 'slides.play' : 'slides.pause'));
+    }
+
+    function toggleSlides() {
+      slidesPaused = !slidesPaused;
+      syncSlideButton();
+    }
+
+    function nextSlide() {
+      const box = document.getElementById('slideshow');
+      if (!box) { stopSlides(); return; }
+      /* Hold still while someone is on it, and while nobody can see it. */
+      if (slidesPaused || slideBusy || document.hidden || !box.offsetParent ||
+          box.matches(':hover') || box.contains(document.activeElement)) return;
+
+      const deck = slideDeck();
+      const next = deck[(slideIndex + 1) % deck.length];
+      slideBusy = true;
+
+      /* Fetch the photo first, so the old one never fades to an empty frame. */
+      const probe = new Image();
+      const show = () => {
+        const link = document.getElementById('slide-link');
+        if (!link || !document.getElementById('slideshow')) { slideBusy = false; return; }
+        const old = link.querySelector('.slide.is-on');
+        const fresh = document.createElement('div');
+        fresh.className = 'slide';
+        fresh.innerHTML = slidePhoto(next);
+        link.appendChild(fresh);
+        void fresh.offsetWidth;            // so the fade starts from 0
+        fresh.classList.add('is-on');
+        link.setAttribute('href', '/recipe/' + next.slug);
+        link.setAttribute('aria-label', t('card.aria', { title: RC(next).title }));
+        document.getElementById('slide-caption').innerHTML = slideCaption(next);
+        document.getElementById('slideshow').style.background = next.imageBg || '';
+        slideIndex = (slideIndex + 1) % deck.length;
+        setTimeout(() => { if (old) old.remove(); slideBusy = false; }, 450);
+      };
+      probe.onload = show;
+      probe.onerror = () => { slideIndex = (slideIndex + 1) % deck.length; slideBusy = false; };
+      probe.src = `${next.image}${hasSquare(next) ? '-square' : ''}-800.webp?v=${IMAGE_VERSION}`;
+    }
+
     function renderHomePage() {
       const counts = levelCounts();
       const levels = [2, 3, 4, 5, 6, 7];
@@ -5335,9 +5480,14 @@
             <button type="button" class="lvl-btn pyr-all" data-level="all" aria-pressed="${activeLevel === null}"
               onclick="setLevel(null)">${t('ladder.all')} <span class="count">${recipes.length}</span></button>
             </div>
-            <a class="bento-photo bento-photo--wide" href="/recipe/${feature2.slug}" aria-label="${t('card.aria', { title: RC(feature2).title })}" style="background:${feature2.imageBg || ''}">
-              ${recipePhoto(feature2, '(max-width: 720px) calc(100vw - 40px), 700px')}
-            </a>
+            <div class="bento-photo bento-photo--wide slideshow" id="slideshow" style="background:${feature2.imageBg || ''}">
+              <a class="slide-link" id="slide-link" href="/recipe/${feature2.slug}" aria-label="${t('card.aria', { title: RC(feature2).title })}">
+                <div class="slide is-on">${slidePhoto(feature2)}</div>
+              </a>
+              <p class="slide-caption" id="slide-caption" aria-hidden="true">${slideCaption(feature2)}</p>
+              <button type="button" class="slide-pause" id="slide-pause" aria-pressed="false"
+                aria-label="${t('slides.pause')}" onclick="toggleSlides()">${icons.pause}</button>
+            </div>
           </div>
 
           <div class="ladder">
@@ -6539,6 +6689,7 @@
       const restoreScroll = typeof opts.restoreScroll === 'number' ? opts.restoreScroll : 0;
       let notFound = false;
       if (typeof navMenu !== 'undefined' && navMenu && !navMenu.hidden) setMenu(false);
+      stopSlides();
 
       /* Old #/recipe/x links are still out in the world — shared, bookmarked and
          on Pinterest — so translate them to the real path once and carry on. */
@@ -6565,6 +6716,7 @@
 
       if (path === '/' || path === '') {
         mainContent.innerHTML = renderHomePage();
+        startSlides();
       } else if (path === '/reviews') {
         mainContent.innerHTML = renderReviewsPage();
         hydrateReviewsPage();
@@ -6683,7 +6835,7 @@
        start a tap, think better of it, and back out. */
     const PRESSABLE = '.btn, .recipe-card, .lvl-btn, .batch-btn, .lang-btn, ' +
       '.nav-toggle, .print-fab, .print-inline, .ingredient-item, .back-link, ' +
-      '.level-key button, a.bento-photo, .pyr-row';
+      '.level-key button, a.bento-photo, .pyr-row, .slide-pause';
     let pressedEl = null, pressX = 0, pressY = 0;
 
     function releasePress() {
